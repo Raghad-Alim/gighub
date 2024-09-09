@@ -1,3 +1,7 @@
-# Gighub
+# gighub
 
-this is part of the SWE444 course in KSU 
+A new Flutter project.
+
+## Getting Started
+
+FlutterFlow projects are built to run on the Flutter _stable_ release.
