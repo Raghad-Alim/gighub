@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'create_account_client_model.dart';
@@ -1018,8 +1019,34 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                               16.0, 12.0, 16.0, 12.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              var shouldSetState = false;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
+                                return;
+                              }
+                              _model.emailsInData = await queryUserRecordCount(
+                                queryBuilder: (userRecord) => userRecord.where(
+                                  'email',
+                                  isEqualTo: _model.emailTextController.text,
+                                ),
+                              );
+                              shouldSetState = true;
+                              if (_model.emailsInData! > 0) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Email alredy in use',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                                if (shouldSetState) safeSetState(() {});
                                 return;
                               }
                               GoRouter.of(context).prepareAuthEvent();
@@ -1067,6 +1094,8 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
 
                               context.pushNamedAuth(
                                   'verificationMessageClient', context.mounted);
+
+                              if (shouldSetState) safeSetState(() {});
                             },
                             text: 'Submit Form',
                             options: FFButtonOptions(

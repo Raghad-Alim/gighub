@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'create_account_client_widget.dart' show CreateAccountClientWidget;
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -91,6 +92,8 @@ class CreateAccountClientModel
   // State field(s) for GoogleMap widget.
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  int? emailsInData;
 
   @override
   void initState(BuildContext context) {
