@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "user",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isClient",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "FirstName",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
