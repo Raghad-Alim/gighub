@@ -2,12 +2,14 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'create_account_s_p_model.dart';
 export 'create_account_s_p_model.dart';
@@ -23,12 +25,15 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
   late CreateAccountSPModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => CreateAccountSPModel());
 
+    getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
+        .then((loc) => safeSetState(() => currentUserLocationValue = loc));
     _model.firstNameTextController ??= TextEditingController();
     _model.firstNameFocusNode ??= FocusNode();
     _model.firstNameFocusNode!.addListener(() => safeSetState(() {}));
@@ -65,34 +70,58 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (currentUserLocationValue == null) {
+      return Container(
+        color: FlutterFlowTheme.of(context).primaryBackground,
+        child: Center(
+          child: SizedBox(
+            width: 50.0,
+            height: 50.0,
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                FlutterFlowTheme.of(context).primary,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        resizeToAvoidBottomInset: false,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).white,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Create your account',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily:
-                          FlutterFlowTheme.of(context).headlineMediumFamily,
+                textAlign: TextAlign.center,
+                style: FlutterFlowTheme.of(context).bodyLarge.override(
+                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                      color: FlutterFlowTheme.of(context).alternate,
                       letterSpacing: 0.0,
+                      fontWeight: FontWeight.bold,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).headlineMediumFamily),
+                          FlutterFlowTheme.of(context).bodyLargeFamily),
                     ),
               ),
               Text(
-                'Please fill out the form below to continue.',
+                'Please fill out the form below to continue',
+                textAlign: TextAlign.start,
                 style: FlutterFlowTheme.of(context).labelMedium.override(
                       fontFamily:
                           FlutterFlowTheme.of(context).labelMediumFamily,
+                      color: FlutterFlowTheme.of(context).secondary,
                       letterSpacing: 0.0,
+                      fontWeight: FontWeight.w500,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
                           FlutterFlowTheme.of(context).labelMediumFamily),
                     ),
@@ -101,21 +130,39 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
           ),
           actions: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 12.0, 8.0),
-              child: FlutterFlowIconButton(
-                borderColor: FlutterFlowTheme.of(context).alternate,
-                borderRadius: 12.0,
-                borderWidth: 1.0,
-                buttonSize: 40.0,
-                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                icon: Icon(
-                  Icons.close_rounded,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  size: 24.0,
-                ),
+              padding: const EdgeInsets.all(8.0),
+              child: FFButtonWidget(
                 onPressed: () async {
                   context.safePop();
                 },
+                text: '',
+                icon: Icon(
+                  Icons.close,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 24.0,
+                ),
+                options: FFButtonOptions(
+                  width: 50.0,
+                  height: 50.0,
+                  padding: const EdgeInsets.all(0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primaryBackground,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).titleSmallFamily,
+                        color: Colors.white,
+                        letterSpacing: 0.0,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).titleSmallFamily),
+                      ),
+                  elevation: 0.0,
+                  borderSide: const BorderSide(
+                    color: Color(0xFFE5E7EB),
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
               ),
             ),
           ],
@@ -142,7 +189,10 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                             constraints: const BoxConstraints(
                               maxWidth: 770.0,
                             ),
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                            ),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 12.0, 16.0, 0.0),
@@ -160,14 +210,17 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                     decoration: InputDecoration(
                                       labelText: 'First name*',
                                       labelStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
+                                          .titleSmall
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily,
                                             color: const Color(0xFF606A85),
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Outfit'),
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily),
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
@@ -234,18 +287,18 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                               16.0, 20.0, 16.0, 20.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .labelLarge
+                                        .bodyMedium
                                         .override(
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
-                                                  .labelLargeFamily,
+                                                  .bodyMediumFamily,
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                              .tertiary,
                                           letterSpacing: 0.0,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .labelLargeFamily),
+                                                      .bodyMediumFamily),
                                         ),
                                     cursorColor: const Color(0xFF6F61EF),
                                     validator: _model
@@ -262,15 +315,17 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                     decoration: InputDecoration(
                                       labelText: 'Last Name',
                                       labelStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
+                                          .titleSmall
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily,
                                             color: const Color(0xFF606A85),
-                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Outfit'),
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily),
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
@@ -295,8 +350,9 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                                 .containsKey('Figtree'),
                                           ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                          color: Color(0xFFE5E7EB),
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
                                           width: 2.0,
                                         ),
                                         borderRadius:
@@ -337,15 +393,18 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                               16.0, 20.0, 16.0, 20.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
+                                        .bodyMedium
                                         .override(
-                                          fontFamily: 'Figtree',
-                                          color: const Color(0xFF15161E),
-                                          fontSize: 16.0,
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
                                           useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey('Figtree'),
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
                                         ),
                                     cursorColor: const Color(0xFF6F61EF),
                                     validator: _model
@@ -363,26 +422,31 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                     decoration: InputDecoration(
                                       labelText: 'Phone number*',
                                       labelStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
+                                          .titleSmall
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily,
                                             color: const Color(0xFF606A85),
-                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Outfit'),
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily),
                                           ),
+                                      hintText: '05XXXXXXXX',
                                       hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                          .titleSmall
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily,
                                             color: const Color(0xFF606A85),
-                                            fontSize: 14.0,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Outfit'),
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily),
                                           ),
                                       errorStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -438,15 +502,18 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                               16.0, 20.0, 16.0, 20.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
+                                        .bodyMedium
                                         .override(
-                                          fontFamily: 'Figtree',
-                                          color: const Color(0xFF15161E),
-                                          fontSize: 16.0,
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
                                           useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey('Figtree'),
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
                                         ),
                                     cursorColor: const Color(0xFF6F61EF),
                                     validator: _model
@@ -464,13 +531,13 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                       autofillHints: const [AutofillHints.email],
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Email',
+                                        labelText: 'Email*',
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .labelLarge
+                                            .titleSmall
                                             .override(
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelLargeFamily,
+                                                      .titleSmallFamily,
                                               color: const Color(0xFF606A85),
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
@@ -478,7 +545,7 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                                   .containsKey(
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .labelLargeFamily),
+                                                          .titleSmallFamily),
                                             ),
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -528,14 +595,18 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                         contentPadding: const EdgeInsets.all(12.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .bodyMedium
                                           .override(
-                                            fontFamily: 'Figtree',
-                                            fontSize: 16.0,
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiary,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
                                             useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Figtree'),
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
                                           ),
                                       keyboardType: TextInputType.emailAddress,
                                       cursorColor: const Color(0xFF4B39EF),
@@ -555,17 +626,23 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                       obscureText:
                                           !_model.passwordCreateVisibility,
                                       decoration: InputDecoration(
-                                        labelText: 'Password',
+                                        labelText: 'Password*',
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .labelLarge
+                                            .titleSmall
                                             .override(
-                                              fontFamily: 'satoshi',
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
                                               color: const Color(0xFF606A85),
                                               letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey('satoshi'),
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
                                             ),
+                                        alignLabelWithHint: false,
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -634,13 +711,16 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Figtree',
-                                            color: const Color(0xFF101213),
-                                            fontSize: 16.0,
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiary,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
                                             useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Figtree'),
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
                                           ),
                                       cursorColor: const Color(0xFF4B39EF),
                                       validator: _model
@@ -660,13 +740,13 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                       obscureText:
                                           !_model.passwordConfirmVisibility,
                                       decoration: InputDecoration(
-                                        labelText: 'Confirm Password',
+                                        labelText: 'Confirm Password*',
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .labelLarge
+                                            .titleSmall
                                             .override(
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelLargeFamily,
+                                                      .titleSmallFamily,
                                               color: const Color(0xFF606A85),
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
@@ -674,7 +754,7 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                                   .containsKey(
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .labelLargeFamily),
+                                                          .titleSmallFamily),
                                             ),
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -744,13 +824,16 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Figtree',
-                                            color: const Color(0xFF101213),
-                                            fontSize: 18.0,
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiary,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
                                             useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Figtree'),
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
                                           ),
                                       minLines: 1,
                                       cursorColor: const Color(0xFF4B39EF),
@@ -758,82 +841,6 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                           .passwordConfirmTextControllerValidator
                                           .asValidator(context),
                                     ),
-                                  ),
-                                  Text(
-                                    'Gender',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMediumFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent3,
-                                          letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMediumFamily),
-                                        ),
-                                  ),
-                                  FlutterFlowChoiceChips(
-                                    options: const [
-                                      ChipData('Female'),
-                                      ChipData('Male')
-                                    ],
-                                    onChanged: (val) => safeSetState(() =>
-                                        _model.choiceChipsValue =
-                                            val?.firstOrNull),
-                                    selectedChipStyle: ChipStyle(
-                                      backgroundColor: const Color(0x4C39D2C0),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: const Color(0xFF15161E),
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Figtree'),
-                                          ),
-                                      iconColor: const Color(0xFF15161E),
-                                      iconSize: 18.0,
-                                      elevation: 0.0,
-                                      borderColor: const Color(0xFF39D2C0),
-                                      borderWidth: 2.0,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    unselectedChipStyle: ChipStyle(
-                                      backgroundColor: const Color(0xFFF1F4F8),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: const Color(0xFF606A85),
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Figtree'),
-                                          ),
-                                      iconColor: const Color(0xFF606A85),
-                                      iconSize: 18.0,
-                                      elevation: 0.0,
-                                      borderColor: const Color(0xFFE5E7EB),
-                                      borderWidth: 2.0,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    chipSpacing: 12.0,
-                                    rowSpacing: 12.0,
-                                    multiselect: false,
-                                    alignment: WrapAlignment.start,
-                                    controller:
-                                        _model.choiceChipsValueController ??=
-                                            FormFieldController<List<String>>(
-                                      [],
-                                    ),
-                                    wrapped: true,
                                   ),
                                   TextFormField(
                                     controller:
@@ -844,17 +851,19 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                         TextCapitalization.words,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'Date of birth',
+                                      labelText: 'Date of birth*',
                                       labelStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
+                                          .titleSmall
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily,
                                             color: const Color(0xFF606A85),
-                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Outfit'),
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily),
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
@@ -921,21 +930,118 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                               16.0, 20.0, 16.0, 20.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
+                                        .bodyMedium
                                         .override(
-                                          fontFamily: 'Figtree',
-                                          color: const Color(0xFF15161E),
-                                          fontSize: 16.0,
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
                                           useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey('Figtree'),
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
                                         ),
                                     cursorColor: const Color(0xFF6F61EF),
                                     validator: _model
                                         .dateOfBirthTextControllerValidator
                                         .asValidator(context),
                                     inputFormatters: [_model.dateOfBirthMask],
+                                  ),
+                                  Text(
+                                    'Gender',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
+                                          color: const Color(0xFF606A85),
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
+                                        ),
+                                  ),
+                                  FlutterFlowChoiceChips(
+                                    options: const [
+                                      ChipData('Female'),
+                                      ChipData('Male')
+                                    ],
+                                    onChanged: (val) => safeSetState(() =>
+                                        _model.choiceChipsValue =
+                                            val?.firstOrNull),
+                                    selectedChipStyle: ChipStyle(
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: const Color(0xFF15161E),
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey('Figtree'),
+                                          ),
+                                      iconColor: const Color(0xFF15161E),
+                                      iconSize: 18.0,
+                                      elevation: 0.0,
+                                      borderColor:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      borderWidth: 2.0,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    unselectedChipStyle: ChipStyle(
+                                      backgroundColor: const Color(0xFFF1F4F8),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Figtree',
+                                            color: const Color(0xFF606A85),
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey('Figtree'),
+                                          ),
+                                      iconColor: const Color(0xFF606A85),
+                                      iconSize: 18.0,
+                                      elevation: 0.0,
+                                      borderColor: const Color(0xFFE5E7EB),
+                                      borderWidth: 2.0,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    chipSpacing: 12.0,
+                                    rowSpacing: 12.0,
+                                    multiselect: false,
+                                    alignment: WrapAlignment.start,
+                                    controller:
+                                        _model.choiceChipsValueController ??=
+                                            FormFieldController<List<String>>(
+                                      [],
+                                    ),
+                                    wrapped: true,
+                                  ),
+                                  Text(
+                                    'Sector*',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
+                                          color: const Color(0xFF606A85),
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
+                                        ),
                                   ),
                                   FlutterFlowDropDown<String>(
                                     controller:
@@ -955,17 +1061,20 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                     width: double.infinity,
                                     height: 52.0,
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .bodyLarge
+                                        .titleSmall
                                         .override(
-                                          fontFamily: 'Figtree',
-                                          color: const Color(0xFF606A85),
-                                          fontSize: 16.0,
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
                                           useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey('Figtree'),
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily),
                                         ),
-                                    hintText: 'Select Your Sector...',
+                                    hintText: 'Select Your Sector*...',
                                     icon: const Icon(
                                       Icons.keyboard_arrow_down_rounded,
                                       color: Color(0xFF606A85),
@@ -982,6 +1091,24 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                     isOverButton: true,
                                     isSearchable: false,
                                     isMultiSelect: false,
+                                    labelText: '',
+                                    labelTextStyle: const TextStyle(),
+                                  ),
+                                  Text(
+                                    'Talk about your skills*',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
+                                          color: const Color(0xFF606A85),
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
+                                        ),
                                   ),
                                   TextFormField(
                                     controller:
@@ -992,17 +1119,19 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                         TextCapitalization.words,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'write a bio here...',
+                                      labelText: 'write a bio here*...',
                                       labelStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
+                                          .titleSmall
                                           .override(
-                                            fontFamily: 'Outfit',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily,
                                             color: const Color(0xFF606A85),
-                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey('Outfit'),
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily),
                                           ),
                                       alignLabelWithHint: true,
                                       hintStyle: FlutterFlowTheme.of(context)
@@ -1070,15 +1199,18 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                               16.0, 16.0, 16.0, 16.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
+                                        .bodyMedium
                                         .override(
-                                          fontFamily: 'Figtree',
-                                          color: const Color(0xFF15161E),
-                                          fontSize: 16.0,
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
                                           useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey('Figtree'),
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
                                         ),
                                     maxLines: 9,
                                     minLines: 5,
@@ -1086,6 +1218,61 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                     validator: _model
                                         .descriptionTextControllerValidator
                                         .asValidator(context),
+                                  ),
+                                  Text(
+                                    'Your location',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
+                                          color: const Color(0xFF606A85),
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
+                                        ),
+                                  ),
+                                  Container(
+                                    width: 356.0,
+                                    height: 230.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    child: Builder(builder: (context) {
+                                      final googleMapMarker =
+                                          currentUserLocationValue;
+                                      return FlutterFlowGoogleMap(
+                                        controller: _model.googleMapsController,
+                                        onCameraIdle: (latLng) =>
+                                            _model.googleMapsCenter = latLng,
+                                        initialLocation:
+                                            _model.googleMapsCenter ??=
+                                                currentUserLocationValue!,
+                                        markers: [
+                                          if (googleMapMarker != null)
+                                            FlutterFlowMarker(
+                                              googleMapMarker.serialize(),
+                                              googleMapMarker,
+                                            ),
+                                        ],
+                                        markerColor: GoogleMarkerColor.violet,
+                                        mapType: MapType.normal,
+                                        style: GoogleMapStyle.standard,
+                                        initialZoom: 14.0,
+                                        allowInteraction: true,
+                                        allowZoom: true,
+                                        showZoomControls: true,
+                                        showLocation: true,
+                                        showCompass: false,
+                                        showMapToolbar: false,
+                                        showTraffic: false,
+                                        centerMapOnMarkerTap: true,
+                                      );
+                                    }),
                                   ),
                                 ]
                                     .divide(const SizedBox(height: 12.0))
@@ -1106,86 +1293,186 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                   child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        if (_model.formKey.currentState == null ||
-                            !_model.formKey.currentState!.validate()) {
-                          return;
-                        }
-                        if (_model.dropDownValue == null) {
-                          return;
-                        }
-                        GoRouter.of(context).prepareAuthEvent();
-                        if (_model.passwordCreateTextController.text !=
-                            _model.passwordConfirmTextController.text) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                'Passwords don\'t match!',
+                    child: StreamBuilder<List<UserRecord>>(
+                      stream: queryUserRecord(
+                        singleRecord: true,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 40.0,
+                              height: 40.0,
+                              child: SpinKitHourGlass(
+                                color: FlutterFlowTheme.of(context).primary,
+                                size: 40.0,
                               ),
                             ),
                           );
-                          return;
                         }
-
-                        final user = await authManager.createAccountWithEmail(
-                          context,
-                          _model.emailAddressCreateTextController.text,
-                          _model.passwordCreateTextController.text,
-                        );
-                        if (user == null) {
-                          return;
+                        List<UserRecord> buttonUserRecordList = snapshot.data!;
+                        // Return an empty Container when the item does not exist.
+                        if (snapshot.data!.isEmpty) {
+                          return Container();
                         }
+                        final buttonUserRecord = buttonUserRecordList.isNotEmpty
+                            ? buttonUserRecordList.first
+                            : null;
 
-                        await UserRecord.collection
-                            .doc(user.uid)
-                            .update(createUserRecordData(
-                              phoneNumber: '',
+                        return FFButtonWidget(
+                          onPressed: () async {
+                            var shouldSetState = false;
+                            if (_model.formKey.currentState == null ||
+                                !_model.formKey.currentState!.validate()) {
+                              return;
+                            }
+                            if (_model.dropDownValue == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                    'You must select Sector.',
+                                    style: TextStyle(
+                                      color: Color(0xFF960000),
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).white,
+                                ),
+                              );
+                              return;
+                            }
+                            if (_model.passwordCreateTextController.text ==
+                                _model.passwordConfirmTextController.text) {
+                              _model.emails = await queryUserRecordOnce(
+                                queryBuilder: (userRecord) => userRecord.where(
+                                  'email',
+                                  isEqualTo: _model
+                                      .emailAddressCreateTextController.text,
+                                ),
+                                singleRecord: true,
+                              ).then((s) => s.firstOrNull);
+                              shouldSetState = true;
+                              if (_model.emails?.email ==
+                                  _model
+                                      .emailAddressCreateTextController.text) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Text(
+                                      'Email is already in use. Use another email.',
+                                      style: TextStyle(
+                                        color: Color(0xFFF60404),
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).white,
+                                  ),
+                                );
+                                if (shouldSetState) safeSetState(() {});
+                                return;
+                              }
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                    'Your password and its conformation do not match.',
+                                    style: TextStyle(
+                                      color: Color(0xFF700505),
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).white,
+                                ),
+                              );
+                              if (shouldSetState) safeSetState(() {});
+                              return;
+                            }
+
+                            GoRouter.of(context).prepareAuthEvent();
+                            if (_model.passwordCreateTextController.text !=
+                                _model.passwordConfirmTextController.text) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    'Passwords don\'t match!',
+                                  ),
+                                ),
+                              );
+                              return;
+                            }
+
+                            final user =
+                                await authManager.createAccountWithEmail(
+                              context,
+                              _model.emailAddressCreateTextController.text,
+                              _model.passwordCreateTextController.text,
+                            );
+                            if (user == null) {
+                              return;
+                            }
+
+                            await UserRecord.collection
+                                .doc(user.uid)
+                                .update(createUserRecordData(
+                                  phoneNumber: '',
+                                ));
+
+                            await currentUserReference!
+                                .update(createUserRecordData(
+                              uid: currentUserUid,
+                              firstName: _model.firstNameTextController.text,
+                              lastName: _model.lastNameTextController.text,
+                              phoneNumber:
+                                  _model.phoneNumberTextController.text,
+                              dateOfBirth:
+                                  _model.dateOfBirthTextController.text,
+                              gender: _model.choiceChipsValue,
+                              sector: _model.dropDownValue,
+                              bio: _model.descriptionTextController.text,
+                              isClient: false,
+                              role: 'ServiceProvider',
+                              location: currentUserDocument?.location,
                             ));
 
-                        await currentUserReference!.update(createUserRecordData(
-                          uid: currentUserUid,
-                          firstName: _model.firstNameTextController.text,
-                          lastName: _model.lastNameTextController.text,
-                          phoneNumber: _model.phoneNumberTextController.text,
-                          dateOfBirth: _model.dateOfBirthTextController.text,
-                          gender: _model.choiceChipsValue,
-                          sector: _model.dropDownValue,
-                          bio: _model.descriptionTextController.text,
-                          isClient: false,
-                          role: 'ServiceProvider',
-                        ));
+                            context.pushNamedAuth(
+                                'verificationMessageSP', context.mounted);
 
-                        context.pushNamedAuth(
-                            'verificationMessage', context.mounted);
-                      },
-                      text: 'Submit Form',
-                      options: FFButtonOptions(
-                        width: double.infinity,
-                        height: 48.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).tertiary,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleSmall
-                            .override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: Colors.white,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .titleSmallFamily),
+                            if (shouldSetState) safeSetState(() {});
+                          },
+                          text: 'Create Account',
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 48.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleSmallFamily),
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).tertiary,
+                              width: 1.0,
                             ),
-                        elevation: 3.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),

@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
@@ -17,11 +18,14 @@ class CreateAccountClientModel
   String? Function(BuildContext, String?)? firstNameTextControllerValidator;
   String? _firstNameTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Please enter your first name.';
+      return 'You must enter your first name.';
     }
 
     if (val.length < 3) {
-      return 'Requires at least 3 characters.';
+      return 'Your first  name is  too short ';
+    }
+    if (val.length > 20) {
+      return 'your first name is too long';
     }
 
     return null;
@@ -38,17 +42,17 @@ class CreateAccountClientModel
   String? _phoneNumberTextControllerValidator(
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'You must enter your phone number.';
     }
 
-    if (val.length < 13) {
-      return 'Requires at least 13 characters.';
+    if (val.length < 10) {
+      return 'Your phone number must be exactly 10 digits.';
     }
-    if (val.length > 13) {
-      return 'Maximum 13 characters allowed, currently ${val.length}.';
+    if (val.length > 10) {
+      return 'Your phone number must be exactly 10 digits.';
     }
-    if (!RegExp('^\\+966\\d{9}\$').hasMatch(val)) {
-      return 'Invalid text';
+    if (!RegExp('^05\\d{8}\$').hasMatch(val)) {
+      return 'Your phone number must start with 05.';
     }
     return null;
   }
@@ -57,18 +61,56 @@ class CreateAccountClientModel
   FocusNode? emailFocusNode;
   TextEditingController? emailTextController;
   String? Function(BuildContext, String?)? emailTextControllerValidator;
+  String? _emailTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'You must enter your Email.';
+    }
+
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return 'Your email address is not valid.\n Please use the format example@example.com.';
+    }
+    return null;
+  }
+
   // State field(s) for PasswordCreate widget.
   FocusNode? passwordCreateFocusNode;
   TextEditingController? passwordCreateTextController;
   late bool passwordCreateVisibility;
   String? Function(BuildContext, String?)?
       passwordCreateTextControllerValidator;
+  String? _passwordCreateTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'You must enter your password.';
+    }
+
+    if (val.length < 8) {
+      return 'Your password must be at least 8 characters long.';
+    }
+
+    if (!RegExp(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]+\$')
+        .hasMatch(val)) {
+      return 'Your password must contain: At least one uppercase letter,\nAt least one lowercase letter,\nAt least one digit,\nAt least one special character (any character that isn\'t a letter or a digit).';
+    }
+    return null;
+  }
+
   // State field(s) for PasswordConfirm widget.
   FocusNode? passwordConfirmFocusNode;
   TextEditingController? passwordConfirmTextController;
   late bool passwordConfirmVisibility;
   String? Function(BuildContext, String?)?
       passwordConfirmTextControllerValidator;
+  String? _passwordConfirmTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'You must re-enter your password.';
+    }
+
+    return null;
+  }
+
   // State field(s) for dateOfBirth widget.
   FocusNode? dateOfBirthFocusNode;
   TextEditingController? dateOfBirthTextController;
@@ -80,6 +122,11 @@ class CreateAccountClientModel
       return 'Please enter your date of birth.';
     }
 
+    if (!RegExp(
+            '^(?:(?:31\\/(?:0[13578]|1[02]))|(?:30\\/(?:0[13-9]|1[0-2]))|(?:0[1-9]|1\\d|2[0-8])')
+        .hasMatch(val)) {
+      return 'Your birthdate must be DD/MM/YYYY from 1950 to 2011.';
+    }
     return null;
   }
 
@@ -93,14 +140,19 @@ class CreateAccountClientModel
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  int? emailsInData;
+  UserRecord? emailsExist;
 
   @override
   void initState(BuildContext context) {
     firstNameTextControllerValidator = _firstNameTextControllerValidator;
     phoneNumberTextControllerValidator = _phoneNumberTextControllerValidator;
+    emailTextControllerValidator = _emailTextControllerValidator;
     passwordCreateVisibility = false;
+    passwordCreateTextControllerValidator =
+        _passwordCreateTextControllerValidator;
     passwordConfirmVisibility = false;
+    passwordConfirmTextControllerValidator =
+        _passwordConfirmTextControllerValidator;
     dateOfBirthTextControllerValidator = _dateOfBirthTextControllerValidator;
   }
 

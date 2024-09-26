@@ -5,18 +5,18 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'nav_bar_s_p_request_model.dart';
-export 'nav_bar_s_p_request_model.dart';
+import 'nav_bar_s_p_home_model.dart';
+export 'nav_bar_s_p_home_model.dart';
 
-class NavBarSPRequestWidget extends StatefulWidget {
-  const NavBarSPRequestWidget({super.key});
+class NavBarSPHomeWidget extends StatefulWidget {
+  const NavBarSPHomeWidget({super.key});
 
   @override
-  State<NavBarSPRequestWidget> createState() => _NavBarSPRequestWidgetState();
+  State<NavBarSPHomeWidget> createState() => _NavBarSPHomeWidgetState();
 }
 
-class _NavBarSPRequestWidgetState extends State<NavBarSPRequestWidget> {
-  late NavBarSPRequestModel _model;
+class _NavBarSPHomeWidgetState extends State<NavBarSPHomeWidget> {
+  late NavBarSPHomeModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +27,7 @@ class _NavBarSPRequestWidgetState extends State<NavBarSPRequestWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NavBarSPRequestModel());
+    _model = createModel(context, () => NavBarSPHomeModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -109,11 +109,11 @@ class _NavBarSPRequestWidgetState extends State<NavBarSPRequestWidget> {
                             buttonSize: 60.0,
                             icon: FaIcon(
                               FontAwesomeIcons.home,
-                              color: FlutterFlowTheme.of(context).secondary,
+                              color: FlutterFlowTheme.of(context).tertiary,
                               size: 25.0,
                             ),
                             onPressed: () async {
-                              context.pushNamed('ClientHomePage');
+                              context.goNamed('ServiceProviderHomePage');
                             },
                           ),
                         ),
@@ -124,7 +124,7 @@ class _NavBarSPRequestWidgetState extends State<NavBarSPRequestWidget> {
                           buttonSize: 60.0,
                           icon: FaIcon(
                             FontAwesomeIcons.clipboardList,
-                            color: FlutterFlowTheme.of(context).tertiary,
+                            color: FlutterFlowTheme.of(context).secondary,
                             size: 30.0,
                           ),
                           onPressed: () async {
@@ -177,7 +177,7 @@ class _NavBarSPRequestWidgetState extends State<NavBarSPRequestWidget> {
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .labelMediumFamily,
-                                  color: FlutterFlowTheme.of(context).secondary,
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -197,7 +197,7 @@ class _NavBarSPRequestWidgetState extends State<NavBarSPRequestWidget> {
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .labelMediumFamily,
-                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  color: FlutterFlowTheme.of(context).secondary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)

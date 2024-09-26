@@ -231,8 +231,8 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                       ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(12.0),
@@ -805,7 +805,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'total',
+                                                                'total${serviceProvidersItem.tatalRating.toString()}reviews',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodySmall

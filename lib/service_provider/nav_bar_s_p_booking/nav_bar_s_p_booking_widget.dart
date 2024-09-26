@@ -5,18 +5,18 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'nav_bar_s_p_home_model.dart';
-export 'nav_bar_s_p_home_model.dart';
+import 'nav_bar_s_p_booking_model.dart';
+export 'nav_bar_s_p_booking_model.dart';
 
-class NavBarSPHomeWidget extends StatefulWidget {
-  const NavBarSPHomeWidget({super.key});
+class NavBarSPBookingWidget extends StatefulWidget {
+  const NavBarSPBookingWidget({super.key});
 
   @override
-  State<NavBarSPHomeWidget> createState() => _NavBarSPHomeWidgetState();
+  State<NavBarSPBookingWidget> createState() => _NavBarSPBookingWidgetState();
 }
 
-class _NavBarSPHomeWidgetState extends State<NavBarSPHomeWidget> {
-  late NavBarSPHomeModel _model;
+class _NavBarSPBookingWidgetState extends State<NavBarSPBookingWidget> {
+  late NavBarSPBookingModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +27,7 @@ class _NavBarSPHomeWidgetState extends State<NavBarSPHomeWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NavBarSPHomeModel());
+    _model = createModel(context, () => NavBarSPBookingModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -109,11 +109,11 @@ class _NavBarSPHomeWidgetState extends State<NavBarSPHomeWidget> {
                             buttonSize: 60.0,
                             icon: FaIcon(
                               FontAwesomeIcons.home,
-                              color: FlutterFlowTheme.of(context).tertiary,
+                              color: FlutterFlowTheme.of(context).secondary,
                               size: 25.0,
                             ),
                             onPressed: () async {
-                              context.pushNamed('ClientHomePage');
+                              context.pushNamed('ServiceProviderHomePage');
                             },
                           ),
                         ),
@@ -138,7 +138,7 @@ class _NavBarSPHomeWidgetState extends State<NavBarSPHomeWidget> {
                           buttonSize: 60.0,
                           icon: Icon(
                             Icons.calendar_month_sharp,
-                            color: FlutterFlowTheme.of(context).secondary,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             size: 30.0,
                           ),
                           onPressed: () async {
@@ -177,7 +177,7 @@ class _NavBarSPHomeWidgetState extends State<NavBarSPHomeWidget> {
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .labelMediumFamily,
-                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  color: FlutterFlowTheme.of(context).secondary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -217,7 +217,7 @@ class _NavBarSPHomeWidgetState extends State<NavBarSPHomeWidget> {
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .labelMediumFamily,
-                                  color: FlutterFlowTheme.of(context).secondary,
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)

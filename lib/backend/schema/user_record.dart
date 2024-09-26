@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -105,6 +106,11 @@ class UserRecord extends FirestoreRecord {
   LatLng? get location => _location;
   bool hasLocation() => _location != null;
 
+  // "User_history" field.
+  List<DocumentReference>? _userHistory;
+  List<DocumentReference> get userHistory => _userHistory ?? const [];
+  bool hasUserHistory() => _userHistory != null;
+
   void _initializeFields() {
     _photoUrl = snapshotData['photo_url'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
@@ -124,6 +130,7 @@ class UserRecord extends FirestoreRecord {
     _bio = snapshotData['Bio'] as String?;
     _lastName = snapshotData['LastName'] as String?;
     _location = snapshotData['location'] as LatLng?;
+    _userHistory = getDataList(snapshotData['User_history']);
   }
 
   static CollectionReference get collection =>
@@ -210,6 +217,7 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
 
   @override
   bool equals(UserRecord? e1, UserRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.photoUrl == e2?.photoUrl &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.dateOfBirth == e2?.dateOfBirth &&
@@ -227,7 +235,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.bio == e2?.bio &&
         e1?.lastName == e2?.lastName &&
-        e1?.location == e2?.location;
+        e1?.location == e2?.location &&
+        listEquality.equals(e1?.userHistory, e2?.userHistory);
   }
 
   @override
@@ -249,7 +258,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.createdTime,
         e?.bio,
         e?.lastName,
-        e?.location
+        e?.location,
+        e?.userHistory
       ]);
 
   @override

@@ -100,7 +100,7 @@ class _VerificationMessageClientWidgetState
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, -0.28),
+                      alignment: const AlignmentDirectional(0.0, -0.24),
                       child: Text(
                         'We\'ve send you a verification link, Please check your inbox and click on the link to verify your email.',
                         textAlign: TextAlign.center,

@@ -5,26 +5,27 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'verification_message_model.dart';
-export 'verification_message_model.dart';
+import 'verification_message_s_p_model.dart';
+export 'verification_message_s_p_model.dart';
 
-class VerificationMessageWidget extends StatefulWidget {
-  const VerificationMessageWidget({super.key});
+class VerificationMessageSPWidget extends StatefulWidget {
+  const VerificationMessageSPWidget({super.key});
 
   @override
-  State<VerificationMessageWidget> createState() =>
-      _VerificationMessageWidgetState();
+  State<VerificationMessageSPWidget> createState() =>
+      _VerificationMessageSPWidgetState();
 }
 
-class _VerificationMessageWidgetState extends State<VerificationMessageWidget> {
-  late VerificationMessageModel _model;
+class _VerificationMessageSPWidgetState
+    extends State<VerificationMessageSPWidget> {
+  late VerificationMessageSPModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => VerificationMessageModel());
+    _model = createModel(context, () => VerificationMessageSPModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -47,7 +48,7 @@ class _VerificationMessageWidgetState extends State<VerificationMessageWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: const Color(0xE1FDFCFE),
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: SafeArea(
           top: true,
           child: Align(
@@ -58,7 +59,7 @@ class _VerificationMessageWidgetState extends State<VerificationMessageWidget> {
                 width: 450.0,
                 height: 450.0,
                 decoration: BoxDecoration(
-                  color: const Color(0xDCFDFCFE),
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                   boxShadow: const [
                     BoxShadow(
                       blurRadius: 4.0,
@@ -99,19 +100,23 @@ class _VerificationMessageWidgetState extends State<VerificationMessageWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, -0.28),
-                      child: Text(
-                        'We\'ve send you a verification link, Please check your inbox and click on the link to verify your email.',
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.of(context).bodySmall.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodySmallFamily,
-                              fontSize: 14.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.normal,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodySmallFamily),
-                            ),
+                      alignment: const AlignmentDirectional(0.0, -0.27),
+                      child: Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Text(
+                          'We\'ve send you a verification link, please check your inbox, and click on the link to verify your email.',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .bodySmall
+                              .override(
+                                fontFamily: 'satoshi',
+                                fontSize: 14.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w500,
+                                useGoogleFonts:
+                                    GoogleFonts.asMap().containsKey('satoshi'),
+                              ),
+                        ),
                       ),
                     ),
                     Align(
@@ -120,15 +125,7 @@ class _VerificationMessageWidgetState extends State<VerificationMessageWidget> {
                         onPressed: () async {
                           await authManager.refreshUser();
                           if (currentUserEmailVerified) {
-                            context.pushNamed(
-                              'ServiceProviderHomePage',
-                              queryParameters: {
-                                'email': serializeParam(
-                                  '',
-                                  ParamType.String,
-                                ),
-                              }.withoutNulls,
-                            );
+                            context.pushNamed('ServiceProviderHomePage');
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -146,7 +143,7 @@ class _VerificationMessageWidgetState extends State<VerificationMessageWidget> {
                             );
                           }
                         },
-                        text: 'I have verified my Email',
+                        text: 'I have verified my email',
                         options: FFButtonOptions(
                           height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -157,8 +154,7 @@ class _VerificationMessageWidgetState extends State<VerificationMessageWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .titleSmallFamily,
+                                fontFamily: 'satoshi',
                                 color: Colors.white,
                                 letterSpacing: 0.0,
                                 shadows: [
@@ -169,9 +165,8 @@ class _VerificationMessageWidgetState extends State<VerificationMessageWidget> {
                                     blurRadius: 55.0,
                                   )
                                 ],
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .titleSmallFamily),
+                                useGoogleFonts:
+                                    GoogleFonts.asMap().containsKey('satoshi'),
                               ),
                           elevation: 0.0,
                           borderRadius: BorderRadius.circular(8.0),
@@ -218,9 +213,10 @@ class _VerificationMessageWidgetState extends State<VerificationMessageWidget> {
                                                   .bodySmallFamily),
                                     ),
                               ),
-                              const TextSpan(
+                              TextSpan(
                                 text: '\nresend a new link.',
                                 style: TextStyle(
+                                  color: FlutterFlowTheme.of(context).secondary,
                                   decoration: TextDecoration.underline,
                                   fontStyle: FontStyle.italic,
                                 ),

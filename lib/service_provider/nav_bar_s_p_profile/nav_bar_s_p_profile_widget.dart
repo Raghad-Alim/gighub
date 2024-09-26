@@ -113,7 +113,7 @@ class _NavBarSPProfileWidgetState extends State<NavBarSPProfileWidget> {
                               size: 25.0,
                             ),
                             onPressed: () async {
-                              context.pushNamed('ClientHomePage');
+                              context.goNamed('ServiceProviderHomePage');
                             },
                           ),
                         ),

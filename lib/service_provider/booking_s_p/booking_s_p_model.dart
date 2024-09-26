@@ -1,5 +1,5 @@
-import '/components/nav_bar_s_p_booking_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/service_provider/nav_bar_s_p_booking/nav_bar_s_p_booking_widget.dart';
 import 'booking_s_p_widget.dart' show BookingSPWidget;
 import 'package:flutter/material.dart';
 

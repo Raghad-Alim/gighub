@@ -5,18 +5,18 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'nav_bar_s_p_booking_model.dart';
-export 'nav_bar_s_p_booking_model.dart';
+import 'nav_bar_s_p_request_model.dart';
+export 'nav_bar_s_p_request_model.dart';
 
-class NavBarSPBookingWidget extends StatefulWidget {
-  const NavBarSPBookingWidget({super.key});
+class NavBarSPRequestWidget extends StatefulWidget {
+  const NavBarSPRequestWidget({super.key});
 
   @override
-  State<NavBarSPBookingWidget> createState() => _NavBarSPBookingWidgetState();
+  State<NavBarSPRequestWidget> createState() => _NavBarSPRequestWidgetState();
 }
 
-class _NavBarSPBookingWidgetState extends State<NavBarSPBookingWidget> {
-  late NavBarSPBookingModel _model;
+class _NavBarSPRequestWidgetState extends State<NavBarSPRequestWidget> {
+  late NavBarSPRequestModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +27,7 @@ class _NavBarSPBookingWidgetState extends State<NavBarSPBookingWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NavBarSPBookingModel());
+    _model = createModel(context, () => NavBarSPRequestModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -113,7 +113,7 @@ class _NavBarSPBookingWidgetState extends State<NavBarSPBookingWidget> {
                               size: 25.0,
                             ),
                             onPressed: () async {
-                              context.pushNamed('ClientHomePage');
+                              context.pushNamed('ServiceProviderHomePage');
                             },
                           ),
                         ),
@@ -124,7 +124,7 @@ class _NavBarSPBookingWidgetState extends State<NavBarSPBookingWidget> {
                           buttonSize: 60.0,
                           icon: FaIcon(
                             FontAwesomeIcons.clipboardList,
-                            color: FlutterFlowTheme.of(context).secondary,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             size: 30.0,
                           ),
                           onPressed: () async {
@@ -138,7 +138,7 @@ class _NavBarSPBookingWidgetState extends State<NavBarSPBookingWidget> {
                           buttonSize: 60.0,
                           icon: Icon(
                             Icons.calendar_month_sharp,
-                            color: FlutterFlowTheme.of(context).tertiary,
+                            color: FlutterFlowTheme.of(context).secondary,
                             size: 30.0,
                           ),
                           onPressed: () async {
@@ -197,7 +197,7 @@ class _NavBarSPBookingWidgetState extends State<NavBarSPBookingWidget> {
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .labelMediumFamily,
-                                  color: FlutterFlowTheme.of(context).secondary,
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -217,7 +217,7 @@ class _NavBarSPBookingWidgetState extends State<NavBarSPBookingWidget> {
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .labelMediumFamily,
-                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  color: FlutterFlowTheme.of(context).secondary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)

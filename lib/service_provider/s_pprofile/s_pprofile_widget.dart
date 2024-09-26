@@ -1,10 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/components/nav_bar_s_p_profile_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/service_provider/nav_bar_s_p_profile/nav_bar_s_p_profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,17 +46,17 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
         TextEditingController(text: currentUserEmail);
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.locationTextController ??=
-        TextEditingController(text: currentUserDocument?.location?.toString());
-    _model.locationFocusNode ??= FocusNode();
+    _model.sectorTextController1 ??= TextEditingController(
+        text: valueOrDefault(currentUserDocument?.gender, ''));
+    _model.sectorFocusNode1 ??= FocusNode();
 
-    _model.sectorTextController ??= TextEditingController(
+    _model.sectorTextController2 ??= TextEditingController(
+        text: valueOrDefault(currentUserDocument?.dateOfBirth, ''));
+    _model.sectorFocusNode2 ??= FocusNode();
+
+    _model.sectorTextController3 ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.sector, ''));
-    _model.sectorFocusNode ??= FocusNode();
-
-    _model.skillsTextController ??=
-        TextEditingController(text: currentUserEmail);
-    _model.skillsFocusNode ??= FocusNode();
+    _model.sectorFocusNode3 ??= FocusNode();
 
     _model.bioTextController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.bio, ''));
@@ -126,19 +125,19 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      resizeToAvoidBottomInset: false,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         title: Text(
           ' Profile',
-          style: FlutterFlowTheme.of(context).titleSmall.override(
-                fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                color: FlutterFlowTheme.of(context).tertiary,
+          style: FlutterFlowTheme.of(context).bodyLarge.override(
+                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                color: FlutterFlowTheme.of(context).alternate,
                 letterSpacing: 0.0,
+                fontWeight: FontWeight.bold,
                 useGoogleFonts: GoogleFonts.asMap()
-                    .containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                    .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
               ),
         ),
         actions: const [],
@@ -156,28 +155,66 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 100.0,
-                      height: 100.0,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFDBE2E7),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Container(
-                          width: 90.0,
-                          height: 90.0,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.network(
-                            'https://images.unsplash.com/photo-1536164261511-3a17e671d380?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=630&q=80',
-                            fit: BoxFit.fitWidth,
+                    Stack(
+                      children: [
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Container(
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              shape: BoxShape.circle,
+                            ),
                           ),
                         ),
-                      ),
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                5.0, 5.0, 2.0, 2.0),
+                            child: Container(
+                              width: 90.0,
+                              height: 90.0,
+                              clipBehavior: Clip.antiAlias,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.asset(
+                                'assets/images/Mask_group_(1).png',
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          child: ClipOval(
+                            child: Container(
+                              width: 100.0,
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 4.0,
+                                    color: Color(0x33000000),
+                                    offset: Offset(
+                                      0.0,
+                                      2.0,
+                                    ),
+                                  )
+                                ],
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: const Color(0xDB5F218E),
+                                  width: 3.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -188,10 +225,25 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: const Text('Coders At Work'),
+                                content: const Text('this feature is coming soon'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         },
-                        text: 'Change Photo',
+                        text: 'Upload Photo',
                         options: FFButtonOptions(
                           width: 130.0,
                           height: 40.0,
@@ -199,11 +251,11 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                               0.0, 0.0, 0.0, 0.0),
                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).secondary,
+                          color: const Color(0xFF808080),
                           textStyle:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Lexend Deca',
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: const Color(0xFFC7C5C5),
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
@@ -234,6 +286,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                           builder: (context) => TextFormField(
                             controller: _model.firstNameTextController,
                             focusNode: _model.firstNameFocusNode,
+                            readOnly: true,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'First Name',
@@ -242,7 +295,10 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -250,7 +306,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).secondary,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -278,20 +334,16 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                                  .primaryBackground,
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 24.0, 0.0, 24.0),
-                              suffixIcon: const Icon(
-                                Icons.edit,
-                                color: Color(0xFF757575),
-                                size: 22.0,
-                              ),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -309,6 +361,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                           builder: (context) => TextFormField(
                             controller: _model.lastNameTextController,
                             focusNode: _model.lastNameFocusNode,
+                            readOnly: true,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Last Name',
@@ -317,7 +370,10 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -337,7 +393,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).secondary,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -365,20 +421,16 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                                  .primaryBackground,
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 24.0, 0.0, 24.0),
-                              suffixIcon: const Icon(
-                                Icons.edit,
-                                color: Color(0xFF757575),
-                                size: 22.0,
-                              ),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -396,6 +448,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                           builder: (context) => TextFormField(
                             controller: _model.phoneNumberTextController,
                             focusNode: _model.phoneNumberFocusNode,
+                            readOnly: true,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Phone Number',
@@ -404,7 +457,10 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -424,7 +480,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).secondary,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -452,20 +508,16 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                                  .primaryBackground,
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 24.0, 0.0, 24.0),
-                              suffixIcon: const Icon(
-                                Icons.edit,
-                                color: Color(0xFF757575),
-                                size: 22.0,
-                              ),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -492,7 +544,9 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context).alternate,
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
                                           .bodyMediumFamily),
@@ -510,7 +564,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).secondary,
+                                color: FlutterFlowTheme.of(context).primary,
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
@@ -537,21 +591,17 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 24.0, 0.0, 24.0),
-                            suffixIcon: const Icon(
-                              Icons.edit,
-                              color: Color(0xFF757575),
-                              size: 22.0,
-                            ),
                           ),
                           style: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .titleSmallFamily,
+                                color: FlutterFlowTheme.of(context).tertiary,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -566,129 +616,21 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                             20.0, 0.0, 20.0, 12.0),
                         child: AuthUserStreamWidget(
                           builder: (context) => TextFormField(
-                            controller: _model.locationTextController,
-                            focusNode: _model.locationFocusNode,
+                            controller: _model.sectorTextController1,
+                            focusNode: _model.sectorFocusNode1,
+                            readOnly: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'location',
+                              labelText: 'Gender',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                     letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 24.0, 0.0, 24.0),
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleSmallFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleSmallFamily),
-                                ),
-                            keyboardType: TextInputType.streetAddress,
-                            validator: _model.locationTextControllerValidator
-                                .asValidator(context),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 340.0,
-                        height: 100.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          shape: BoxShape.rectangle,
-                        ),
-                        child: AuthUserStreamWidget(
-                          builder: (context) => FlutterFlowGoogleMap(
-                            controller: _model.googleMapsController,
-                            onCameraIdle: (latLng) =>
-                                _model.googleMapsCenter = latLng,
-                            initialLocation: _model.googleMapsCenter ??=
-                                currentUserDocument!.location!,
-                            markerColor: GoogleMarkerColor.violet,
-                            mapType: MapType.normal,
-                            style: GoogleMapStyle.standard,
-                            initialZoom: 14.0,
-                            allowInteraction: true,
-                            allowZoom: true,
-                            showZoomControls: true,
-                            showLocation: true,
-                            showCompass: false,
-                            showMapToolbar: false,
-                            showTraffic: false,
-                            centerMapOnMarkerTap: true,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 12.0),
-                        child: AuthUserStreamWidget(
-                          builder: (context) => TextFormField(
-                            controller: _model.sectorTextController,
-                            focusNode: _model.sectorFocusNode,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'sector',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -708,7 +650,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).secondary,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -736,7 +678,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                                  .primaryBackground,
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 24.0, 0.0, 24.0),
                             ),
@@ -745,12 +687,13 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
                                           .titleSmallFamily),
                                 ),
-                            validator: _model.sectorTextControllerValidator
+                            validator: _model.sectorTextController1Validator
                                 .asValidator(context),
                           ),
                         ),
@@ -758,78 +701,175 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 12.0),
-                        child: TextFormField(
-                          controller: _model.skillsTextController,
-                          focusNode: _model.skillsFocusNode,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'skills',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                        child: AuthUserStreamWidget(
+                          builder: (context) => TextFormField(
+                            controller: _model.sectorTextController2,
+                            focusNode: _model.sectorFocusNode2,
+                            readOnly: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Date of Birth',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                              hintText: 'Your email..',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 24.0, 0.0, 24.0),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .titleSmall
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
+                                      .titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
+                                          .titleSmallFamily),
                                 ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).secondary,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 24.0, 0.0, 24.0),
+                            validator: _model.sectorTextController2Validator
+                                .asValidator(context),
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .titleSmall
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .titleSmallFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .titleSmallFamily),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            20.0, 0.0, 20.0, 12.0),
+                        child: AuthUserStreamWidget(
+                          builder: (context) => TextFormField(
+                            controller: _model.sectorTextController3,
+                            focusNode: _model.sectorFocusNode3,
+                            readOnly: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Sector',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                              hintText: 'Your email..',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                          validator: _model.skillsTextControllerValidator
-                              .asValidator(context),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 24.0, 0.0, 24.0),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleSmallFamily),
+                                ),
+                            validator: _model.sectorTextController3Validator
+                                .asValidator(context),
+                          ),
                         ),
                       ),
                       Padding(
@@ -839,6 +879,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                           builder: (context) => TextFormField(
                             controller: _model.bioTextController,
                             focusNode: _model.bioFocusNode,
+                            readOnly: true,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Bio',
@@ -848,6 +889,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -866,7 +908,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).secondary,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -894,7 +936,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                                  .primaryBackground,
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 24.0, 0.0, 24.0),
                             ),
@@ -903,7 +945,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleSmallFamily,
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -915,90 +957,97 @@ class _SPprofileWidgetState extends State<SPprofileWidget>
                           ),
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 12.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            GoRouter.of(context).prepareAuthEvent();
+                            await authManager.signOut();
+                            GoRouter.of(context).clearRedirectLocation();
+
+                            context.pushNamedAuth(
+                                'ClientlLoginpage', context.mounted);
+                          },
+                          text: 'Log Out',
+                          options: FFButtonOptions(
+                            width: 129.0,
+                            height: 44.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).alternate,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                            elevation: 0.0,
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(38.0),
+                          ),
+                        ).animateOnPageLoad(
+                            animationsMap['buttonOnPageLoadAnimation1']!),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 12.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            await authManager.deleteUser(context);
+
+                            context.goNamedAuth(
+                                'ServiceProviderHomePage', context.mounted);
+                          },
+                          text: 'Delete Account',
+                          options: FFButtonOptions(
+                            width: 150.0,
+                            height: 44.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).error,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                            elevation: 0.0,
+                            borderSide: const BorderSide(
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(38.0),
+                          ),
+                        ).animateOnPageLoad(
+                            animationsMap['buttonOnPageLoadAnimation2']!),
+                      ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      GoRouter.of(context).prepareAuthEvent();
-                      await authManager.signOut();
-                      GoRouter.of(context).clearRedirectLocation();
-
-                      context.pushNamedAuth(
-                          'ClientlLoginpage', context.mounted);
-                    },
-                    text: 'Log Out',
-                    options: FFButtonOptions(
-                      width: 150.0,
-                      height: 44.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).alternate,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyLarge.override(
-                                fontFamily: 'satoshi',
-                                fontSize: 16.0,
-                                letterSpacing: 0.0,
-                                useGoogleFonts:
-                                    GoogleFonts.asMap().containsKey('satoshi'),
-                              ),
-                      elevation: 0.0,
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(38.0),
-                    ),
-                  ).animateOnPageLoad(
-                      animationsMap['buttonOnPageLoadAnimation1']!),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      await authManager.deleteUser(context);
-
-                      context.goNamedAuth('ClientlLoginpage', context.mounted);
-                    },
-                    text: 'Delete Account',
-                    options: FFButtonOptions(
-                      width: 150.0,
-                      height: 44.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).error,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyLarge.override(
-                                fontFamily: 'satoshi',
-                                fontSize: 16.0,
-                                letterSpacing: 0.0,
-                                useGoogleFonts:
-                                    GoogleFonts.asMap().containsKey('satoshi'),
-                              ),
-                      elevation: 0.0,
-                      borderSide: const BorderSide(
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(38.0),
-                    ),
-                  ).animateOnPageLoad(
-                      animationsMap['buttonOnPageLoadAnimation2']!),
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 1.0),
+                  child: wrapWithModel(
+                    model: _model.navBarSPProfileModel,
+                    updateCallback: () => safeSetState(() {}),
+                    child: const NavBarSPProfileWidget(),
+                  ),
                 ),
               ],
-            ),
-            Align(
-              alignment: const AlignmentDirectional(0.0, 1.0),
-              child: wrapWithModel(
-                model: _model.navBarSPProfileModel,
-                updateCallback: () => safeSetState(() {}),
-                child: const NavBarSPProfileWidget(),
-              ),
             ),
           ],
         ),

@@ -72,15 +72,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? const ClientlLoginpageWidget()
-          : const CreateAccountClientWidget(),
+          ? const ServiceProviderHomePageWidget()
+          : const ClientlLoginpageCopyWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? const ClientlLoginpageWidget()
-              : const CreateAccountClientWidget(),
+              ? const ServiceProviderHomePageWidget()
+              : const ClientlLoginpageCopyWidget(),
         ),
         FFRoute(
           name: 'CreateAccountClient',
@@ -114,12 +114,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const SearchClientWidget(),
         ),
         FFRoute(
-          name: 'SetAvailability',
-          path: '/setAvailability',
-          requireAuth: true,
-          builder: (context, params) => const SetAvailabilityWidget(),
-        ),
-        FFRoute(
           name: 'createAccountSP',
           path: '/createAccountSP',
           builder: (context, params) => const CreateAccountSPWidget(),
@@ -147,17 +141,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ServiceProviderHomePage',
           path: '/serviceProviderHomePage',
-          builder: (context, params) => ServiceProviderHomePageWidget(
-            email: params.getParam(
-              'email',
-              ParamType.String,
-            ),
-          ),
+          requireAuth: true,
+          builder: (context, params) => const ServiceProviderHomePageWidget(),
         ),
         FFRoute(
-          name: 'verificationMessage',
-          path: '/verificationMessage',
-          builder: (context, params) => const VerificationMessageWidget(),
+          name: 'verificationMessageSP',
+          path: '/verificationMessageSP',
+          builder: (context, params) => const VerificationMessageSPWidget(),
         ),
         FFRoute(
           name: 'SetAvailability1',
@@ -208,6 +198,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SPlocationfromHP',
           path: '/sPlocationfromHP',
           builder: (context, params) => const SPlocationfromHPWidget(),
+        ),
+        FFRoute(
+          name: 'forgetpassCopy',
+          path: '/forgetpassCopy',
+          builder: (context, params) => const ForgetpassCopyWidget(),
+        ),
+        FFRoute(
+          name: 'ClientlLoginpageCopy',
+          path: '/clientlLoginpageCopy',
+          builder: (context, params) => const ClientlLoginpageCopyWidget(),
+        ),
+        FFRoute(
+          name: 'msggglgblfmb',
+          path: '/msggglgblfmb',
+          builder: (context, params) => const MsggglgblfmbWidget(),
+        ),
+        FFRoute(
+          name: 'errormsg',
+          path: '/errormsg',
+          builder: (context, params) => const ErrormsgWidget(),
+        ),
+        FFRoute(
+          name: 'clientPinLocation',
+          path: '/SPlocationfromHPCopy',
+          builder: (context, params) => const ClientPinLocationWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -378,7 +393,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/createAccountClient';
+            return '/clientlLoginpageCopy';
           }
           return null;
         },

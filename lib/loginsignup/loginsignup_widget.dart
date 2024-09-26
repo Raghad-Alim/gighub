@@ -654,7 +654,7 @@ class _LoginsignupWidgetState extends State<LoginsignupWidget>
                                                               ));
 
                                                           context.goNamedAuth(
-                                                              'ClientlLoginpage',
+                                                              'ServiceProviderHomePage',
                                                               context.mounted);
                                                         },
                                                         text: 'Get Started',
@@ -805,7 +805,7 @@ class _LoginsignupWidgetState extends State<LoginsignupWidget>
                                                                     }
 
                                                                     context.goNamedAuth(
-                                                                        'ClientlLoginpage',
+                                                                        'ServiceProviderHomePage',
                                                                         context
                                                                             .mounted);
                                                                   },
@@ -891,7 +891,7 @@ class _LoginsignupWidgetState extends State<LoginsignupWidget>
                                                                           }
 
                                                                           context.goNamedAuth(
-                                                                              'ClientlLoginpage',
+                                                                              'ServiceProviderHomePage',
                                                                               context.mounted);
                                                                         },
                                                                         text:
@@ -1343,7 +1343,7 @@ class _LoginsignupWidgetState extends State<LoginsignupWidget>
                                                           }
 
                                                           context.goNamedAuth(
-                                                              'ClientlLoginpage',
+                                                              'ServiceProviderHomePage',
                                                               context.mounted);
                                                         },
                                                         text: 'Sign In',
@@ -1480,7 +1480,7 @@ class _LoginsignupWidgetState extends State<LoginsignupWidget>
                                                               }
 
                                                               context.goNamedAuth(
-                                                                  'ClientlLoginpage',
+                                                                  'ServiceProviderHomePage',
                                                                   context
                                                                       .mounted);
                                                             },
@@ -1571,7 +1571,7 @@ class _LoginsignupWidgetState extends State<LoginsignupWidget>
                                                                     }
 
                                                                     context.goNamedAuth(
-                                                                        'ClientlLoginpage',
+                                                                        'ServiceProviderHomePage',
                                                                         context
                                                                             .mounted);
                                                                   },
@@ -1663,7 +1663,7 @@ class _LoginsignupWidgetState extends State<LoginsignupWidget>
                                                           }
 
                                                           context.goNamedAuth(
-                                                              'ClientlLoginpage',
+                                                              'ServiceProviderHomePage',
                                                               context.mounted);
                                                         },
                                                         text:

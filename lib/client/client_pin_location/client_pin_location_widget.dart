@@ -6,18 +6,19 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 's_plocationfrom_h_p_model.dart';
-export 's_plocationfrom_h_p_model.dart';
+import 'client_pin_location_model.dart';
+export 'client_pin_location_model.dart';
 
-class SPlocationfromHPWidget extends StatefulWidget {
-  const SPlocationfromHPWidget({super.key});
+class ClientPinLocationWidget extends StatefulWidget {
+  const ClientPinLocationWidget({super.key});
 
   @override
-  State<SPlocationfromHPWidget> createState() => _SPlocationfromHPWidgetState();
+  State<ClientPinLocationWidget> createState() =>
+      _ClientPinLocationWidgetState();
 }
 
-class _SPlocationfromHPWidgetState extends State<SPlocationfromHPWidget> {
-  late SPlocationfromHPModel _model;
+class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
+  late ClientPinLocationModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? currentUserLocationValue;
@@ -25,7 +26,7 @@ class _SPlocationfromHPWidgetState extends State<SPlocationfromHPWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SPlocationfromHPModel());
+    _model = createModel(context, () => ClientPinLocationModel());
 
     getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
         .then((loc) => safeSetState(() => currentUserLocationValue = loc));
@@ -63,7 +64,7 @@ class _SPlocationfromHPWidgetState extends State<SPlocationfromHPWidget> {
       child: Scaffold(
         key: scaffoldKey,
         resizeToAvoidBottomInset: false,
-        backgroundColor: FlutterFlowTheme.of(context).primary,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
@@ -107,7 +108,8 @@ class _SPlocationfromHPWidgetState extends State<SPlocationfromHPWidget> {
                   final googleMapMarker = currentUserLocationValue;
                   return FlutterFlowGoogleMap(
                     controller: _model.googleMapsController,
-                    onCameraIdle: (latLng) => _model.googleMapsCenter = latLng,
+                    onCameraIdle: (latLng) =>
+                        safeSetState(() => _model.googleMapsCenter = latLng),
                     initialLocation: _model.googleMapsCenter ??=
                         currentUserLocationValue!,
                     markers: [
