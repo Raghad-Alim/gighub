@@ -6,6 +6,11 @@ import 'package:flutter/material.dart';
 class BookingSPModel extends FlutterFlowModel<BookingSPWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // State field(s) for TabBar widget.
+  TabController? tabBarController;
+  int get tabBarCurrentIndex =>
+      tabBarController != null ? tabBarController!.index : 0;
+
   // Model for NavBarSP-booking component.
   late NavBarSPBookingModel navBarSPBookingModel;
 
@@ -16,6 +21,7 @@ class BookingSPModel extends FlutterFlowModel<BookingSPWidget> {
 
   @override
   void dispose() {
+    tabBarController?.dispose();
     navBarSPBookingModel.dispose();
   }
 }

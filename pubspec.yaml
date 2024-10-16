@@ -30,6 +30,9 @@ dependencies:
   cloud_firestore: 4.17.3
   cloud_firestore_platform_interface: 6.2.3
   cloud_firestore_web: 3.12.3
+  cloud_functions: 4.7.4
+  cloud_functions_platform_interface: 5.5.26
+  cloud_functions_web: 4.9.4
   collection: 1.18.0
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
@@ -48,8 +51,11 @@ dependencies:
   firebase_storage_web: 3.9.5
   flutter_animate: 4.5.0
   flutter_cache_manager: 3.3.1
+  flutter_native_splash: 2.3.1
   flutter_plugin_android_lifecycle: 2.0.20
   flutter_spinkit: 5.2.0
+  flutter_stripe: 10.1.1
+  flutter_stripe_web: 5.1.0
   font_awesome_flutter: 10.7.0
   from_css_color: 2.0.0
   geolocator: 12.0.0
@@ -84,6 +90,7 @@ dependencies:
   path_provider_android: 2.2.5
   path_provider_foundation: 2.4.0
   path_provider_platform_interface: 2.1.2
+  percent_indicator: 4.2.2
   plugin_platform_interface: 2.1.8
   provider: 6.1.2
   rxdart: 0.27.7
@@ -97,9 +104,15 @@ dependencies:
   sign_in_with_apple_web: 1.0.1
   sqflite: 2.2.6
   stream_transform: 2.1.0
+  stripe_android: 10.1.1
+  stripe_ios: 10.1.0
+  stripe_js: 3.4.0
+  stripe_platform_interface: 10.1.1
   substring_highlight: 1.0.33
+  table_calendar: 3.1.1
   text_search: 1.0.1
   timeago: 3.6.1
+  universal_io: 2.2.2
   url_launcher: ^6.2.5
   url_launcher_android: 6.3.4
   url_launcher_ios: 6.3.1
@@ -109,6 +122,7 @@ dependencies:
   video_player_avfoundation: 2.6.1
   video_player_platform_interface: 6.2.2
   video_player_web: 2.3.1
+  xml: 6.5.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -120,10 +134,22 @@ dependency_overrides:
   win32: 5.5.1
 
 dev_dependencies:
+  flutter_launcher_icons: 0.13.1
   flutter_lints: 4.0.0
+  image: 4.0.17
   lints: 4.0.0
   flutter_test:
     sdk: flutter
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  web:
+    generate: true
+  image_path: 'assets/images/app_launcher_icon.jpeg'
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -142,16 +168,16 @@ flutter:
     - assets/images/
     - assets/videos/
     - assets/audios/
-    - assets/lottie_animations/
     - assets/rive_animations/
     - assets/pdfs/
+    - assets/jsons/
 
   fonts:
     - family: 'satoshi'
       fonts:
         - asset: assets/fonts/Satoshi-Regular.otf
 
-  
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

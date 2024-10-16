@@ -41,55 +41,48 @@ class _NavBarSPProfileWidgetState extends State<NavBarSPProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Container(
-        width: double.infinity,
-        height: 70.0,
-        decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 12.0,
-              color: Color(0x33000000),
-              offset: Offset(
-                0.0,
-                5.0,
-              ),
-            )
-          ],
-          borderRadius: BorderRadius.circular(40.0),
-        ),
-        child: ClipRRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 2.0,
-              sigmaY: 2.0,
+    return Container(
+      width: 412.0,
+      height: 70.0,
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+            blurRadius: 12.0,
+            color: Color(0x33000000),
+            offset: Offset(
+              0.0,
+              5.0,
             ),
-            child: Container(
-              width: double.infinity,
-              height: 60.0,
-              decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 4.0,
-                    color: Color(0x33000000),
-                    offset: Offset(
-                      0.0,
-                      2.0,
-                    ),
-                  )
-                ],
-                gradient: LinearGradient(
-                  colors: [
-                    FlutterFlowTheme.of(context).primary,
-                    FlutterFlowTheme.of(context).primaryBackground
-                  ],
-                  stops: const [0.0, 1.0],
-                  begin: const AlignmentDirectional(0.0, -1.0),
-                  end: const AlignmentDirectional(0, 1.0),
-                ),
-                borderRadius: BorderRadius.circular(40.0),
-              ),
+          )
+        ],
+        borderRadius: BorderRadius.circular(0.0),
+      ),
+      child: ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 2.0,
+            sigmaY: 2.0,
+          ),
+          child: Container(
+            width: 412.0,
+            height: 70.0,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).primaryBackground,
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 4.0,
+                  color: Color(0x33000000),
+                  offset: Offset(
+                    0.0,
+                    2.0,
+                  ),
+                )
+              ],
+              borderRadius: BorderRadius.circular(0.0),
+            ),
+            child: SizedBox(
+              width: 412.0,
+              height: 70.0,
               child: Stack(
                 children: [
                   Padding(

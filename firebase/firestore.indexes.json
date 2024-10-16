@@ -1,6 +1,24 @@
 {
   "indexes": [
     {
+      "collectionGroup": "booking",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "clientID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "DateOfService",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "user",
       "queryScope": "COLLECTION",
       "fields": [
@@ -9,7 +27,29 @@
           "order": "ASCENDING"
         },
         {
+          "fieldPath": "role",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "FirstName",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "booking",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "serviceProviderID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "DateOfService",
           "order": "ASCENDING"
         }
       ]

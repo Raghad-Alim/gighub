@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -111,6 +110,11 @@ class UserRecord extends FirestoreRecord {
   List<DocumentReference> get userHistory => _userHistory ?? const [];
   bool hasUserHistory() => _userHistory != null;
 
+  // "Availability" field.
+  List<AvailabilityStruct>? _availability;
+  List<AvailabilityStruct> get availability => _availability ?? const [];
+  bool hasAvailability() => _availability != null;
+
   void _initializeFields() {
     _photoUrl = snapshotData['photo_url'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
@@ -131,6 +135,10 @@ class UserRecord extends FirestoreRecord {
     _lastName = snapshotData['LastName'] as String?;
     _location = snapshotData['location'] as LatLng?;
     _userHistory = getDataList(snapshotData['User_history']);
+    _availability = getStructList(
+      snapshotData['Availability'],
+      AvailabilityStruct.fromMap,
+    );
   }
 
   static CollectionReference get collection =>
@@ -236,7 +244,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e1?.bio == e2?.bio &&
         e1?.lastName == e2?.lastName &&
         e1?.location == e2?.location &&
-        listEquality.equals(e1?.userHistory, e2?.userHistory);
+        listEquality.equals(e1?.userHistory, e2?.userHistory) &&
+        listEquality.equals(e1?.availability, e2?.availability);
   }
 
   @override
@@ -259,7 +268,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.bio,
         e?.lastName,
         e?.location,
-        e?.userHistory
+        e?.userHistory,
+        e?.availability
       ]);
 
   @override

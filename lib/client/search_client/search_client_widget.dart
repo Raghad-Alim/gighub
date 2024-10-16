@@ -54,10 +54,16 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
     return StreamBuilder<List<UserRecord>>(
       stream: queryUserRecord(
         queryBuilder: (userRecord) => userRecord
-            .where(
-              'isClient',
-              isEqualTo: false,
-            )
+            .where(Filter.or(
+              Filter(
+                'isClient',
+                isEqualTo: false,
+              ),
+              Filter(
+                'role',
+                isEqualTo: 'ServiceProvider',
+              ),
+            ))
             .orderBy('FirstName'),
       ),
       builder: (context, snapshot) {
@@ -87,8 +93,10 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: SafeArea(
               top: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
+              child: ListView(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
                 children: [
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -231,8 +239,8 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                       ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(12.0),
@@ -352,7 +360,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                   height: 192.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                        .primaryBackground,
                                     boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 4.0,
@@ -376,73 +384,6 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Expanded(
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, -1.0),
-                                              child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        10.0, 10.0, 0.0, 5.0),
-                                                child: ClipOval(
-                                                  child: Container(
-                                                    width: 100.0,
-                                                    height: 100.0,
-                                                    decoration: BoxDecoration(
-                                                      boxShadow: const [
-                                                        BoxShadow(
-                                                          blurRadius: 4.0,
-                                                          color:
-                                                              Color(0x33000000),
-                                                          offset: Offset(
-                                                            0.0,
-                                                            2.0,
-                                                          ),
-                                                        )
-                                                      ],
-                                                      shape: BoxShape.circle,
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        width: 3.0,
-                                                      ),
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            const BorderRadius.only(
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  50.0),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  50.0),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  50.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  50.0),
-                                                        ),
-                                                        child: Image.network(
-                                                          serviceProvidersItem
-                                                              .photoUrl,
-                                                          width: 103.0,
-                                                          height: 97.0,
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
                                           Align(
                                             alignment: const AlignmentDirectional(
                                                 -1.0, -1.0),
@@ -450,12 +391,12 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 5.0, 0.0, 5.0),
                                               child: Container(
-                                                width: 251.0,
+                                                width: 338.0,
                                                 height: 132.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                                 ),
                                                 child: Align(
                                                   alignment:
@@ -512,12 +453,12 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          152.0,
+                                                                          250.0,
                                                                           50.0,
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'SAR\n',
+                                                                'SAR ${serviceProvidersItem.price.toString()}',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
@@ -585,7 +526,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          160.0,
+                                                                          260.0,
                                                                           76.0,
                                                                           0.0,
                                                                           0.0),
@@ -601,7 +542,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          180.0,
+                                                                          280.0,
                                                                           76.0,
                                                                           0.0,
                                                                           0.0),
@@ -688,39 +629,6 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          95.0,
-                                                                          109.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                serviceProvidersItem
-                                                                    .tatalRating
-                                                                    .toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodySmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodySmallFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .roseQuartz,
-                                                                      fontSize:
-                                                                          10.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
                                                                           0.0,
                                                                           65.0,
                                                                           0.0,
@@ -750,7 +658,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                                           0.0),
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primary,
+                                                                      .primaryBackground,
                                                                   textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .titleSmall
@@ -758,7 +666,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                                         fontFamily:
                                                                             FlutterFlowTheme.of(context).titleSmallFamily,
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .roseQuartz,
+                                                                            .tertiary,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         useGoogleFonts:
@@ -770,30 +678,13 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                                       BorderSide(
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .roseQuartz,
+                                                                        .tertiary,
                                                                   ),
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
                                                                               8.0),
                                                                 ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          110.0,
-                                                                          68.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_right_sharp,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .roseQuartz,
-                                                                size: 24.0,
                                                               ),
                                                             ),
                                                             Padding(
@@ -827,76 +718,6 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                                     ),
                                                               ),
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          108.0,
-                                                                          109.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                'reviews',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodySmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodySmallFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .roseQuartz,
-                                                                      fontSize:
-                                                                          10.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          198.0,
-                                                                          50.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                serviceProvidersItem
-                                                                    .price
-                                                                    .toString(),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLarge
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyLargeFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary,
-                                                                      fontSize:
-                                                                          20.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyLargeFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
                                                           ],
                                                         ),
                                                       ],
@@ -913,7 +734,28 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                             20.0, 0.0, 20.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            context.pushNamed('requestPage');
+                                            context.pushNamed(
+                                              'YoutubeRequestPage',
+                                              queryParameters: {
+                                                'spRef': serializeParam(
+                                                  serviceProvidersItem
+                                                      .reference,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                                'sector': serializeParam(
+                                                  serviceProvidersItem.sector,
+                                                  ParamType.String,
+                                                ),
+                                                'price': serializeParam(
+                                                  serviceProvidersItem.price,
+                                                  ParamType.int,
+                                                ),
+                                                'service': serializeParam(
+                                                  serviceProvidersItem.sector,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
                                           },
                                           text: 'Send Request',
                                           options: FFButtonOptions(
@@ -926,7 +768,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                                .tertiary,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -935,10 +777,9 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .bodyMediumFamily,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiary,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       letterSpacing: 0.0,
                                                       useGoogleFonts: GoogleFonts
                                                               .asMap()
@@ -993,7 +834,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                   height: 192.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                        .primaryBackground,
                                     boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 4.0,
@@ -1017,73 +858,6 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Expanded(
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, -1.0),
-                                              child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        10.0, 10.0, 0.0, 5.0),
-                                                child: ClipOval(
-                                                  child: Container(
-                                                    width: 100.0,
-                                                    height: 100.0,
-                                                    decoration: BoxDecoration(
-                                                      boxShadow: const [
-                                                        BoxShadow(
-                                                          blurRadius: 4.0,
-                                                          color:
-                                                              Color(0x33000000),
-                                                          offset: Offset(
-                                                            0.0,
-                                                            2.0,
-                                                          ),
-                                                        )
-                                                      ],
-                                                      shape: BoxShape.circle,
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        width: 3.0,
-                                                      ),
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            const BorderRadius.only(
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  50.0),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  50.0),
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  50.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  50.0),
-                                                        ),
-                                                        child: Image.network(
-                                                          serviceProvidersItem
-                                                              .photoUrl,
-                                                          width: 103.0,
-                                                          height: 97.0,
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
                                           Align(
                                             alignment: const AlignmentDirectional(
                                                 -1.0, -1.0),
@@ -1091,12 +865,12 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 5.0, 0.0, 5.0),
                                               child: Container(
-                                                width: 251.0,
+                                                width: 346.0,
                                                 height: 132.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                                 ),
                                                 child: Align(
                                                   alignment:
@@ -1153,12 +927,12 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          152.0,
+                                                                          250.0,
                                                                           50.0,
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'SAR\n',
+                                                                'SAR ${serviceProvidersItem.price.toString()}',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
@@ -1226,7 +1000,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          160.0,
+                                                                          260.0,
                                                                           76.0,
                                                                           0.0,
                                                                           0.0),
@@ -1242,7 +1016,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          180.0,
+                                                                          280.0,
                                                                           76.0,
                                                                           0.0,
                                                                           0.0),
@@ -1329,41 +1103,8 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          95.0,
-                                                                          109.0,
                                                                           0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                serviceProvidersItem
-                                                                    .tatalRating
-                                                                    .toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodySmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodySmallFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .roseQuartz,
-                                                                      fontSize:
-                                                                          10.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          65.0,
+                                                                          60.0,
                                                                           0.0,
                                                                           0.0),
                                                               child:
@@ -1391,7 +1132,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                                           0.0),
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primary,
+                                                                      .primaryBackground,
                                                                   textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .titleSmall
@@ -1399,7 +1140,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                                         fontFamily:
                                                                             FlutterFlowTheme.of(context).titleSmallFamily,
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .roseQuartz,
+                                                                            .tertiary,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         useGoogleFonts:
@@ -1411,7 +1152,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                                       BorderSide(
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .roseQuartz,
+                                                                        .tertiary,
                                                                   ),
                                                                   borderRadius:
                                                                       BorderRadius
@@ -1424,29 +1165,12 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          110.0,
-                                                                          68.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_right_sharp,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .roseQuartz,
-                                                                size: 24.0,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
                                                                           70.0,
                                                                           109.0,
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'total',
+                                                                'total ${serviceProvidersItem.tatalRating.toString()} reviews',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodySmall
@@ -1465,76 +1189,6 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                                               .asMap()
                                                                           .containsKey(
                                                                               FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          108.0,
-                                                                          109.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                'reviews',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodySmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodySmallFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .roseQuartz,
-                                                                      fontSize:
-                                                                          10.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          198.0,
-                                                                          50.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                serviceProvidersItem
-                                                                    .price
-                                                                    .toString(),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLarge
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyLargeFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary,
-                                                                      fontSize:
-                                                                          20.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyLargeFamily),
                                                                     ),
                                                               ),
                                                             ),
@@ -1554,7 +1208,28 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                             20.0, 0.0, 20.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            context.pushNamed('requestPage');
+                                            context.pushNamed(
+                                              'YoutubeRequestPage',
+                                              queryParameters: {
+                                                'spRef': serializeParam(
+                                                  serviceProvidersItem
+                                                      .reference,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                                'sector': serializeParam(
+                                                  serviceProvidersItem.sector,
+                                                  ParamType.String,
+                                                ),
+                                                'price': serializeParam(
+                                                  serviceProvidersItem.price,
+                                                  ParamType.int,
+                                                ),
+                                                'service': serializeParam(
+                                                  serviceProvidersItem.sector,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
                                           },
                                           text: 'Send Request',
                                           options: FFButtonOptions(
@@ -1567,7 +1242,7 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                                .tertiary,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -1576,10 +1251,9 @@ class _SearchClientWidgetState extends State<SearchClientWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .bodyMediumFamily,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiary,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       letterSpacing: 0.0,
                                                       useGoogleFonts: GoogleFonts
                                                               .asMap()

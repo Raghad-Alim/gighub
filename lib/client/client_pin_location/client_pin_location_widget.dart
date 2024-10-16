@@ -104,41 +104,43 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                child: Builder(builder: (context) {
-                  final googleMapMarker = currentUserLocationValue;
-                  return FlutterFlowGoogleMap(
-                    controller: _model.googleMapsController,
-                    onCameraIdle: (latLng) =>
-                        safeSetState(() => _model.googleMapsCenter = latLng),
-                    initialLocation: _model.googleMapsCenter ??=
-                        currentUserLocationValue!,
-                    markers: [
-                      if (googleMapMarker != null)
-                        FlutterFlowMarker(
-                          googleMapMarker.serialize(),
-                          googleMapMarker,
-                          () async {
-                            await currentUserReference!
-                                .update(createUserRecordData(
-                              location: _model.googleMapsCenter,
-                            ));
-                          },
-                        ),
-                    ],
-                    markerColor: GoogleMarkerColor.violet,
-                    mapType: MapType.normal,
-                    style: GoogleMapStyle.standard,
-                    initialZoom: 14.0,
-                    allowInteraction: true,
-                    allowZoom: true,
-                    showZoomControls: true,
-                    showLocation: true,
-                    showCompass: false,
-                    showMapToolbar: true,
-                    showTraffic: false,
-                    centerMapOnMarkerTap: true,
-                  );
-                }),
+                child: AuthUserStreamWidget(
+                  builder: (context) => Builder(builder: (context) {
+                    final googleMapMarker = currentUserDocument?.location;
+                    return FlutterFlowGoogleMap(
+                      controller: _model.googleMapsController,
+                      onCameraIdle: (latLng) =>
+                          safeSetState(() => _model.googleMapsCenter = latLng),
+                      initialLocation: _model.googleMapsCenter ??=
+                          currentUserLocationValue!,
+                      markers: [
+                        if (googleMapMarker != null)
+                          FlutterFlowMarker(
+                            googleMapMarker.serialize(),
+                            googleMapMarker,
+                            () async {
+                              await currentUserReference!
+                                  .update(createUserRecordData(
+                                location: _model.googleMapsCenter,
+                              ));
+                            },
+                          ),
+                      ],
+                      markerColor: GoogleMarkerColor.violet,
+                      mapType: MapType.normal,
+                      style: GoogleMapStyle.standard,
+                      initialZoom: 14.0,
+                      allowInteraction: true,
+                      allowZoom: true,
+                      showZoomControls: true,
+                      showLocation: true,
+                      showCompass: false,
+                      showMapToolbar: true,
+                      showTraffic: false,
+                      centerMapOnMarkerTap: true,
+                    );
+                  }),
+                ),
               ),
             ],
           ),

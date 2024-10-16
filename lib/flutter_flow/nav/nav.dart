@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -84,7 +85,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         ),
         FFRoute(
           name: 'CreateAccountClient',
-          path: '/createAccountClient',
+          path: '/updateAccountClient',
           builder: (context, params) => CreateAccountClientWidget(
             place: params.getParam(
               'place',
@@ -129,16 +130,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ClientHomePageWidget(),
         ),
         FFRoute(
-          name: 'reggnew',
-          path: '/reggnew',
-          builder: (context, params) => const ReggnewWidget(),
-        ),
-        FFRoute(
-          name: 'ClientlLoginpage',
-          path: '/clientlLoginpage',
-          builder: (context, params) => const ClientlLoginpageWidget(),
-        ),
-        FFRoute(
           name: 'ServiceProviderHomePage',
           path: '/serviceProviderHomePage',
           requireAuth: true,
@@ -148,11 +139,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'verificationMessageSP',
           path: '/verificationMessageSP',
           builder: (context, params) => const VerificationMessageSPWidget(),
-        ),
-        FFRoute(
-          name: 'SetAvailability1',
-          path: '/setAvailability1',
-          builder: (context, params) => const SetAvailability1Widget(),
         ),
         FFRoute(
           name: 'searchHistorycClient',
@@ -180,11 +166,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const BookingSPWidget(),
         ),
         FFRoute(
-          name: 'loginsignup',
-          path: '/loginsignup',
-          builder: (context, params) => const LoginsignupWidget(),
-        ),
-        FFRoute(
           name: 'resetpassaftersending',
           path: '/resetpassaftersending',
           builder: (context, params) => const ResetpassaftersendingWidget(),
@@ -200,19 +181,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const SPlocationfromHPWidget(),
         ),
         FFRoute(
-          name: 'forgetpassCopy',
-          path: '/forgetpassCopy',
-          builder: (context, params) => const ForgetpassCopyWidget(),
-        ),
-        FFRoute(
           name: 'ClientlLoginpageCopy',
           path: '/clientlLoginpageCopy',
           builder: (context, params) => const ClientlLoginpageCopyWidget(),
-        ),
-        FFRoute(
-          name: 'msggglgblfmb',
-          path: '/msggglgblfmb',
-          builder: (context, params) => const MsggglgblfmbWidget(),
         ),
         FFRoute(
           name: 'errormsg',
@@ -223,6 +194,341 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'clientPinLocation',
           path: '/SPlocationfromHPCopy',
           builder: (context, params) => const ClientPinLocationWidget(),
+        ),
+        FFRoute(
+          name: 'CreateAvailability',
+          path: '/CreateAvailability',
+          builder: (context, params) => const CreateAvailabilityWidget(),
+        ),
+        FFRoute(
+          name: 'requestPageCopy',
+          path: '/requestPageCopy',
+          builder: (context, params) => RequestPageCopyWidget(
+            price: params.getParam(
+              'price',
+              ParamType.double,
+            ),
+            serviceProviderReference: params.getParam(
+              'serviceProviderReference',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['user'],
+            ),
+            sector: params.getParam(
+              'sector',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'List03UserSelectCopy',
+          path: '/list03UserSelectCopy',
+          builder: (context, params) => const List03UserSelectCopyWidget(),
+        ),
+        FFRoute(
+          name: 'List03UserSelectCopy2',
+          path: '/list03UserSelectCopy2',
+          builder: (context, params) => List03UserSelectCopy2Widget(
+            isSunday: params.getParam(
+              'isSunday',
+              ParamType.bool,
+            ),
+            isMonday: params.getParam(
+              'isMonday',
+              ParamType.bool,
+            ),
+            isTuesday: params.getParam(
+              'isTuesday',
+              ParamType.bool,
+            ),
+            isWednesday: params.getParam(
+              'isWednesday',
+              ParamType.bool,
+            ),
+            isThursday: params.getParam(
+              'isThursday',
+              ParamType.bool,
+            ),
+            isFriday: params.getParam(
+              'isFriday',
+              ParamType.bool,
+            ),
+            isSaturday: params.getParam(
+              'isSaturday',
+              ParamType.bool,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'UpdateAvailability',
+          path: '/UpdateAvailability',
+          builder: (context, params) => const UpdateAvailabilityWidget(),
+        ),
+        FFRoute(
+          name: 'viewDetailsAccepted',
+          path: '/viewDetailsAccepted',
+          builder: (context, params) => ViewDetailsAcceptedWidget(
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['booking'],
+            ),
+            bookingDate: params.getParam(
+              'bookingDate',
+              ParamType.DateTime,
+            ),
+            bookingTime: params.getParam(
+              'bookingTime',
+              ParamType.DateTime,
+            ),
+            bookingComment: params.getParam(
+              'bookingComment',
+              ParamType.String,
+            ),
+            bookingLocation: params.getParam(
+              'bookingLocation',
+              ParamType.LatLng,
+            ),
+            bookingPrice: params.getParam(
+              'bookingPrice',
+              ParamType.double,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'viewDetailsPay',
+          path: '/viewDetails',
+          builder: (context, params) => ViewDetailsPayWidget(
+            bookingIDPay: params.getParam(
+              'bookingIDPay',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['booking'],
+            ),
+            bookingTimePay: params.getParam(
+              'bookingTimePay',
+              ParamType.DateTime,
+            ),
+            bookingDatePay: params.getParam(
+              'bookingDatePay',
+              ParamType.DateTime,
+            ),
+            commentPay: params.getParam(
+              'commentPay',
+              ParamType.String,
+            ),
+            locationPay: params.getParam(
+              'locationPay',
+              ParamType.LatLng,
+            ),
+            pricePay: params.getParam(
+              'pricePay',
+              ParamType.double,
+            ),
+            clientEmail: params.getParam(
+              'clientEmail',
+              ParamType.String,
+            ),
+            clientFirstName: params.getParam(
+              'clientFirstName',
+              ParamType.String,
+            ),
+            clientLastName: params.getParam(
+              'clientLastName',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'viewDetailsPending',
+          path: '/viewDetailscopy',
+          builder: (context, params) => ViewDetailsPendingWidget(
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.String,
+            ),
+            bookingTime: params.getParam(
+              'bookingTime',
+              ParamType.DateTime,
+            ),
+            bookingDate: params.getParam(
+              'bookingDate',
+              ParamType.DateTime,
+            ),
+            comment: params.getParam(
+              'comment',
+              ParamType.String,
+            ),
+            location: params.getParam(
+              'location',
+              ParamType.LatLng,
+            ),
+            price: params.getParam(
+              'price',
+              ParamType.double,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'viewDetailsUpcomingPage',
+          path: '/viewDetailsUpcomingPage',
+          builder: (context, params) => ViewDetailsUpcomingPageWidget(
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.String,
+            ),
+            bookingtime: params.getParam(
+              'bookingtime',
+              ParamType.DateTime,
+            ),
+            bookingDate: params.getParam(
+              'bookingDate',
+              ParamType.DateTime,
+            ),
+            bookingClientLocation: params.getParam(
+              'bookingClientLocation',
+              ParamType.LatLng,
+            ),
+            clientComment: params.getParam(
+              'clientComment',
+              ParamType.String,
+            ),
+            bookingPay: params.getParam(
+              'bookingPay',
+              ParamType.double,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'viewDetailsRequestPage',
+          path: '/viewDetailsRequestPage',
+          builder: (context, params) => ViewDetailsRequestPageWidget(
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.String,
+            ),
+            bookingtime: params.getParam(
+              'bookingtime',
+              ParamType.DateTime,
+            ),
+            bookingDate: params.getParam(
+              'bookingDate',
+              ParamType.DateTime,
+            ),
+            bookingClientLocation: params.getParam(
+              'bookingClientLocation',
+              ParamType.LatLng,
+            ),
+            clientComment: params.getParam(
+              'clientComment',
+              ParamType.String,
+            ),
+            bookingPay: params.getParam(
+              'bookingPay',
+              ParamType.double,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ClientprofileEdit',
+          path: '/clientprofileEdit',
+          builder: (context, params) => const ClientprofileEditWidget(),
+        ),
+        FFRoute(
+          name: 'hhh',
+          path: '/hhh',
+          builder: (context, params) => const HhhWidget(),
+        ),
+        FFRoute(
+          name: 'testDialogs',
+          path: '/testDialogs',
+          builder: (context, params) => const TestDialogsWidget(),
+        ),
+        FFRoute(
+          name: 'SPprofileEdit',
+          path: '/sPprofileEdit',
+          builder: (context, params) => const SPprofileEditWidget(),
+        ),
+        FFRoute(
+          name: 'CreateAvailabilitySP2',
+          path: '/createAvailabilitySP2',
+          builder: (context, params) => CreateAvailabilitySP2Widget(
+            availability: params.getParam<AvailabilityStruct>(
+              'availability',
+              ParamType.DataStruct,
+              isList: true,
+              structBuilder: AvailabilityStruct.fromSerializableMap,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'YoutubeRequestPage',
+          path: '/youtubeRequestPage',
+          builder: (context, params) => YoutubeRequestPageWidget(
+            spRef: params.getParam(
+              'spRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['user'],
+            ),
+            sector: params.getParam(
+              'sector',
+              ParamType.String,
+            ),
+            price: params.getParam(
+              'price',
+              ParamType.int,
+            ),
+            service: params.getParam(
+              'service',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'CreateAvailabilitySP2Copy',
+          path: '/createAvailabilitySP2Copy',
+          builder: (context, params) => CreateAvailabilitySP2CopyWidget(
+            availability: params.getParam(
+              'availability',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: AvailabilityStruct.fromSerializableMap,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'CreateAvailabilitySP2Copy2',
+          path: '/createAvailabilitySP2Copy2',
+          builder: (context, params) => CreateAvailabilitySP2Copy2Widget(
+            availability: params.getParam<AvailabilityStruct>(
+              'availability',
+              ParamType.DataStruct,
+              isList: true,
+              structBuilder: AvailabilityStruct.fromSerializableMap,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ClientlLoginpageCopyCopy',
+          path: '/clientlLoginpageCopyCopy',
+          builder: (context, params) => const ClientlLoginpageCopyCopyWidget(),
+        ),
+        FFRoute(
+          name: 'SPprofileEditCopy',
+          path: '/sPprofileEditCopy',
+          builder: (context, params) => const SPprofileEditCopyWidget(),
+        ),
+        FFRoute(
+          name: 'danah',
+          path: '/danah',
+          builder: (context, params) => const DanahWidget(),
+        ),
+        FFRoute(
+          name: 'dupplogin',
+          path: '/dupplogin',
+          builder: (context, params) => const DupploginWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -342,6 +648,7 @@ class FFParameters {
     ParamType type, {
     bool isList = false,
     List<String>? collectionNamePath,
+    StructBuilder<T>? structBuilder,
   }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -360,6 +667,7 @@ class FFParameters {
       type,
       isList,
       collectionNamePath: collectionNamePath,
+      structBuilder: structBuilder,
     );
   }
 }
@@ -407,15 +715,11 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
+              ? Container(
+                  color: Colors.transparent,
+                  child: Image.asset(
+                    'assets/images/IMG_2797-removebg-preview_2.png',
+                    fit: BoxFit.contain,
                   ),
                 )
               : page;

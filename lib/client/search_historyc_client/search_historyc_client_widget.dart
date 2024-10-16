@@ -157,7 +157,7 @@ class _SearchHistorycClientWidgetState
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -223,7 +223,7 @@ class _SearchHistorycClientWidgetState
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).alternate,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             letterSpacing: 0.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyMediumFamily),
@@ -234,7 +234,7 @@ class _SearchHistorycClientWidgetState
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).alternate,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             letterSpacing: 0.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyMediumFamily),

@@ -85,6 +85,11 @@ class ClientRecord extends FirestoreRecord {
   DocumentReference? get clientId => _clientId;
   bool hasClientId() => _clientId != null;
 
+  // "datetime" field.
+  List<DateTime>? _datetime;
+  List<DateTime> get datetime => _datetime ?? const [];
+  bool hasDatetime() => _datetime != null;
+
   void _initializeFields() {
     _clientDateOfBirth = snapshotData['ClientDateOfBirth'] as String?;
     _clientFName = snapshotData['ClientFName'] as String?;
@@ -100,6 +105,7 @@ class ClientRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _isClient = snapshotData['isClient'] as bool?;
     _clientId = snapshotData['ClientId'] as DocumentReference?;
+    _datetime = getDataList(snapshotData['datetime']);
   }
 
   static CollectionReference get collection =>
@@ -178,6 +184,7 @@ class ClientRecordDocumentEquality implements Equality<ClientRecord> {
 
   @override
   bool equals(ClientRecord? e1, ClientRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.clientDateOfBirth == e2?.clientDateOfBirth &&
         e1?.clientFName == e2?.clientFName &&
         e1?.clientGender == e2?.clientGender &&
@@ -191,7 +198,8 @@ class ClientRecordDocumentEquality implements Equality<ClientRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.isClient == e2?.isClient &&
-        e1?.clientId == e2?.clientId;
+        e1?.clientId == e2?.clientId &&
+        listEquality.equals(e1?.datetime, e2?.datetime);
   }
 
   @override
@@ -209,7 +217,8 @@ class ClientRecordDocumentEquality implements Equality<ClientRecord> {
         e?.createdTime,
         e?.phoneNumber,
         e?.isClient,
-        e?.clientId
+        e?.clientId,
+        e?.datetime
       ]);
 
   @override

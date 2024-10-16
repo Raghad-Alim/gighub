@@ -20,51 +20,81 @@ class BookingRecord extends FirestoreRecord {
   String get clientComment => _clientComment ?? '';
   bool hasClientComment() => _clientComment != null;
 
-  // "DateOfService" field.
-  String? _dateOfService;
-  String get dateOfService => _dateOfService ?? '';
-  bool hasDateOfService() => _dateOfService != null;
-
-  // "TimeOfService" field.
-  String? _timeOfService;
-  String get timeOfService => _timeOfService ?? '';
-  bool hasTimeOfService() => _timeOfService != null;
-
   // "bookingID" field.
   String? _bookingID;
   String get bookingID => _bookingID ?? '';
   bool hasBookingID() => _bookingID != null;
-
-  // "location" field.
-  String? _location;
-  String get location => _location ?? '';
-  bool hasLocation() => _location != null;
 
   // "price" field.
   int? _price;
   int get price => _price ?? 0;
   bool hasPrice() => _price != null;
 
-  // "ServiceProviderID" field.
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  bool hasStatus() => _status != null;
+
+  // "email" field.
+  String? _email;
+  String get email => _email ?? '';
+  bool hasEmail() => _email != null;
+
+  // "ServiceNmae" field.
+  String? _serviceNmae;
+  String get serviceNmae => _serviceNmae ?? '';
+  bool hasServiceNmae() => _serviceNmae != null;
+
+  // "location" field.
+  LatLng? _location;
+  LatLng? get location => _location;
+  bool hasLocation() => _location != null;
+
+  // "ClientFirstName" field.
+  String? _clientFirstName;
+  String get clientFirstName => _clientFirstName ?? '';
+  bool hasClientFirstName() => _clientFirstName != null;
+
+  // "ClientLastName" field.
+  String? _clientLastName;
+  String get clientLastName => _clientLastName ?? '';
+  bool hasClientLastName() => _clientLastName != null;
+
+  // "serviceProviderID" field.
   DocumentReference? _serviceProviderID;
   DocumentReference? get serviceProviderID => _serviceProviderID;
   bool hasServiceProviderID() => _serviceProviderID != null;
 
-  // "ClientID" field.
+  // "clientID" field.
   DocumentReference? _clientID;
   DocumentReference? get clientID => _clientID;
   bool hasClientID() => _clientID != null;
 
+  // "TimeOfService" field.
+  List<String>? _timeOfService;
+  List<String> get timeOfService => _timeOfService ?? const [];
+  bool hasTimeOfService() => _timeOfService != null;
+
+  // "DateOfService" field.
+  DateTime? _dateOfService;
+  DateTime? get dateOfService => _dateOfService;
+  bool hasDateOfService() => _dateOfService != null;
+
   void _initializeFields() {
     _clientComment = snapshotData['ClientComment'] as String?;
-    _dateOfService = snapshotData['DateOfService'] as String?;
-    _timeOfService = snapshotData['TimeOfService'] as String?;
     _bookingID = snapshotData['bookingID'] as String?;
-    _location = snapshotData['location'] as String?;
     _price = castToType<int>(snapshotData['price']);
+    _status = snapshotData['status'] as String?;
+    _email = snapshotData['email'] as String?;
+    _serviceNmae = snapshotData['ServiceNmae'] as String?;
+    _location = snapshotData['location'] as LatLng?;
+    _clientFirstName = snapshotData['ClientFirstName'] as String?;
+    _clientLastName = snapshotData['ClientLastName'] as String?;
     _serviceProviderID =
-        snapshotData['ServiceProviderID'] as DocumentReference?;
-    _clientID = snapshotData['ClientID'] as DocumentReference?;
+        snapshotData['serviceProviderID'] as DocumentReference?;
+    _clientID = snapshotData['clientID'] as DocumentReference?;
+    _timeOfService = getDataList(snapshotData['TimeOfService']);
+    _dateOfService = snapshotData['DateOfService'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -103,24 +133,32 @@ class BookingRecord extends FirestoreRecord {
 
 Map<String, dynamic> createBookingRecordData({
   String? clientComment,
-  String? dateOfService,
-  String? timeOfService,
   String? bookingID,
-  String? location,
   int? price,
+  String? status,
+  String? email,
+  String? serviceNmae,
+  LatLng? location,
+  String? clientFirstName,
+  String? clientLastName,
   DocumentReference? serviceProviderID,
   DocumentReference? clientID,
+  DateTime? dateOfService,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'ClientComment': clientComment,
-      'DateOfService': dateOfService,
-      'TimeOfService': timeOfService,
       'bookingID': bookingID,
-      'location': location,
       'price': price,
-      'ServiceProviderID': serviceProviderID,
-      'ClientID': clientID,
+      'status': status,
+      'email': email,
+      'ServiceNmae': serviceNmae,
+      'location': location,
+      'ClientFirstName': clientFirstName,
+      'ClientLastName': clientLastName,
+      'serviceProviderID': serviceProviderID,
+      'clientID': clientID,
+      'DateOfService': dateOfService,
     }.withoutNulls,
   );
 
@@ -132,26 +170,37 @@ class BookingRecordDocumentEquality implements Equality<BookingRecord> {
 
   @override
   bool equals(BookingRecord? e1, BookingRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.clientComment == e2?.clientComment &&
-        e1?.dateOfService == e2?.dateOfService &&
-        e1?.timeOfService == e2?.timeOfService &&
         e1?.bookingID == e2?.bookingID &&
-        e1?.location == e2?.location &&
         e1?.price == e2?.price &&
+        e1?.status == e2?.status &&
+        e1?.email == e2?.email &&
+        e1?.serviceNmae == e2?.serviceNmae &&
+        e1?.location == e2?.location &&
+        e1?.clientFirstName == e2?.clientFirstName &&
+        e1?.clientLastName == e2?.clientLastName &&
         e1?.serviceProviderID == e2?.serviceProviderID &&
-        e1?.clientID == e2?.clientID;
+        e1?.clientID == e2?.clientID &&
+        listEquality.equals(e1?.timeOfService, e2?.timeOfService) &&
+        e1?.dateOfService == e2?.dateOfService;
   }
 
   @override
   int hash(BookingRecord? e) => const ListEquality().hash([
         e?.clientComment,
-        e?.dateOfService,
-        e?.timeOfService,
         e?.bookingID,
-        e?.location,
         e?.price,
+        e?.status,
+        e?.email,
+        e?.serviceNmae,
+        e?.location,
+        e?.clientFirstName,
+        e?.clientLastName,
         e?.serviceProviderID,
-        e?.clientID
+        e?.clientID,
+        e?.timeOfService,
+        e?.dateOfService
       ]);
 
   @override
