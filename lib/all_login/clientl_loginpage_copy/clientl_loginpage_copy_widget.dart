@@ -1,8 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
+import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -403,6 +405,15 @@ class _ClientlLoginpageCopyWidgetState
                                 context.pushNamedAuth(
                                     'ServiceProviderHomePage', context.mounted);
                               }
+
+                              await queryBookingRecordOnce(
+                                queryBuilder: (bookingRecord) =>
+                                    bookingRecord.where(
+                                  'email',
+                                  isEqualTo: currentUserEmail,
+                                ),
+                                singleRecord: true,
+                              ).then((s) => s.firstOrNull);
                             } else {
                               unawaited(
                                 () async {
@@ -503,7 +514,7 @@ class _ClientlLoginpageCopyWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('CreateAccountClient');
+                            context.pushNamed('CreateAccountClientCopy');
                           },
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,

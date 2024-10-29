@@ -594,9 +594,9 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                     0.0,
                                                                     0.0),
                                                         child: FFButtonWidget(
-                                                          onPressed: () {
-                                                            print(
-                                                                'Button pressed ...');
+                                                          onPressed: () async {
+                                                            context.pushNamed(
+                                                                'chats');
                                                           },
                                                           text:
                                                               'chat with service provider',

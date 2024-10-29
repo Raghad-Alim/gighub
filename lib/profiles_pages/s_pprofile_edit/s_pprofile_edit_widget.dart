@@ -814,7 +814,6 @@ class _SPprofileEditWidgetState extends State<SPprofileEditWidget> {
                                     builder: (context) => TextFormField(
                                       controller: _model.sectorTextController2,
                                       focusNode: _model.sectorFocusNode2,
-                                      onFieldSubmitted: (_) async {},
                                       readOnly: true,
                                       obscureText: false,
                                       decoration: InputDecoration(

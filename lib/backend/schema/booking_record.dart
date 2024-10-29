@@ -80,6 +80,16 @@ class BookingRecord extends FirestoreRecord {
   DateTime? get dateOfService => _dateOfService;
   bool hasDateOfService() => _dateOfService != null;
 
+  // "clientFcmToken" field.
+  String? _clientFcmToken;
+  String get clientFcmToken => _clientFcmToken ?? '';
+  bool hasClientFcmToken() => _clientFcmToken != null;
+
+  // "locID" field.
+  DocumentReference? _locID;
+  DocumentReference? get locID => _locID;
+  bool hasLocID() => _locID != null;
+
   void _initializeFields() {
     _clientComment = snapshotData['ClientComment'] as String?;
     _bookingID = snapshotData['bookingID'] as String?;
@@ -95,6 +105,8 @@ class BookingRecord extends FirestoreRecord {
     _clientID = snapshotData['clientID'] as DocumentReference?;
     _timeOfService = getDataList(snapshotData['TimeOfService']);
     _dateOfService = snapshotData['DateOfService'] as DateTime?;
+    _clientFcmToken = snapshotData['clientFcmToken'] as String?;
+    _locID = snapshotData['locID'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -144,6 +156,8 @@ Map<String, dynamic> createBookingRecordData({
   DocumentReference? serviceProviderID,
   DocumentReference? clientID,
   DateTime? dateOfService,
+  String? clientFcmToken,
+  DocumentReference? locID,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -159,6 +173,8 @@ Map<String, dynamic> createBookingRecordData({
       'serviceProviderID': serviceProviderID,
       'clientID': clientID,
       'DateOfService': dateOfService,
+      'clientFcmToken': clientFcmToken,
+      'locID': locID,
     }.withoutNulls,
   );
 
@@ -183,7 +199,9 @@ class BookingRecordDocumentEquality implements Equality<BookingRecord> {
         e1?.serviceProviderID == e2?.serviceProviderID &&
         e1?.clientID == e2?.clientID &&
         listEquality.equals(e1?.timeOfService, e2?.timeOfService) &&
-        e1?.dateOfService == e2?.dateOfService;
+        e1?.dateOfService == e2?.dateOfService &&
+        e1?.clientFcmToken == e2?.clientFcmToken &&
+        e1?.locID == e2?.locID;
   }
 
   @override
@@ -200,7 +218,9 @@ class BookingRecordDocumentEquality implements Equality<BookingRecord> {
         e?.serviceProviderID,
         e?.clientID,
         e?.timeOfService,
-        e?.dateOfService
+        e?.dateOfService,
+        e?.clientFcmToken,
+        e?.locID
       ]);
 
   @override

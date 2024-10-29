@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 
 class YoutubeRequestPageModel
     extends FlutterFlowModel<YoutubeRequestPageWidget> {
+  ///  Local state fields for this page.
+
+  LatLng? loc;
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for Calendar widget.

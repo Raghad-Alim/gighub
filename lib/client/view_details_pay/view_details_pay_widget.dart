@@ -575,7 +575,8 @@ class _ViewDetailsPayWidgetState extends State<ViewDetailsPayWidget> {
                       allowGooglePay: false,
                       allowApplePay: false,
                       buttonColor: FlutterFlowTheme.of(context).tertiary,
-                      buttonTextColor: FlutterFlowTheme.of(context).tertiary,
+                      buttonTextColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
                     );
                     if (paymentResponse.paymentId == null &&
                         paymentResponse.errorMessage != null) {

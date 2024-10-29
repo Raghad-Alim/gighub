@@ -15,6 +15,7 @@ class SPprofileEditCopyModel extends FlutterFlowModel<SPprofileEditCopyWidget> {
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
 
   // State field(s) for FirstName widget.
   FocusNode? firstNameFocusNode;

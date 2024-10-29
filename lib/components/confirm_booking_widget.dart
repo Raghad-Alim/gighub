@@ -16,6 +16,7 @@ class ConfirmBookingWidget extends StatefulWidget {
     required this.price,
     required this.comment,
     required this.service,
+    required this.loc,
   });
 
   final DateTime? timeSelected;
@@ -23,6 +24,7 @@ class ConfirmBookingWidget extends StatefulWidget {
   final int? price;
   final String? comment;
   final String? service;
+  final LatLng? loc;
 
   @override
   State<ConfirmBookingWidget> createState() => _ConfirmBookingWidgetState();

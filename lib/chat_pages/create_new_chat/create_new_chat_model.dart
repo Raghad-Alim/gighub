@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'times_widget.dart' show TimesWidget;
+import 'create_new_chat_widget.dart' show CreateNewChatWidget;
 import 'package:flutter/material.dart';
 
-class TimesModel extends FlutterFlowModel<TimesWidget> {
+class CreateNewChatModel extends FlutterFlowModel<CreateNewChatWidget> {
   @override
   void initState(BuildContext context) {}
 

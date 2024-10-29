@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/filter_widget.dart';
 import '/components/nav_barclient_home_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -86,7 +87,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                       size: 26.0,
                                     ),
                                     options: FFButtonOptions(
-                                      width: 300.0,
+                                      width: 246.0,
                                       height: 50.0,
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 150.0, 0.0),
@@ -213,75 +214,118 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 8.0, 0.0, 8.0),
-                              child: FlutterFlowChoiceChips(
-                                options: const [
-                                  ChipData('Filter', Icons.filter_alt),
-                                  ChipData(
-                                      'Sort', FontAwesomeIcons.sortAmountDown)
-                                ],
-                                onChanged: (val) => safeSetState(() =>
-                                    _model.choiceChipsValue = val?.firstOrNull),
-                                selectedChipStyle: ChipStyle(
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).tertiary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Plus Jakarta Sans',
-                                        color: Colors.white,
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey('Plus Jakarta Sans'),
-                                      ),
-                                  iconColor: Colors.white,
-                                  iconSize: 18.0,
-                                  elevation: 2.0,
-                                  borderColor: const Color(0x4D9489F5),
-                                  borderWidth: 1.0,
-                                  borderRadius: BorderRadius.circular(16.0),
+                            Builder(
+                              builder: (context) => Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 8.0, 0.0, 8.0),
+                                child: FlutterFlowChoiceChips(
+                                  options: const [
+                                    ChipData('Filter', Icons.filter_alt),
+                                    ChipData(
+                                        'Sort', FontAwesomeIcons.sortAmountDown)
+                                  ],
+                                  onChanged: (val) async {
+                                    safeSetState(() => _model.choiceChipsValue =
+                                        val?.firstOrNull);
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: GestureDetector(
+                                            onTap: () =>
+                                                FocusScope.of(dialogContext)
+                                                    .unfocus(),
+                                            child: const FilterWidget(),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  selectedChipStyle: ChipStyle(
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Plus Jakarta Sans',
+                                          color: Colors.white,
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey('Plus Jakarta Sans'),
+                                        ),
+                                    iconColor: Colors.white,
+                                    iconSize: 18.0,
+                                    elevation: 2.0,
+                                    borderColor: const Color(0x4D9489F5),
+                                    borderWidth: 1.0,
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  unselectedChipStyle: ChipStyle(
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).accent4,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Plus Jakarta Sans',
+                                          color: const Color(0xFF606A85),
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey('Plus Jakarta Sans'),
+                                        ),
+                                    iconColor: const Color(0xFF606A85),
+                                    iconSize: 18.0,
+                                    elevation: 0.0,
+                                    borderColor: const Color(0xFFF1F4F8),
+                                    borderWidth: 1.0,
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  chipSpacing: 8.0,
+                                  rowSpacing: 12.0,
+                                  multiselect: false,
+                                  alignment: WrapAlignment.start,
+                                  controller:
+                                      _model.choiceChipsValueController ??=
+                                          FormFieldController<List<String>>(
+                                    [],
+                                  ),
+                                  wrapped: true,
                                 ),
-                                unselectedChipStyle: ChipStyle(
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).accent4,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Plus Jakarta Sans',
-                                        color: const Color(0xFF606A85),
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey('Plus Jakarta Sans'),
-                                      ),
-                                  iconColor: const Color(0xFF606A85),
-                                  iconSize: 18.0,
-                                  elevation: 0.0,
-                                  borderColor: const Color(0xFFF1F4F8),
-                                  borderWidth: 1.0,
-                                  borderRadius: BorderRadius.circular(16.0),
-                                ),
-                                chipSpacing: 8.0,
-                                rowSpacing: 12.0,
-                                multiselect: false,
-                                alignment: WrapAlignment.start,
-                                controller:
-                                    _model.choiceChipsValueController ??=
-                                        FormFieldController<List<String>>(
-                                  [],
-                                ),
-                                wrapped: true,
                               ),
                             ),
                           ]
                               .addToStart(const SizedBox(width: 16.0))
                               .addToEnd(const SizedBox(width: 16.0)),
                         ),
+                      ),
+                      Stack(
+                        children: [
+                          ListView(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              Container(
+                                width: 100.0,
+                                height: 100.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                       const Divider(
                         thickness: 1.0,

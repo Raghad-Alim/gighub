@@ -83,25 +83,16 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
-        title: InkWell(
-          splashColor: Colors.transparent,
-          focusColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: () async {
-            context.pushNamed('UpdateAvailability');
-          },
-          child: Text(
-            ' Profile',
-            style: FlutterFlowTheme.of(context).bodyLarge.override(
-                  fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                  color: FlutterFlowTheme.of(context).tertiary,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.bold,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).bodyLargeFamily),
-                ),
-          ),
+        title: Text(
+          ' Profile',
+          style: FlutterFlowTheme.of(context).bodyLarge.override(
+                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                color: FlutterFlowTheme.of(context).tertiary,
+                letterSpacing: 0.0,
+                fontWeight: FontWeight.bold,
+                useGoogleFonts: GoogleFonts.asMap()
+                    .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+              ),
         ),
         actions: [
           Padding(
@@ -112,7 +103,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                context.pushNamed('SPprofileEdit');
+                context.pushNamed('SPprofileEditCopy');
               },
               child: Icon(
                 Icons.edit_sharp,
@@ -157,16 +148,28 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   5.0, 5.0, 2.0, 2.0),
-                              child: Container(
-                                width: 90.0,
-                                height: 90.0,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.asset(
-                                  'assets/images/Mask_group_(1).png',
-                                  fit: BoxFit.fitWidth,
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await currentUserReference!
+                                      .update(createUserRecordData(
+                                    photoUrl: currentUserPhoto,
+                                  ));
+                                },
+                                child: Container(
+                                  width: 90.0,
+                                  height: 90.0,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    'assets/images/Mask_group_(1).png',
+                                    fit: BoxFit.fitWidth,
+                                  ),
                                 ),
                               ),
                             ),
@@ -432,7 +435,13 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.phoneNumberTextController',
                                 const Duration(milliseconds: 2000),
-                                () async {},
+                                () async {
+                                  await currentUserReference!
+                                      .update(createUserRecordData(
+                                    phoneNumber:
+                                        _model.phoneNumberTextController.text,
+                                  ));
+                                },
                               ),
                               readOnly: true,
                               obscureText: false,

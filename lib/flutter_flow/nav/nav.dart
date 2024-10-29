@@ -7,7 +7,10 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
+import '/backend/push_notifications/push_notifications_handler.dart'
+    show PushNotificationsHandler;
 import '/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -73,19 +76,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? const ServiceProviderHomePageWidget()
+          ? const ClientloginduppppppWidget()
           : const ClientlLoginpageCopyWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? const ServiceProviderHomePageWidget()
+              ? const ClientloginduppppppWidget()
               : const ClientlLoginpageCopyWidget(),
         ),
         FFRoute(
           name: 'CreateAccountClient',
-          path: '/updateAccountClient',
+          path: '/CreateAccountClient',
           builder: (context, params) => CreateAccountClientWidget(
             place: params.getParam(
               'place',
@@ -219,11 +222,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
-        ),
-        FFRoute(
-          name: 'List03UserSelectCopy',
-          path: '/list03UserSelectCopy',
-          builder: (context, params) => const List03UserSelectCopyWidget(),
         ),
         FFRoute(
           name: 'List03UserSelectCopy2',
@@ -516,11 +514,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ClientlLoginpageCopyCopyWidget(),
         ),
         FFRoute(
-          name: 'SPprofileEditCopy',
-          path: '/sPprofileEditCopy',
-          builder: (context, params) => const SPprofileEditCopyWidget(),
-        ),
-        FFRoute(
           name: 'danah',
           path: '/danah',
           builder: (context, params) => const DanahWidget(),
@@ -529,6 +522,88 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'dupplogin',
           path: '/dupplogin',
           builder: (context, params) => const DupploginWidget(),
+        ),
+        FFRoute(
+          name: 'clientlogindupppppp',
+          path: '/clientlogindupppppp',
+          builder: (context, params) => const ClientloginduppppppWidget(),
+        ),
+        FFRoute(
+          name: 'SPprofileEditCopy',
+          path: '/sPprofileEditCopy',
+          builder: (context, params) => const SPprofileEditCopyWidget(),
+        ),
+        FFRoute(
+          name: 'chatPage',
+          path: '/chatPage',
+          builder: (context, params) => ChatPageWidget(
+            receiveChat: params.getParam(
+              'receiveChat',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['chats'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'CreateAccountClientCopy',
+          path: '/updateAccountClient',
+          builder: (context, params) => CreateAccountClientCopyWidget(
+            place: params.getParam(
+              'place',
+              ParamType.LatLng,
+            ),
+            location: params.getParam(
+              'location',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['user'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'clientLocation',
+          path: '/clientLocation',
+          builder: (context, params) => const ClientLocationWidget(),
+        ),
+        FFRoute(
+          name: 'YoutubeRequestPageCopy',
+          path: '/youtubeRequestPageCopy',
+          builder: (context, params) => YoutubeRequestPageCopyWidget(
+            spRef: params.getParam(
+              'spRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['user'],
+            ),
+            sector: params.getParam(
+              'sector',
+              ParamType.String,
+            ),
+            price: params.getParam(
+              'price',
+              ParamType.int,
+            ),
+            service: params.getParam(
+              'service',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'chats',
+          path: '/chats',
+          builder: (context, params) => const ChatsWidget(),
+        ),
+        FFRoute(
+          name: 'ChatSP',
+          path: '/chatSP',
+          builder: (context, params) => const ChatSPWidget(),
+        ),
+        FFRoute(
+          name: 'ChatClient',
+          path: '/chatClient',
+          builder: (context, params) => const ChatClientWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -716,13 +791,13 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: Colors.transparent,
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                   child: Image.asset(
                     'assets/images/IMG_2797-removebg-preview_2.png',
                     fit: BoxFit.contain,
                   ),
                 )
-              : page;
+              : PushNotificationsHandler(child: page);
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

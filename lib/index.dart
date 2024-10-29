@@ -39,8 +39,6 @@ export '/availability_pages/create_availability/create_availability_widget.dart'
     show CreateAvailabilityWidget;
 export '/client/request_page_copy/request_page_copy_widget.dart'
     show RequestPageCopyWidget;
-export '/list03_user_select_copy/list03_user_select_copy_widget.dart'
-    show List03UserSelectCopyWidget;
 export '/list03_user_select_copy2/list03_user_select_copy2_widget.dart'
     show List03UserSelectCopy2Widget;
 export '/availability_pages/update_availability/update_availability_widget.dart'
@@ -72,7 +70,18 @@ export '/create_availability_s_p2_copy2/create_availability_s_p2_copy2_widget.da
     show CreateAvailabilitySP2Copy2Widget;
 export '/all_login/clientl_loginpage_copy_copy/clientl_loginpage_copy_copy_widget.dart'
     show ClientlLoginpageCopyCopyWidget;
-export '/profiles_pages/s_pprofile_edit_copy/s_pprofile_edit_copy_widget.dart'
-    show SPprofileEditCopyWidget;
 export '/all_login/danah/danah_widget.dart' show DanahWidget;
 export '/all_login/dupplogin/dupplogin_widget.dart' show DupploginWidget;
+export '/all_login/clientlogindupppppp/clientlogindupppppp_widget.dart'
+    show ClientloginduppppppWidget;
+export '/profiles_pages/s_pprofile_edit_copy/s_pprofile_edit_copy_widget.dart'
+    show SPprofileEditCopyWidget;
+export '/chat_pages/chat_page/chat_page_widget.dart' show ChatPageWidget;
+export '/all_registration/create_account_client_copy/create_account_client_copy_widget.dart'
+    show CreateAccountClientCopyWidget;
+export '/client_location/client_location_widget.dart' show ClientLocationWidget;
+export '/client/youtube_request_page_copy/youtube_request_page_copy_widget.dart'
+    show YoutubeRequestPageCopyWidget;
+export '/chat_pages/chats/chats_widget.dart' show ChatsWidget;
+export '/chat_pages/chat_s_p/chat_s_p_widget.dart' show ChatSPWidget;
+export '/chat_pages/chat_client/chat_client_widget.dart' show ChatClientWidget;

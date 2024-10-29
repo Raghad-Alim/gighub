@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'sunday_times_s_p_widget.dart' show SundayTimesSPWidget;
+import 'chats_widget.dart' show ChatsWidget;
 import 'package:flutter/material.dart';
 
-class SundayTimesSPModel extends FlutterFlowModel<SundayTimesSPWidget> {
+class ChatsModel extends FlutterFlowModel<ChatsWidget> {
   @override
   void initState(BuildContext context) {}
 

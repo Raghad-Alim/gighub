@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -249,5 +248,17 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInSunday(int index, DateTime value) {
     Sunday.insert(index, value);
+  }
+
+  String _tempPhoto = '';
+  String get tempPhoto => _tempPhoto;
+  set tempPhoto(String value) {
+    _tempPhoto = value;
+  }
+
+  DocumentReference? _bookingDocument;
+  DocumentReference? get bookingDocument => _bookingDocument;
+  set bookingDocument(DocumentReference? value) {
+    _bookingDocument = value;
   }
 }

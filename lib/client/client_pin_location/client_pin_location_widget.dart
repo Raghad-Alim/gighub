@@ -83,7 +83,7 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
             },
           ),
           title: Text(
-            'Pin your current location',
+            'Choose your  location',
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                   color: FlutterFlowTheme.of(context).tertiary,
@@ -100,46 +100,71 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: Stack(
             children: [
-              Expanded(
-                child: AuthUserStreamWidget(
-                  builder: (context) => Builder(builder: (context) {
-                    final googleMapMarker = currentUserDocument?.location;
-                    return FlutterFlowGoogleMap(
-                      controller: _model.googleMapsController,
-                      onCameraIdle: (latLng) =>
-                          safeSetState(() => _model.googleMapsCenter = latLng),
-                      initialLocation: _model.googleMapsCenter ??=
-                          currentUserLocationValue!,
-                      markers: [
-                        if (googleMapMarker != null)
-                          FlutterFlowMarker(
-                            googleMapMarker.serialize(),
-                            googleMapMarker,
-                            () async {
-                              await currentUserReference!
-                                  .update(createUserRecordData(
-                                location: _model.googleMapsCenter,
-                              ));
-                            },
-                          ),
-                      ],
-                      markerColor: GoogleMarkerColor.violet,
-                      mapType: MapType.normal,
-                      style: GoogleMapStyle.standard,
-                      initialZoom: 14.0,
-                      allowInteraction: true,
-                      allowZoom: true,
-                      showZoomControls: true,
-                      showLocation: true,
-                      showCompass: false,
-                      showMapToolbar: true,
-                      showTraffic: false,
-                      centerMapOnMarkerTap: true,
-                    );
-                  }),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: AuthUserStreamWidget(
+                      builder: (context) => Builder(builder: (context) {
+                        final googleMapMarker = currentUserDocument?.location;
+                        return FlutterFlowGoogleMap(
+                          controller: _model.googleMapsController,
+                          onCameraIdle: (latLng) => safeSetState(
+                              () => _model.googleMapsCenter = latLng),
+                          initialLocation: _model.googleMapsCenter ??=
+                              currentUserLocationValue!,
+                          markers: [
+                            if (googleMapMarker != null)
+                              FlutterFlowMarker(
+                                googleMapMarker.serialize(),
+                                googleMapMarker,
+                                () async {
+                                  await currentUserReference!
+                                      .update(createUserRecordData(
+                                    location: _model.googleMapsCenter,
+                                  ));
+                                },
+                              ),
+                          ],
+                          markerColor: GoogleMarkerColor.violet,
+                          mapType: MapType.normal,
+                          style: GoogleMapStyle.standard,
+                          initialZoom: 14.0,
+                          allowInteraction: true,
+                          allowZoom: true,
+                          showZoomControls: true,
+                          showLocation: true,
+                          showCompass: false,
+                          showMapToolbar: true,
+                          showTraffic: false,
+                          centerMapOnMarkerTap: true,
+                        );
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0.04, 1.0),
+                child: Container(
+                  width: 400.0,
+                  height: 130.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    boxShadow: const [
+                      BoxShadow(
+                        blurRadius: 4.0,
+                        color: Color(0x33000000),
+                        offset: Offset(
+                          0.0,
+                          -2.0,
+                        ),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
                 ),
               ),
             ],

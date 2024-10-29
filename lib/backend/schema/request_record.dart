@@ -35,11 +35,17 @@ class RequestRecord extends FirestoreRecord {
   DocumentReference? get clientID => _clientID;
   bool hasClientID() => _clientID != null;
 
+  // "location" field.
+  LatLng? _location;
+  LatLng? get location => _location;
+  bool hasLocation() => _location != null;
+
   void _initializeFields() {
     _requestID = snapshotData['requestID'] as String?;
     _status = snapshotData['status'] as String?;
     _bookingID = snapshotData['bookingID'] as DocumentReference?;
     _clientID = snapshotData['ClientID'] as DocumentReference?;
+    _location = snapshotData['location'] as LatLng?;
   }
 
   static CollectionReference get collection =>
@@ -81,6 +87,7 @@ Map<String, dynamic> createRequestRecordData({
   String? status,
   DocumentReference? bookingID,
   DocumentReference? clientID,
+  LatLng? location,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -88,6 +95,7 @@ Map<String, dynamic> createRequestRecordData({
       'status': status,
       'bookingID': bookingID,
       'ClientID': clientID,
+      'location': location,
     }.withoutNulls,
   );
 
@@ -102,12 +110,13 @@ class RequestRecordDocumentEquality implements Equality<RequestRecord> {
     return e1?.requestID == e2?.requestID &&
         e1?.status == e2?.status &&
         e1?.bookingID == e2?.bookingID &&
-        e1?.clientID == e2?.clientID;
+        e1?.clientID == e2?.clientID &&
+        e1?.location == e2?.location;
   }
 
   @override
   int hash(RequestRecord? e) => const ListEquality()
-      .hash([e?.requestID, e?.status, e?.bookingID, e?.clientID]);
+      .hash([e?.requestID, e?.status, e?.bookingID, e?.clientID, e?.location]);
 
   @override
   bool isValidKey(Object? o) => o is RequestRecord;

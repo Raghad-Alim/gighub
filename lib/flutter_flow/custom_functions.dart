@@ -11,6 +11,7 @@ import 'uploaded_file.dart';
 import '/backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/backend/schema/structs/index.dart';
+import '/backend/schema/enums/enums.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
 List<DateTime>? newCustomFunction(
@@ -226,4 +227,36 @@ bool? requestSP(List<String> statuses) {
     }
   }
   return true; // Return true if none of the relevant statuses are found
+}
+
+List<DocumentReference> generateListOfUsers(
+  DocumentReference authUser,
+  DocumentReference otherUser,
+) {
+  return [authUser, otherUser];
+}
+
+List<String> generateListOfNames(
+  String authUserName,
+  String otherUserName,
+) {
+  return [authUserName, otherUserName];
+}
+
+DocumentReference getOtherUserRef(
+  List<DocumentReference> listOfUserRefs,
+  DocumentReference authUserRef,
+) {
+  return authUserRef == listOfUserRefs.first
+      ? listOfUserRefs.last
+      : listOfUserRefs.first;
+}
+
+String getOtherUsrName(
+  List<String> listOfNames,
+  String authUserName,
+) {
+  return authUserName == listOfNames.first
+      ? listOfNames.last
+      : listOfNames.first;
 }

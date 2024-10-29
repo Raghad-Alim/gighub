@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'times_copy_widget.dart' show TimesCopyWidget;
+import 'chat_client_widget.dart' show ChatClientWidget;
 import 'package:flutter/material.dart';
 
-class TimesCopyModel extends FlutterFlowModel<TimesCopyWidget> {
+class ChatClientModel extends FlutterFlowModel<ChatClientWidget> {
   @override
   void initState(BuildContext context) {}
 

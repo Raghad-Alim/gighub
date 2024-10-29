@@ -176,44 +176,50 @@ class _CreateAvailabilityWidgetState extends State<CreateAvailabilityWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
-                                child: Theme(
-                                  data: ThemeData(
-                                    unselectedWidgetColor: const Color(0xFF57636C),
-                                  ),
-                                  child: CheckboxListTile(
-                                    value: _model.checkboxListTileValue1 ??=
-                                        false,
-                                    onChanged: (newValue) async {
-                                      safeSetState(() => _model
-                                          .checkboxListTileValue1 = newValue!);
-                                    },
-                                    title: Text(
-                                      'Sunday',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: const Color(0xFF14181B),
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    'Plus Jakarta Sans'),
-                                            lineHeight: 2.0,
-                                          ),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: Theme(
+                                    data: ThemeData(
+                                      unselectedWidgetColor: const Color(0xFF57636C),
                                     ),
-                                    tileColor: Colors.white,
-                                    activeColor: const Color(0xFF4B39EF),
-                                    checkColor: Colors.white,
-                                    dense: false,
-                                    controlAffinity:
-                                        ListTileControlAffinity.leading,
-                                    contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 8.0, 0.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
+                                    child: CheckboxListTile(
+                                      value: _model.checkboxListTileValue1 ??=
+                                          false,
+                                      onChanged: (newValue) async {
+                                        safeSetState(() =>
+                                            _model.checkboxListTileValue1 =
+                                                newValue!);
+                                      },
+                                      title: Text(
+                                        'Sunday',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color: const Color(0xFF14181B),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          'Plus Jakarta Sans'),
+                                              lineHeight: 2.0,
+                                            ),
+                                      ),
+                                      tileColor: Colors.white,
+                                      activeColor: const Color(0xFF4B39EF),
+                                      checkColor: Colors.white,
+                                      dense: false,
+                                      controlAffinity:
+                                          ListTileControlAffinity.leading,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 8.0, 0.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -418,48 +424,52 @@ class _CreateAvailabilityWidgetState extends State<CreateAvailabilityWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Expanded(
-                                    child: Theme(
-                                      data: ThemeData(
-                                        unselectedWidgetColor:
-                                            const Color(0xFF57636C),
-                                      ),
-                                      child: CheckboxListTile(
-                                        value: _model.checkboxListTileValue2 ??=
-                                            false,
-                                        onChanged: (newValue) async {
-                                          safeSetState(() =>
-                                              _model.checkboxListTileValue2 =
-                                                  newValue!);
-                                        },
-                                        title: Text(
-                                          'Monday',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge
-                                              .override(
-                                                fontFamily: 'Plus Jakarta Sans',
-                                                color: const Color(0xFF14181B),
-                                                fontSize: 16.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        'Plus Jakarta Sans'),
-                                                lineHeight: 2.0,
-                                              ),
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      child: Theme(
+                                        data: ThemeData(
+                                          unselectedWidgetColor:
+                                              const Color(0xFF57636C),
                                         ),
-                                        tileColor: Colors.white,
-                                        activeColor: const Color(0xFF4B39EF),
-                                        checkColor: Colors.white,
-                                        dense: false,
-                                        controlAffinity:
-                                            ListTileControlAffinity.leading,
-                                        contentPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 8.0, 0.0),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                        child: CheckboxListTile(
+                                          value: _model
+                                              .checkboxListTileValue2 ??= false,
+                                          onChanged: (newValue) async {
+                                            safeSetState(() =>
+                                                _model.checkboxListTileValue2 =
+                                                    newValue!);
+                                          },
+                                          title: Text(
+                                            'Monday',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge
+                                                .override(
+                                                  fontFamily:
+                                                      'Plus Jakarta Sans',
+                                                  color: const Color(0xFF14181B),
+                                                  fontSize: 16.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          'Plus Jakarta Sans'),
+                                                  lineHeight: 2.0,
+                                                ),
+                                          ),
+                                          tileColor: Colors.white,
+                                          activeColor: const Color(0xFF4B39EF),
+                                          checkColor: Colors.white,
+                                          dense: false,
+                                          controlAffinity:
+                                              ListTileControlAffinity.leading,
+                                          contentPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 8.0, 0.0),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -583,108 +593,50 @@ class _CreateAvailabilityWidgetState extends State<CreateAvailabilityWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
-                                child: Theme(
-                                  data: ThemeData(
-                                    unselectedWidgetColor: const Color(0xFF57636C),
-                                  ),
-                                  child: CheckboxListTile(
-                                    value: _model.checkboxListTileValue3 ??=
-                                        false,
-                                    onChanged: (newValue) async {
-                                      safeSetState(() => _model
-                                          .checkboxListTileValue3 = newValue!);
-                                    },
-                                    title: Text(
-                                      'Tuesday',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: const Color(0xFF14181B),
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    'Plus Jakarta Sans'),
-                                            lineHeight: 2.0,
-                                          ),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: Theme(
+                                    data: ThemeData(
+                                      unselectedWidgetColor: const Color(0xFF57636C),
                                     ),
-                                    tileColor: Colors.white,
-                                    activeColor: const Color(0xFF4B39EF),
-                                    checkColor: Colors.white,
-                                    dense: false,
-                                    controlAffinity:
-                                        ListTileControlAffinity.leading,
-                                    contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 8.0),
-                        child: Container(
-                          width: 100.0,
-                          height: 70.0,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: const Color(0xFFE0E3E7),
-                              width: 1.0,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Theme(
-                                  data: ThemeData(
-                                    unselectedWidgetColor: const Color(0xFF57636C),
-                                  ),
-                                  child: CheckboxListTile(
-                                    value: _model.checkboxListTileValue4 ??=
-                                        false,
-                                    onChanged: (newValue) async {
-                                      safeSetState(() => _model
-                                          .checkboxListTileValue4 = newValue!);
-                                    },
-                                    title: Text(
-                                      'Wednesday',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: const Color(0xFF14181B),
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    'Plus Jakarta Sans'),
-                                            lineHeight: 2.0,
-                                          ),
-                                    ),
-                                    tileColor: Colors.white,
-                                    activeColor: const Color(0xFF4B39EF),
-                                    checkColor: Colors.white,
-                                    dense: false,
-                                    controlAffinity:
-                                        ListTileControlAffinity.leading,
-                                    contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
+                                    child: CheckboxListTile(
+                                      value: _model.checkboxListTileValue3 ??=
+                                          false,
+                                      onChanged: (newValue) async {
+                                        safeSetState(() =>
+                                            _model.checkboxListTileValue3 =
+                                                newValue!);
+                                      },
+                                      title: Text(
+                                        'Tuesday',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color: const Color(0xFF14181B),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          'Plus Jakarta Sans'),
+                                              lineHeight: 2.0,
+                                            ),
+                                      ),
+                                      tileColor: Colors.white,
+                                      activeColor: const Color(0xFF4B39EF),
+                                      checkColor: Colors.white,
+                                      dense: false,
+                                      controlAffinity:
+                                          ListTileControlAffinity.leading,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              8.0, 0.0, 8.0, 0.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -711,108 +663,50 @@ class _CreateAvailabilityWidgetState extends State<CreateAvailabilityWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
-                                child: Theme(
-                                  data: ThemeData(
-                                    unselectedWidgetColor: const Color(0xFF57636C),
-                                  ),
-                                  child: CheckboxListTile(
-                                    value: _model.checkboxListTileValue5 ??=
-                                        false,
-                                    onChanged: (newValue) async {
-                                      safeSetState(() => _model
-                                          .checkboxListTileValue5 = newValue!);
-                                    },
-                                    title: Text(
-                                      'Thursday',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: const Color(0xFF14181B),
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    'Plus Jakarta Sans'),
-                                            lineHeight: 2.0,
-                                          ),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: Theme(
+                                    data: ThemeData(
+                                      unselectedWidgetColor: const Color(0xFF57636C),
                                     ),
-                                    tileColor: Colors.white,
-                                    activeColor: const Color(0xFF4B39EF),
-                                    checkColor: Colors.white,
-                                    dense: false,
-                                    controlAffinity:
-                                        ListTileControlAffinity.leading,
-                                    contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 8.0),
-                        child: Container(
-                          width: 100.0,
-                          height: 70.0,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: const Color(0xFFE0E3E7),
-                              width: 1.0,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Theme(
-                                  data: ThemeData(
-                                    unselectedWidgetColor: const Color(0xFF57636C),
-                                  ),
-                                  child: CheckboxListTile(
-                                    value: _model.checkboxListTileValue6 ??=
-                                        false,
-                                    onChanged: (newValue) async {
-                                      safeSetState(() => _model
-                                          .checkboxListTileValue6 = newValue!);
-                                    },
-                                    title: Text(
-                                      'Friday',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: const Color(0xFF14181B),
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    'Plus Jakarta Sans'),
-                                            lineHeight: 2.0,
-                                          ),
-                                    ),
-                                    tileColor: Colors.white,
-                                    activeColor: const Color(0xFF4B39EF),
-                                    checkColor: Colors.white,
-                                    dense: false,
-                                    controlAffinity:
-                                        ListTileControlAffinity.leading,
-                                    contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
+                                    child: CheckboxListTile(
+                                      value: _model.checkboxListTileValue4 ??=
+                                          false,
+                                      onChanged: (newValue) async {
+                                        safeSetState(() =>
+                                            _model.checkboxListTileValue4 =
+                                                newValue!);
+                                      },
+                                      title: Text(
+                                        'Wednesday',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color: const Color(0xFF14181B),
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          'Plus Jakarta Sans'),
+                                              lineHeight: 2.0,
+                                            ),
+                                      ),
+                                      tileColor: Colors.white,
+                                      activeColor: const Color(0xFF4B39EF),
+                                      checkColor: Colors.white,
+                                      dense: false,
+                                      controlAffinity:
+                                          ListTileControlAffinity.leading,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              8.0, 0.0, 8.0, 0.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -839,44 +733,190 @@ class _CreateAvailabilityWidgetState extends State<CreateAvailabilityWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
-                                child: Theme(
-                                  data: ThemeData(
-                                    unselectedWidgetColor: const Color(0xFF57636C),
-                                  ),
-                                  child: CheckboxListTile(
-                                    value: _model.checkboxListTileValue7 ??=
-                                        false,
-                                    onChanged: (newValue) async {
-                                      safeSetState(() => _model
-                                          .checkboxListTileValue7 = newValue!);
-                                    },
-                                    title: Text(
-                                      'Saturday',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: const Color(0xFF14181B),
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    'Plus Jakarta Sans'),
-                                            lineHeight: 2.0,
-                                          ),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: Theme(
+                                    data: ThemeData(
+                                      unselectedWidgetColor: const Color(0xFF57636C),
                                     ),
-                                    tileColor: Colors.white,
-                                    activeColor: const Color(0xFF4B39EF),
-                                    checkColor: Colors.white,
-                                    dense: false,
-                                    controlAffinity:
-                                        ListTileControlAffinity.leading,
-                                    contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
+                                    child: CheckboxListTile(
+                                      value: _model.checkboxListTileValue5 ??=
+                                          false,
+                                      onChanged: (newValue) async {
+                                        safeSetState(() =>
+                                            _model.checkboxListTileValue5 =
+                                                newValue!);
+                                      },
+                                      title: Text(
+                                        'Thursday',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color: const Color(0xFF14181B),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          'Plus Jakarta Sans'),
+                                              lineHeight: 2.0,
+                                            ),
+                                      ),
+                                      tileColor: Colors.white,
+                                      activeColor: const Color(0xFF4B39EF),
+                                      checkColor: Colors.white,
+                                      dense: false,
+                                      controlAffinity:
+                                          ListTileControlAffinity.leading,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              8.0, 0.0, 8.0, 0.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 8.0),
+                        child: Container(
+                          width: 100.0,
+                          height: 70.0,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12.0),
+                            border: Border.all(
+                              color: const Color(0xFFE0E3E7),
+                              width: 1.0,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: Theme(
+                                    data: ThemeData(
+                                      unselectedWidgetColor: const Color(0xFF57636C),
+                                    ),
+                                    child: CheckboxListTile(
+                                      value: _model.checkboxListTileValue6 ??=
+                                          false,
+                                      onChanged: (newValue) async {
+                                        safeSetState(() =>
+                                            _model.checkboxListTileValue6 =
+                                                newValue!);
+                                      },
+                                      title: Text(
+                                        'Friday',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color: const Color(0xFF14181B),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          'Plus Jakarta Sans'),
+                                              lineHeight: 2.0,
+                                            ),
+                                      ),
+                                      tileColor: Colors.white,
+                                      activeColor: const Color(0xFF4B39EF),
+                                      checkColor: Colors.white,
+                                      dense: false,
+                                      controlAffinity:
+                                          ListTileControlAffinity.leading,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              8.0, 0.0, 8.0, 0.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 8.0),
+                        child: Container(
+                          width: 100.0,
+                          height: 70.0,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12.0),
+                            border: Border.all(
+                              color: const Color(0xFFE0E3E7),
+                              width: 1.0,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: Theme(
+                                    data: ThemeData(
+                                      unselectedWidgetColor: const Color(0xFF57636C),
+                                    ),
+                                    child: CheckboxListTile(
+                                      value: _model.checkboxListTileValue7 ??=
+                                          false,
+                                      onChanged: (newValue) async {
+                                        safeSetState(() =>
+                                            _model.checkboxListTileValue7 =
+                                                newValue!);
+                                      },
+                                      title: Text(
+                                        'Saturday',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color: const Color(0xFF14181B),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          'Plus Jakarta Sans'),
+                                              lineHeight: 2.0,
+                                            ),
+                                      ),
+                                      tileColor: Colors.white,
+                                      activeColor: const Color(0xFF4B39EF),
+                                      checkColor: Colors.white,
+                                      dense: false,
+                                      controlAffinity:
+                                          ListTileControlAffinity.leading,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              8.0, 0.0, 8.0, 0.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                 ),

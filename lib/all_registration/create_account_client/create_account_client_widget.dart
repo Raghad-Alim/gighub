@@ -1074,6 +1074,10 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                         FlutterFlowMarker(
                                           googleMapMarker.serialize(),
                                           googleMapMarker,
+                                          () async {
+                                            await widget.location!
+                                                .update(createUserRecordData());
+                                          },
                                         ),
                                     ],
                                     markerColor: GoogleMarkerColor.violet,
