@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -14,12 +15,19 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      _pushKey = prefs.getString('ff_pushKey') ?? _pushKey;
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
+
+  late SharedPreferences prefs;
 
   bool _searchActive = false;
   bool get searchActive => _searchActive;
@@ -261,4 +269,29 @@ class FFAppState extends ChangeNotifier {
   set bookingDocument(DocumentReference? value) {
     _bookingDocument = value;
   }
+
+  String _pushKey = '';
+  String get pushKey => _pushKey;
+  set pushKey(String value) {
+    _pushKey = value;
+    prefs.setString('ff_pushKey', value);
+  }
+
+  String _deviceToken = '';
+  String get deviceToken => _deviceToken;
+  set deviceToken(String value) {
+    _deviceToken = value;
+  }
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }

@@ -1065,8 +1065,8 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                       currentUserLocationValue;
                                   return FlutterFlowGoogleMap(
                                     controller: _model.googleMapsController,
-                                    onCameraIdle: (latLng) =>
-                                        _model.googleMapsCenter = latLng,
+                                    onCameraIdle: (latLng) => safeSetState(
+                                        () => _model.googleMapsCenter = latLng),
                                     initialLocation: _model.googleMapsCenter ??=
                                         currentUserLocationValue!,
                                     markers: [
@@ -1075,8 +1075,15 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                           googleMapMarker.serialize(),
                                           googleMapMarker,
                                           () async {
-                                            await widget.location!
-                                                .update(createUserRecordData());
+                                            await _model
+                                                .googleMapsController.future
+                                                .then(
+                                              (c) => c.animateCamera(
+                                                CameraUpdate.newLatLng(_model
+                                                    .googleMapsCenter!
+                                                    .toGoogleMaps()),
+                                              ),
+                                            );
                                           },
                                         ),
                                     ],

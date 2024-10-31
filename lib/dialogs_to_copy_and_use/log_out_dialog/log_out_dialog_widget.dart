@@ -177,8 +177,7 @@ class _LogOutDialogWidgetState extends State<LogOutDialogWidget> {
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
 
-                          context.pushNamedAuth(
-                              'ClientlLoginpageCopy', context.mounted);
+                          context.pushNamedAuth('loginpage', context.mounted);
                         },
                         text: 'Logout',
                         options: FFButtonOptions(

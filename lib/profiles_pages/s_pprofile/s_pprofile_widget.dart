@@ -9,6 +9,7 @@ import '/service_provider/nav_bar_s_p_profile/nav_bar_s_p_profile_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 's_pprofile_model.dart';
 export 's_pprofile_model.dart';
 
@@ -1109,7 +1110,9 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                                       backgroundColor: Colors.transparent,
                                       alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: const LogOutDialogWidget(),
+                                      child: const WebViewAware(
+                                        child: LogOutDialogWidget(),
+                                      ),
                                     );
                                   },
                                 );
@@ -1159,7 +1162,9 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                                       backgroundColor: Colors.transparent,
                                       alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: const DeleteaccountdialogWidget(),
+                                      child: const WebViewAware(
+                                        child: DeleteaccountdialogWidget(),
+                                      ),
                                     );
                                   },
                                 );

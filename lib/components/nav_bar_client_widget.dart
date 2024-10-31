@@ -119,9 +119,7 @@ class _NavBarClientWidgetState extends State<NavBarClientWidget> {
                         color: FlutterFlowTheme.of(context).secondary,
                         size: 30.0,
                       ),
-                      onPressed: () async {
-                        context.pushNamed('searchClient');
-                      },
+                      onPressed: () async {},
                     ),
                     FlutterFlowIconButton(
                       borderColor: Colors.transparent,

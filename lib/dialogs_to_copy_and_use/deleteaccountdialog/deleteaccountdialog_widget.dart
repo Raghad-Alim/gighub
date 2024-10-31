@@ -179,8 +179,7 @@ class _DeleteaccountdialogWidgetState extends State<DeleteaccountdialogWidget> {
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
 
-                          context.pushNamedAuth(
-                              'ClientlLoginpageCopy', context.mounted);
+                          context.pushNamedAuth('loginpage', context.mounted);
                         },
                         text: 'Delete',
                         options: FFButtonOptions(

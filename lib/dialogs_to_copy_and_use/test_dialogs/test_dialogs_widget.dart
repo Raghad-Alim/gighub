@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'test_dialogs_model.dart';
 export 'test_dialogs_model.dart';
 
@@ -93,9 +94,12 @@ class _TestDialogsWidgetState extends State<TestDialogsWidget> {
                           backgroundColor: Colors.transparent,
                           alignment: const AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
-                          child: GestureDetector(
-                            onTap: () => FocusScope.of(dialogContext).unfocus(),
-                            child: const DeleteDialogWidget(),
+                          child: WebViewAware(
+                            child: GestureDetector(
+                              onTap: () =>
+                                  FocusScope.of(dialogContext).unfocus(),
+                              child: const DeleteDialogWidget(),
+                            ),
                           ),
                         );
                       },
@@ -134,9 +138,12 @@ class _TestDialogsWidgetState extends State<TestDialogsWidget> {
                           backgroundColor: Colors.transparent,
                           alignment: const AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
-                          child: GestureDetector(
-                            onTap: () => FocusScope.of(dialogContext).unfocus(),
-                            child: const LogOutDialogWidget(),
+                          child: WebViewAware(
+                            child: GestureDetector(
+                              onTap: () =>
+                                  FocusScope.of(dialogContext).unfocus(),
+                              child: const LogOutDialogWidget(),
+                            ),
                           ),
                         );
                       },
@@ -175,9 +182,12 @@ class _TestDialogsWidgetState extends State<TestDialogsWidget> {
                           backgroundColor: Colors.transparent,
                           alignment: const AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
-                          child: GestureDetector(
-                            onTap: () => FocusScope.of(dialogContext).unfocus(),
-                            child: const ConfirmationDialogCopyWidget(),
+                          child: WebViewAware(
+                            child: GestureDetector(
+                              onTap: () =>
+                                  FocusScope.of(dialogContext).unfocus(),
+                              child: const ConfirmationDialogCopyWidget(),
+                            ),
                           ),
                         );
                       },

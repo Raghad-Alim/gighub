@@ -1,16 +1,16 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/filter_widget.dart';
+import '/backend/schema/enums/enums.dart';
 import '/components/nav_barclient_home_widget.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:text_search/text_search.dart';
 import 'client_home_page_model.dart';
 export 'client_home_page_model.dart';
 
@@ -31,6 +31,12 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
     super.initState();
     _model = createModel(context, () => ClientHomePageModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().searchActive = false;
+      safeSetState(() {});
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -43,6 +49,8 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -209,135 +217,906 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                           ],
                         ),
                       ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Builder(
-                              builder: (context) => Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
-                                child: FlutterFlowChoiceChips(
-                                  options: const [
-                                    ChipData('Filter', Icons.filter_alt),
-                                    ChipData(
-                                        'Sort', FontAwesomeIcons.sortAmountDown)
-                                  ],
-                                  onChanged: (val) async {
-                                    safeSetState(() => _model.choiceChipsValue =
-                                        val?.firstOrNull);
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: GestureDetector(
-                                            onTap: () =>
-                                                FocusScope.of(dialogContext)
-                                                    .unfocus(),
-                                            child: const FilterWidget(),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                  selectedChipStyle: ChipStyle(
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).tertiary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Plus Jakarta Sans',
-                                          color: Colors.white,
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey('Plus Jakarta Sans'),
-                                        ),
-                                    iconColor: Colors.white,
-                                    iconSize: 18.0,
-                                    elevation: 2.0,
-                                    borderColor: const Color(0x4D9489F5),
-                                    borderWidth: 1.0,
-                                    borderRadius: BorderRadius.circular(16.0),
-                                  ),
-                                  unselectedChipStyle: ChipStyle(
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).accent4,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Plus Jakarta Sans',
-                                          color: const Color(0xFF606A85),
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey('Plus Jakarta Sans'),
-                                        ),
-                                    iconColor: const Color(0xFF606A85),
-                                    iconSize: 18.0,
-                                    elevation: 0.0,
-                                    borderColor: const Color(0xFFF1F4F8),
-                                    borderWidth: 1.0,
-                                    borderRadius: BorderRadius.circular(16.0),
-                                  ),
-                                  chipSpacing: 8.0,
-                                  rowSpacing: 12.0,
-                                  multiselect: false,
-                                  alignment: WrapAlignment.start,
-                                  controller:
-                                      _model.choiceChipsValueController ??=
-                                          FormFieldController<List<String>>(
-                                    [],
-                                  ),
-                                  wrapped: true,
-                                ),
+                      Container(
+                        height: 223.0,
+                        decoration: const BoxDecoration(),
+                        child: Align(
+                          alignment: const AlignmentDirectional(0.0, -1.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: GridView(
+                              padding: EdgeInsets.zero,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4,
+                                crossAxisSpacing: 8.0,
+                                mainAxisSpacing: 8.0,
+                                childAspectRatio: 0.9,
                               ),
+                              scrollDirection: Axis.vertical,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await queryUserRecordOnce()
+                                          .then(
+                                            (records) => _model
+                                                    .simpleSearchResults1 =
+                                                TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.sector]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(Sector.Driver.name)
+                                                    .map((r) => r.object)
+                                                    .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              _model.simpleSearchResults1 = [])
+                                          .whenComplete(
+                                              () => safeSetState(() {}));
+
+                                      safeSetState(() {});
+                                    },
+                                    child: Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFE9ECEF),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, -1.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 1.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/driver_4900728.png',
+                                                    width: 65.0,
+                                                    height: 70.0,
+                                                    fit: BoxFit.fitWidth,
+                                                    alignment:
+                                                        const Alignment(0.0, 0.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 1.0),
+                                              child: Text(
+                                                'Drivers',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito',
+                                                      color: const Color(0xFF333333),
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      useGoogleFonts:
+                                                          GoogleFonts.asMap()
+                                                              .containsKey(
+                                                                  'Nunito'),
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await queryUserRecordOnce()
+                                          .then(
+                                            (records) =>
+                                                _model.simpleSearchResults2 =
+                                                    TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.sector]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                        .search(Sector
+                                                            .PrivateTutor.name)
+                                                        .map((r) => r.object)
+                                                        .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              _model.simpleSearchResults2 = [])
+                                          .whenComplete(
+                                              () => safeSetState(() {}));
+
+                                      FFAppState().searchActive = false;
+                                      safeSetState(() {});
+                                    },
+                                    child: Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFE9ECEF),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, -1.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 1.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/teacher_3750032.png',
+                                                    width: 65.0,
+                                                    height: 70.0,
+                                                    fit: BoxFit.fitWidth,
+                                                    alignment:
+                                                        const Alignment(0.0, -1.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, -1.0),
+                                              child: Text(
+                                                'Tutors',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito',
+                                                      color: const Color(0xFF333333),
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      useGoogleFonts:
+                                                          GoogleFonts.asMap()
+                                                              .containsKey(
+                                                                  'Nunito'),
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await queryUserRecordOnce()
+                                          .then(
+                                            (records) => _model
+                                                    .simpleSearchResults3 =
+                                                TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.sector]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(Sector.Plumber.name)
+                                                    .map((r) => r.object)
+                                                    .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              _model.simpleSearchResults3 = [])
+                                          .whenComplete(
+                                              () => safeSetState(() {}));
+
+                                      FFAppState().searchActive = true;
+                                      safeSetState(() {});
+                                    },
+                                    child: Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFE9ECEF),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, -1.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 1.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/plumber_10365972.png',
+                                                    width: 65.0,
+                                                    height: 70.0,
+                                                    fit: BoxFit.fitWidth,
+                                                    alignment:
+                                                        const Alignment(0.0, 0.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 1.0),
+                                              child: Text(
+                                                'Plumbers',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito',
+                                                      color: const Color(0xFF333333),
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      useGoogleFonts:
+                                                          GoogleFonts.asMap()
+                                                              .containsKey(
+                                                                  'Nunito'),
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await queryServiceProviderRecordOnce()
+                                          .then(
+                                            (records) => _model
+                                                    .simpleSearchResults4 =
+                                                TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.sector]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(
+                                                        Sector.CarServices.name)
+                                                    .map((r) => r.object)
+                                                    .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              _model.simpleSearchResults4 = [])
+                                          .whenComplete(
+                                              () => safeSetState(() {}));
+
+                                      safeSetState(() {});
+                                    },
+                                    child: Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFE9ECEF),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, -1.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 1.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/maintenance_3627886.png',
+                                                    width: 65.0,
+                                                    height: 70.0,
+                                                    fit: BoxFit.fitWidth,
+                                                    alignment:
+                                                        const Alignment(0.0, 0.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 1.0),
+                                              child: Text(
+                                                'Car Services',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito',
+                                                      color: const Color(0xFF333333),
+                                                      fontSize: 13.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      useGoogleFonts:
+                                                          GoogleFonts.asMap()
+                                                              .containsKey(
+                                                                  'Nunito'),
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await queryServiceProviderRecordOnce()
+                                          .then(
+                                            (records) => _model
+                                                    .simpleSearchResults5 =
+                                                TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.sector]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(
+                                                        Sector.Housekeeper.name)
+                                                    .map((r) => r.object)
+                                                    .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              _model.simpleSearchResults5 = [])
+                                          .whenComplete(
+                                              () => safeSetState(() {}));
+
+                                      safeSetState(() {});
+                                    },
+                                    child: Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFE9ECEF),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, -1.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 1.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/housekeeper_(1).png',
+                                                    width: 65.0,
+                                                    height: 70.0,
+                                                    fit: BoxFit.fitWidth,
+                                                    alignment:
+                                                        const Alignment(0.0, 0.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 1.0),
+                                              child: Text(
+                                                'Housekeepers',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito',
+                                                      color: const Color(0xFF333333),
+                                                      fontSize: 12.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      useGoogleFonts:
+                                                          GoogleFonts.asMap()
+                                                              .containsKey(
+                                                                  'Nunito'),
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await queryServiceProviderRecordOnce()
+                                          .then(
+                                            (records) => _model
+                                                    .simpleSearchResults6 =
+                                                TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.sector]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(Sector.Chef.name)
+                                                    .map((r) => r.object)
+                                                    .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              _model.simpleSearchResults6 = [])
+                                          .whenComplete(
+                                              () => safeSetState(() {}));
+
+                                      safeSetState(() {});
+                                    },
+                                    child: Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFE9ECEF),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, -1.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 1.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/chef_5110406.png',
+                                                    width: 65.0,
+                                                    height: 70.0,
+                                                    fit: BoxFit.fitWidth,
+                                                    alignment:
+                                                        const Alignment(0.0, 0.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 1.0),
+                                              child: Text(
+                                                'Chefs',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito',
+                                                      color: const Color(0xFF333333),
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      useGoogleFonts:
+                                                          GoogleFonts.asMap()
+                                                              .containsKey(
+                                                                  'Nunito'),
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await queryServiceProviderRecordOnce()
+                                          .then(
+                                            (records) => _model
+                                                    .simpleSearchResults7 =
+                                                TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.sector]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(
+                                                        Sector.Electrician.name)
+                                                    .map((r) => r.object)
+                                                    .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              _model.simpleSearchResults7 = [])
+                                          .whenComplete(
+                                              () => safeSetState(() {}));
+
+                                      safeSetState(() {});
+                                    },
+                                    child: Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFE9ECEF),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, -1.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 1.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/engineering_4202922.png',
+                                                    width: 65.0,
+                                                    height: 70.0,
+                                                    fit: BoxFit.fitWidth,
+                                                    alignment:
+                                                        const Alignment(0.0, 0.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 1.0),
+                                              child: Text(
+                                                'Electricians',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito',
+                                                      color: const Color(0xFF333333),
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      useGoogleFonts:
+                                                          GoogleFonts.asMap()
+                                                              .containsKey(
+                                                                  'Nunito'),
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await queryServiceProviderRecordOnce()
+                                          .then(
+                                            (records) => _model
+                                                    .simpleSearchResults8 =
+                                                TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.sector]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(
+                                                        Sector.Babysitter.name)
+                                                    .map((r) => r.object)
+                                                    .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              _model.simpleSearchResults8 = [])
+                                          .whenComplete(
+                                              () => safeSetState(() {}));
+
+                                      safeSetState(() {});
+                                    },
+                                    child: Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFE9ECEF),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, -1.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 1.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/mother_4540887.png',
+                                                    width: 65.0,
+                                                    height: 70.0,
+                                                    fit: BoxFit.fitWidth,
+                                                    alignment:
+                                                        const Alignment(0.0, 0.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 1.0),
+                                              child: Text(
+                                                'Babysitters',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito',
+                                                      color: const Color(0xFF333333),
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      useGoogleFonts:
+                                                          GoogleFonts.asMap()
+                                                              .containsKey(
+                                                                  'Nunito'),
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ]
-                              .addToStart(const SizedBox(width: 16.0))
-                              .addToEnd(const SizedBox(width: 16.0)),
-                        ),
-                      ),
-                      Stack(
-                        children: [
-                          ListView(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            children: [
-                              Container(
-                                width: 100.0,
-                                height: 100.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                              ),
-                            ],
                           ),
-                        ],
+                        ),
                       ),
                       const Divider(
                         thickness: 1.0,
                         color: Color(0xFFE5E7EB),
                       ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 12.0, 0.0, 0.0),
-                        child: Text(
-                          'Popular Today',
-                          style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+                      if (valueOrDefault<bool>(
+                            _model.simpleSearchResults1.isNotEmpty,
+                            false,
+                          ) ||
+                          (_model.simpleSearchResults2.isNotEmpty) ||
+                          (_model.simpleSearchResults3.isNotEmpty) ||
+                          (_model.simpleSearchResults4.isNotEmpty) ||
+                          (_model.simpleSearchResults5.isNotEmpty) ||
+                          (_model.simpleSearchResults6.isNotEmpty) ||
+                          (_model.simpleSearchResults7.isNotEmpty) ||
+                          (_model.simpleSearchResults8.isNotEmpty))
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 12.0, 0.0, 0.0),
+                          child: AuthUserStreamWidget(
+                            builder: (context) => Text(
+                              valueOrDefault<String>(
+                                () {
+                                  if (_model.simpleSearchResults1
+                                      .sortedList(
+                                          keyOf: (e) => valueOrDefault(
+                                              currentUserDocument?.aveageRating,
+                                              0.0),
+                                          desc: false)
+                                      .isNotEmpty) {
+                                    return 'Drivers';
+                                  } else if (_model.simpleSearchResults2
+                                      .sortedList(
+                                          keyOf: (e) => valueOrDefault(
+                                              currentUserDocument?.aveageRating,
+                                              0.0),
+                                          desc: false)
+                                      .isNotEmpty) {
+                                    return 'Tutors';
+                                  } else if (_model.simpleSearchResults3
+                                      .sortedList(
+                                          keyOf: (e) => valueOrDefault(
+                                              currentUserDocument?.aveageRating,
+                                              0.0),
+                                          desc: false)
+                                      .isNotEmpty) {
+                                    return 'Plumbers';
+                                  } else if (_model.simpleSearchResults4
+                                      .sortedList(
+                                          keyOf: (e) => valueOrDefault(
+                                              currentUserDocument?.aveageRating,
+                                              0.0),
+                                          desc: false)
+                                      .isNotEmpty) {
+                                    return 'Car Services';
+                                  } else if (_model.simpleSearchResults5
+                                      .sortedList(
+                                          keyOf: (e) => valueOrDefault(
+                                              currentUserDocument?.aveageRating,
+                                              0.0),
+                                          desc: false)
+                                      .isNotEmpty) {
+                                    return 'Housekeepers';
+                                  } else if (_model.simpleSearchResults6
+                                      .sortedList(
+                                          keyOf: (e) => valueOrDefault(
+                                              currentUserDocument?.aveageRating,
+                                              0.0),
+                                          desc: false)
+                                      .isNotEmpty) {
+                                    return 'Chefs';
+                                  } else if (_model.simpleSearchResults7
+                                      .sortedList(
+                                          keyOf: (e) => valueOrDefault(
+                                              currentUserDocument?.sector, ''),
+                                          desc: false)
+                                      .isNotEmpty) {
+                                    return 'Electricians';
+                                  } else if (_model.simpleSearchResults8
+                                      .sortedList(
+                                          keyOf: (e) => valueOrDefault(
+                                              currentUserDocument?.aveageRating,
+                                              0.0),
+                                          desc: false)
+                                      .isNotEmpty) {
+                                    return 'Babysitters';
+                                  } else {
+                                    return 'Service Providers';
+                                  }
+                                }(),
+                                'Service Providers',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
                                     fontFamily: 'Plus Jakarta Sans',
                                     color: const Color(0xFF606A85),
                                     fontSize: 14.0,
@@ -346,8 +1125,9 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey('Plus Jakarta Sans'),
                                   ),
+                            ),
+                          ),
                         ),
-                      ),
                       StreamBuilder<List<UserRecord>>(
                         stream: queryUserRecord(
                           queryBuilder: (userRecord) => userRecord
@@ -358,8 +1138,23 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                               .where(
                                 'role',
                                 isEqualTo: 'ServiceProvider',
-                              ),
-                        ),
+                              )
+                              .orderBy('FirstName'),
+                        )..listen((snapshot) {
+                            List<UserRecord> listViewUserRecordList = snapshot;
+                            if (_model.listViewPreviousSnapshot != null &&
+                                !const ListEquality(
+                                        UserRecordDocumentEquality())
+                                    .equals(listViewUserRecordList,
+                                        _model.listViewPreviousSnapshot)) {
+                              () async {
+                                safeSetState(() {});
+
+                                safeSetState(() {});
+                              }();
+                            }
+                            _model.listViewPreviousSnapshot = snapshot;
+                          }),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -834,7 +1629,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
+                alignment: const AlignmentDirectional(0.0, 1.1),
                 child: wrapWithModel(
                   model: _model.navBarclientHomeModel,
                   updateCallback: () => safeSetState(() {}),

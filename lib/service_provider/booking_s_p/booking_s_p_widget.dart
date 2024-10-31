@@ -548,9 +548,20 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                   0.0,
                                                                   0.0),
                                                       child: FFButtonWidget(
-                                                        onPressed: () {
-                                                          print(
-                                                              'Button pressed ...');
+                                                        onPressed: () async {
+                                                          context.pushNamed(
+                                                            'chatSP',
+                                                            queryParameters: {
+                                                              'bookingID':
+                                                                  serializeParam(
+                                                                listViewBookingRecord
+                                                                    .reference
+                                                                    .id,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
                                                         },
                                                         text:
                                                             'chat with client',

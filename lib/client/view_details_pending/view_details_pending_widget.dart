@@ -469,7 +469,7 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                     child: Text(
                       valueOrDefault<String>(
                         widget.comment,
-                        'comment',
+                        'No Comment',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:

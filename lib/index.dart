@@ -30,8 +30,7 @@ export '/all_registration/verification_message_client/verification_message_clien
     show VerificationMessageClientWidget;
 export '/service_provider/s_plocationfrom_h_p/s_plocationfrom_h_p_widget.dart'
     show SPlocationfromHPWidget;
-export '/all_login/clientl_loginpage_copy/clientl_loginpage_copy_widget.dart'
-    show ClientlLoginpageCopyWidget;
+export '/all_login/loginpage/loginpage_widget.dart' show LoginpageWidget;
 export '/all_login/errormsg/errormsg_widget.dart' show ErrormsgWidget;
 export '/client/client_pin_location/client_pin_location_widget.dart'
     show ClientPinLocationWidget;
@@ -84,4 +83,10 @@ export '/client/youtube_request_page_copy/youtube_request_page_copy_widget.dart'
     show YoutubeRequestPageCopyWidget;
 export '/chat_pages/chats/chats_widget.dart' show ChatsWidget;
 export '/chat_pages/chat_s_p/chat_s_p_widget.dart' show ChatSPWidget;
-export '/chat_pages/chat_client/chat_client_widget.dart' show ChatClientWidget;
+export '/chat_pages/chats_client/chats_client_widget.dart'
+    show ChatsClientWidget;
+export '/chat_pages/chatadd_s_p/chatadd_s_p_widget.dart' show ChataddSPWidget;
+export '/client/view_details_pay_copy/view_details_pay_copy_widget.dart'
+    show ViewDetailsPayCopyWidget;
+export '/service_provider/request_page_copy2/request_page_copy2_widget.dart'
+    show RequestPageCopy2Widget;

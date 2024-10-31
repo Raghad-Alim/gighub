@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 's_pprofile_edit_copy_model.dart';
 export 's_pprofile_edit_copy_model.dart';
 
@@ -298,6 +299,8 @@ class _SPprofileEditCopyWidgetState extends State<SPprofileEditCopyWidget> {
                                 }
 
                                 FFAppState().tempPhoto = 'UploadData_f88';
+                                safeSetState(() {});
+                                _model.photo = _model.uploadedFileUrl;
                                 safeSetState(() {});
                               },
                               text: 'Upload profile photo',
@@ -1385,7 +1388,9 @@ class _SPprofileEditCopyWidgetState extends State<SPprofileEditCopyWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: const UpdateprofilesWidget(),
+                                              child: const WebViewAware(
+                                                child: UpdateprofilesWidget(),
+                                              ),
                                             );
                                           },
                                         );

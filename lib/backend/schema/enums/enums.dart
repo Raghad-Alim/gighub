@@ -8,6 +8,7 @@ enum Sector {
   Electrician,
   Driver,
   CarServices,
+  Housekeeper,
 }
 
 extension FFEnumExtensions<T extends Enum> on T {

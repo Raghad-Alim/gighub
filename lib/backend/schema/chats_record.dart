@@ -42,8 +42,8 @@ class ChatsRecord extends FirestoreRecord {
   bool hasLastMessageSeenBy() => _lastMessageSeenBy != null;
 
   // "bookingID" field.
-  String? _bookingID;
-  String get bookingID => _bookingID ?? '';
+  DocumentReference? _bookingID;
+  DocumentReference? get bookingID => _bookingID;
   bool hasBookingID() => _bookingID != null;
 
   void _initializeFields() {
@@ -52,7 +52,7 @@ class ChatsRecord extends FirestoreRecord {
     _userNames = getDataList(snapshotData['userNames']);
     _timeStamp = snapshotData['timeStamp'] as DateTime?;
     _lastMessageSeenBy = getDataList(snapshotData['lastMessageSeenBy']);
-    _bookingID = snapshotData['bookingID'] as String?;
+    _bookingID = snapshotData['bookingID'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -91,7 +91,7 @@ class ChatsRecord extends FirestoreRecord {
 Map<String, dynamic> createChatsRecordData({
   String? lastMessage,
   DateTime? timeStamp,
-  String? bookingID,
+  DocumentReference? bookingID,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{

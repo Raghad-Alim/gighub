@@ -477,7 +477,7 @@ class _ViewDetailsPayWidgetState extends State<ViewDetailsPayWidget> {
                     child: Text(
                       valueOrDefault<String>(
                         widget.commentPay,
-                        'comment',
+                        'No Comment',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
@@ -567,7 +567,7 @@ class _ViewDetailsPayWidgetState extends State<ViewDetailsPayWidget> {
                     final paymentResponse = await processStripePayment(
                       context,
                       amount: widget.pricePay!.round(),
-                      currency: 'SAR',
+                      currency: 'USD',
                       customerEmail: widget.clientEmail!,
                       customerName:
                           '${widget.clientFirstName} ${widget.clientLastName}',

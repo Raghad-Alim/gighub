@@ -8,6 +8,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'clientl_loginpage_copy_copy_model.dart';
 export 'clientl_loginpage_copy_copy_model.dart';
 
@@ -600,14 +601,16 @@ class _ClientlLoginpageCopyCopyWidgetState
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () =>
-                                                                FocusScope.of(
-                                                                        dialogContext)
-                                                                    .unfocus(),
+                                                          child: WebViewAware(
                                                             child:
-                                                                const ErrormassageWidget(),
+                                                                GestureDetector(
+                                                              onTap: () =>
+                                                                  FocusScope.of(
+                                                                          dialogContext)
+                                                                      .unfocus(),
+                                                              child:
+                                                                  const ErrormassageWidget(),
+                                                            ),
                                                           ),
                                                         );
                                                       },

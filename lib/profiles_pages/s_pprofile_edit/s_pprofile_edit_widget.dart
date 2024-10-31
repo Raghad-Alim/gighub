@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 's_pprofile_edit_model.dart';
 export 's_pprofile_edit_model.dart';
 
@@ -1307,7 +1308,9 @@ class _SPprofileEditWidgetState extends State<SPprofileEditWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: const UpdateprofilesWidget(),
+                                              child: const WebViewAware(
+                                                child: UpdateprofilesWidget(),
+                                              ),
                                             );
                                           },
                                         );

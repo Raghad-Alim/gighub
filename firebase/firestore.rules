@@ -53,7 +53,7 @@ service cloud.firestore {
     match /user/{document} {
       allow create: if request.auth.uid == document;
       allow read: if true;
-      allow write: if request.auth.uid == document;
+      allow write: if true;
       allow delete: if request.auth.uid == document;
     }
 
@@ -82,5 +82,10 @@ service cloud.firestore {
       allow read: if true;
     }
 
+
+    match /ff_user_push_notifications/{id} {
+      allow read, update, delete: if false;
+      allow create: if /databases/$(database)/documents/user/$(request.auth.uid) == request.resource.data.sender;
+    }
   }
 }

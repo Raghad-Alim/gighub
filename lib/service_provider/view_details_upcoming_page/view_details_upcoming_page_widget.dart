@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:map_launcher/map_launcher.dart' as $ml;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'view_details_upcoming_page_model.dart';
@@ -362,7 +363,7 @@ class _ViewDetailsUpcomingPageWidgetState
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 6.0),
                       child: Text(
-                        'Client Location',
+                        'Location',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -381,20 +382,33 @@ class _ViewDetailsUpcomingPageWidgetState
                 alignment: const AlignmentDirectional(-1.0, 0.0),
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(56.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    valueOrDefault<String>(
-                      widget.bookingClientLocation?.toString(),
-                      'location',
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      await launchMap(
+                        mapType: $ml.MapType.google,
+                        location: widget.bookingClientLocation,
+                        title: 'Client Location',
+                      );
+                    },
+                    child: Text(
+                      valueOrDefault<String>(
+                        widget.bookingClientLocation?.toString(),
+                        'location',
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            fontSize: 17.0,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
+                          ),
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          fontSize: 17.0,
-                          letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                        ),
                   ),
                 ),
               ),
@@ -447,7 +461,7 @@ class _ViewDetailsUpcomingPageWidgetState
                   child: Text(
                     valueOrDefault<String>(
                       widget.clientComment,
-                      'comment',
+                      'No Comment',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:

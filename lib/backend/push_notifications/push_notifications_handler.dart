@@ -111,7 +111,11 @@ final parametersBuilderMap =
   'BookingsClient': ParameterData.none(),
   'Clientprofile': ParameterData.none(),
   'searchClient': ParameterData.none(),
-  'createAccountSP': ParameterData.none(),
+  'createAccountSP': (data) async => ParameterData(
+        allParams: {
+          'marker': getParameter<LatLng>(data, 'marker'),
+        },
+      ),
   'SPprofile': ParameterData.none(),
   'ClientHomePage': ParameterData.none(),
   'ServiceProviderHomePage': ParameterData.none(),
@@ -124,7 +128,7 @@ final parametersBuilderMap =
   'resetpassaftersending': ParameterData.none(),
   'verificationMessageClient': ParameterData.none(),
   'SPlocationfromHP': ParameterData.none(),
-  'ClientlLoginpageCopy': ParameterData.none(),
+  'loginpage': ParameterData.none(),
   'errormsg': ParameterData.none(),
   'clientPinLocation': ParameterData.none(),
   'CreateAvailability': ParameterData.none(),
@@ -232,6 +236,7 @@ final parametersBuilderMap =
   'chatPage': (data) async => ParameterData(
         allParams: {
           'receiveChat': getParameter<DocumentReference>(data, 'receiveChat'),
+          'bookingID': getParameter<String>(data, 'bookingID'),
         },
       ),
   'CreateAccountClientCopy': (data) async => ParameterData(
@@ -249,9 +254,36 @@ final parametersBuilderMap =
           'service': getParameter<String>(data, 'service'),
         },
       ),
-  'chats': ParameterData.none(),
-  'ChatSP': ParameterData.none(),
-  'ChatClient': ParameterData.none(),
+  'chats': (data) async => ParameterData(
+        allParams: {
+          'bookingID': getParameter<String>(data, 'bookingID'),
+        },
+      ),
+  'chatSP': (data) async => ParameterData(
+        allParams: {
+          'bookingID': getParameter<String>(data, 'bookingID'),
+        },
+      ),
+  'chatsClient': (data) async => ParameterData(
+        allParams: {
+          'bookingID': getParameter<DocumentReference>(data, 'bookingID'),
+        },
+      ),
+  'chataddSP': ParameterData.none(),
+  'viewDetailsPayCopy': (data) async => ParameterData(
+        allParams: {
+          'bookingIDPay': getParameter<DocumentReference>(data, 'bookingIDPay'),
+          'bookingTimePay': getParameter<DateTime>(data, 'bookingTimePay'),
+          'bookingDatePay': getParameter<DateTime>(data, 'bookingDatePay'),
+          'commentPay': getParameter<String>(data, 'commentPay'),
+          'locationPay': getParameter<LatLng>(data, 'locationPay'),
+          'pricePay': getParameter<double>(data, 'pricePay'),
+          'clientEmail': getParameter<String>(data, 'clientEmail'),
+          'clientFirstName': getParameter<String>(data, 'clientFirstName'),
+          'clientLastName': getParameter<String>(data, 'clientLastName'),
+        },
+      ),
+  'requestPageCopy2': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

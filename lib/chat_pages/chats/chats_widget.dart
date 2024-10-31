@@ -1,17 +1,23 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/chat_pages/create_new_chat/create_new_chat_widget.dart';
+import '/chat_pages/create_new_chat_s_p/create_new_chat_s_p_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
 
 class ChatsWidget extends StatefulWidget {
-  const ChatsWidget({super.key});
+  const ChatsWidget({
+    super.key,
+    this.bookingID,
+  });
+
+  final String? bookingID;
 
   @override
   State<ChatsWidget> createState() => _ChatsWidgetState();
@@ -96,11 +102,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                     backgroundColor: Colors.transparent,
                     context: context,
                     builder: (context) {
-                      return GestureDetector(
-                        onTap: () => FocusScope.of(context).unfocus(),
-                        child: Padding(
-                          padding: MediaQuery.viewInsetsOf(context),
-                          child: const CreateNewChatWidget(),
+                      return WebViewAware(
+                        child: GestureDetector(
+                          onTap: () => FocusScope.of(context).unfocus(),
+                          child: Padding(
+                            padding: MediaQuery.viewInsetsOf(context),
+                            child: const CreateNewChatSPWidget(),
+                          ),
                         ),
                       );
                     },
@@ -221,7 +229,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: Text(
-                                                listViewChatsRecord.lastMessage,
+                                                listViewChatsRecord.lastMessage
+                                                    .maybeHandleOverflow(
+                                                  maxChars: 15,
+                                                  replacement: '…',
+                                                ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyLarge

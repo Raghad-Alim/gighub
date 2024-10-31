@@ -11,6 +11,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'youtube_request_page_copy_model.dart';
 export 'youtube_request_page_copy_model.dart';
 
@@ -628,17 +629,20 @@ class _YoutubeRequestPageCopyWidgetState
                                             const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: ConfirmBookingWidget(
-                                          timeSelected: functions.stringToTime(
-                                              _model.choiceChipsValue,
-                                              _model
-                                                  .calendarSelectedDay?.start)!,
-                                          spRef: widget.spRef!,
-                                          price: widget.price!,
-                                          comment: _model
-                                              .descriptionTextController.text,
-                                          service: widget.service!,
-                                          loc: _model.loc!,
+                                        child: WebViewAware(
+                                          child: ConfirmBookingWidget(
+                                            timeSelected:
+                                                functions.stringToTime(
+                                                    _model.choiceChipsValue,
+                                                    _model.calendarSelectedDay
+                                                        ?.start)!,
+                                            spRef: widget.spRef!,
+                                            price: widget.price!,
+                                            comment: _model
+                                                .descriptionTextController.text,
+                                            service: widget.service!,
+                                            loc: _model.loc!,
+                                          ),
                                         ),
                                       );
                                     },

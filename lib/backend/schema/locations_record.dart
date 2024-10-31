@@ -35,11 +35,17 @@ class LocationsRecord extends FirestoreRecord {
   String get locID => _locID ?? '';
   bool hasLocID() => _locID != null;
 
+  // "city" field.
+  String? _city;
+  String get city => _city ?? '';
+  bool hasCity() => _city != null;
+
   void _initializeFields() {
     _owner = snapshotData['owner'] as DocumentReference?;
     _address = snapshotData['address'] as LatLng?;
     _locName = snapshotData['locName'] as String?;
     _locID = snapshotData['locID'] as String?;
+    _city = snapshotData['city'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -81,6 +87,7 @@ Map<String, dynamic> createLocationsRecordData({
   LatLng? address,
   String? locName,
   String? locID,
+  String? city,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -88,6 +95,7 @@ Map<String, dynamic> createLocationsRecordData({
       'address': address,
       'locName': locName,
       'locID': locID,
+      'city': city,
     }.withoutNulls,
   );
 
@@ -102,12 +110,13 @@ class LocationsRecordDocumentEquality implements Equality<LocationsRecord> {
     return e1?.owner == e2?.owner &&
         e1?.address == e2?.address &&
         e1?.locName == e2?.locName &&
-        e1?.locID == e2?.locID;
+        e1?.locID == e2?.locID &&
+        e1?.city == e2?.city;
   }
 
   @override
-  int hash(LocationsRecord? e) =>
-      const ListEquality().hash([e?.owner, e?.address, e?.locName, e?.locID]);
+  int hash(LocationsRecord? e) => const ListEquality()
+      .hash([e?.owner, e?.address, e?.locName, e?.locID, e?.city]);
 
   @override
   bool isValidKey(Object? o) => o is LocationsRecord;

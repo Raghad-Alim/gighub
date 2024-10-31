@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
@@ -16,7 +17,12 @@ import 'create_account_s_p_model.dart';
 export 'create_account_s_p_model.dart';
 
 class CreateAccountSPWidget extends StatefulWidget {
-  const CreateAccountSPWidget({super.key});
+  const CreateAccountSPWidget({
+    super.key,
+    this.marker,
+  });
+
+  final LatLng? marker;
 
   @override
   State<CreateAccountSPWidget> createState() => _CreateAccountSPWidgetState();
@@ -1158,15 +1164,9 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                         controller: _model
                                                 .dropDownValueController ??=
                                             FormFieldController<String>(null),
-                                        options: const [
-                                          'Private Tutor',
-                                          'Babysitter',
-                                          'Chef',
-                                          'Plumber',
-                                          'Electrician',
-                                          'Driver',
-                                          'Car Services '
-                                        ],
+                                        options: Sector.values
+                                            .map((e) => e.name)
+                                            .toList(),
                                         onChanged: (val) => safeSetState(
                                             () => _model.dropDownValue = val),
                                         width: double.infinity,
@@ -1483,27 +1483,9 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                           ),
                                         ),
                                       ),
-                                      Text(
-                                        'Your location',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMediumFamily,
-                                              color: const Color(0xFF606A85),
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMediumFamily),
-                                            ),
-                                      ),
                                       Container(
-                                        width: 356.0,
-                                        height: 230.0,
+                                        width: 0.0,
+                                        height: 0.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,

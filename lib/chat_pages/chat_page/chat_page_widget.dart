@@ -15,9 +15,11 @@ class ChatPageWidget extends StatefulWidget {
   const ChatPageWidget({
     super.key,
     required this.receiveChat,
+    this.bookingID,
   });
 
   final DocumentReference? receiveChat;
+  final String? bookingID;
 
   @override
   State<ChatPageWidget> createState() => _ChatPageWidgetState();
@@ -98,20 +100,6 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                       },
                     ),
                   });
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: const Text('ac111111'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: const Text('Ok'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
 
                   context.pushNamed('chats');
                 },
@@ -490,21 +478,6 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                       },
                                     ),
                                   });
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('ac2'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
 
                                   await widget.receiveChat!.update({
                                     ...mapToFirestore(
@@ -515,39 +488,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                       },
                                     ),
                                   });
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('ac3'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
                                   safeSetState(() {
                                     _model.textController?.clear();
                                   });
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('ac4'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
                                 },
                         ),
                       ),

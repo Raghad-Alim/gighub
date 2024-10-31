@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'clientprofile_model.dart';
 export 'clientprofile_model.dart';
 
@@ -673,13 +674,15 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                             const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: const LogOutDialogWidget(),
+                                        child: const WebViewAware(
+                                          child: LogOutDialogWidget(),
+                                        ),
                                       );
                                     },
                                   );
 
                                   context.pushNamedAuth(
-                                      'ClientlLoginpageCopy', context.mounted);
+                                      'loginpage', context.mounted);
                                 },
                                 text: 'Log Out',
                                 options: FFButtonOptions(
@@ -735,13 +738,15 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                             const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: const DeleteaccountdialogWidget(),
+                                        child: const WebViewAware(
+                                          child: DeleteaccountdialogWidget(),
+                                        ),
                                       );
                                     },
                                   );
 
                                   context.goNamedAuth(
-                                      'ClientlLoginpageCopy', context.mounted);
+                                      'loginpage', context.mounted);
                                 },
                                 text: 'Delete Account',
                                 options: FFButtonOptions(

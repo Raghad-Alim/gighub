@@ -77,14 +77,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
           ? const ClientloginduppppppWidget()
-          : const ClientlLoginpageCopyWidget(),
+          : const LoginpageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
               ? const ClientloginduppppppWidget()
-              : const ClientlLoginpageCopyWidget(),
+              : const LoginpageWidget(),
         ),
         FFRoute(
           name: 'CreateAccountClient',
@@ -120,7 +120,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'createAccountSP',
           path: '/createAccountSP',
-          builder: (context, params) => const CreateAccountSPWidget(),
+          builder: (context, params) => CreateAccountSPWidget(
+            marker: params.getParam(
+              'marker',
+              ParamType.LatLng,
+            ),
+          ),
         ),
         FFRoute(
           name: 'SPprofile',
@@ -184,9 +189,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const SPlocationfromHPWidget(),
         ),
         FFRoute(
-          name: 'ClientlLoginpageCopy',
-          path: '/clientlLoginpageCopy',
-          builder: (context, params) => const ClientlLoginpageCopyWidget(),
+          name: 'loginpage',
+          path: '/loginpage',
+          builder: (context, params) => const LoginpageWidget(),
         ),
         FFRoute(
           name: 'errormsg',
@@ -543,6 +548,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               isList: false,
               collectionNamePath: ['chats'],
             ),
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -593,17 +602,88 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'chats',
           path: '/chats',
-          builder: (context, params) => const ChatsWidget(),
+          builder: (context, params) => ChatsWidget(
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
-          name: 'ChatSP',
+          name: 'chatSP',
           path: '/chatSP',
-          builder: (context, params) => const ChatSPWidget(),
+          builder: (context, params) => ChatSPWidget(
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
-          name: 'ChatClient',
-          path: '/chatClient',
-          builder: (context, params) => const ChatClientWidget(),
+          name: 'chatsClient',
+          path: '/chatsClient',
+          builder: (context, params) => ChatsClientWidget(
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['booking'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'chataddSP',
+          path: '/chataddSP',
+          builder: (context, params) => const ChataddSPWidget(),
+        ),
+        FFRoute(
+          name: 'viewDetailsPayCopy',
+          path: '/viewDetailsPayCopy',
+          builder: (context, params) => ViewDetailsPayCopyWidget(
+            bookingIDPay: params.getParam(
+              'bookingIDPay',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['booking'],
+            ),
+            bookingTimePay: params.getParam(
+              'bookingTimePay',
+              ParamType.DateTime,
+            ),
+            bookingDatePay: params.getParam(
+              'bookingDatePay',
+              ParamType.DateTime,
+            ),
+            commentPay: params.getParam(
+              'commentPay',
+              ParamType.String,
+            ),
+            locationPay: params.getParam(
+              'locationPay',
+              ParamType.LatLng,
+            ),
+            pricePay: params.getParam(
+              'pricePay',
+              ParamType.double,
+            ),
+            clientEmail: params.getParam(
+              'clientEmail',
+              ParamType.String,
+            ),
+            clientFirstName: params.getParam(
+              'clientFirstName',
+              ParamType.String,
+            ),
+            clientLastName: params.getParam(
+              'clientLastName',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'requestPageCopy2',
+          path: '/requestPageCopy2',
+          builder: (context, params) => const RequestPageCopy2Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -776,7 +856,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/clientlLoginpageCopy';
+            return '/loginpage';
           }
           return null;
         },

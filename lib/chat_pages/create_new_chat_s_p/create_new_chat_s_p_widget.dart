@@ -2,21 +2,20 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'create_new_chat_model.dart';
-export 'create_new_chat_model.dart';
+import 'create_new_chat_s_p_model.dart';
+export 'create_new_chat_s_p_model.dart';
 
-class CreateNewChatWidget extends StatefulWidget {
-  const CreateNewChatWidget({super.key});
+class CreateNewChatSPWidget extends StatefulWidget {
+  const CreateNewChatSPWidget({super.key});
 
   @override
-  State<CreateNewChatWidget> createState() => _CreateNewChatWidgetState();
+  State<CreateNewChatSPWidget> createState() => _CreateNewChatSPWidgetState();
 }
 
-class _CreateNewChatWidgetState extends State<CreateNewChatWidget> {
-  late CreateNewChatModel _model;
+class _CreateNewChatSPWidgetState extends State<CreateNewChatSPWidget> {
+  late CreateNewChatSPModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +26,7 @@ class _CreateNewChatWidgetState extends State<CreateNewChatWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CreateNewChatModel());
+    _model = createModel(context, () => CreateNewChatSPModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -69,7 +68,7 @@ class _CreateNewChatWidgetState extends State<CreateNewChatWidget> {
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
               child: Container(
-                width: 50.0,
+                width: 40.0,
                 height: 4.0,
                 decoration: BoxDecoration(
                   color: const Color(0xFFF1F4F8),
@@ -99,8 +98,19 @@ class _CreateNewChatWidgetState extends State<CreateNewChatWidget> {
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
-              child: StreamBuilder<List<UserRecord>>(
-                stream: queryUserRecord(),
+              child: StreamBuilder<List<BookingRecord>>(
+                stream: queryBookingRecord(
+                  queryBuilder: (bookingRecord) => bookingRecord
+                      .where(
+                        'status',
+                        isEqualTo: 'accepted',
+                      )
+                      .where(
+                        'serviceProviderID',
+                        isEqualTo: currentUserReference,
+                      )
+                      .orderBy('DateOfService', descending: true),
+                ),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -116,19 +126,18 @@ class _CreateNewChatWidgetState extends State<CreateNewChatWidget> {
                       ),
                     );
                   }
-                  List<UserRecord> listViewUserRecordList = snapshot.data!
-                      .where((u) => u.uid != currentUserUid)
-                      .toList();
+                  List<BookingRecord> listViewBookingRecordList =
+                      snapshot.data!;
 
                   return ListView.builder(
                     padding: EdgeInsets.zero,
                     primary: false,
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
-                    itemCount: listViewUserRecordList.length,
+                    itemCount: listViewBookingRecordList.length,
                     itemBuilder: (context, listViewIndex) {
-                      final listViewUserRecord =
-                          listViewUserRecordList[listViewIndex];
+                      final listViewBookingRecord =
+                          listViewBookingRecordList[listViewIndex];
                       return Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 12.0, 16.0, 0.0),
@@ -150,7 +159,7 @@ class _CreateNewChatWidgetState extends State<CreateNewChatWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  listViewUserRecord.firstName,
+                                  '${listViewBookingRecord.clientFirstName}${listViewBookingRecord.clientLastName}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
@@ -169,27 +178,6 @@ class _CreateNewChatWidgetState extends State<CreateNewChatWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    await ChatsRecord.collection.doc().set({
-                                      ...createChatsRecordData(
-                                        lastMessage: 'say hello!',
-                                        timeStamp: getCurrentTimestamp,
-                                      ),
-                                      ...mapToFirestore(
-                                        {
-                                          'userIds':
-                                              functions.generateListOfUsers(
-                                                  currentUserReference!,
-                                                  listViewUserRecord.reference),
-                                          'userNames':
-                                              functions.generateListOfNames(
-                                                  valueOrDefault(
-                                                      currentUserDocument
-                                                          ?.firstName,
-                                                      ''),
-                                                  listViewUserRecord.firstName),
-                                        },
-                                      ),
-                                    });
                                     Navigator.pop(context);
                                   },
                                   child: const Icon(

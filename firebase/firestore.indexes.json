@@ -31,6 +31,24 @@
           "order": "ASCENDING"
         },
         {
+          "fieldPath": "aveageRating",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "user",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isClient",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "role",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "FirstName",
           "order": "ASCENDING"
         }
@@ -64,6 +82,24 @@
         },
         {
           "fieldPath": "timeStamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "booking",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "serviceProviderID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "DateOfService",
           "order": "DESCENDING"
         }
       ]

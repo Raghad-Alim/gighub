@@ -4,6 +4,7 @@ admin.initializeApp();
 
 const kFcmTokensCollection = "fcm_tokens";
 const kPushNotificationsCollection = "ff_push_notifications";
+const kUserPushNotificationsCollection = "ff_user_push_notifications";
 const firestore = admin.firestore();
 
 const kPushNotificationRuntimeOpts = {
@@ -68,6 +69,28 @@ exports.sendPushNotificationsTrigger = functions
       }
 
       await sendPushNotifications(snapshot);
+    } catch (e) {
+      console.log(`Error: ${e}`);
+      await snapshot.ref.update({ status: "failed", error: `${e}` });
+    }
+  });
+
+exports.sendUserPushNotificationsTrigger = functions
+  .runWith(kPushNotificationRuntimeOpts)
+  .firestore.document(`${kUserPushNotificationsCollection}/{id}`)
+  .onCreate(async (snapshot, _) => {
+    try {
+      // Ignore scheduled push notifications on create
+      const scheduledTime = snapshot.data().scheduled_time || "";
+      if (scheduledTime) {
+        return;
+      }
+
+      // Don't let user-triggered notifications to be sent to all users.
+      const userRefsStr = snapshot.data().user_refs || "";
+      if (userRefsStr) {
+        await sendPushNotifications(snapshot);
+      }
     } catch (e) {
       console.log(`Error: ${e}`);
       await snapshot.ref.update({ status: "failed", error: `${e}` });
@@ -211,7 +234,7 @@ const stripeModule = require("stripe");
 // Credentials
 const kStripeProdSecretKey = "";
 const kStripeTestSecretKey =
-  "sk_test_51QAGiZIEY0SZe5RlTeuH6q4BtoTB9mNzDb7ohtfOjNWZ4t2dXbE7z1kQExTMgoPT23hi8LvvNxq7ahOr8G9vCOmA00csrsjai1";
+  "sk_test_51QFVl608k9yF8PbZMHfMXqnNc7AvNdRTfaW2RMAj3Qey94jVoZu9JGEQwkwEZH4lBh7ks0hZ6l54gtMiG0c7RbwB00lDKIG8n0";
 
 const secretKey = (isProd) =>
   isProd ? kStripeProdSecretKey : kStripeTestSecretKey;
@@ -292,4 +315,73 @@ exports.onUserDeleted = functions.auth.user().onDelete(async (user) => {
   let firestore = admin.firestore();
   let userRef = firestore.doc("user/" + user.uid);
   await firestore.collection("user").doc(user.uid).delete();
+});
+const OneSignal = require("@onesignal/node-onesignal");
+
+const kUserKey = "ODA1NjYxY2YtMmUxMi00Y2IzLWI1NjYtMTIwNDM4NWZhMTA2";
+const kAPIKey = "ZWJmNzliMjctMGMyNi00YmY4LWI4OTEtNjk0YmVlNWM3ZmU1";
+
+const configuration = OneSignal.createConfiguration({
+  userKey: kUserKey,
+  appKey: kAPIKey,
+});
+const client = new OneSignal.DefaultApi(configuration);
+const user = new OneSignal.User();
+
+exports.addUser = functions.https.onCall(async (data, context) => {
+  if (context.auth.uid != data.user_id) {
+    return "Unauthenticated calls are not allowed.";
+  }
+  try {
+    user.identity = {
+      external_id: data.user_id,
+    };
+    user.properties = {
+      tags: data.tags,
+    };
+    user.subscriptions = data.subscriptions;
+    const createdUser = await client.createUser(
+      "a958e019-c374-4402-bedf-df1f47aca72f",
+      user,
+    );
+    if (createdUser.identity["onesignal_id"] == null) {
+      throw new functions.https.HttpsError(
+        "aborted",
+        "Could not create OneSignal user",
+      );
+    }
+    return createdUser;
+  } catch (err) {
+    console.error(
+      `Unable to create user ${context.auth.uid}.
+            Error ${err}`,
+    );
+    throw new functions.https.HttpsError(
+      "aborted",
+      "Could not create OneSignal user",
+    );
+  }
+});
+
+exports.deleteUser = functions.https.onCall(async (data, context) => {
+  if (context.auth.uid != data.user_id) {
+    return "Unauthenticated calls are not allowed.";
+  }
+  try {
+    await client.deleteUser(
+      "a958e019-c374-4402-bedf-df1f47aca72f",
+      "external_id",
+      data.user_id,
+    );
+    return "User deleted";
+  } catch (err) {
+    console.error(
+      `Unable to delete user ${context.auth.uid}.
+            Error ${err}`,
+    );
+    throw new functions.https.HttpsError(
+      "aborted",
+      "Could not delete OneSignal user",
+    );
+  }
 });

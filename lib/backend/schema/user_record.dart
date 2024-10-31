@@ -115,6 +115,21 @@ class UserRecord extends FirestoreRecord {
   List<AvailabilityStruct> get availability => _availability ?? const [];
   bool hasAvailability() => _availability != null;
 
+  // "FCMtoken" field.
+  String? _fCMtoken;
+  String get fCMtoken => _fCMtoken ?? '';
+  bool hasFCMtoken() => _fCMtoken != null;
+
+  // "getFCM" field.
+  String? _getFCM;
+  String get getFCM => _getFCM ?? '';
+  bool hasGetFCM() => _getFCM != null;
+
+  // "deviceToken" field.
+  String? _deviceToken;
+  String get deviceToken => _deviceToken ?? '';
+  bool hasDeviceToken() => _deviceToken != null;
+
   void _initializeFields() {
     _photoUrl = snapshotData['photo_url'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
@@ -139,6 +154,9 @@ class UserRecord extends FirestoreRecord {
       snapshotData['Availability'],
       AvailabilityStruct.fromMap,
     );
+    _fCMtoken = snapshotData['FCMtoken'] as String?;
+    _getFCM = snapshotData['getFCM'] as String?;
+    _deviceToken = snapshotData['deviceToken'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -193,6 +211,9 @@ Map<String, dynamic> createUserRecordData({
   String? bio,
   String? lastName,
   LatLng? location,
+  String? fCMtoken,
+  String? getFCM,
+  String? deviceToken,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -214,6 +235,9 @@ Map<String, dynamic> createUserRecordData({
       'Bio': bio,
       'LastName': lastName,
       'location': location,
+      'FCMtoken': fCMtoken,
+      'getFCM': getFCM,
+      'deviceToken': deviceToken,
     }.withoutNulls,
   );
 
@@ -245,7 +269,10 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e1?.lastName == e2?.lastName &&
         e1?.location == e2?.location &&
         listEquality.equals(e1?.userHistory, e2?.userHistory) &&
-        listEquality.equals(e1?.availability, e2?.availability);
+        listEquality.equals(e1?.availability, e2?.availability) &&
+        e1?.fCMtoken == e2?.fCMtoken &&
+        e1?.getFCM == e2?.getFCM &&
+        e1?.deviceToken == e2?.deviceToken;
   }
 
   @override
@@ -269,7 +296,10 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.lastName,
         e?.location,
         e?.userHistory,
-        e?.availability
+        e?.availability,
+        e?.fCMtoken,
+        e?.getFCM,
+        e?.deviceToken
       ]);
 
   @override

@@ -16,7 +16,7 @@ const _isProd = false;
 // Stripe Credentials
 const _kProdStripePublishableKey = '';
 const _kTestStripePublishableKey =
-    'pk_test_51QAGiZIEY0SZe5Rl2nrGIDs5MT3X3cbjGsSLk9Y0G9FLN60AWRUnE3MxX38mRYuyVZKJPKwzbxTPtQt0kYXt582k00h5c5VPSc';
+    'pk_test_51QFVl608k9yF8PbZ5brTZ6leuhS0JtDPnjVjU5sDQlFwAwBRKvV6jw6zvbO4fDn19Jrdcwpe8Vkpo1Xq36KqJqtm00jFOxOuz3';
 const _kAppleMerchantId = '';
 
 String stripePublishableKey() =>
@@ -94,14 +94,14 @@ Future<StripePaymentResponse> processStripePayment(
         merchantDisplayName: 'gighub',
         googlePay: allowGooglePay
             ? PaymentSheetGooglePay(
-                merchantCountryCode: 'SAR',
+                merchantCountryCode: 'USD',
                 currencyCode: currency,
                 testEnv: !_isProd,
               )
             : null,
         applePay: isiOS && allowApplePay
             ? const PaymentSheetApplePay(
-                merchantCountryCode: 'SAR',
+                merchantCountryCode: 'USD',
               )
             : null,
         style: themeStyle,

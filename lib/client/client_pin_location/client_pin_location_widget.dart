@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'client_pin_location_model.dart';
@@ -68,31 +69,37 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).tertiary,
-              size: 30.0,
+          leading: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            child: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).tertiary,
+                size: 30.0,
+              ),
+              onPressed: () async {
+                context.pop();
+              },
             ),
-            onPressed: () async {
-              context.pop();
-            },
           ),
-          title: Text(
-            'Choose your  location',
-            style: FlutterFlowTheme.of(context).bodyLarge.override(
-                  fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                  color: FlutterFlowTheme.of(context).tertiary,
-                  fontSize: 22.0,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.bold,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).bodyLargeFamily),
-                ),
+          title: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            child: Text(
+              'Choose your  location',
+              style: FlutterFlowTheme.of(context).bodyLarge.override(
+                    fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                    color: FlutterFlowTheme.of(context).tertiary,
+                    fontSize: 16.0,
+                    letterSpacing: 0.0,
+                    fontWeight: FontWeight.bold,
+                    useGoogleFonts: GoogleFonts.asMap().containsKey(
+                        FlutterFlowTheme.of(context).bodyLargeFamily),
+                  ),
+            ),
           ),
           actions: const [],
           centerTitle: true,
@@ -121,10 +128,13 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
                                 googleMapMarker.serialize(),
                                 googleMapMarker,
                                 () async {
-                                  await currentUserReference!
-                                      .update(createUserRecordData(
-                                    location: _model.googleMapsCenter,
-                                  ));
+                                  await _model.googleMapsController.future.then(
+                                    (c) => c.animateCamera(
+                                      CameraUpdate.newLatLng(_model
+                                          .googleMapsCenter!
+                                          .toGoogleMaps()),
+                                    ),
+                                  );
                                 },
                               ),
                           ],
@@ -156,14 +166,47 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
                     boxShadow: const [
                       BoxShadow(
                         blurRadius: 4.0,
-                        color: Color(0x33000000),
+                        color: Color(0x22000000),
                         offset: Offset(
                           0.0,
-                          -2.0,
+                          -4.0,
                         ),
                       )
                     ],
                     borderRadius: BorderRadius.circular(16.0),
+                  ),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 40.0, 20.0, 35.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        await currentUserReference!.update(createUserRecordData(
+                          location: _model.googleMapsCenter,
+                        ));
+                      },
+                      text: 'Confirm your location',
+                      options: FFButtonOptions(
+                        height: 0.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).tertiary,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleSmallFamily,
+                              color: Colors.white,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .titleSmallFamily),
+                            ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
                   ),
                 ),
               ),

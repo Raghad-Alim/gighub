@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/client/nav_bar_s_p_request/nav_bar_s_p_request_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -171,7 +172,7 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                                                   .fromSTEB(
                                                       20.0, 13.0, 0.0, 0.0),
                                               child: Text(
-                                                '#${listViewBookingRecord.bookingID}',
+                                                '#${listViewBookingRecord.reference.id}',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -498,6 +499,19 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                                                             createBookingRecordData(
                                                       status: 'pay',
                                                     ));
+                                                    triggerPushNotification(
+                                                      notificationTitle:
+                                                          'Request Accepted',
+                                                      notificationText:
+                                                          'your request has been accepted',
+                                                      userRefs: [
+                                                        listViewBookingRecord
+                                                            .clientID!
+                                                      ],
+                                                      initialPageName:
+                                                          'BookingsClient',
+                                                      parameterData: {},
+                                                    );
                                                   },
                                                   text: 'Accept',
                                                   icon: const FaIcon(

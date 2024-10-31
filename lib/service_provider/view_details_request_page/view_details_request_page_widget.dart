@@ -446,7 +446,7 @@ class _ViewDetailsRequestPageWidgetState
                   child: Text(
                     valueOrDefault<String>(
                       widget.clientComment,
-                      'comment',
+                      'No Comment',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:

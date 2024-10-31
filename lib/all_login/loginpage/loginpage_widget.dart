@@ -4,32 +4,31 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'clientl_loginpage_copy_model.dart';
-export 'clientl_loginpage_copy_model.dart';
+import 'loginpage_model.dart';
+export 'loginpage_model.dart';
 
-class ClientlLoginpageCopyWidget extends StatefulWidget {
-  const ClientlLoginpageCopyWidget({super.key});
+class LoginpageWidget extends StatefulWidget {
+  const LoginpageWidget({super.key});
 
   @override
-  State<ClientlLoginpageCopyWidget> createState() =>
-      _ClientlLoginpageCopyWidgetState();
+  State<LoginpageWidget> createState() => _LoginpageWidgetState();
 }
 
-class _ClientlLoginpageCopyWidgetState
-    extends State<ClientlLoginpageCopyWidget> {
-  late ClientlLoginpageCopyModel _model;
+class _LoginpageWidgetState extends State<LoginpageWidget> {
+  late LoginpageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ClientlLoginpageCopyModel());
+    _model = createModel(context, () => LoginpageModel());
 
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
@@ -426,6 +425,19 @@ class _ClientlLoginpageCopyWidgetState
                                 _model.passwordTextController?.clear();
                               });
                             }
+
+                            await actions.requestNotificationPermissionsAction(
+                              context,
+                            );
+                            await actions.getDeviceTokenAction(
+                              context,
+                            );
+                            await actions.saveDeviceTokenToFirestoreAction(
+                              context,
+                            );
+                            await actions.setupTokenRefreshListenerAction(
+                              context,
+                            );
                           },
                           text: 'Sign In',
                           options: FFButtonOptions(

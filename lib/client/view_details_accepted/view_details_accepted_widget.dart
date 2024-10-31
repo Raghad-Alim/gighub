@@ -454,7 +454,7 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                   child: Text(
                     valueOrDefault<String>(
                       widget.bookingComment,
-                      'comment',
+                      'No Comment',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:

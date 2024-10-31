@@ -1,9 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'clientl_loginpage_copy_widget.dart' show ClientlLoginpageCopyWidget;
+import 'loginpage_widget.dart' show LoginpageWidget;
 import 'package:flutter/material.dart';
 
-class ClientlLoginpageCopyModel
-    extends FlutterFlowModel<ClientlLoginpageCopyWidget> {
+class LoginpageModel extends FlutterFlowModel<LoginpageWidget> {
   ///  Local state fields for this page.
 
   bool log = true;

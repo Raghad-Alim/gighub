@@ -11,6 +11,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'bookings_client_model.dart';
 export 'bookings_client_model.dart';
 
@@ -596,7 +597,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
                                                             context.pushNamed(
-                                                                'chats');
+                                                                'chatsClient');
                                                           },
                                                           text:
                                                               'chat with service provider',
@@ -1671,14 +1672,16 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                         .resolve(
                                                                             Directionality.of(context)),
                                                                     child:
-                                                                        GestureDetector(
-                                                                      onTap: () =>
-                                                                          FocusScope.of(dialogContext)
-                                                                              .unfocus(),
+                                                                        WebViewAware(
                                                                       child:
-                                                                          CancelBookingClientDialogWidget(
-                                                                        bookingRefrence:
-                                                                            listViewBookingRecord.reference,
+                                                                          GestureDetector(
+                                                                        onTap: () =>
+                                                                            FocusScope.of(dialogContext).unfocus(),
+                                                                        child:
+                                                                            CancelBookingClientDialogWidget(
+                                                                          bookingRefrence:
+                                                                              listViewBookingRecord.reference,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   );
