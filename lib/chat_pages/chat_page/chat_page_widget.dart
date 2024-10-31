@@ -93,16 +93,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   size: 30.0,
                 ),
                 onPressed: () async {
-                  await widget.receiveChat!.update({
-                    ...mapToFirestore(
-                      {
-                        'lastMessageSeenBy':
-                            FieldValue.arrayUnion([currentUserReference]),
-                      },
-                    ),
-                  });
-
-                  context.pushNamed('chats');
+                  context.safePop();
                 },
               ),
               title: AuthUserStreamWidget(
@@ -479,16 +470,6 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                       },
                                     ),
                                   });
-
-                                  await widget.receiveChat!.update({
-                                    ...mapToFirestore(
-                                      {
-                                        'lastMessageSeenBy':
-                                            FieldValue.arrayUnion(
-                                                [currentUserReference]),
-                                      },
-                                    ),
-                                  });
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
@@ -506,6 +487,16 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                       );
                                     },
                                   );
+
+                                  await widget.receiveChat!.update({
+                                    ...mapToFirestore(
+                                      {
+                                        'lastMessageSeenBy':
+                                            FieldValue.arrayUnion(
+                                                [currentUserReference]),
+                                      },
+                                    ),
+                                  });
                                   safeSetState(() {
                                     _model.textController?.clear();
                                   });
