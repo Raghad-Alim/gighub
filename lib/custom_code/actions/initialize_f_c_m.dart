@@ -12,9 +12,22 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-Future<void> requestNotificationPermissions() async {
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
-  await messaging.requestPermission();
+Future<void> initializeFCM(BuildContext context) async {
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    handleNotification(context, message);
+  });
+
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    handleNotification(context, message);
+  });
+}
+
+void handleNotification(BuildContext context, RemoteMessage message) {
+  // Navigate based on the notification data
+  if (message.data['screen'] == 'bookingDetails') {
+    String bookingRef = message.data['bookingRef'];
+    Navigator.pushNamed(context, '/bookingDetails', arguments: bookingRef);
+  }
 }
 
 // Set your action name, define your arguments and return parameter,

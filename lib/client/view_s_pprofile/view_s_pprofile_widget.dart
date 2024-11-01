@@ -836,12 +836,6 @@ class _ViewSPprofileWidgetState extends State<ViewSPprofileWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: const [],
-              ),
             ],
           ),
         ),

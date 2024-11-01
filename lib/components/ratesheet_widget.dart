@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -214,7 +213,7 @@ class _RatesheetWidgetState extends State<RatesheetWidget> {
                     onPressed: () async {
                       await ReviewRecord.createDoc(widget.rateParameter!)
                           .set(createReviewRecordData(
-                        userID: currentUserReference,
+                        userID: widget.rateParameter,
                         review: _model.textController.text,
                         rating: _model.ratingBarValue?.round(),
                         date: getCurrentTimestamp,

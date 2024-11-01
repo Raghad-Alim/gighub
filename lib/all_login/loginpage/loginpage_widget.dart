@@ -413,7 +413,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget> {
                                 ),
                                 singleRecord: true,
                               ).then((s) => s.firstOrNull);
-                              await actions.saveDeviceTokenToFirestore();
+                              await actions.requestNotificationPermissions();
                             } else {
                               unawaited(
                                 () async {

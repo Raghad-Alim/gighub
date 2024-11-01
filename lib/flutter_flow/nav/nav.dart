@@ -433,10 +433,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'bookingPay',
               ParamType.double,
             ),
-            city: params.getParam(
-              'city',
-              ParamType.String,
-            ),
           ),
         ),
         FFRoute(

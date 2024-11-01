@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/nav_barclient_booking_widget.dart';
+import '/components/ratesheet_widget.dart';
 import '/dialogs_to_copy_and_use/cancel_booking_client_dialog/cancel_booking_client_dialog_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
@@ -541,7 +542,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                         color: Color(
                                                                             0xFFC9C1C1),
                                                                         size:
-                                                                            18.0,
+                                                                            20.0,
                                                                       ),
                                                                     ),
                                                                   ],
@@ -1015,7 +1016,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                         color: Color(
                                                                             0xFFC9C1C1),
                                                                         size:
-                                                                            18.0,
+                                                                            20.0,
                                                                       ),
                                                                     ),
                                                                   ],
@@ -1535,7 +1536,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                         color: Color(
                                                                             0xFFC9C1C1),
                                                                         size:
-                                                                            18.0,
+                                                                            20.0,
                                                                       ),
                                                                     ),
                                                                   ],
@@ -2101,9 +2102,40 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                       0.0,
                                                                       0.0),
                                                           child: FFButtonWidget(
-                                                            onPressed: () {
-                                                              print(
-                                                                  'Button pressed ...');
+                                                            onPressed:
+                                                                () async {
+                                                              await showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                enableDrag:
+                                                                    false,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return GestureDetector(
+                                                                    onTap: () =>
+                                                                        FocusScope.of(context)
+                                                                            .unfocus(),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: MediaQuery
+                                                                          .viewInsetsOf(
+                                                                              context),
+                                                                      child:
+                                                                          RatesheetWidget(
+                                                                        rateParameter:
+                                                                            listViewBookingRecord.serviceProviderID,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(
+                                                                      () {}));
                                                             },
                                                             text:
                                                                 'Rate and Review',

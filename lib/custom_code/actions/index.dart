@@ -4,3 +4,4 @@ export 'save_device_token_to_firestore.dart' show saveDeviceTokenToFirestore;
 export 'request_notification_permissions.dart'
     show requestNotificationPermissions;
 export 'send_notification_to_client.dart' show sendNotificationToClient;
+export 'initialize_f_c_m.dart' show initializeFCM;

@@ -210,7 +210,6 @@ final parametersBuilderMap =
               getParameter<LatLng>(data, 'bookingClientLocation'),
           'clientComment': getParameter<String>(data, 'clientComment'),
           'bookingPay': getParameter<double>(data, 'bookingPay'),
-          'city': getParameter<String>(data, 'city'),
         },
       ),
   'ClientprofileEdit': ParameterData.none(),
