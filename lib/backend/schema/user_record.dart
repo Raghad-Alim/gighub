@@ -130,6 +130,11 @@ class UserRecord extends FirestoreRecord {
   String get deviceToken => _deviceToken ?? '';
   bool hasDeviceToken() => _deviceToken != null;
 
+  // "City" field.
+  String? _city;
+  String get city => _city ?? '';
+  bool hasCity() => _city != null;
+
   void _initializeFields() {
     _photoUrl = snapshotData['photo_url'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
@@ -157,6 +162,7 @@ class UserRecord extends FirestoreRecord {
     _fCMtoken = snapshotData['FCMtoken'] as String?;
     _getFCM = snapshotData['getFCM'] as String?;
     _deviceToken = snapshotData['deviceToken'] as String?;
+    _city = snapshotData['City'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -214,6 +220,7 @@ Map<String, dynamic> createUserRecordData({
   String? fCMtoken,
   String? getFCM,
   String? deviceToken,
+  String? city,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -238,6 +245,7 @@ Map<String, dynamic> createUserRecordData({
       'FCMtoken': fCMtoken,
       'getFCM': getFCM,
       'deviceToken': deviceToken,
+      'City': city,
     }.withoutNulls,
   );
 
@@ -272,7 +280,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         listEquality.equals(e1?.availability, e2?.availability) &&
         e1?.fCMtoken == e2?.fCMtoken &&
         e1?.getFCM == e2?.getFCM &&
-        e1?.deviceToken == e2?.deviceToken;
+        e1?.deviceToken == e2?.deviceToken &&
+        e1?.city == e2?.city;
   }
 
   @override
@@ -299,7 +308,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.availability,
         e?.fCMtoken,
         e?.getFCM,
-        e?.deviceToken
+        e?.deviceToken,
+        e?.city
       ]);
 
   @override

@@ -237,97 +237,65 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(2.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await queryUserRecordOnce()
-                                          .then(
-                                            (records) => _model
-                                                    .simpleSearchResults1 =
-                                                TextSearch(
-                                              records
-                                                  .map(
-                                                    (record) => TextSearchItem
-                                                        .fromTerms(record,
-                                                            [record.sector]),
-                                                  )
-                                                  .toList(),
-                                            )
-                                                    .search(Sector.Driver.name)
-                                                    .map((r) => r.object)
-                                                    .toList(),
-                                          )
-                                          .onError((_, __) =>
-                                              _model.simpleSearchResults1 = [])
-                                          .whenComplete(
-                                              () => safeSetState(() {}));
-
-                                      safeSetState(() {});
-                                    },
-                                    child: Container(
-                                      width: 100.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFFE9ECEF),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.0, -1.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 1.0),
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  child: Image.asset(
-                                                    'assets/images/driver_4900728.png',
-                                                    width: 65.0,
-                                                    height: 70.0,
-                                                    fit: BoxFit.fitWidth,
-                                                    alignment:
-                                                        const Alignment(0.0, 0.0),
-                                                  ),
+                                  child: Container(
+                                    width: 100.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFE9ECEF),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, -1.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 1.0),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.asset(
+                                                  'assets/images/driver_4900728.png',
+                                                  width: 65.0,
+                                                  height: 70.0,
+                                                  fit: BoxFit.fitWidth,
+                                                  alignment:
+                                                      const Alignment(0.0, 0.0),
                                                 ),
                                               ),
                                             ),
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 1.0),
-                                              child: Text(
-                                                'Drivers',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Nunito',
-                                                      color: const Color(0xFF333333),
-                                                      fontSize: 14.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      useGoogleFonts:
-                                                          GoogleFonts.asMap()
-                                                              .containsKey(
-                                                                  'Nunito'),
-                                                    ),
-                                              ),
+                                          ),
+                                          Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 1.0),
+                                            child: Text(
+                                              'Drivers',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Nunito',
+                                                        color:
+                                                            const Color(0xFF333333),
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts:
+                                                            GoogleFonts.asMap()
+                                                                .containsKey(
+                                                                    'Nunito'),
+                                                      ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -343,7 +311,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                       await queryUserRecordOnce()
                                           .then(
                                             (records) =>
-                                                _model.simpleSearchResults2 =
+                                                _model.simpleSearchResults1 =
                                                     TextSearch(
                                               records
                                                   .map(
@@ -359,7 +327,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                                         .toList(),
                                           )
                                           .onError((_, __) =>
-                                              _model.simpleSearchResults2 = [])
+                                              _model.simpleSearchResults1 = [])
                                           .whenComplete(
                                               () => safeSetState(() {}));
 
@@ -442,7 +410,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                       await queryUserRecordOnce()
                                           .then(
                                             (records) => _model
-                                                    .simpleSearchResults3 =
+                                                    .simpleSearchResults2 =
                                                 TextSearch(
                                               records
                                                   .map(
@@ -457,11 +425,10 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                                     .toList(),
                                           )
                                           .onError((_, __) =>
-                                              _model.simpleSearchResults3 = [])
+                                              _model.simpleSearchResults2 = [])
                                           .whenComplete(
                                               () => safeSetState(() {}));
 
-                                      FFAppState().searchActive = true;
                                       safeSetState(() {});
                                     },
                                     child: Container(
@@ -540,7 +507,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                       await queryServiceProviderRecordOnce()
                                           .then(
                                             (records) => _model
-                                                    .simpleSearchResults4 =
+                                                    .simpleSearchResults3 =
                                                 TextSearch(
                                               records
                                                   .map(
@@ -556,7 +523,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                                     .toList(),
                                           )
                                           .onError((_, __) =>
-                                              _model.simpleSearchResults4 = [])
+                                              _model.simpleSearchResults3 = [])
                                           .whenComplete(
                                               () => safeSetState(() {}));
 
@@ -638,7 +605,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                       await queryServiceProviderRecordOnce()
                                           .then(
                                             (records) => _model
-                                                    .simpleSearchResults5 =
+                                                    .simpleSearchResults4 =
                                                 TextSearch(
                                               records
                                                   .map(
@@ -654,7 +621,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                                     .toList(),
                                           )
                                           .onError((_, __) =>
-                                              _model.simpleSearchResults5 = [])
+                                              _model.simpleSearchResults4 = [])
                                           .whenComplete(
                                               () => safeSetState(() {}));
 
@@ -733,27 +700,14 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      await queryServiceProviderRecordOnce()
-                                          .then(
-                                            (records) => _model
-                                                    .simpleSearchResults6 =
-                                                TextSearch(
-                                              records
-                                                  .map(
-                                                    (record) => TextSearchItem
-                                                        .fromTerms(record,
-                                                            [record.sector]),
-                                                  )
-                                                  .toList(),
-                                            )
-                                                    .search(Sector.Chef.name)
-                                                    .map((r) => r.object)
-                                                    .toList(),
-                                          )
-                                          .onError((_, __) =>
-                                              _model.simpleSearchResults6 = [])
-                                          .whenComplete(
-                                              () => safeSetState(() {}));
+                                      _model.showChefs =
+                                          await queryUserRecordOnce(
+                                        queryBuilder: (userRecord) =>
+                                            userRecord.where(
+                                          'sector',
+                                          isEqualTo: Sector.Chef.name,
+                                        ),
+                                      );
 
                                       safeSetState(() {});
                                     },
@@ -833,7 +787,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                       await queryServiceProviderRecordOnce()
                                           .then(
                                             (records) => _model
-                                                    .simpleSearchResults7 =
+                                                    .simpleSearchResults5 =
                                                 TextSearch(
                                               records
                                                   .map(
@@ -849,7 +803,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                                     .toList(),
                                           )
                                           .onError((_, __) =>
-                                              _model.simpleSearchResults7 = [])
+                                              _model.simpleSearchResults5 = [])
                                           .whenComplete(
                                               () => safeSetState(() {}));
 
@@ -931,7 +885,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                       await queryServiceProviderRecordOnce()
                                           .then(
                                             (records) => _model
-                                                    .simpleSearchResults8 =
+                                                    .simpleSearchResults6 =
                                                 TextSearch(
                                               records
                                                   .map(
@@ -947,7 +901,7 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                                     .toList(),
                                           )
                                           .onError((_, __) =>
-                                              _model.simpleSearchResults8 = [])
+                                              _model.simpleSearchResults6 = [])
                                           .whenComplete(
                                               () => safeSetState(() {}));
 
@@ -1027,96 +981,13 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                         thickness: 1.0,
                         color: Color(0xFFE5E7EB),
                       ),
-                      if (valueOrDefault<bool>(
-                            _model.simpleSearchResults1.isNotEmpty,
-                            false,
-                          ) ||
-                          (_model.simpleSearchResults2.isNotEmpty) ||
-                          (_model.simpleSearchResults3.isNotEmpty) ||
-                          (_model.simpleSearchResults4.isNotEmpty) ||
-                          (_model.simpleSearchResults5.isNotEmpty) ||
-                          (_model.simpleSearchResults6.isNotEmpty) ||
-                          (_model.simpleSearchResults7.isNotEmpty) ||
-                          (_model.simpleSearchResults8.isNotEmpty))
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 12.0, 0.0, 0.0),
-                          child: AuthUserStreamWidget(
-                            builder: (context) => Text(
-                              valueOrDefault<String>(
-                                () {
-                                  if (_model.simpleSearchResults1
-                                      .sortedList(
-                                          keyOf: (e) => valueOrDefault(
-                                              currentUserDocument?.aveageRating,
-                                              0.0),
-                                          desc: false)
-                                      .isNotEmpty) {
-                                    return 'Drivers';
-                                  } else if (_model.simpleSearchResults2
-                                      .sortedList(
-                                          keyOf: (e) => valueOrDefault(
-                                              currentUserDocument?.aveageRating,
-                                              0.0),
-                                          desc: false)
-                                      .isNotEmpty) {
-                                    return 'Tutors';
-                                  } else if (_model.simpleSearchResults3
-                                      .sortedList(
-                                          keyOf: (e) => valueOrDefault(
-                                              currentUserDocument?.aveageRating,
-                                              0.0),
-                                          desc: false)
-                                      .isNotEmpty) {
-                                    return 'Plumbers';
-                                  } else if (_model.simpleSearchResults4
-                                      .sortedList(
-                                          keyOf: (e) => valueOrDefault(
-                                              currentUserDocument?.aveageRating,
-                                              0.0),
-                                          desc: false)
-                                      .isNotEmpty) {
-                                    return 'Car Services';
-                                  } else if (_model.simpleSearchResults5
-                                      .sortedList(
-                                          keyOf: (e) => valueOrDefault(
-                                              currentUserDocument?.aveageRating,
-                                              0.0),
-                                          desc: false)
-                                      .isNotEmpty) {
-                                    return 'Housekeepers';
-                                  } else if (_model.simpleSearchResults6
-                                      .sortedList(
-                                          keyOf: (e) => valueOrDefault(
-                                              currentUserDocument?.aveageRating,
-                                              0.0),
-                                          desc: false)
-                                      .isNotEmpty) {
-                                    return 'Chefs';
-                                  } else if (_model.simpleSearchResults7
-                                      .sortedList(
-                                          keyOf: (e) => valueOrDefault(
-                                              currentUserDocument?.sector, ''),
-                                          desc: false)
-                                      .isNotEmpty) {
-                                    return 'Electricians';
-                                  } else if (_model.simpleSearchResults8
-                                      .sortedList(
-                                          keyOf: (e) => valueOrDefault(
-                                              currentUserDocument?.aveageRating,
-                                              0.0),
-                                          desc: false)
-                                      .isNotEmpty) {
-                                    return 'Babysitters';
-                                  } else {
-                                    return 'Service Providers';
-                                  }
-                                }(),
-                                'Service Providers',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 12.0, 0.0, 0.0),
+                        child: Text(
+                          'Popular Today',
+                          style:
+                              FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Plus Jakarta Sans',
                                     color: const Color(0xFF606A85),
                                     fontSize: 14.0,
@@ -1125,19 +996,14 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey('Plus Jakarta Sans'),
                                   ),
-                            ),
-                          ),
                         ),
+                      ),
                       StreamBuilder<List<UserRecord>>(
                         stream: queryUserRecord(
                           queryBuilder: (userRecord) => userRecord
                               .where(
                                 'isClient',
                                 isEqualTo: false,
-                              )
-                              .where(
-                                'role',
-                                isEqualTo: 'ServiceProvider',
                               )
                               .orderBy('FirstName'),
                         )..listen((snapshot) {
@@ -1482,9 +1348,25 @@ class _ClientHomePageWidgetState extends State<ClientHomePageWidget> {
                                                                 child:
                                                                     FFButtonWidget(
                                                                   onPressed:
-                                                                      () {
-                                                                    print(
-                                                                        'Button pressed ...');
+                                                                      () async {
+                                                                    context
+                                                                        .pushNamed(
+                                                                      'ViewSPprofile',
+                                                                      queryParameters:
+                                                                          {
+                                                                        'parameterProfile':
+                                                                            serializeParam(
+                                                                          listViewUserRecord,
+                                                                          ParamType
+                                                                              .Document,
+                                                                        ),
+                                                                      }.withoutNulls,
+                                                                      extra: <String,
+                                                                          dynamic>{
+                                                                        'parameterProfile':
+                                                                            listViewUserRecord,
+                                                                      },
+                                                                    );
                                                                   },
                                                                   text:
                                                                       'view profile',

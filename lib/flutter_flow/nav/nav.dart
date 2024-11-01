@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -94,11 +93,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'place',
               ParamType.LatLng,
             ),
-            location: params.getParam(
-              'location',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['user'],
+            marker: params.getParam(
+              'marker',
+              ParamType.LatLng,
             ),
           ),
         ),
@@ -401,6 +398,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'bookingPay',
               ParamType.double,
             ),
+            city: params.getParam(
+              'city',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -430,6 +431,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             bookingPay: params.getParam(
               'bookingPay',
               ParamType.double,
+            ),
+            city: params.getParam(
+              'city',
+              ParamType.String,
             ),
           ),
         ),
@@ -684,6 +689,41 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'requestPageCopy2',
           path: '/requestPageCopy2',
           builder: (context, params) => const RequestPageCopy2Widget(),
+        ),
+        FFRoute(
+          name: 'chatSPCopy',
+          path: '/chatSPCopy',
+          builder: (context, params) => ChatSPCopyWidget(
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'chatsClientCopy',
+          path: '/chatsClientCopy',
+          builder: (context, params) => ChatsClientCopyWidget(
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['booking'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ViewSPprofile',
+          path: '/ViewSPprofile',
+          asyncParams: {
+            'parameterProfile': getDoc(['user'], UserRecord.fromSnapshot),
+          },
+          builder: (context, params) => ViewSPprofileWidget(
+            parameterProfile: params.getParam(
+              'parameterProfile',
+              ParamType.Document,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

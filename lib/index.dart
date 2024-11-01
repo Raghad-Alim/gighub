@@ -90,3 +90,9 @@ export '/client/view_details_pay_copy/view_details_pay_copy_widget.dart'
     show ViewDetailsPayCopyWidget;
 export '/service_provider/request_page_copy2/request_page_copy2_widget.dart'
     show RequestPageCopy2Widget;
+export '/chat_pages/chat_s_p_copy/chat_s_p_copy_widget.dart'
+    show ChatSPCopyWidget;
+export '/chat_pages/chats_client_copy/chats_client_copy_widget.dart'
+    show ChatsClientCopyWidget;
+export '/client/view_s_pprofile/view_s_pprofile_widget.dart'
+    show ViewSPprofileWidget;

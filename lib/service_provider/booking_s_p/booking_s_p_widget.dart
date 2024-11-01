@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
@@ -436,6 +437,31 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
+                                                              _model.addressReverse =
+                                                                  await GeoCodeReverseCall
+                                                                      .call(
+                                                                lat: functions
+                                                                    .latLongString(
+                                                                        listViewBookingRecord
+                                                                            .location!,
+                                                                        true),
+                                                                long: functions
+                                                                    .latLongString(
+                                                                        listViewBookingRecord
+                                                                            .location!,
+                                                                        false),
+                                                              );
+
+                                                              if ((_model
+                                                                      .addressReverse
+                                                                      ?.succeeded ??
+                                                                  true)) {
+                                                                _model.apiHasResponse =
+                                                                    true;
+                                                                safeSetState(
+                                                                    () {});
+                                                              }
+
                                                               context.pushNamed(
                                                                 'viewDetailsUpcomingPage',
                                                                 queryParameters:
@@ -484,8 +510,22 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                     ParamType
                                                                         .double,
                                                                   ),
+                                                                  'city':
+                                                                      serializeParam(
+                                                                    getJsonField(
+                                                                      (_model.addressReverse
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                      r'''$.address.city''',
+                                                                    ).toString(),
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
                                                                 }.withoutNulls,
                                                               );
+
+                                                              safeSetState(
+                                                                  () {});
                                                             },
                                                             text:
                                                                 'view details ',
@@ -967,6 +1007,31 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
+                                                              _model.addressReverse1 =
+                                                                  await GeoCodeReverseCall
+                                                                      .call(
+                                                                lat: functions
+                                                                    .latLongString(
+                                                                        listViewBookingRecord
+                                                                            .location!,
+                                                                        true),
+                                                                long: functions
+                                                                    .latLongString(
+                                                                        listViewBookingRecord
+                                                                            .location!,
+                                                                        false),
+                                                              );
+
+                                                              if ((_model
+                                                                      .addressReverse
+                                                                      ?.succeeded ??
+                                                                  true)) {
+                                                                _model.apiHasResponse =
+                                                                    true;
+                                                                safeSetState(
+                                                                    () {});
+                                                              }
+
                                                               context.pushNamed(
                                                                 'viewDetailsUpcomingPage',
                                                                 queryParameters:
@@ -974,8 +1039,7 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                   'bookingID':
                                                                       serializeParam(
                                                                     listViewBookingRecord
-                                                                        .reference
-                                                                        .id,
+                                                                        .bookingID,
                                                                     ParamType
                                                                         .String,
                                                                   ),
@@ -1015,8 +1079,22 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                     ParamType
                                                                         .double,
                                                                   ),
+                                                                  'city':
+                                                                      serializeParam(
+                                                                    getJsonField(
+                                                                      (_model.addressReverse
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                      r'''$.address.city''',
+                                                                    ).toString(),
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
                                                                 }.withoutNulls,
                                                               );
+
+                                                              safeSetState(
+                                                                  () {});
                                                             },
                                                             text:
                                                                 'view details ',

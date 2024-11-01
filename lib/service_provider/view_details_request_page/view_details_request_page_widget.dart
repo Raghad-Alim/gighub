@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:map_launcher/map_launcher.dart' as $ml;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'view_details_request_page_model.dart';
@@ -15,6 +16,7 @@ class ViewDetailsRequestPageWidget extends StatefulWidget {
     required this.bookingClientLocation,
     required this.clientComment,
     required this.bookingPay,
+    required this.city,
   });
 
   final String? bookingID;
@@ -23,6 +25,7 @@ class ViewDetailsRequestPageWidget extends StatefulWidget {
   final LatLng? bookingClientLocation;
   final String? clientComment;
   final double? bookingPay;
+  final String? city;
 
   @override
   State<ViewDetailsRequestPageWidget> createState() =>
@@ -360,17 +363,33 @@ class _ViewDetailsRequestPageWidgetState
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 6.0),
-                      child: Text(
-                        'Client Location',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: FlutterFlowTheme.of(context).secondary,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await launchMap(
+                            mapType: $ml.MapType.google,
+                            location: widget.bookingClientLocation,
+                            title: '',
+                          );
+                        },
+                        child: Text(
+                          ' Location',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).tertiary,
+                                letterSpacing: 0.0,
+                                decoration: TextDecoration.underline,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
                       ),
                     ),
                   ],
@@ -382,8 +401,8 @@ class _ViewDetailsRequestPageWidgetState
                   padding: const EdgeInsetsDirectional.fromSTEB(56.0, 0.0, 0.0, 0.0),
                   child: Text(
                     valueOrDefault<String>(
-                      widget.bookingClientLocation?.toString(),
-                      'location',
+                      widget.city,
+                      '.',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:

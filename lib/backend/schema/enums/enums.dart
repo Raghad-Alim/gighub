@@ -11,6 +11,12 @@ enum Sector {
   Housekeeper,
 }
 
+enum City {
+  Riyadh,
+  Jeddah,
+  Khobar,
+}
+
 extension FFEnumExtensions<T extends Enum> on T {
   String serialize() => name;
 }
@@ -24,6 +30,8 @@ T? deserializeEnum<T>(String? value) {
   switch (T) {
     case (Sector):
       return Sector.values.deserialize(value) as T?;
+    case (City):
+      return City.values.deserialize(value) as T?;
     default:
       return null;
   }

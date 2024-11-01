@@ -260,3 +260,14 @@ String getOtherUsrName(
       ? listOfNames.last
       : listOfNames.first;
 }
+
+String latLongString(
+  LatLng location,
+  bool isLat,
+) {
+  if (isLat) {
+    return location.latitude.toString();
+  } else {
+    return location.longitude.toString();
+  }
+}

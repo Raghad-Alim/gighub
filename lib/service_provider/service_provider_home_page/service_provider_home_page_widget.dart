@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -6,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/service_provider/nav_bar_s_p_home/nav_bar_s_p_home_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -1098,6 +1100,31 @@ class _ServiceProviderHomePageWidgetState
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
+                                                              _model.addressReverse =
+                                                                  await GeoCodeReverseCall
+                                                                      .call(
+                                                                lat: functions
+                                                                    .latLongString(
+                                                                        listViewBookingRecord
+                                                                            .location!,
+                                                                        true),
+                                                                long: functions
+                                                                    .latLongString(
+                                                                        listViewBookingRecord
+                                                                            .location!,
+                                                                        false),
+                                                              );
+
+                                                              if ((_model
+                                                                      .addressReverse
+                                                                      ?.succeeded ??
+                                                                  true)) {
+                                                                _model.apiHasResponse =
+                                                                    true;
+                                                                safeSetState(
+                                                                    () {});
+                                                              }
+
                                                               context.pushNamed(
                                                                 'viewDetailsUpcomingPage',
                                                                 queryParameters:
@@ -1105,8 +1132,7 @@ class _ServiceProviderHomePageWidgetState
                                                                   'bookingID':
                                                                       serializeParam(
                                                                     listViewBookingRecord
-                                                                        .reference
-                                                                        .id,
+                                                                        .bookingID,
                                                                     ParamType
                                                                         .String,
                                                                   ),
@@ -1146,8 +1172,22 @@ class _ServiceProviderHomePageWidgetState
                                                                     ParamType
                                                                         .double,
                                                                   ),
+                                                                  'city':
+                                                                      serializeParam(
+                                                                    getJsonField(
+                                                                      (_model.addressReverse
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                      r'''$.address.city''',
+                                                                    ).toString(),
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
                                                                 }.withoutNulls,
                                                               );
+
+                                                              safeSetState(
+                                                                  () {});
                                                             },
                                                             text:
                                                                 'view details ',

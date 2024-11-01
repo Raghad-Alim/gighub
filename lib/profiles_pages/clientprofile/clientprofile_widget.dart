@@ -138,7 +138,7 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                            .tertiary,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         useGoogleFonts: GoogleFonts.asMap()
@@ -221,7 +221,7 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                            .tertiary,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         useGoogleFonts: GoogleFonts.asMap()
@@ -317,7 +317,7 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                            .tertiary,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         useGoogleFonts: GoogleFonts.asMap()
@@ -399,8 +399,8 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .bodyMediumFamily,
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
@@ -488,7 +488,7 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                            .tertiary,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         useGoogleFonts: GoogleFonts.asMap()
@@ -579,7 +579,7 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                            .tertiary,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         useGoogleFonts: GoogleFonts.asMap()

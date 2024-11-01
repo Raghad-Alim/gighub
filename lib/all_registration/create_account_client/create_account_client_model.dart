@@ -122,6 +122,9 @@ class CreateAccountClientModel
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
+  // State field(s) for DropDownCity widget.
+  String? dropDownCityValue;
+  FormFieldController<String>? dropDownCityValueController;
   // State field(s) for GoogleMap widget.
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();

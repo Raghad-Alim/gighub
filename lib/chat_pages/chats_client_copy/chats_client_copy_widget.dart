@@ -6,11 +6,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'chats_client_model.dart';
-export 'chats_client_model.dart';
+import 'chats_client_copy_model.dart';
+export 'chats_client_copy_model.dart';
 
-class ChatsClientWidget extends StatefulWidget {
-  const ChatsClientWidget({
+class ChatsClientCopyWidget extends StatefulWidget {
+  const ChatsClientCopyWidget({
     super.key,
     this.bookingID,
   });
@@ -18,18 +18,18 @@ class ChatsClientWidget extends StatefulWidget {
   final DocumentReference? bookingID;
 
   @override
-  State<ChatsClientWidget> createState() => _ChatsClientWidgetState();
+  State<ChatsClientCopyWidget> createState() => _ChatsClientCopyWidgetState();
 }
 
-class _ChatsClientWidgetState extends State<ChatsClientWidget> {
-  late ChatsClientModel _model;
+class _ChatsClientCopyWidgetState extends State<ChatsClientCopyWidget> {
+  late ChatsClientCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ChatsClientModel());
+    _model = createModel(context, () => ChatsClientCopyModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -68,7 +68,7 @@ class _ChatsClientWidgetState extends State<ChatsClientWidget> {
             ),
           );
         }
-        List<BookingRecord> chatsClientBookingRecordList = snapshot.data!;
+        List<BookingRecord> chatsClientCopyBookingRecordList = snapshot.data!;
 
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -294,11 +294,65 @@ class _ChatsClientWidgetState extends State<ChatsClientWidget> {
                                                     ],
                                                   ),
                                                 ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      listViewChatsRecord
+                                                          .lastMessage,
+                                                      'last message',
+                                                    ).maybeHandleOverflow(
+                                                      maxChars: 15,
+                                                      replacement: '…',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Plus Jakarta Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .roseQuartz,
+                                                          fontSize: 14.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          useGoogleFonts:
+                                                              GoogleFonts
+                                                                      .asMap()
+                                                                  .containsKey(
+                                                                      'Plus Jakarta Sans'),
+                                                        ),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
+                                                if (listViewChatsRecord
+                                                        .lastMessageSeenBy
+                                                        .contains(
+                                                            currentUserReference) ==
+                                                    false)
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                10.0, 0.0),
+                                                    child: Container(
+                                                      width: 10.0,
+                                                      height: 10.0,
+                                                      decoration: const BoxDecoration(
+                                                        color:
+                                                            Color(0xFF5676E5),
+                                                        shape: BoxShape.circle,
+                                                      ),
+                                                    ),
+                                                  ),
                                                 Text(
                                                   dateTimeFormat(
                                                     "relative",

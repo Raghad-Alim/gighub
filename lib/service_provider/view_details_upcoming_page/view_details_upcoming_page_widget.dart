@@ -17,6 +17,7 @@ class ViewDetailsUpcomingPageWidget extends StatefulWidget {
     required this.bookingClientLocation,
     required this.clientComment,
     required this.bookingPay,
+    required this.city,
   });
 
   final String? bookingID;
@@ -25,6 +26,7 @@ class ViewDetailsUpcomingPageWidget extends StatefulWidget {
   final LatLng? bookingClientLocation;
   final String? clientComment;
   final double? bookingPay;
+  final String? city;
 
   @override
   State<ViewDetailsUpcomingPageWidget> createState() =>
@@ -362,17 +364,32 @@ class _ViewDetailsUpcomingPageWidgetState
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 6.0),
-                      child: Text(
-                        'Location',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: FlutterFlowTheme.of(context).secondary,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await launchMap(
+                            mapType: $ml.MapType.google,
+                            location: widget.bookingClientLocation,
+                            title: '',
+                          );
+                        },
+                        child: Text(
+                          'Location',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).secondary,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
                       ),
                     ),
                   ],
@@ -396,8 +413,8 @@ class _ViewDetailsUpcomingPageWidgetState
                     },
                     child: Text(
                       valueOrDefault<String>(
-                        widget.bookingClientLocation?.toString(),
-                        'location',
+                        widget.city,
+                        '.',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:

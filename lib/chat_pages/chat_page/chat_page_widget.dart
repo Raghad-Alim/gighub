@@ -8,7 +8,6 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'chat_page_model.dart';
 export 'chat_page_model.dart';
 
@@ -457,46 +456,6 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                     nameOfSender: valueOrDefault(
                                         currentUserDocument?.firstName, ''),
                                   ));
-
-                                  await widget.receiveChat!.update({
-                                    ...createChatsRecordData(
-                                      lastMessage: _model.textController.text,
-                                      timeStamp: getCurrentTimestamp,
-                                    ),
-                                    ...mapToFirestore(
-                                      {
-                                        'lastMessageSeenBy':
-                                            FieldValue.delete(),
-                                      },
-                                    ),
-                                  });
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: const Text('here before clear'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: const Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-
-                                  await widget.receiveChat!.update({
-                                    ...mapToFirestore(
-                                      {
-                                        'lastMessageSeenBy':
-                                            FieldValue.arrayUnion(
-                                                [currentUserReference]),
-                                      },
-                                    ),
-                                  });
                                   safeSetState(() {
                                     _model.textController?.clear();
                                   });

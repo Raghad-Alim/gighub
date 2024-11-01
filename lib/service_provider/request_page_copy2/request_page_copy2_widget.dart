@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/client/nav_bar_s_p_request/nav_bar_s_p_request_widget.dart';
@@ -284,55 +285,93 @@ class _RequestPageCopy2WidgetState extends State<RequestPageCopy2Widget> {
                                                                     0.0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
-                                                            context.pushNamed(
-                                                              'viewDetailsRequestPage',
-                                                              queryParameters: {
-                                                                'bookingID':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .reference
-                                                                      .id,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'bookingtime':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .dateOfService,
-                                                                  ParamType
-                                                                      .DateTime,
-                                                                ),
-                                                                'bookingDate':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .dateOfService,
-                                                                  ParamType
-                                                                      .DateTime,
-                                                                ),
-                                                                'bookingClientLocation':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .location,
-                                                                  ParamType
-                                                                      .LatLng,
-                                                                ),
-                                                                'clientComment':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .clientComment,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'bookingPay':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .price
-                                                                      .toDouble(),
-                                                                  ParamType
-                                                                      .double,
-                                                                ),
-                                                              }.withoutNulls,
+                                                            _model.addressReverse =
+                                                                await GeoCodeReverseCall
+                                                                    .call(
+                                                              lat: functions
+                                                                  .latLongString(
+                                                                      listViewBookingRecord
+                                                                          .location!,
+                                                                      true),
+                                                              long: functions
+                                                                  .latLongString(
+                                                                      listViewBookingRecord
+                                                                          .location!,
+                                                                      false),
                                                             );
+
+                                                            if ((_model
+                                                                    .addressReverse
+                                                                    ?.succeeded ??
+                                                                true)) {
+                                                              _model.apiHasResponse =
+                                                                  true;
+                                                              safeSetState(
+                                                                  () {});
+
+                                                              context.pushNamed(
+                                                                'viewDetailsRequestPage',
+                                                                queryParameters:
+                                                                    {
+                                                                  'bookingID':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .bookingID,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'bookingtime':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .dateOfService,
+                                                                    ParamType
+                                                                        .DateTime,
+                                                                  ),
+                                                                  'bookingDate':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .dateOfService,
+                                                                    ParamType
+                                                                        .DateTime,
+                                                                  ),
+                                                                  'bookingClientLocation':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .location,
+                                                                    ParamType
+                                                                        .LatLng,
+                                                                  ),
+                                                                  'clientComment':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .clientComment,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'bookingPay':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .price
+                                                                        .toDouble(),
+                                                                    ParamType
+                                                                        .double,
+                                                                  ),
+                                                                  'city':
+                                                                      serializeParam(
+                                                                    getJsonField(
+                                                                      (_model.addressReverse
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                      r'''$.address.city''',
+                                                                    ).toString(),
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                              );
+                                                            }
+
+                                                            safeSetState(() {});
                                                           },
                                                           text: 'view details ',
                                                           options:
@@ -518,12 +557,12 @@ class _RequestPageCopy2WidgetState extends State<RequestPageCopy2Widget> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      valueOrDefault<String>(
-                                                        listViewBookingRecord
-                                                            .location
-                                                            ?.toString(),
-                                                        'Location of Client',
-                                                      ),
+                                                      getJsonField(
+                                                        (_model.addressReverse
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.address.city''',
+                                                      ).toString(),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -603,13 +642,44 @@ class _RequestPageCopy2WidgetState extends State<RequestPageCopy2Widget> {
                                                                 'Request Accepted',
                                                             notificationText:
                                                                 'your request has been accepted',
+                                                            notificationSound:
+                                                                'default',
                                                             userRefs: [
                                                               listViewBookingRecord
                                                                   .clientID!
                                                             ],
                                                             initialPageName:
-                                                                'BookingsClient',
-                                                            parameterData: {},
+                                                                'viewDetailsPay',
+                                                            parameterData: {
+                                                              'bookingIDPay':
+                                                                  listViewBookingRecord
+                                                                      .reference,
+                                                              'bookingTimePay':
+                                                                  listViewBookingRecord
+                                                                      .dateOfService,
+                                                              'bookingDatePay':
+                                                                  listViewBookingRecord
+                                                                      .dateOfService,
+                                                              'commentPay':
+                                                                  listViewBookingRecord
+                                                                      .clientComment,
+                                                              'locationPay':
+                                                                  listViewBookingRecord
+                                                                      .location,
+                                                              'pricePay':
+                                                                  listViewBookingRecord
+                                                                      .price
+                                                                      .toDouble(),
+                                                              'clientEmail':
+                                                                  listViewBookingRecord
+                                                                      .email,
+                                                              'clientFirstName':
+                                                                  listViewBookingRecord
+                                                                      .clientFirstName,
+                                                              'clientLastName':
+                                                                  listViewBookingRecord
+                                                                      .clientLastName,
+                                                            },
                                                           );
                                                         },
                                                         text: 'Accept',

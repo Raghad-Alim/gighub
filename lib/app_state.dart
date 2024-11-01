@@ -282,6 +282,12 @@ class FFAppState extends ChangeNotifier {
   set deviceToken(String value) {
     _deviceToken = value;
   }
+
+  LatLng? _marker;
+  LatLng? get marker => _marker;
+  set marker(LatLng? value) {
+    _marker = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

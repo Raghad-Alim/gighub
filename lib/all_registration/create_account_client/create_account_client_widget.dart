@@ -1,6 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/enums/enums.dart';
+import '/dialogs_to_copy_and_use/set_location/set_location_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -11,6 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'create_account_client_model.dart';
 export 'create_account_client_model.dart';
 
@@ -18,11 +24,11 @@ class CreateAccountClientWidget extends StatefulWidget {
   const CreateAccountClientWidget({
     super.key,
     this.place,
-    this.location,
+    this.marker,
   });
 
   final LatLng? place;
-  final DocumentReference? location;
+  final LatLng? marker;
 
   @override
   State<CreateAccountClientWidget> createState() =>
@@ -75,6 +81,7 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
     if (currentUserLocationValue == null) {
       return Container(
         color: FlutterFlowTheme.of(context).primaryBackground,
@@ -1001,8 +1008,8 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                   iconColor: const Color(0xFF15161E),
                                   iconSize: 18.0,
                                   elevation: 0.0,
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).tertiary,
+                                  borderColor: FlutterFlowTheme.of(context)
+                                      .africanViolet,
                                   borderWidth: 1.0,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
@@ -1038,6 +1045,62 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                 wrapped: true,
                               ),
                               Text(
+                                'City*',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelMediumFamily,
+                                      color: const Color(0xFF606A85),
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily),
+                                    ),
+                              ),
+                              FlutterFlowDropDown<String>(
+                                controller:
+                                    _model.dropDownCityValueController ??=
+                                        FormFieldController<String>(null),
+                                options:
+                                    City.values.map((e) => e.name).toList(),
+                                onChanged: (val) => safeSetState(
+                                    () => _model.dropDownCityValue = val),
+                                height: 42.0,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodySmallFamily,
+                                      color: const Color(0xFF606A85),
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodySmallFamily),
+                                    ),
+                                hintText: 'Select Your city*...',
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
+                                fillColor: Colors.white,
+                                elevation: 2.0,
+                                borderColor: const Color(0xFFE5E7EB),
+                                borderWidth: 2.0,
+                                borderRadius: 12.0,
+                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 4.0, 12.0, 4.0),
+                                hidesUnderline: true,
+                                isOverButton: false,
+                                isSearchable: false,
+                                isMultiSelect: false,
+                              ),
+                              Text(
                                 'Choose Location',
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
@@ -1059,48 +1122,159 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(24.0),
                                 ),
-                                child: Builder(builder: (context) {
-                                  final googleMapMarker =
-                                      currentUserLocationValue;
-                                  return FlutterFlowGoogleMap(
-                                    controller: _model.googleMapsController,
-                                    onCameraIdle: (latLng) => safeSetState(
-                                        () => _model.googleMapsCenter = latLng),
-                                    initialLocation: _model.googleMapsCenter ??=
-                                        currentUserLocationValue!,
-                                    markers: [
-                                      if (googleMapMarker != null)
-                                        FlutterFlowMarker(
-                                          googleMapMarker.serialize(),
-                                          googleMapMarker,
-                                          () async {
-                                            await _model
-                                                .googleMapsController.future
-                                                .then(
-                                              (c) => c.animateCamera(
-                                                CameraUpdate.newLatLng(_model
-                                                    .googleMapsCenter!
-                                                    .toGoogleMaps()),
-                                              ),
-                                            );
-                                          },
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/pin-removebg-preview.png',
+                                          width: 40.0,
+                                          height: 40.0,
+                                          fit: BoxFit.cover,
+                                          alignment: const Alignment(0.0, 0.0),
                                         ),
-                                    ],
-                                    markerColor: GoogleMarkerColor.violet,
-                                    mapType: MapType.normal,
-                                    style: GoogleMapStyle.standard,
-                                    initialZoom: 14.0,
-                                    allowInteraction: true,
-                                    allowZoom: true,
-                                    showZoomControls: true,
-                                    showLocation: true,
-                                    showCompass: false,
-                                    showMapToolbar: false,
-                                    showTraffic: false,
-                                    centerMapOnMarkerTap: true,
-                                  );
-                                }),
+                                      ),
+                                    ),
+                                    Stack(
+                                      children: [
+                                        Builder(builder: (context) {
+                                          final googleMapMarker =
+                                              FFAppState().marker;
+                                          return FlutterFlowGoogleMap(
+                                            controller:
+                                                _model.googleMapsController,
+                                            onCameraIdle: (latLng) =>
+                                                safeSetState(() => _model
+                                                    .googleMapsCenter = latLng),
+                                            initialLocation:
+                                                _model.googleMapsCenter ??=
+                                                    currentUserLocationValue!,
+                                            markers: [
+                                              if (googleMapMarker != null)
+                                                FlutterFlowMarker(
+                                                  googleMapMarker.serialize(),
+                                                  googleMapMarker,
+                                                  () async {},
+                                                ),
+                                            ],
+                                            markerColor:
+                                                GoogleMarkerColor.violet,
+                                            mapType: MapType.normal,
+                                            style: GoogleMapStyle.standard,
+                                            initialZoom: 14.0,
+                                            allowInteraction: true,
+                                            allowZoom: true,
+                                            showZoomControls: true,
+                                            showLocation: true,
+                                            showCompass: false,
+                                            showMapToolbar: false,
+                                            showTraffic: false,
+                                            centerMapOnMarkerTap: true,
+                                          );
+                                        }),
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 1.0),
+                                          child: PointerInterceptor(
+                                            intercepting: isWeb,
+                                            child: Builder(
+                                              builder: (context) => Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 7.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    FFAppState().marker =
+                                                        _model.googleMapsCenter;
+                                                    safeSetState(() {});
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder: (dialogContext) {
+                                                        return Dialog(
+                                                          elevation: 0,
+                                                          insetPadding:
+                                                              EdgeInsets.zero,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          alignment: const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                          child: WebViewAware(
+                                                            child:
+                                                                GestureDetector(
+                                                              onTap: () =>
+                                                                  FocusScope.of(
+                                                                          dialogContext)
+                                                                      .unfocus(),
+                                                              child:
+                                                                  const SetLocationWidget(),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                  text: 'Set Location',
+                                                  options: FFButtonOptions(
+                                                    height: 38.0,
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
+                                                    iconPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
+                                                        ),
+                                                    elevation: 0.0,
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .tertiary,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ]
                                 .divide(const SizedBox(height: 12.0))
@@ -1146,6 +1320,24 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                   if (_model.formKey.currentState == null ||
                                       !_model.formKey.currentState!
                                           .validate()) {
+                                    return;
+                                  }
+                                  if (_model.dropDownCityValue == null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Please select city*',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
+                                      ),
+                                    );
                                     return;
                                   }
                                   if (_model
@@ -1247,7 +1439,8 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                     gender: _model.choiceChipsValue,
                                     isClient: true,
                                     role: 'Client',
-                                    location: _model.googleMapsCenter,
+                                    location: FFAppState().marker,
+                                    city: _model.dropDownCityValue,
                                   ));
 
                                   context.pushNamedAuth(

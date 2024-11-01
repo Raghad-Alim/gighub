@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'serialization_util.dart';
+import '../backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -105,7 +106,7 @@ final parametersBuilderMap =
   'CreateAccountClient': (data) async => ParameterData(
         allParams: {
           'place': getParameter<LatLng>(data, 'place'),
-          'location': getParameter<DocumentReference>(data, 'location'),
+          'marker': getParameter<LatLng>(data, 'marker'),
         },
       ),
   'BookingsClient': ParameterData.none(),
@@ -194,6 +195,7 @@ final parametersBuilderMap =
               getParameter<LatLng>(data, 'bookingClientLocation'),
           'clientComment': getParameter<String>(data, 'clientComment'),
           'bookingPay': getParameter<double>(data, 'bookingPay'),
+          'city': getParameter<String>(data, 'city'),
         },
       ),
   'viewDetailsRequestPage': (data) async => ParameterData(
@@ -205,6 +207,7 @@ final parametersBuilderMap =
               getParameter<LatLng>(data, 'bookingClientLocation'),
           'clientComment': getParameter<String>(data, 'clientComment'),
           'bookingPay': getParameter<double>(data, 'bookingPay'),
+          'city': getParameter<String>(data, 'city'),
         },
       ),
   'ClientprofileEdit': ParameterData.none(),
@@ -284,6 +287,22 @@ final parametersBuilderMap =
         },
       ),
   'requestPageCopy2': ParameterData.none(),
+  'chatSPCopy': (data) async => ParameterData(
+        allParams: {
+          'bookingID': getParameter<String>(data, 'bookingID'),
+        },
+      ),
+  'chatsClientCopy': (data) async => ParameterData(
+        allParams: {
+          'bookingID': getParameter<DocumentReference>(data, 'bookingID'),
+        },
+      ),
+  'ViewSPprofile': (data) async => ParameterData(
+        allParams: {
+          'parameterProfile': await getDocumentParameter<UserRecord>(
+              data, 'parameterProfile', UserRecord.fromSnapshot),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

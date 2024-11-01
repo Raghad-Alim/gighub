@@ -1142,6 +1142,71 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                         wrapped: true,
                                       ),
                                       Text(
+                                        'City*',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily,
+                                              color: const Color(0xFF606A85),
+                                              fontSize: 17.0,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily),
+                                            ),
+                                      ),
+                                      FlutterFlowDropDown<String>(
+                                        controller: _model
+                                                .dropDownCityValueController ??=
+                                            FormFieldController<String>(null),
+                                        options: City.values
+                                            .map((e) => e.name)
+                                            .toList(),
+                                        onChanged: (val) => safeSetState(() =>
+                                            _model.dropDownCityValue = val),
+                                        height: 52.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiary,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
+                                        hintText: 'Select Your city* ...',
+                                        icon: Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
+                                        fillColor: Colors.white,
+                                        elevation: 2.0,
+                                        borderColor: const Color(0xFFE5E7EB),
+                                        borderWidth: 2.0,
+                                        borderRadius: 12.0,
+                                        margin: const EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 4.0, 8.0, 4.0),
+                                        hidesUnderline: true,
+                                        isOverButton: false,
+                                        isSearchable: false,
+                                        isMultiSelect: false,
+                                      ),
+                                      Text(
                                         'Sector*',
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
@@ -1379,6 +1444,8 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                                           color:
                                                               const Color(0xFF606A85),
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -1393,7 +1460,7 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                                         context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily: 'Outfit',
+                                                      fontFamily: 'Poppins',
                                                       color: const Color(0xFF606A85),
                                                       letterSpacing: 0.0,
                                                       fontWeight:
@@ -1401,7 +1468,7 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                                       useGoogleFonts:
                                                           GoogleFonts.asMap()
                                                               .containsKey(
-                                                                  'Outfit'),
+                                                                  'Poppins'),
                                                     ),
                                                 enabledBorder:
                                                     OutlineInputBorder(
@@ -1579,6 +1646,24 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                     !_model.formKey.currentState!.validate()) {
                                   return;
                                 }
+                                if (_model.dropDownCityValue == null) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'You must select City.',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                    ),
+                                  );
+                                  return;
+                                }
                                 if (_model.dropDownValue == null) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
@@ -1693,6 +1778,7 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                     location: currentUserDocument?.location,
                                     price: int.tryParse(
                                         _model.textController7.text),
+                                    city: _model.dropDownCityValue,
                                   ),
                                   ...mapToFirestore(
                                     {
