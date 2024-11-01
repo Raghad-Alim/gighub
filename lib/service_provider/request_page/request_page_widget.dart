@@ -393,7 +393,7 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                                                           .reference
                                                           .update(
                                                               createBookingRecordData(
-                                                        status: 'pay',
+                                                        status: 'accepted',
                                                       ));
                                                       await actions
                                                           .sendNotificationToClient(

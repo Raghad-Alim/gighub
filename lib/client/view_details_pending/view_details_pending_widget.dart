@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:map_launcher/map_launcher.dart' as $ml;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -615,47 +614,6 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                               ),
                             ),
                           ],
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(0.2, 0.57),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'pay now',
-                            options: FFButtonOptions(
-                              width: 332.0,
-                              height: 45.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).success,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
-                                  ),
-                              elevation: 0.0,
-                              borderSide: const BorderSide(
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(10.0),
-                                bottomRight: Radius.circular(10.0),
-                                topLeft: Radius.circular(10.0),
-                                topRight: Radius.circular(10.0),
-                              ),
-                            ),
-                          ),
                         ),
                       ],
                     ),

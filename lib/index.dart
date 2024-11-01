@@ -44,8 +44,6 @@ export '/availability_pages/update_availability/update_availability_widget.dart'
     show UpdateAvailabilityWidget;
 export '/client/view_details_accepted/view_details_accepted_widget.dart'
     show ViewDetailsAcceptedWidget;
-export '/client/view_details_pay/view_details_pay_widget.dart'
-    show ViewDetailsPayWidget;
 export '/client/view_details_pending/view_details_pending_widget.dart'
     show ViewDetailsPendingWidget;
 export '/service_provider/view_details_upcoming_page/view_details_upcoming_page_widget.dart'

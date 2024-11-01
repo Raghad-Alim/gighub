@@ -109,7 +109,11 @@ final parametersBuilderMap =
           'marker': getParameter<LatLng>(data, 'marker'),
         },
       ),
-  'BookingsClient': ParameterData.none(),
+  'BookingsClient': (data) async => ParameterData(
+        allParams: {
+          'bookingid': getParameter<DocumentReference>(data, 'bookingid'),
+        },
+      ),
   'Clientprofile': ParameterData.none(),
   'searchClient': (data) async => ParameterData(
         allParams: {
@@ -165,19 +169,6 @@ final parametersBuilderMap =
           'bookingComment': getParameter<String>(data, 'bookingComment'),
           'bookingLocation': getParameter<LatLng>(data, 'bookingLocation'),
           'bookingPrice': getParameter<double>(data, 'bookingPrice'),
-        },
-      ),
-  'viewDetailsPay': (data) async => ParameterData(
-        allParams: {
-          'bookingIDPay': getParameter<DocumentReference>(data, 'bookingIDPay'),
-          'bookingTimePay': getParameter<DateTime>(data, 'bookingTimePay'),
-          'bookingDatePay': getParameter<DateTime>(data, 'bookingDatePay'),
-          'commentPay': getParameter<String>(data, 'commentPay'),
-          'locationPay': getParameter<LatLng>(data, 'locationPay'),
-          'pricePay': getParameter<double>(data, 'pricePay'),
-          'clientEmail': getParameter<String>(data, 'clientEmail'),
-          'clientFirstName': getParameter<String>(data, 'clientFirstName'),
-          'clientLastName': getParameter<String>(data, 'clientLastName'),
         },
       ),
   'viewDetailsPending': (data) async => ParameterData(

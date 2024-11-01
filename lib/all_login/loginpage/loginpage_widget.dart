@@ -9,6 +9,7 @@ import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'loginpage_model.dart';
 export 'loginpage_model.dart';
@@ -29,6 +30,13 @@ class _LoginpageWidgetState extends State<LoginpageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => LoginpageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await actions.initializeFCM(
+        context,
+      );
+    });
 
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();

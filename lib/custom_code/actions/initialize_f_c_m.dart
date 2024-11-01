@@ -24,9 +24,15 @@ Future<void> initializeFCM(BuildContext context) async {
 
 void handleNotification(BuildContext context, RemoteMessage message) {
   // Navigate based on the notification data
-  if (message.data['screen'] == 'bookingDetails') {
+  if (message.data['screen'] == 'bookingsClient') {
     String bookingRef = message.data['bookingRef'];
-    Navigator.pushNamed(context, '/bookingDetails', arguments: bookingRef);
+
+    // Use the route for the `viewDetailsAccepted` page and pass the booking reference
+    Navigator.pushNamed(
+      context,
+      '/bookingsClient', // Ensure this matches the route name in FlutterFlow
+      arguments: bookingRef,
+    );
   }
 }
 

@@ -102,7 +102,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'BookingsClient',
           path: '/bookingsClient',
-          builder: (context, params) => const BookingsClientWidget(),
+          builder: (context, params) => BookingsClientWidget(
+            bookingid: params.getParam(
+              'bookingid',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['booking'],
+            ),
+          ),
         ),
         FFRoute(
           name: 'Clientprofile',
@@ -298,50 +305,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             bookingPrice: params.getParam(
               'bookingPrice',
               ParamType.double,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'viewDetailsPay',
-          path: '/viewDetails',
-          builder: (context, params) => ViewDetailsPayWidget(
-            bookingIDPay: params.getParam(
-              'bookingIDPay',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['booking'],
-            ),
-            bookingTimePay: params.getParam(
-              'bookingTimePay',
-              ParamType.DateTime,
-            ),
-            bookingDatePay: params.getParam(
-              'bookingDatePay',
-              ParamType.DateTime,
-            ),
-            commentPay: params.getParam(
-              'commentPay',
-              ParamType.String,
-            ),
-            locationPay: params.getParam(
-              'locationPay',
-              ParamType.LatLng,
-            ),
-            pricePay: params.getParam(
-              'pricePay',
-              ParamType.double,
-            ),
-            clientEmail: params.getParam(
-              'clientEmail',
-              ParamType.String,
-            ),
-            clientFirstName: params.getParam(
-              'clientFirstName',
-              ParamType.String,
-            ),
-            clientLastName: params.getParam(
-              'clientLastName',
-              ParamType.String,
             ),
           ),
         ),
