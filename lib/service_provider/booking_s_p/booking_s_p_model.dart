@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/service_provider/nav_bar_s_p_booking/nav_bar_s_p_booking_widget.dart';
 import 'booking_s_p_widget.dart' show BookingSPWidget;
@@ -16,10 +15,6 @@ class BookingSPModel extends FlutterFlowModel<BookingSPWidget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
-  // Stores action output result for [Backend Call - API (GeoCodeReverse)] action in Button widget.
-  ApiCallResponse? addressReverse;
-  // Stores action output result for [Backend Call - API (GeoCodeReverse)] action in Button widget.
-  ApiCallResponse? addressReverse1;
   // Model for NavBarSP-booking component.
   late NavBarSPBookingModel navBarSPBookingModel;
 

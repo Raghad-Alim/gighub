@@ -17,6 +17,11 @@ enum City {
   Khobar,
 }
 
+enum PaymentMethod {
+  STCPay,
+  Cash,
+}
+
 extension FFEnumExtensions<T extends Enum> on T {
   String serialize() => name;
 }
@@ -32,6 +37,8 @@ T? deserializeEnum<T>(String? value) {
       return Sector.values.deserialize(value) as T?;
     case (City):
       return City.values.deserialize(value) as T?;
+    case (PaymentMethod):
+      return PaymentMethod.values.deserialize(value) as T?;
     default:
       return null;
   }

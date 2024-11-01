@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'client_pin_location_model.dart';
 export 'client_pin_location_model.dart';
 
@@ -101,44 +100,25 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                     child: AuthUserStreamWidget(
-                      builder: (context) => Builder(builder: (context) {
-                        final googleMapMarker = currentUserDocument?.location;
-                        return FlutterFlowGoogleMap(
-                          controller: _model.googleMapsController,
-                          onCameraIdle: (latLng) => safeSetState(
-                              () => _model.googleMapsCenter = latLng),
-                          initialLocation: _model.googleMapsCenter ??=
-                              currentUserDocument!.location!,
-                          markers: [
-                            if (googleMapMarker != null)
-                              FlutterFlowMarker(
-                                googleMapMarker.serialize(),
-                                googleMapMarker,
-                                () async {
-                                  await _model.googleMapsController.future.then(
-                                    (c) => c.animateCamera(
-                                      CameraUpdate.newLatLng(_model
-                                          .googleMapsCenter!
-                                          .toGoogleMaps()),
-                                    ),
-                                  );
-                                },
-                              ),
-                          ],
-                          markerColor: GoogleMarkerColor.violet,
-                          mapType: MapType.normal,
-                          style: GoogleMapStyle.standard,
-                          initialZoom: 14.0,
-                          allowInteraction: true,
-                          allowZoom: true,
-                          showZoomControls: true,
-                          showLocation: true,
-                          showCompass: false,
-                          showMapToolbar: true,
-                          showTraffic: false,
-                          centerMapOnMarkerTap: true,
-                        );
-                      }),
+                      builder: (context) => FlutterFlowGoogleMap(
+                        controller: _model.googleMapsController,
+                        onCameraIdle: (latLng) => safeSetState(
+                            () => _model.googleMapsCenter = latLng),
+                        initialLocation: _model.googleMapsCenter ??=
+                            currentUserDocument!.location!,
+                        markerColor: GoogleMarkerColor.violet,
+                        mapType: MapType.normal,
+                        style: GoogleMapStyle.standard,
+                        initialZoom: 14.0,
+                        allowInteraction: true,
+                        allowZoom: true,
+                        showZoomControls: true,
+                        showLocation: true,
+                        showCompass: false,
+                        showMapToolbar: true,
+                        showTraffic: false,
+                        centerMapOnMarkerTap: true,
+                      ),
                     ),
                   ),
                 ],
@@ -181,12 +161,10 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
                                 backgroundColor: Colors.transparent,
                                 alignment: const AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: WebViewAware(
-                                  child: GestureDetector(
-                                    onTap: () =>
-                                        FocusScope.of(dialogContext).unfocus(),
-                                    child: const SetLocationWidget(),
-                                  ),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      FocusScope.of(dialogContext).unfocus(),
+                                  child: const SetLocationWidget(),
                                 ),
                               );
                             },

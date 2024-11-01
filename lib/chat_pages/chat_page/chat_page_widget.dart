@@ -92,6 +92,14 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   size: 30.0,
                 ),
                 onPressed: () async {
+                  await widget.receiveChat!.update({
+                    ...mapToFirestore(
+                      {
+                        'lastMessageSeenBy':
+                            FieldValue.arrayUnion([currentUserReference]),
+                      },
+                    ),
+                  });
                   context.safePop();
                 },
               ),
@@ -456,6 +464,59 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                     nameOfSender: valueOrDefault(
                                         currentUserDocument?.firstName, ''),
                                   ));
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('here before update'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+
+                                  await widget.receiveChat!.update({
+                                    ...createChatsRecordData(
+                                      lastMessage: _model.textController.text,
+                                      timeStamp: getCurrentTimestamp,
+                                    ),
+                                    ...mapToFirestore(
+                                      {
+                                        'lastMessageSeenBy':
+                                            FieldValue.delete(),
+                                      },
+                                    ),
+                                  });
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('after update'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+
+                                  await widget.receiveChat!.update({
+                                    ...mapToFirestore(
+                                      {
+                                        'lastMessageSeenBy':
+                                            FieldValue.arrayUnion(
+                                                [currentUserReference]),
+                                      },
+                                    ),
+                                  });
                                   safeSetState(() {
                                     _model.textController?.clear();
                                   });

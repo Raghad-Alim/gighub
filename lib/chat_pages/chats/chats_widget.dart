@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
 
@@ -102,13 +101,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                     backgroundColor: Colors.transparent,
                     context: context,
                     builder: (context) {
-                      return WebViewAware(
-                        child: GestureDetector(
-                          onTap: () => FocusScope.of(context).unfocus(),
-                          child: Padding(
-                            padding: MediaQuery.viewInsetsOf(context),
-                            child: const CreateNewChatSPWidget(),
-                          ),
+                      return GestureDetector(
+                        onTap: () => FocusScope.of(context).unfocus(),
+                        child: Padding(
+                          padding: MediaQuery.viewInsetsOf(context),
+                          child: const CreateNewChatSPWidget(),
                         ),
                       );
                     },

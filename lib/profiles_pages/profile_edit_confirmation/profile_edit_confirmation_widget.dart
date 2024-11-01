@@ -95,7 +95,7 @@ class _ProfileEditConfirmationWidgetState
                       Align(
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Text(
-                          'Profile Updated!',
+                          ' Updated!',
                           textAlign: TextAlign.center,
                           style: FlutterFlowTheme.of(context)
                               .headlineMedium

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/gestures.dart';
@@ -412,6 +413,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget> {
                                 ),
                                 singleRecord: true,
                               ).then((s) => s.firstOrNull);
+                              await actions.saveDeviceTokenToFirestore();
                             } else {
                               unawaited(
                                 () async {

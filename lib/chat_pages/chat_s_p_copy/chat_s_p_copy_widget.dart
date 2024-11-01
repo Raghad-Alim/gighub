@@ -231,8 +231,9 @@ class _ChatSPCopyWidgetState extends State<ChatSPCopyWidget> {
                                                   ),
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      widget.bookingID,
-                                                      'B',
+                                                      listViewChatsRecord
+                                                          .bookingID?.id,
+                                                      'BB',
                                                     ).maybeHandleOverflow(
                                                       maxChars: 15,
                                                     ),

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:map_launcher/map_launcher.dart' as $ml;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'view_details_pay_model.dart';
@@ -386,44 +387,36 @@ class _ViewDetailsPayWidgetState extends State<ViewDetailsPayWidget> {
                       Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 6.0),
-                        child: Text(
-                          'Location',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                color: FlutterFlowTheme.of(context).secondary,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            await launchMap(
+                              mapType: $ml.MapType.google,
+                              location: widget.locationPay,
+                              title: '',
+                            );
+                          },
+                          child: Text(
+                            'Location',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  letterSpacing: 0.0,
+                                  decoration: TextDecoration.underline,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                          ),
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(56.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      valueOrDefault<String>(
-                        widget.locationPay?.toString(),
-                        'location',
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).tertiary,
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
                   ),
                 ),
                 Padding(
@@ -490,165 +483,223 @@ class _ViewDetailsPayWidgetState extends State<ViewDetailsPayWidget> {
                     ),
                   ),
                 ),
-                Container(
-                  width: 452.0,
-                  height: 21.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                  ),
-                ),
-                Opacity(
-                  opacity: 0.7,
-                  child: Divider(
-                    thickness: 1.0,
-                    color: FlutterFlowTheme.of(context).roseQuartz,
-                  ),
-                ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(0.0, 1.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(19.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'Payment Summary',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).tertiary,
-                            fontSize: 18.0,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 90.0, 0.0, 0.0),
+                    child: Container(
+                      width: 452.0,
+                      height: 170.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 4.0,
+                            color: Color(0x33000000),
+                            offset: Offset(
+                              0.0,
+                              4.0,
+                            ),
+                            spreadRadius: 7.0,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(24.0),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Stack(
+                        children: [
+                          Stack(
+                            children: [
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, -0.26),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          19.0, 9.0, 0.0, 6.0),
+                                      child: Text(
+                                        'Subtotal',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              fontSize: 17.0,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          197.0, 9.0, 0.0, 6.0),
+                                      child: Text(
+                                        'SAR ${widget.pricePay?.toString()}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              fontSize: 17.0,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Align(
+                                alignment: const AlignmentDirectional(-1.0, -0.7),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      19.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Payment Summary',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(19.0, 9.0, 0.0, 6.0),
-                      child: Text(
-                        'Subtotal',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: FlutterFlowTheme.of(context).secondary,
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
+                          Align(
+                            alignment: const AlignmentDirectional(0.2, 0.57),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                final paymentResponse =
+                                    await processStripePayment(
+                                  context,
+                                  amount: widget.pricePay!.round(),
+                                  currency: 'USD',
+                                  customerEmail: widget.clientEmail!,
+                                  customerName:
+                                      '${widget.clientFirstName} ${widget.clientLastName}',
+                                  description: 'service payment',
+                                  allowGooglePay: false,
+                                  allowApplePay: false,
+                                  buttonColor:
+                                      FlutterFlowTheme.of(context).tertiary,
+                                  buttonTextColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                );
+                                if (paymentResponse.paymentId == null &&
+                                    paymentResponse.errorMessage != null) {
+                                  showSnackbar(
+                                    context,
+                                    'Error: ${paymentResponse.errorMessage}',
+                                  );
+                                }
+                                _model.paymentId =
+                                    paymentResponse.paymentId ?? '';
+
+                                await widget.bookingIDPay!
+                                    .update(createBookingRecordData(
+                                  status: 'accepted',
+                                ));
+
+                                context.pushNamed(
+                                  'viewDetailsAccepted',
+                                  queryParameters: {
+                                    'bookingID': serializeParam(
+                                      widget.bookingIDPay,
+                                      ParamType.DocumentReference,
+                                    ),
+                                    'bookingDate': serializeParam(
+                                      widget.bookingDatePay,
+                                      ParamType.DateTime,
+                                    ),
+                                    'bookingTime': serializeParam(
+                                      widget.bookingTimePay,
+                                      ParamType.DateTime,
+                                    ),
+                                    'bookingComment': serializeParam(
+                                      widget.commentPay,
+                                      ParamType.String,
+                                    ),
+                                    'bookingLocation': serializeParam(
+                                      widget.locationPay,
+                                      ParamType.LatLng,
+                                    ),
+                                    'bookingPrice': serializeParam(
+                                      widget.pricePay,
+                                      ParamType.double,
+                                    ),
+                                  }.withoutNulls,
+                                );
+
+                                safeSetState(() {});
+                              },
+                              text: 'pay now',
+                              options: FFButtonOptions(
+                                width: 332.0,
+                                height: 45.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).success,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                                elevation: 0.0,
+                                borderSide: const BorderSide(
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(10.0),
+                                  topLeft: Radius.circular(10.0),
+                                  topRight: Radius.circular(10.0),
+                                ),
+                              ),
                             ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(197.0, 9.0, 0.0, 6.0),
-                      child: Text(
-                        'SAR ${widget.pricePay?.toString()}',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: FlutterFlowTheme.of(context).secondary,
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-                FFButtonWidget(
-                  onPressed: () async {
-                    final paymentResponse = await processStripePayment(
-                      context,
-                      amount: widget.pricePay!.round(),
-                      currency: 'USD',
-                      customerEmail: widget.clientEmail!,
-                      customerName:
-                          '${widget.clientFirstName} ${widget.clientLastName}',
-                      description: 'service payment',
-                      allowGooglePay: false,
-                      allowApplePay: false,
-                      buttonColor: FlutterFlowTheme.of(context).tertiary,
-                      buttonTextColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                    );
-                    if (paymentResponse.paymentId == null &&
-                        paymentResponse.errorMessage != null) {
-                      showSnackbar(
-                        context,
-                        'Error: ${paymentResponse.errorMessage}',
-                      );
-                    }
-                    _model.paymentId = paymentResponse.paymentId ?? '';
-
-                    await widget.bookingIDPay!.update(createBookingRecordData(
-                      status: 'accepted',
-                    ));
-
-                    context.pushNamed(
-                      'viewDetailsAccepted',
-                      queryParameters: {
-                        'bookingID': serializeParam(
-                          widget.bookingIDPay,
-                          ParamType.DocumentReference,
-                        ),
-                        'bookingDate': serializeParam(
-                          widget.bookingDatePay,
-                          ParamType.DateTime,
-                        ),
-                        'bookingTime': serializeParam(
-                          widget.bookingTimePay,
-                          ParamType.DateTime,
-                        ),
-                        'bookingComment': serializeParam(
-                          widget.commentPay,
-                          ParamType.String,
-                        ),
-                        'bookingLocation': serializeParam(
-                          widget.locationPay,
-                          ParamType.LatLng,
-                        ),
-                        'bookingPrice': serializeParam(
-                          widget.pricePay,
-                          ParamType.double,
-                        ),
-                      }.withoutNulls,
-                    );
-
-                    safeSetState(() {});
-                  },
-                  text: 'pay now',
-                  options: FFButtonOptions(
-                    width: 332.0,
-                    height: 45.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).success,
-                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                        ),
-                    elevation: 0.0,
-                    borderSide: const BorderSide(
-                      width: 1.0,
-                    ),
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(10.0),
-                      bottomRight: Radius.circular(10.0),
-                      topLeft: Radius.circular(10.0),
-                      topRight: Radius.circular(10.0),
                     ),
                   ),
                 ),

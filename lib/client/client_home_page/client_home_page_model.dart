@@ -3,6 +3,7 @@ import '/components/nav_barclient_home_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'client_home_page_widget.dart' show ClientHomePageWidget;
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class ClientHomePageModel extends FlutterFlowModel<ClientHomePageWidget> {
   ///  Local state fields for this page.
@@ -18,15 +19,12 @@ class ClientHomePageModel extends FlutterFlowModel<ClientHomePageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  List<UserRecord> simpleSearchResults1 = [];
-  List<UserRecord> simpleSearchResults2 = [];
-  List<ServiceProviderRecord> simpleSearchResults3 = [];
-  List<ServiceProviderRecord> simpleSearchResults4 = [];
-  // Stores action output result for [Firestore Query - Query a collection] action in Container widget.
-  List<UserRecord>? showChefs;
-  List<ServiceProviderRecord> simpleSearchResults5 = [];
-  List<ServiceProviderRecord> simpleSearchResults6 = [];
-  List<UserRecord>? listViewPreviousSnapshot;
+  // State field(s) for ListView widget.
+
+  PagingController<DocumentSnapshot?, UserRecord>? listViewPagingController;
+  Query? listViewPagingQuery;
+  List<StreamSubscription?> listViewStreamSubscriptions = [];
+
   // Model for NavBarclient-home component.
   late NavBarclientHomeModel navBarclientHomeModel;
 
@@ -37,6 +35,43 @@ class ClientHomePageModel extends FlutterFlowModel<ClientHomePageWidget> {
 
   @override
   void dispose() {
+    for (var s in listViewStreamSubscriptions) {
+      s?.cancel();
+    }
+    listViewPagingController?.dispose();
+
     navBarclientHomeModel.dispose();
+  }
+
+  /// Additional helper methods.
+  PagingController<DocumentSnapshot?, UserRecord> setListViewController(
+    Query query, {
+    DocumentReference<Object?>? parent,
+  }) {
+    listViewPagingController ??= _createListViewController(query, parent);
+    if (listViewPagingQuery != query) {
+      listViewPagingQuery = query;
+      listViewPagingController?.refresh();
+    }
+    return listViewPagingController!;
+  }
+
+  PagingController<DocumentSnapshot?, UserRecord> _createListViewController(
+    Query query,
+    DocumentReference<Object?>? parent,
+  ) {
+    final controller =
+        PagingController<DocumentSnapshot?, UserRecord>(firstPageKey: null);
+    return controller
+      ..addPageRequestListener(
+        (nextPageMarker) => queryUserRecordPage(
+          queryBuilder: (_) => listViewPagingQuery ??= query,
+          nextPageMarker: nextPageMarker,
+          streamSubscriptions: listViewStreamSubscriptions,
+          controller: controller,
+          pageSize: 25,
+          isStream: true,
+        ),
+      );
   }
 }

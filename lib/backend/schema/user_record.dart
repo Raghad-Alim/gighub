@@ -135,6 +135,26 @@ class UserRecord extends FirestoreRecord {
   String get city => _city ?? '';
   bool hasCity() => _city != null;
 
+  // "STCBarcode" field.
+  String? _sTCBarcode;
+  String get sTCBarcode => _sTCBarcode ?? '';
+  bool hasSTCBarcode() => _sTCBarcode != null;
+
+  // "Cash" field.
+  bool? _cash;
+  bool get cash => _cash ?? false;
+  bool hasCash() => _cash != null;
+
+  // "STCpay" field.
+  bool? _sTCpay;
+  bool get sTCpay => _sTCpay ?? false;
+  bool hasSTCpay() => _sTCpay != null;
+
+  // "rating" field.
+  List<int>? _rating;
+  List<int> get rating => _rating ?? const [];
+  bool hasRating() => _rating != null;
+
   void _initializeFields() {
     _photoUrl = snapshotData['photo_url'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
@@ -163,6 +183,10 @@ class UserRecord extends FirestoreRecord {
     _getFCM = snapshotData['getFCM'] as String?;
     _deviceToken = snapshotData['deviceToken'] as String?;
     _city = snapshotData['City'] as String?;
+    _sTCBarcode = snapshotData['STCBarcode'] as String?;
+    _cash = snapshotData['Cash'] as bool?;
+    _sTCpay = snapshotData['STCpay'] as bool?;
+    _rating = getDataList(snapshotData['rating']);
   }
 
   static CollectionReference get collection =>
@@ -221,6 +245,9 @@ Map<String, dynamic> createUserRecordData({
   String? getFCM,
   String? deviceToken,
   String? city,
+  String? sTCBarcode,
+  bool? cash,
+  bool? sTCpay,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -246,6 +273,9 @@ Map<String, dynamic> createUserRecordData({
       'getFCM': getFCM,
       'deviceToken': deviceToken,
       'City': city,
+      'STCBarcode': sTCBarcode,
+      'Cash': cash,
+      'STCpay': sTCpay,
     }.withoutNulls,
   );
 
@@ -281,7 +311,11 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e1?.fCMtoken == e2?.fCMtoken &&
         e1?.getFCM == e2?.getFCM &&
         e1?.deviceToken == e2?.deviceToken &&
-        e1?.city == e2?.city;
+        e1?.city == e2?.city &&
+        e1?.sTCBarcode == e2?.sTCBarcode &&
+        e1?.cash == e2?.cash &&
+        e1?.sTCpay == e2?.sTCpay &&
+        listEquality.equals(e1?.rating, e2?.rating);
   }
 
   @override
@@ -309,7 +343,11 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.fCMtoken,
         e?.getFCM,
         e?.deviceToken,
-        e?.city
+        e?.city,
+        e?.sTCBarcode,
+        e?.cash,
+        e?.sTCpay,
+        e?.rating
       ]);
 
   @override

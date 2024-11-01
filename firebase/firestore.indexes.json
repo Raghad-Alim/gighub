@@ -27,11 +27,11 @@
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "role",
+          "fieldPath": "sector",
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "aveageRating",
+          "fieldPath": "tatalRating",
           "order": "ASCENDING"
         }
       ]
@@ -41,7 +41,7 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "isClient",
+          "fieldPath": "role",
           "order": "ASCENDING"
         },
         {

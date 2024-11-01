@@ -60,7 +60,7 @@ service cloud.firestore {
     match /chats/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if false;
+      allow write: if true;
       allow delete: if false;
     }
 
@@ -74,7 +74,7 @@ service cloud.firestore {
     match /chats/{parent}/chatMessages/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if false;
+      allow write: if true;
       allow delete: if false;
     }
 
@@ -83,9 +83,16 @@ service cloud.firestore {
     }
 
 
-    match /ff_user_push_notifications/{id} {
-      allow read, update, delete: if false;
-      allow create: if /databases/$(database)/documents/user/$(request.auth.uid) == request.resource.data.sender;
+    match /user/{parent}/review/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
     }
+
+    match /{path=**}/review/{document} {
+      allow read: if true;
+    }
+
   }
 }

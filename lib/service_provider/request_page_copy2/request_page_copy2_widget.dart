@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
-import '/backend/push_notifications/push_notifications_util.dart';
 import '/client/nav_bar_s_p_request/nav_bar_s_p_request_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -637,50 +636,6 @@ class _RequestPageCopy2WidgetState extends State<RequestPageCopy2Widget> {
                                                               },
                                                             ),
                                                           });
-                                                          triggerPushNotification(
-                                                            notificationTitle:
-                                                                'Request Accepted',
-                                                            notificationText:
-                                                                'your request has been accepted',
-                                                            notificationSound:
-                                                                'default',
-                                                            userRefs: [
-                                                              listViewBookingRecord
-                                                                  .clientID!
-                                                            ],
-                                                            initialPageName:
-                                                                'viewDetailsPay',
-                                                            parameterData: {
-                                                              'bookingIDPay':
-                                                                  listViewBookingRecord
-                                                                      .reference,
-                                                              'bookingTimePay':
-                                                                  listViewBookingRecord
-                                                                      .dateOfService,
-                                                              'bookingDatePay':
-                                                                  listViewBookingRecord
-                                                                      .dateOfService,
-                                                              'commentPay':
-                                                                  listViewBookingRecord
-                                                                      .clientComment,
-                                                              'locationPay':
-                                                                  listViewBookingRecord
-                                                                      .location,
-                                                              'pricePay':
-                                                                  listViewBookingRecord
-                                                                      .price
-                                                                      .toDouble(),
-                                                              'clientEmail':
-                                                                  listViewBookingRecord
-                                                                      .email,
-                                                              'clientFirstName':
-                                                                  listViewBookingRecord
-                                                                      .clientFirstName,
-                                                              'clientLastName':
-                                                                  listViewBookingRecord
-                                                                      .clientLastName,
-                                                            },
-                                                          );
                                                         },
                                                         text: 'Accept',
                                                         icon: const FaIcon(

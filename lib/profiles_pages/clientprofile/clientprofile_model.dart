@@ -30,6 +30,10 @@ class ClientprofileModel extends FlutterFlowModel<ClientprofileWidget> {
   FocusNode? sectorFocusNode2;
   TextEditingController? sectorTextController2;
   String? Function(BuildContext, String?)? sectorTextController2Validator;
+  // State field(s) for Sector widget.
+  FocusNode? sectorFocusNode3;
+  TextEditingController? sectorTextController3;
+  String? Function(BuildContext, String?)? sectorTextController3Validator;
   // Model for NavBarclient-profile component.
   late NavBarclientProfileModel navBarclientProfileModel;
 
@@ -58,6 +62,9 @@ class ClientprofileModel extends FlutterFlowModel<ClientprofileWidget> {
 
     sectorFocusNode2?.dispose();
     sectorTextController2?.dispose();
+
+    sectorFocusNode3?.dispose();
+    sectorTextController3?.dispose();
 
     navBarclientProfileModel.dispose();
   }

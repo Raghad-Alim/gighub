@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'verification_message_s_p_model.dart';
 export 'verification_message_s_p_model.dart';
@@ -26,11 +25,6 @@ class _VerificationMessageSPWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => VerificationMessageSPModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await authManager.sendEmailVerification();
-    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -128,7 +122,7 @@ class _VerificationMessageSPWidgetState
                         onPressed: () async {
                           await authManager.refreshUser();
                           if (currentUserEmailVerified) {
-                            context.pushNamed('ServiceProviderHomePage');
+                            context.pushNamed('Addpayment');
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

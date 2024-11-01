@@ -1,13 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/enums/enums.dart';
 import '/dialogs_to_copy_and_use/updateprofileclient/updateprofileclient_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'clientprofile_edit_model.dart';
 export 'clientprofile_edit_model.dart';
 
@@ -65,8 +66,6 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -107,26 +106,6 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'You can edit you profile',
-                        style:
-                            FlutterFlowTheme.of(context).headlineSmall.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .headlineSmallFamily,
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .headlineSmallFamily),
-                                ),
-                      ),
-                    ),
-                  ),
                   Expanded(
                     child: Padding(
                       padding:
@@ -152,7 +131,7 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                            .tertiary,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         useGoogleFonts: GoogleFonts.asMap()
@@ -239,7 +218,7 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                            .tertiary,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         useGoogleFonts: GoogleFonts.asMap()
@@ -343,7 +322,7 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .bodyMediumFamily,
                                           color: FlutterFlowTheme.of(context)
-                                              .alternate,
+                                              .tertiary,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w600,
                                           useGoogleFonts: GoogleFonts.asMap()
@@ -431,8 +410,8 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .bodyMediumFamily,
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
@@ -511,6 +490,7 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                               builder: (context) => TextFormField(
                                 controller: _model.sectorTextController1,
                                 focusNode: _model.sectorFocusNode1,
+                                readOnly: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Date of Birth',
@@ -520,7 +500,7 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                            .tertiary,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         useGoogleFonts: GoogleFonts.asMap()
@@ -611,7 +591,7 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                            .tertiary,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         useGoogleFonts: GoogleFonts.asMap()
@@ -685,6 +665,56 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                               ),
                             ),
                           ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 12.0),
+                            child: AuthUserStreamWidget(
+                              builder: (context) => FlutterFlowDropDown<String>(
+                                controller: _model.dropDownValueController ??=
+                                    FormFieldController<String>(
+                                  _model.dropDownValue ??= valueOrDefault(
+                                      currentUserDocument?.city, ''),
+                                ),
+                                options:
+                                    City.values.map((e) => e.name).toList(),
+                                onChanged: (val) => safeSetState(
+                                    () => _model.dropDownValue = val),
+                                width: 200.0,
+                                height: 53.0,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
+                                fillColor: Colors.white,
+                                elevation: 2.0,
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                borderWidth: 2.0,
+                                borderRadius: 8.0,
+                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 12.0, 0.0),
+                                hidesUnderline: true,
+                                isOverButton: false,
+                                isSearchable: false,
+                                isMultiSelect: false,
+                              ),
+                            ),
+                          ),
                           Builder(
                             builder: (context) => Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -705,7 +735,7 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                                         _model.lastNameTextController.text,
                                     phoneNumber:
                                         _model.phoneNumberTextController.text,
-                                    photoUrl: FFAppState().photo,
+                                    city: _model.dropDownValue,
                                   ));
                                   await showDialog(
                                     context: context,
@@ -718,9 +748,7 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                                             const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: const WebViewAware(
-                                          child: UpdateprofileclientWidget(),
-                                        ),
+                                        child: const UpdateprofileclientWidget(),
                                       );
                                     },
                                   );

@@ -111,7 +111,11 @@ final parametersBuilderMap =
       ),
   'BookingsClient': ParameterData.none(),
   'Clientprofile': ParameterData.none(),
-  'searchClient': ParameterData.none(),
+  'searchClient': (data) async => ParameterData(
+        allParams: {
+          'filters': getParameter<String>(data, 'filters'),
+        },
+      ),
   'createAccountSP': (data) async => ParameterData(
         allParams: {
           'marker': getParameter<LatLng>(data, 'marker'),
@@ -195,7 +199,6 @@ final parametersBuilderMap =
               getParameter<LatLng>(data, 'bookingClientLocation'),
           'clientComment': getParameter<String>(data, 'clientComment'),
           'bookingPay': getParameter<double>(data, 'bookingPay'),
-          'city': getParameter<String>(data, 'city'),
         },
       ),
   'viewDetailsRequestPage': (data) async => ParameterData(
@@ -249,14 +252,6 @@ final parametersBuilderMap =
         },
       ),
   'clientLocation': ParameterData.none(),
-  'YoutubeRequestPageCopy': (data) async => ParameterData(
-        allParams: {
-          'spRef': getParameter<DocumentReference>(data, 'spRef'),
-          'sector': getParameter<String>(data, 'sector'),
-          'price': getParameter<int>(data, 'price'),
-          'service': getParameter<String>(data, 'service'),
-        },
-      ),
   'chats': (data) async => ParameterData(
         allParams: {
           'bookingID': getParameter<String>(data, 'bookingID'),
@@ -273,19 +268,6 @@ final parametersBuilderMap =
         },
       ),
   'chataddSP': ParameterData.none(),
-  'viewDetailsPayCopy': (data) async => ParameterData(
-        allParams: {
-          'bookingIDPay': getParameter<DocumentReference>(data, 'bookingIDPay'),
-          'bookingTimePay': getParameter<DateTime>(data, 'bookingTimePay'),
-          'bookingDatePay': getParameter<DateTime>(data, 'bookingDatePay'),
-          'commentPay': getParameter<String>(data, 'commentPay'),
-          'locationPay': getParameter<LatLng>(data, 'locationPay'),
-          'pricePay': getParameter<double>(data, 'pricePay'),
-          'clientEmail': getParameter<String>(data, 'clientEmail'),
-          'clientFirstName': getParameter<String>(data, 'clientFirstName'),
-          'clientLastName': getParameter<String>(data, 'clientLastName'),
-        },
-      ),
   'requestPageCopy2': ParameterData.none(),
   'chatSPCopy': (data) async => ParameterData(
         allParams: {
@@ -303,6 +285,8 @@ final parametersBuilderMap =
               data, 'parameterProfile', UserRecord.fromSnapshot),
         },
       ),
+  'Addpayment': ParameterData.none(),
+  'AddpaymentCopy': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

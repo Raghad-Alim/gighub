@@ -8,10 +8,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/service_provider/nav_bar_s_p_profile/nav_bar_s_p_profile_widget.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 's_pprofile_model.dart';
 export 's_pprofile_model.dart';
 
@@ -65,8 +63,12 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
     _model.bioFocusNode ??= FocusNode();
 
     _model.textController9 ??= TextEditingController(
+        text: valueOrDefault(currentUserDocument?.city, ''));
+    _model.textFieldFocusNode1 ??= FocusNode();
+
+    _model.textController10 ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.price, 0).toString());
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -159,7 +161,10 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                                 onTap: () async {
                                   await currentUserReference!
                                       .update(createUserRecordData(
-                                    photoUrl: currentUserPhoto,
+                                    photoUrl: valueOrDefault<String>(
+                                      currentUserPhoto,
+                                      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                                    ),
                                   ));
                                 },
                                 child: Container(
@@ -329,17 +334,6 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                             builder: (context) => TextFormField(
                               controller: _model.firstNameTextController,
                               focusNode: _model.firstNameFocusNode,
-                              onChanged: (_) => EasyDebounce.debounce(
-                                '_model.firstNameTextController',
-                                const Duration(milliseconds: 2000),
-                                () async {
-                                  await currentUserReference!
-                                      .update(createUserRecordData(
-                                    firstName:
-                                        _model.firstNameTextController.text,
-                                  ));
-                                },
-                              ),
                               readOnly: true,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -420,17 +414,6 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                             builder: (context) => TextFormField(
                               controller: _model.lastNameTextController,
                               focusNode: _model.lastNameFocusNode,
-                              onChanged: (_) => EasyDebounce.debounce(
-                                '_model.lastNameTextController',
-                                const Duration(milliseconds: 2000),
-                                () async {
-                                  await currentUserReference!
-                                      .update(createUserRecordData(
-                                    lastName:
-                                        _model.lastNameTextController.text,
-                                  ));
-                                },
-                              ),
                               readOnly: true,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -523,17 +506,6 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                             builder: (context) => TextFormField(
                               controller: _model.phoneNumberTextController,
                               focusNode: _model.phoneNumberFocusNode,
-                              onChanged: (_) => EasyDebounce.debounce(
-                                '_model.phoneNumberTextController',
-                                const Duration(milliseconds: 2000),
-                                () async {
-                                  await currentUserReference!
-                                      .update(createUserRecordData(
-                                    phoneNumber:
-                                        _model.phoneNumberTextController.text,
-                                  ));
-                                },
-                              ),
                               readOnly: true,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -806,7 +778,6 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                             builder: (context) => TextFormField(
                               controller: _model.sectorTextController2,
                               focusNode: _model.sectorFocusNode2,
-                              onFieldSubmitted: (_) async {},
                               readOnly: true,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -991,16 +962,6 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                             builder: (context) => TextFormField(
                               controller: _model.bioTextController,
                               focusNode: _model.bioFocusNode,
-                              onChanged: (_) => EasyDebounce.debounce(
-                                '_model.bioTextController',
-                                const Duration(milliseconds: 2000),
-                                () async {
-                                  await currentUserReference!
-                                      .update(createUserRecordData(
-                                    bio: _model.bioTextController.text,
-                                  ));
-                                },
-                              ),
                               readOnly: true,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -1094,13 +1055,13 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                               width: 200.0,
                               child: TextFormField(
                                 controller: _model.textController9,
-                                focusNode: _model.textFieldFocusNode,
+                                focusNode: _model.textFieldFocusNode1,
                                 autofocus: false,
                                 readOnly: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   isDense: true,
-                                  labelText: 'Price',
+                                  labelText: 'City',
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -1185,6 +1146,174 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                             ),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 12.0),
+                          child: AuthUserStreamWidget(
+                            builder: (context) => SizedBox(
+                              width: 200.0,
+                              child: TextFormField(
+                                controller: _model.textController10,
+                                focusNode: _model.textFieldFocusNode2,
+                                autofocus: false,
+                                readOnly: true,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  labelText: 'Price',
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                  hintText: 'TextField',
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelMediumFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMediumFamily),
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  contentPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 24.0, 0.0, 24.0),
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'satoshi',
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey('satoshi'),
+                                    ),
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                validator: _model.textController10Validator
+                                    .asValidator(context),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 0.0, 20.0, 12.0),
+                              child: Container(
+                                width: 351.0,
+                                height: 61.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed('AddpaymentCopy');
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Payment Method',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            170.0, 0.0, 0.0, 0.0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          size: 24.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         Builder(
                           builder: (context) => Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1200,9 +1329,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                                       backgroundColor: Colors.transparent,
                                       alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: const WebViewAware(
-                                        child: LogOutDialogWidget(),
-                                      ),
+                                      child: const LogOutDialogWidget(),
                                     );
                                   },
                                 );
@@ -1252,9 +1379,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                                       backgroundColor: Colors.transparent,
                                       alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: const WebViewAware(
-                                        child: DeleteaccountdialogWidget(),
-                                      ),
+                                      child: const DeleteaccountdialogWidget(),
                                     );
                                   },
                                 );

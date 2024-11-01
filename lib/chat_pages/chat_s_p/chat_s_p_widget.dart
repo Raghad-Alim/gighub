@@ -231,8 +231,9 @@ class _ChatSPWidgetState extends State<ChatSPWidget> {
                                                   ),
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      widget.bookingID,
-                                                      'B',
+                                                      listViewChatsRecord
+                                                          .bookingID?.id,
+                                                      'BB',
                                                     ).maybeHandleOverflow(
                                                       maxChars: 15,
                                                     ),

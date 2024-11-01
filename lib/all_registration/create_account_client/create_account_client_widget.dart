@@ -16,7 +16,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'create_account_client_model.dart';
 export 'create_account_client_model.dart';
 
@@ -1126,148 +1125,150 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                 ),
                                 child: Stack(
                                   children: [
-                                    Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.asset(
-                                          'assets/images/pin-removebg-preview.png',
-                                          width: 40.0,
-                                          height: 40.0,
-                                          fit: BoxFit.cover,
-                                          alignment: const Alignment(0.0, 0.0),
-                                        ),
-                                      ),
-                                    ),
                                     Stack(
                                       children: [
-                                        Builder(builder: (context) {
-                                          final googleMapMarker =
-                                              FFAppState().marker;
-                                          return FlutterFlowGoogleMap(
-                                            controller:
-                                                _model.googleMapsController,
-                                            onCameraIdle: (latLng) =>
-                                                safeSetState(() => _model
-                                                    .googleMapsCenter = latLng),
-                                            initialLocation:
-                                                _model.googleMapsCenter ??=
-                                                    currentUserLocationValue!,
-                                            markers: [
-                                              if (googleMapMarker != null)
-                                                FlutterFlowMarker(
-                                                  googleMapMarker.serialize(),
-                                                  googleMapMarker,
-                                                  () async {},
-                                                ),
-                                            ],
-                                            markerColor:
-                                                GoogleMarkerColor.violet,
-                                            mapType: MapType.normal,
-                                            style: GoogleMapStyle.standard,
-                                            initialZoom: 14.0,
-                                            allowInteraction: true,
-                                            allowZoom: true,
-                                            showZoomControls: true,
-                                            showLocation: true,
-                                            showCompass: false,
-                                            showMapToolbar: false,
-                                            showTraffic: false,
-                                            centerMapOnMarkerTap: true,
-                                          );
-                                        }),
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 1.0),
-                                          child: PointerInterceptor(
-                                            intercepting: isWeb,
-                                            child: Builder(
-                                              builder: (context) => Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 7.0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    FFAppState().marker =
-                                                        _model.googleMapsCenter;
-                                                    safeSetState(() {});
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder: (dialogContext) {
-                                                        return Dialog(
-                                                          elevation: 0,
-                                                          insetPadding:
-                                                              EdgeInsets.zero,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          alignment: const AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                          child: WebViewAware(
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () =>
-                                                                  FocusScope.of(
-                                                                          dialogContext)
-                                                                      .unfocus(),
-                                                              child:
-                                                                  const SetLocationWidget(),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                  text: 'Set Location',
-                                                  options: FFButtonOptions(
-                                                    height: 38.0,
+                                        Stack(
+                                          children: [
+                                            FlutterFlowGoogleMap(
+                                              controller:
+                                                  _model.googleMapsController,
+                                              onCameraIdle: (latLng) =>
+                                                  safeSetState(() =>
+                                                      _model.googleMapsCenter =
+                                                          latLng),
+                                              initialLocation:
+                                                  _model.googleMapsCenter ??=
+                                                      currentUserLocationValue!,
+                                              markerColor:
+                                                  GoogleMarkerColor.violet,
+                                              mapType: MapType.normal,
+                                              style: GoogleMapStyle.standard,
+                                              initialZoom: 14.0,
+                                              allowInteraction: true,
+                                              allowZoom: true,
+                                              showZoomControls: true,
+                                              showLocation: true,
+                                              showCompass: false,
+                                              showMapToolbar: false,
+                                              showTraffic: false,
+                                              centerMapOnMarkerTap: true,
+                                            ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 1.0),
+                                              child: PointerInterceptor(
+                                                intercepting: isWeb,
+                                                child: Builder(
+                                                  builder: (context) => Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
-                                                    iconPadding:
-                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .tertiary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
+                                                                0.0, 7.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        FFAppState().marker =
+                                                            _model
+                                                                .googleMapsCenter;
+                                                        safeSetState(() {});
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (dialogContext) {
+                                                            return Dialog(
+                                                              elevation: 0,
+                                                              insetPadding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              backgroundColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              alignment: const AlignmentDirectional(
+                                                                      0.0, 0.0)
+                                                                  .resolve(
+                                                                      Directionality.of(
+                                                                          context)),
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    const SetLocationWidget(),
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                      text: 'Set Location',
+                                                      options: FFButtonOptions(
+                                                        height: 38.0,
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    16.0,
+                                                                    0.0,
+                                                                    16.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily),
+                                                                ),
+                                                        elevation: 0.0,
+                                                        borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primaryBackground,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
-                                                    elevation: 0.0,
-                                                    borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
                                                               .tertiary,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
                                                     ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
                                                   ),
                                                 ),
                                               ),
+                                            ),
+                                          ],
+                                        ),
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.asset(
+                                              'assets/images/pin-removebg-preview.png',
+                                              width: 40.0,
+                                              height: 40.0,
+                                              fit: BoxFit.cover,
+                                              alignment: const Alignment(0.0, 0.0),
                                             ),
                                           ),
                                         ),

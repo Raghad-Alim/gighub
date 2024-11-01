@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 's_pprofile_edit_copy_widget.dart' show SPprofileEditCopyWidget;
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,6 @@ class SPprofileEditCopyModel extends FlutterFlowModel<SPprofileEditCopyWidget> {
 
   final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
-
   // State field(s) for FirstName widget.
   FocusNode? firstNameFocusNode;
   TextEditingController? firstNameTextController;
@@ -67,6 +63,9 @@ class SPprofileEditCopyModel extends FlutterFlowModel<SPprofileEditCopyWidget> {
   FocusNode? bioFocusNode;
   TextEditingController? bioTextController;
   String? Function(BuildContext, String?)? bioTextControllerValidator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController9;

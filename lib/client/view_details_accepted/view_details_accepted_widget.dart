@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:map_launcher/map_launcher.dart' as $ml;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'view_details_accepted_model.dart';
@@ -368,41 +369,36 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 6.0),
-                      child: Text(
-                        'Location',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: FlutterFlowTheme.of(context).secondary,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await launchMap(
+                            mapType: $ml.MapType.google,
+                            location: widget.bookingLocation,
+                            title: '',
+                          );
+                        },
+                        child: Text(
+                          'Location',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).secondary,
+                                letterSpacing: 0.0,
+                                decoration: TextDecoration.underline,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
                       ),
                     ),
                   ],
-                ),
-              ),
-              Align(
-                alignment: const AlignmentDirectional(-1.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(56.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    valueOrDefault<String>(
-                      widget.bookingLocation?.toString(),
-                      'location',
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          fontSize: 17.0,
-                          letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                        ),
-                  ),
                 ),
               ),
               Padding(
@@ -467,77 +463,106 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                   ),
                 ),
               ),
-              Container(
-                width: 452.0,
-                height: 21.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBackground,
-                ),
-              ),
-              Opacity(
-                opacity: 0.7,
-                child: Divider(
-                  thickness: 1.0,
-                  color: FlutterFlowTheme.of(context).roseQuartz,
-                ),
-              ),
-              Align(
-                alignment: const AlignmentDirectional(-1.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(19.0, 17.0, 0.0, 0.0),
-                  child: Text(
-                    'Payment Summary',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          fontSize: 18.0,
-                          letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyMediumFamily),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 110.0, 0.0, 0.0),
+                child: Container(
+                  width: 452.0,
+                  height: 170.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    boxShadow: const [
+                      BoxShadow(
+                        blurRadius: 4.0,
+                        color: Color(0x33000000),
+                        offset: Offset(
+                          0.0,
+                          4.0,
                         ),
+                        spreadRadius: 6.0,
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(24.0),
+                  ),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, -0.26),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  19.0, 9.0, 0.0, 6.0),
+                              child: Text(
+                                'Subtotal',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      fontSize: 17.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  197.0, 9.0, 0.0, 6.0),
+                              child: Text(
+                                'SAR ${valueOrDefault<String>(
+                                  widget.bookingPrice?.toString(),
+                                  'price',
+                                )}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      fontSize: 17.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(-1.0, -0.7),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              19.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Payment Summary',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(19.0, 9.0, 0.0, 6.0),
-                    child: Text(
-                      'Subtotal',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(197.0, 9.0, 0.0, 6.0),
-                    child: Text(
-                      'SAR ${valueOrDefault<String>(
-                        widget.bookingPrice?.toString(),
-                        'price',
-                      )}',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                  ),
-                ],
               ),
             ],
           ),

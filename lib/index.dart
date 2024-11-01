@@ -79,15 +79,11 @@ export '/chat_pages/chat_page/chat_page_widget.dart' show ChatPageWidget;
 export '/all_registration/create_account_client_copy/create_account_client_copy_widget.dart'
     show CreateAccountClientCopyWidget;
 export '/client_location/client_location_widget.dart' show ClientLocationWidget;
-export '/client/youtube_request_page_copy/youtube_request_page_copy_widget.dart'
-    show YoutubeRequestPageCopyWidget;
 export '/chat_pages/chats/chats_widget.dart' show ChatsWidget;
 export '/chat_pages/chat_s_p/chat_s_p_widget.dart' show ChatSPWidget;
 export '/chat_pages/chats_client/chats_client_widget.dart'
     show ChatsClientWidget;
 export '/chat_pages/chatadd_s_p/chatadd_s_p_widget.dart' show ChataddSPWidget;
-export '/client/view_details_pay_copy/view_details_pay_copy_widget.dart'
-    show ViewDetailsPayCopyWidget;
 export '/service_provider/request_page_copy2/request_page_copy2_widget.dart'
     show RequestPageCopy2Widget;
 export '/chat_pages/chat_s_p_copy/chat_s_p_copy_widget.dart'
@@ -96,3 +92,7 @@ export '/chat_pages/chats_client_copy/chats_client_copy_widget.dart'
     show ChatsClientCopyWidget;
 export '/client/view_s_pprofile/view_s_pprofile_widget.dart'
     show ViewSPprofileWidget;
+export '/all_registration/addpayment/addpayment_widget.dart'
+    show AddpaymentWidget;
+export '/profiles_pages/addpayment_copy/addpayment_copy_widget.dart'
+    show AddpaymentCopyWidget;

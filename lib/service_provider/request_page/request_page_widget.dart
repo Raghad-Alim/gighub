@@ -5,6 +5,7 @@ import '/client/nav_bar_s_p_request/nav_bar_s_p_request_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -537,6 +538,11 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                                                             createBookingRecordData(
                                                       status: 'pay',
                                                     ));
+                                                    await actions
+                                                        .sendNotificationToClient(
+                                                      listViewBookingRecord
+                                                          .clientID!.id,
+                                                    );
                                                   },
                                                   text: 'Accept',
                                                   icon: const FaIcon(

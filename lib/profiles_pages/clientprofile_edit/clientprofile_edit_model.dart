@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'clientprofile_edit_widget.dart' show ClientprofileEditWidget;
 import 'package:flutter/material.dart';
 
@@ -48,6 +49,9 @@ class ClientprofileEditModel extends FlutterFlowModel<ClientprofileEditWidget> {
   FocusNode? sectorFocusNode2;
   TextEditingController? sectorTextController2;
   String? Function(BuildContext, String?)? sectorTextController2Validator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
 
   @override
   void initState(BuildContext context) {

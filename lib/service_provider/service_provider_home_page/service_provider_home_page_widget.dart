@@ -1,5 +1,4 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -7,8 +6,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/service_provider/nav_bar_s_p_home/nav_bar_s_p_home_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'service_provider_home_page_model.dart';
@@ -34,6 +35,11 @@ class _ServiceProviderHomePageWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => ServiceProviderHomePageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await actions.requestNotificationPermissions();
+    });
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
@@ -464,11 +470,20 @@ class _ServiceProviderHomePageWidgetState
                                                             AuthUserStreamWidget(
                                                           builder: (context) =>
                                                               Text(
-                                                            valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.aveageRating,
-                                                                    0.0)
-                                                                .toString(),
+                                                            formatNumber(
+                                                              functions.averagerating(
+                                                                  (currentUserDocument
+                                                                              ?.rating
+                                                                              .toList() ??
+                                                                          [])
+                                                                      .toList()),
+                                                              formatType:
+                                                                  FormatType
+                                                                      .decimal,
+                                                              decimalType:
+                                                                  DecimalType
+                                                                      .automatic,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -1100,31 +1115,6 @@ class _ServiceProviderHomePageWidgetState
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
-                                                              _model.addressReverse =
-                                                                  await GeoCodeReverseCall
-                                                                      .call(
-                                                                lat: functions
-                                                                    .latLongString(
-                                                                        listViewBookingRecord
-                                                                            .location!,
-                                                                        true),
-                                                                long: functions
-                                                                    .latLongString(
-                                                                        listViewBookingRecord
-                                                                            .location!,
-                                                                        false),
-                                                              );
-
-                                                              if ((_model
-                                                                      .addressReverse
-                                                                      ?.succeeded ??
-                                                                  true)) {
-                                                                _model.apiHasResponse =
-                                                                    true;
-                                                                safeSetState(
-                                                                    () {});
-                                                              }
-
                                                               context.pushNamed(
                                                                 'viewDetailsUpcomingPage',
                                                                 queryParameters:
@@ -1172,22 +1162,8 @@ class _ServiceProviderHomePageWidgetState
                                                                     ParamType
                                                                         .double,
                                                                   ),
-                                                                  'city':
-                                                                      serializeParam(
-                                                                    getJsonField(
-                                                                      (_model.addressReverse
-                                                                              ?.jsonBody ??
-                                                                          ''),
-                                                                      r'''$.address.city''',
-                                                                    ).toString(),
-                                                                    ParamType
-                                                                        .String,
-                                                                  ),
                                                                 }.withoutNulls,
                                                               );
-
-                                                              safeSetState(
-                                                                  () {});
                                                             },
                                                             text:
                                                                 'view details ',
@@ -1248,9 +1224,18 @@ class _ServiceProviderHomePageWidgetState
                                                       .fromSTEB(
                                                           0.0, 15.0, 0.0, 0.0),
                                                   child: FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                          'Button pressed ...');
+                                                    onPressed: () async {
+                                                      context.pushNamed(
+                                                        'chatSPCopy',
+                                                        queryParameters: {
+                                                          'bookingID':
+                                                              serializeParam(
+                                                            listViewBookingRecord
+                                                                .reference.id,
+                                                            ParamType.String,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
                                                     },
                                                     text: 'chat with client',
                                                     icon: const Icon(

@@ -17,7 +17,6 @@ class ViewDetailsUpcomingPageWidget extends StatefulWidget {
     required this.bookingClientLocation,
     required this.clientComment,
     required this.bookingPay,
-    required this.city,
   });
 
   final String? bookingID;
@@ -26,7 +25,6 @@ class ViewDetailsUpcomingPageWidget extends StatefulWidget {
   final LatLng? bookingClientLocation;
   final String? clientComment;
   final double? bookingPay;
-  final String? city;
 
   @override
   State<ViewDetailsUpcomingPageWidget> createState() =>
@@ -385,6 +383,7 @@ class _ViewDetailsUpcomingPageWidgetState
                                     .bodyMediumFamily,
                                 color: FlutterFlowTheme.of(context).secondary,
                                 letterSpacing: 0.0,
+                                decoration: TextDecoration.underline,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .bodyMediumFamily),
@@ -393,40 +392,6 @@ class _ViewDetailsUpcomingPageWidgetState
                       ),
                     ),
                   ],
-                ),
-              ),
-              Align(
-                alignment: const AlignmentDirectional(-1.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(56.0, 0.0, 0.0, 0.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await launchMap(
-                        mapType: $ml.MapType.google,
-                        location: widget.bookingClientLocation,
-                        title: 'Client Location',
-                      );
-                    },
-                    child: Text(
-                      valueOrDefault<String>(
-                        widget.city,
-                        '.',
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).tertiary,
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                  ),
                 ),
               ),
               Padding(
@@ -558,8 +523,16 @@ class _ViewDetailsUpcomingPageWidgetState
                 ],
               ),
               FFButtonWidget(
-                onPressed: () {
-                  print('Button pressed ...');
+                onPressed: () async {
+                  context.pushNamed(
+                    'chatSPCopy',
+                    queryParameters: {
+                      'bookingID': serializeParam(
+                        widget.bookingID,
+                        ParamType.String,
+                      ),
+                    }.withoutNulls,
+                  );
                 },
                 text: 'chat with client',
                 icon: const Icon(

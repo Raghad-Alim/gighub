@@ -11,7 +11,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'bookings_client_model.dart';
 export 'bookings_client_model.dart';
 
@@ -239,441 +238,403 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                 final listViewBookingRecord =
                                                     listViewBookingRecordList[
                                                         listViewIndex];
-                                                return Container(
-                                                  width: 100.0,
-                                                  height: 166.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                        blurRadius: 10.0,
-                                                        color:
-                                                            Color(0x33000000),
-                                                        offset: Offset(
-                                                          0.0,
-                                                          2.0,
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    context.pushNamed(
+                                                      'viewDetailsAccepted',
+                                                      queryParameters: {
+                                                        'bookingID':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .reference,
+                                                          ParamType
+                                                              .DocumentReference,
                                                         ),
-                                                      )
-                                                    ],
-                                                    borderRadius:
-                                                        const BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(10.0),
-                                                      bottomRight:
-                                                          Radius.circular(10.0),
-                                                      topLeft:
-                                                          Radius.circular(10.0),
-                                                      topRight:
-                                                          Radius.circular(10.0),
-                                                    ),
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        13.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              '#${listViewBookingRecord.reference.id}',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .titleSmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .roseQuartz,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                  ),
-                                                            ),
+                                                        'bookingDate':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .dateOfService,
+                                                          ParamType.DateTime,
+                                                        ),
+                                                        'bookingTime':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .dateOfService,
+                                                          ParamType.DateTime,
+                                                        ),
+                                                        'bookingComment':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .clientComment,
+                                                          ParamType.String,
+                                                        ),
+                                                        'bookingLocation':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .location,
+                                                          ParamType.LatLng,
+                                                        ),
+                                                        'bookingPrice':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .price
+                                                              .toDouble(),
+                                                          ParamType.double,
+                                                        ),
+                                                      }.withoutNulls,
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: 100.0,
+                                                    height: 166.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          blurRadius: 10.0,
+                                                          color:
+                                                              Color(0x33000000),
+                                                          offset: Offset(
+                                                            0.0,
+                                                            2.0,
                                                           ),
-                                                          Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    1.0, 1.0),
-                                                            child: Padding(
+                                                        )
+                                                      ],
+                                                      borderRadius:
+                                                          const BorderRadius.only(
+                                                        bottomLeft:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        bottomRight:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                10.0),
+                                                      ),
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Padding(
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           20.0,
-                                                                          10.0,
+                                                                          13.0,
                                                                           0.0,
                                                                           0.0),
-                                                              child: Container(
-                                                                width: 110.0,
-                                                                height: 30.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .success,
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .only(
-                                                                    bottomLeft:
-                                                                        Radius.circular(
-                                                                            11.0),
-                                                                    bottomRight:
-                                                                        Radius.circular(
-                                                                            11.0),
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            11.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            11.0),
-                                                                  ),
-                                                                ),
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        1.0,
-                                                                        0.0),
-                                                                child: Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    'Accepted',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodySmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodySmallFamily,
-                                                                          color:
-                                                                              const Color(0xFF103C37),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      20.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            listViewBookingRecord
-                                                                .serviceNmae,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .titleMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleMediumFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleMediumFamily),
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                1.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      1.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Stack(
-                                                            children: [
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Opacity(
-                                                                    opacity:
-                                                                        0.6,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              -1.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            20.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          '${dateTimeFormat(
-                                                                            "MMMMEEEEd",
-                                                                            listViewBookingRecord.dateOfService,
-                                                                            locale:
-                                                                                FFLocalizations.of(context).languageCode,
-                                                                          )}, ${dateTimeFormat(
-                                                                            "jm",
-                                                                            listViewBookingRecord.dateOfService,
-                                                                            locale:
-                                                                                FFLocalizations.of(context).languageCode,
-                                                                          )}',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodySmall
-                                                                              .override(
-                                                                                fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
-                                                                                letterSpacing: 0.0,
-                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        237.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    context
-                                                                        .pushNamed(
-                                                                      'viewDetailsAccepted',
-                                                                      queryParameters:
-                                                                          {
-                                                                        'bookingID':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .reference,
-                                                                          ParamType
-                                                                              .DocumentReference,
-                                                                        ),
-                                                                        'bookingDate':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .dateOfService,
-                                                                          ParamType
-                                                                              .DateTime,
-                                                                        ),
-                                                                        'bookingTime':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .dateOfService,
-                                                                          ParamType
-                                                                              .DateTime,
-                                                                        ),
-                                                                        'bookingComment':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .clientComment,
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                        'bookingLocation':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .location,
-                                                                          ParamType
-                                                                              .LatLng,
-                                                                        ),
-                                                                        'bookingPrice':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .price
-                                                                              .toDouble(),
-                                                                          ParamType
-                                                                              .double,
-                                                                        ),
-                                                                      }.withoutNulls,
-                                                                    );
-                                                                  },
-                                                                  text:
-                                                                      'view details ',
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16.0,
-                                                                            0.0,
-                                                                            16.0,
-                                                                            0.0),
-                                                                    iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBackground,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).tertiary,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                        ),
-                                                                    elevation:
-                                                                        0.0,
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    9.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: FFButtonWidget(
-                                                          onPressed: () async {
-                                                            context.pushNamed(
-                                                                'chatsClient');
-                                                          },
-                                                          text:
-                                                              'chat with service provider',
-                                                          icon: const Icon(
-                                                            Icons
-                                                                .chat_bubble_rounded,
-                                                            size: 27.0,
-                                                          ),
-                                                          options:
-                                                              FFButtonOptions(
-                                                            width: 332.0,
-                                                            height: 45.0,
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        0.0,
-                                                                        16.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .tertiary,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
+                                                              child: Text(
+                                                                '#${listViewBookingRecord.reference.id}',
+                                                                style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium
+                                                                    .titleSmall
                                                                     .override(
                                                                       fontFamily:
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
+                                                                              .titleSmallFamily,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .primaryBackground,
+                                                                          .roseQuartz,
+                                                                      fontSize:
+                                                                          12.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
                                                                     ),
-                                                            elevation: 0.0,
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryBackground,
-                                                              width: 1.0,
+                                                              ),
                                                             ),
-                                                            borderRadius:
-                                                                const BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(
-                                                                      10.0),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          10.0),
-                                                              topLeft: Radius
-                                                                  .circular(
-                                                                      10.0),
-                                                              topRight: Radius
-                                                                  .circular(
-                                                                      10.0),
+                                                            Align(
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      1.0, 1.0),
+                                                              child: Padding(
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        210.0,
+                                                                        10.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                                child:
+                                                                    Container(
+                                                                  width: 110.0,
+                                                                  height: 30.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .success,
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .only(
+                                                                      bottomLeft:
+                                                                          Radius.circular(
+                                                                              11.0),
+                                                                      bottomRight:
+                                                                          Radius.circular(
+                                                                              11.0),
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              11.0),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              11.0),
+                                                                    ),
+                                                                  ),
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          1.0,
+                                                                          0.0),
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      'Accepted',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodySmall
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).bodySmallFamily,
+                                                                            color:
+                                                                                const Color(0xFF103C37),
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  -1.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              listViewBookingRecord
+                                                                  .serviceNmae,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleMediumFamily,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .russianViolet,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).titleMediumFamily),
+                                                                  ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                        Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  1.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        1.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Stack(
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Opacity(
+                                                                      opacity:
+                                                                          0.6,
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              20.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Text(
+                                                                            '${dateTimeFormat(
+                                                                              "MMMMEEEEd",
+                                                                              listViewBookingRecord.dateOfService,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            )}, ${dateTimeFormat(
+                                                                              "jm",
+                                                                              listViewBookingRecord.dateOfService,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            )}',
+                                                                            style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
+                                                                                  letterSpacing: 0.0,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    const Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          265.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          9.0),
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .arrow_forward_ios,
+                                                                        color: Color(
+                                                                            0xFFC9C1C1),
+                                                                        size:
+                                                                            18.0,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      9.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              context.pushNamed(
+                                                                  'chatsClientCopy');
+                                                            },
+                                                            text:
+                                                                'chat with service provider',
+                                                            icon: const Icon(
+                                                              Icons
+                                                                  .chat_bubble_rounded,
+                                                              size: 27.0,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 332.0,
+                                                              height: 45.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .tertiary,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryBackground,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                      ),
+                                                              elevation: 0.0,
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .only(
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                                bottomRight: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -733,505 +694,487 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                 final listViewBookingRecord =
                                                     listViewBookingRecordList[
                                                         listViewIndex];
-                                                return Container(
-                                                  width: 100.0,
-                                                  height: 177.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                        blurRadius: 10.0,
-                                                        color:
-                                                            Color(0x33000000),
-                                                        offset: Offset(
-                                                          0.0,
-                                                          2.0,
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    context.pushNamed(
+                                                      'viewDetailsPay',
+                                                      queryParameters: {
+                                                        'bookingIDPay':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .reference,
+                                                          ParamType
+                                                              .DocumentReference,
                                                         ),
-                                                      )
-                                                    ],
-                                                    borderRadius:
-                                                        const BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(10.0),
-                                                      bottomRight:
-                                                          Radius.circular(10.0),
-                                                      topLeft:
-                                                          Radius.circular(10.0),
-                                                      topRight:
-                                                          Radius.circular(10.0),
-                                                    ),
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        13.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              '#${listViewBookingRecord.reference.id}',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .titleSmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .roseQuartz,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                  ),
-                                                            ),
+                                                        'bookingTimePay':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .dateOfService,
+                                                          ParamType.DateTime,
+                                                        ),
+                                                        'bookingDatePay':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .dateOfService,
+                                                          ParamType.DateTime,
+                                                        ),
+                                                        'commentPay':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .clientComment,
+                                                          ParamType.String,
+                                                        ),
+                                                        'locationPay':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .location,
+                                                          ParamType.LatLng,
+                                                        ),
+                                                        'pricePay':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .price
+                                                              .toDouble(),
+                                                          ParamType.double,
+                                                        ),
+                                                        'clientEmail':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .email,
+                                                          ParamType.String,
+                                                        ),
+                                                        'clientFirstName':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .clientFirstName,
+                                                          ParamType.String,
+                                                        ),
+                                                        'clientLastName':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .clientLastName,
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: 100.0,
+                                                    height: 177.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          blurRadius: 10.0,
+                                                          color:
+                                                              Color(0x33000000),
+                                                          offset: Offset(
+                                                            0.0,
+                                                            2.0,
                                                           ),
-                                                          Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    1.0, 1.0),
-                                                            child: Padding(
+                                                        )
+                                                      ],
+                                                      borderRadius:
+                                                          const BorderRadius.only(
+                                                        bottomLeft:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        bottomRight:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                10.0),
+                                                      ),
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Padding(
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           20.0,
-                                                                          10.0,
+                                                                          13.0,
                                                                           0.0,
                                                                           0.0),
-                                                              child: Container(
-                                                                width: 110.0,
-                                                                height: 30.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .success,
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .only(
-                                                                    bottomLeft:
-                                                                        Radius.circular(
-                                                                            11.0),
-                                                                    bottomRight:
-                                                                        Radius.circular(
-                                                                            11.0),
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            11.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            11.0),
-                                                                  ),
-                                                                ),
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        1.0,
-                                                                        0.0),
-                                                                child: Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    'Accepted',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodySmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodySmallFamily,
-                                                                          color:
-                                                                              const Color(0xFF103C37),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      20.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            listViewBookingRecord
-                                                                .serviceNmae,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .titleMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleMediumFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .accent3,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleMediumFamily),
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                1.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      1.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Stack(
-                                                            children: [
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Opacity(
-                                                                    opacity:
-                                                                        0.6,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              -1.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            20.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          '${dateTimeFormat(
-                                                                            "MMMMEEEEd",
-                                                                            listViewBookingRecord.dateOfService,
-                                                                            locale:
-                                                                                FFLocalizations.of(context).languageCode,
-                                                                          )}, ${dateTimeFormat(
-                                                                            "jm",
-                                                                            listViewBookingRecord.dateOfService,
-                                                                            locale:
-                                                                                FFLocalizations.of(context).languageCode,
-                                                                          )}',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodySmall
-                                                                              .override(
-                                                                                fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
-                                                                                letterSpacing: 0.0,
-                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Container(
-                                                                decoration:
-                                                                    const BoxDecoration(),
-                                                                child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          237.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      FFButtonWidget(
-                                                                    onPressed:
-                                                                        () async {
-                                                                      context
-                                                                          .pushNamed(
-                                                                        'viewDetailsPay',
-                                                                        queryParameters:
-                                                                            {
-                                                                          'bookingIDPay':
-                                                                              serializeParam(
-                                                                            listViewBookingRecord.reference,
-                                                                            ParamType.DocumentReference,
-                                                                          ),
-                                                                          'bookingTimePay':
-                                                                              serializeParam(
-                                                                            listViewBookingRecord.dateOfService,
-                                                                            ParamType.DateTime,
-                                                                          ),
-                                                                          'bookingDatePay':
-                                                                              serializeParam(
-                                                                            listViewBookingRecord.dateOfService,
-                                                                            ParamType.DateTime,
-                                                                          ),
-                                                                          'commentPay':
-                                                                              serializeParam(
-                                                                            listViewBookingRecord.clientComment,
-                                                                            ParamType.String,
-                                                                          ),
-                                                                          'locationPay':
-                                                                              serializeParam(
-                                                                            listViewBookingRecord.location,
-                                                                            ParamType.LatLng,
-                                                                          ),
-                                                                          'pricePay':
-                                                                              serializeParam(
-                                                                            listViewBookingRecord.price.toDouble(),
-                                                                            ParamType.double,
-                                                                          ),
-                                                                          'clientEmail':
-                                                                              serializeParam(
-                                                                            listViewBookingRecord.email,
-                                                                            ParamType.String,
-                                                                          ),
-                                                                          'clientFirstName':
-                                                                              serializeParam(
-                                                                            listViewBookingRecord.clientFirstName,
-                                                                            ParamType.String,
-                                                                          ),
-                                                                          'clientLastName':
-                                                                              serializeParam(
-                                                                            listViewBookingRecord.clientLastName,
-                                                                            ParamType.String,
-                                                                          ),
-                                                                        }.withoutNulls,
-                                                                      );
-                                                                    },
-                                                                    text:
-                                                                        'view details ',
-                                                                    options:
-                                                                        FFButtonOptions(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          0.0),
-                                                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBackground,
-                                                                      textStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).tertiary,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            useGoogleFonts:
-                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                          ),
-                                                                      elevation:
-                                                                          0.0,
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .tertiary,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    9.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: FFButtonWidget(
-                                                          onPressed: () async {
-                                                            context.pushNamed(
-                                                              'viewDetailsPay',
-                                                              queryParameters: {
-                                                                'bookingTimePay':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .dateOfService,
-                                                                  ParamType
-                                                                      .DateTime,
-                                                                ),
-                                                                'bookingDatePay':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .dateOfService,
-                                                                  ParamType
-                                                                      .DateTime,
-                                                                ),
-                                                                'commentPay':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .clientComment,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'locationPay':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .location,
-                                                                  ParamType
-                                                                      .LatLng,
-                                                                ),
-                                                                'pricePay':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .price
-                                                                      .toDouble(),
-                                                                  ParamType
-                                                                      .double,
-                                                                ),
-                                                                'clientEmail':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .email,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'clientFirstName':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .clientFirstName,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'clientLastName':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .clientLastName,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'bookingIDPay':
-                                                                    serializeParam(
-                                                                  listViewBookingRecord
-                                                                      .reference,
-                                                                  ParamType
-                                                                      .DocumentReference,
-                                                                ),
-                                                              }.withoutNulls,
-                                                            );
-                                                          },
-                                                          text: 'pay now',
-                                                          options:
-                                                              FFButtonOptions(
-                                                            width: 332.0,
-                                                            height: 45.0,
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        0.0,
-                                                                        16.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .success,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
+                                                              child: Text(
+                                                                '#${listViewBookingRecord.reference.id}',
+                                                                style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium
+                                                                    .titleSmall
                                                                     .override(
                                                                       fontFamily:
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
+                                                                              .titleSmallFamily,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .primaryBackground,
+                                                                          .roseQuartz,
+                                                                      fontSize:
+                                                                          12.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
                                                                     ),
-                                                            elevation: 0.0,
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .success,
-                                                              width: 1.0,
+                                                              ),
                                                             ),
-                                                            borderRadius:
-                                                                const BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(
-                                                                      10.0),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          10.0),
-                                                              topLeft: Radius
-                                                                  .circular(
-                                                                      10.0),
-                                                              topRight: Radius
-                                                                  .circular(
-                                                                      10.0),
+                                                            Align(
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      1.0, 1.0),
+                                                              child: Padding(
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        210.0,
+                                                                        10.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                                child:
+                                                                    Container(
+                                                                  width: 110.0,
+                                                                  height: 30.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .success,
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .only(
+                                                                      bottomLeft:
+                                                                          Radius.circular(
+                                                                              11.0),
+                                                                      bottomRight:
+                                                                          Radius.circular(
+                                                                              11.0),
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              11.0),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              11.0),
+                                                                    ),
+                                                                  ),
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          1.0,
+                                                                          0.0),
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      'Accepted',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodySmall
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).bodySmallFamily,
+                                                                            color:
+                                                                                const Color(0xFF103C37),
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  -1.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              listViewBookingRecord
+                                                                  .serviceNmae,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleMediumFamily,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .russianViolet,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).titleMediumFamily),
+                                                                  ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                        Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  1.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        1.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Stack(
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Opacity(
+                                                                      opacity:
+                                                                          0.6,
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              20.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Text(
+                                                                            '${dateTimeFormat(
+                                                                              "MMMMEEEEd",
+                                                                              listViewBookingRecord.dateOfService,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            )}, ${dateTimeFormat(
+                                                                              "jm",
+                                                                              listViewBookingRecord.dateOfService,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            )}',
+                                                                            style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
+                                                                                  letterSpacing: 0.0,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    const Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          265.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          9.0),
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .arrow_forward_ios,
+                                                                        color: Color(
+                                                                            0xFFC9C1C1),
+                                                                        size:
+                                                                            18.0,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Container(
+                                                                  decoration:
+                                                                      const BoxDecoration(),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      9.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              context.pushNamed(
+                                                                'viewDetailsPay',
+                                                                queryParameters:
+                                                                    {
+                                                                  'bookingTimePay':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .dateOfService,
+                                                                    ParamType
+                                                                        .DateTime,
+                                                                  ),
+                                                                  'bookingDatePay':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .dateOfService,
+                                                                    ParamType
+                                                                        .DateTime,
+                                                                  ),
+                                                                  'commentPay':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .clientComment,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'locationPay':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .location,
+                                                                    ParamType
+                                                                        .LatLng,
+                                                                  ),
+                                                                  'pricePay':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .price
+                                                                        .toDouble(),
+                                                                    ParamType
+                                                                        .double,
+                                                                  ),
+                                                                  'clientEmail':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .email,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'clientFirstName':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .clientFirstName,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'clientLastName':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .clientLastName,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'bookingIDPay':
+                                                                      serializeParam(
+                                                                    listViewBookingRecord
+                                                                        .reference,
+                                                                    ParamType
+                                                                        .DocumentReference,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                              );
+                                                            },
+                                                            text: 'pay now',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 332.0,
+                                                              height: 45.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .success,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryBackground,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                      ),
+                                                              elevation: 0.0,
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .success,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .only(
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                                bottomRight: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -1291,388 +1234,349 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                 final listViewBookingRecord =
                                                     listViewBookingRecordList[
                                                         listViewIndex];
-                                                return Container(
-                                                  width: 100.0,
-                                                  height: 175.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                        blurRadius: 10.0,
-                                                        color:
-                                                            Color(0x33000000),
-                                                        offset: Offset(
-                                                          0.0,
-                                                          2.0,
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    context.pushNamed(
+                                                      'viewDetailsPending',
+                                                      queryParameters: {
+                                                        'bookingID':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .reference.id,
+                                                          ParamType.String,
                                                         ),
-                                                      )
-                                                    ],
-                                                    borderRadius:
-                                                        const BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(10.0),
-                                                      bottomRight:
-                                                          Radius.circular(10.0),
-                                                      topLeft:
-                                                          Radius.circular(10.0),
-                                                      topRight:
-                                                          Radius.circular(10.0),
-                                                    ),
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        13.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              '#${listViewBookingRecord.reference.id}',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .titleSmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .roseQuartz,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                  ),
-                                                            ),
+                                                        'bookingTime':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .dateOfService,
+                                                          ParamType.DateTime,
+                                                        ),
+                                                        'bookingDate':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .dateOfService,
+                                                          ParamType.DateTime,
+                                                        ),
+                                                        'comment':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .clientComment,
+                                                          ParamType.String,
+                                                        ),
+                                                        'location':
+                                                            serializeParam(
+                                                          listViewBookingRecord
+                                                              .location,
+                                                          ParamType.LatLng,
+                                                        ),
+                                                        'price': serializeParam(
+                                                          listViewBookingRecord
+                                                              .price
+                                                              .toDouble(),
+                                                          ParamType.double,
+                                                        ),
+                                                      }.withoutNulls,
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: 100.0,
+                                                    height: 175.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          blurRadius: 10.0,
+                                                          color:
+                                                              Color(0x33000000),
+                                                          offset: Offset(
+                                                            0.0,
+                                                            2.0,
                                                           ),
-                                                          Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    1.0, 1.0),
-                                                            child: Padding(
+                                                        )
+                                                      ],
+                                                      borderRadius:
+                                                          const BorderRadius.only(
+                                                        bottomLeft:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        bottomRight:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                10.0),
+                                                      ),
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Padding(
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           20.0,
-                                                                          10.0,
+                                                                          13.0,
                                                                           0.0,
                                                                           0.0),
-                                                              child: Container(
-                                                                width: 110.0,
-                                                                height: 30.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .warning,
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .only(
-                                                                    bottomLeft:
-                                                                        Radius.circular(
-                                                                            11.0),
-                                                                    bottomRight:
-                                                                        Radius.circular(
-                                                                            11.0),
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            11.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            11.0),
-                                                                  ),
-                                                                ),
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        1.0,
+                                                              child: Text(
+                                                                '#${listViewBookingRecord.reference.id}',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .roseQuartz,
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      1.0, 1.0),
+                                                              child: Padding(
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        210.0,
+                                                                        10.0,
+                                                                        0.0,
                                                                         0.0),
-                                                                child: Align(
+                                                                child:
+                                                                    Container(
+                                                                  width: 110.0,
+                                                                  height: 30.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .warning,
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .only(
+                                                                      bottomLeft:
+                                                                          Radius.circular(
+                                                                              11.0),
+                                                                      bottomRight:
+                                                                          Radius.circular(
+                                                                              11.0),
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              11.0),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              11.0),
+                                                                    ),
+                                                                  ),
                                                                   alignment:
                                                                       const AlignmentDirectional(
-                                                                          0.0,
+                                                                          1.0,
                                                                           0.0),
-                                                                  child: Text(
-                                                                    'Pending',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodySmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodySmallFamily,
-                                                                          color:
-                                                                              const Color(0xFF103C37),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                        ),
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      'Pending',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodySmall
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).bodySmallFamily,
+                                                                            color:
+                                                                                const Color(0xFF103C37),
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
+                                                                          ),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      20.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            listViewBookingRecord
-                                                                .serviceNmae,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .titleMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleMediumFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .accent3,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleMediumFamily),
-                                                                ),
-                                                          ),
+                                                          ],
                                                         ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                1.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      1.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Stack(
-                                                            children: [
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Opacity(
-                                                                    opacity:
-                                                                        0.6,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              -1.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            20.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          '${dateTimeFormat(
-                                                                            "MMMMEEEEd",
-                                                                            listViewBookingRecord.dateOfService,
-                                                                            locale:
-                                                                                FFLocalizations.of(context).languageCode,
-                                                                          )}, ${dateTimeFormat(
-                                                                            "jm",
-                                                                            listViewBookingRecord.dateOfService,
-                                                                            locale:
-                                                                                FFLocalizations.of(context).languageCode,
-                                                                          )}',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodySmall
-                                                                              .override(
-                                                                                fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
-                                                                                letterSpacing: 0.0,
-                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                        Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  -1.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        237.0,
+                                                                        20.0,
                                                                         0.0,
                                                                         0.0,
                                                                         0.0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    context
-                                                                        .pushNamed(
-                                                                      'viewDetailsPending',
-                                                                      queryParameters:
-                                                                          {
-                                                                        'bookingID':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .reference
-                                                                              .id,
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                        'bookingTime':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .dateOfService,
-                                                                          ParamType
-                                                                              .DateTime,
-                                                                        ),
-                                                                        'bookingDate':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .dateOfService,
-                                                                          ParamType
-                                                                              .DateTime,
-                                                                        ),
-                                                                        'comment':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .clientComment,
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                        'location':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .location,
-                                                                          ParamType
-                                                                              .LatLng,
-                                                                        ),
-                                                                        'price':
-                                                                            serializeParam(
-                                                                          listViewBookingRecord
-                                                                              .price
-                                                                              .toDouble(),
-                                                                          ParamType
-                                                                              .double,
-                                                                        ),
-                                                                      }.withoutNulls,
-                                                                    );
-                                                                  },
-                                                                  text:
-                                                                      'view details ',
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16.0,
-                                                                            0.0,
-                                                                            16.0,
-                                                                            0.0),
-                                                                    iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                            child: Text(
+                                                              listViewBookingRecord
+                                                                  .serviceNmae,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleMediumFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryBackground,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).tertiary,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                        ),
-                                                                    elevation:
+                                                                        .russianViolet,
+                                                                    letterSpacing:
                                                                         0.0,
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).titleMediumFamily),
                                                                   ),
-                                                                ),
-                                                              ),
-                                                            ],
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      Builder(
-                                                        builder: (context) =>
-                                                            Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      9.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              await showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (dialogContext) {
-                                                                  return Dialog(
-                                                                    elevation:
-                                                                        0,
-                                                                    insetPadding:
-                                                                        EdgeInsets
-                                                                            .zero,
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
-                                                                    child:
-                                                                        WebViewAware(
+                                                        Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  1.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        1.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Stack(
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Opacity(
+                                                                      opacity:
+                                                                          0.6,
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              20.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Text(
+                                                                            '${dateTimeFormat(
+                                                                              "MMMMEEEEd",
+                                                                              listViewBookingRecord.dateOfService,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            )}, ${dateTimeFormat(
+                                                                              "jm",
+                                                                              listViewBookingRecord.dateOfService,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            )}',
+                                                                            style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
+                                                                                  letterSpacing: 0.0,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    const Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          265.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          9.0),
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .arrow_forward_ios,
+                                                                        color: Color(
+                                                                            0xFFC9C1C1),
+                                                                        size:
+                                                                            18.0,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Builder(
+                                                          builder: (context) =>
+                                                              Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        9.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child:
+                                                                FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (dialogContext) {
+                                                                    return Dialog(
+                                                                      elevation:
+                                                                          0,
+                                                                      insetPadding:
+                                                                          EdgeInsets
+                                                                              .zero,
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      alignment: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(context)),
                                                                       child:
                                                                           GestureDetector(
                                                                         onTap: () =>
@@ -1683,77 +1587,79 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                               listViewBookingRecord.reference,
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              );
-                                                            },
-                                                            text:
-                                                                'cancel booking ',
-                                                            options:
-                                                                FFButtonOptions(
-                                                              width: 332.0,
-                                                              height: 45.0,
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          0.0),
-                                                              iconPadding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
-                                                                        letterSpacing:
+                                                                    );
+                                                                  },
+                                                                );
+                                                              },
+                                                              text:
+                                                                  'cancel booking ',
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                width: 332.0,
+                                                                height: 45.0,
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        16.0,
+                                                                        0.0,
+                                                                        16.0,
+                                                                        0.0),
+                                                                iconPadding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                      ),
-                                                              elevation: 0.0,
-                                                              borderSide:
-                                                                  BorderSide(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
-                                                                width: 1.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        10.0),
-                                                                bottomRight: Radius
-                                                                    .circular(
-                                                                        10.0),
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        10.0),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        10.0),
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryBackground,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                                elevation: 0.0,
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
+                                                                  width: 1.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    const BorderRadius
+                                                                        .only(
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                          10.0),
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                          10.0),
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          10.0),
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          10.0),
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -2075,6 +1981,8 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .roseQuartz,
+                                                                      fontSize:
+                                                                          12.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts: GoogleFonts
@@ -2110,9 +2018,12 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                             .titleMediumFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .accent3,
+                                                                        .russianViolet,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
@@ -2380,6 +2291,8 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .roseQuartz,
+                                                                      fontSize:
+                                                                          12.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts: GoogleFonts
@@ -2415,9 +2328,12 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                             .titleMediumFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .accent3,
+                                                                        .russianViolet,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
@@ -2608,6 +2524,8 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .roseQuartz,
+                                                                      fontSize:
+                                                                          12.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts: GoogleFonts
@@ -2624,7 +2542,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                               child: Padding(
                                                                 padding: const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        20.0,
+                                                                        210.0,
                                                                         10.0,
                                                                         0.0,
                                                                         0.0),
@@ -2712,9 +2630,12 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                             .titleMediumFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .accent3,
+                                                                        .russianViolet,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
@@ -2905,6 +2826,8 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .roseQuartz,
+                                                                      fontSize:
+                                                                          12.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts: GoogleFonts
@@ -2921,7 +2844,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                               child: Padding(
                                                                 padding: const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        20.0,
+                                                                        210.0,
                                                                         10.0,
                                                                         0.0,
                                                                         0.0),
@@ -3009,9 +2932,12 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                             .titleMediumFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .accent3,
+                                                                        .russianViolet,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(

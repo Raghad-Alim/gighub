@@ -75,14 +75,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? const ClientloginduppppppWidget()
+          ? const ServiceProviderHomePageWidget()
           : const LoginpageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? const ClientloginduppppppWidget()
+              ? const ServiceProviderHomePageWidget()
               : const LoginpageWidget(),
         ),
         FFRoute(
@@ -112,7 +112,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'searchClient',
           path: '/searchClient',
-          builder: (context, params) => const SearchClientWidget(),
+          builder: (context, params) => SearchClientWidget(
+            filters: params.getParam(
+              'filters',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'createAccountSP',
@@ -398,10 +403,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'bookingPay',
               ParamType.double,
             ),
-            city: params.getParam(
-              'city',
-              ParamType.String,
-            ),
           ),
         ),
         FFRoute(
@@ -581,30 +582,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ClientLocationWidget(),
         ),
         FFRoute(
-          name: 'YoutubeRequestPageCopy',
-          path: '/youtubeRequestPageCopy',
-          builder: (context, params) => YoutubeRequestPageCopyWidget(
-            spRef: params.getParam(
-              'spRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['user'],
-            ),
-            sector: params.getParam(
-              'sector',
-              ParamType.String,
-            ),
-            price: params.getParam(
-              'price',
-              ParamType.int,
-            ),
-            service: params.getParam(
-              'service',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'chats',
           path: '/chats',
           builder: (context, params) => ChatsWidget(
@@ -640,50 +617,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'chataddSP',
           path: '/chataddSP',
           builder: (context, params) => const ChataddSPWidget(),
-        ),
-        FFRoute(
-          name: 'viewDetailsPayCopy',
-          path: '/viewDetailsPayCopy',
-          builder: (context, params) => ViewDetailsPayCopyWidget(
-            bookingIDPay: params.getParam(
-              'bookingIDPay',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['booking'],
-            ),
-            bookingTimePay: params.getParam(
-              'bookingTimePay',
-              ParamType.DateTime,
-            ),
-            bookingDatePay: params.getParam(
-              'bookingDatePay',
-              ParamType.DateTime,
-            ),
-            commentPay: params.getParam(
-              'commentPay',
-              ParamType.String,
-            ),
-            locationPay: params.getParam(
-              'locationPay',
-              ParamType.LatLng,
-            ),
-            pricePay: params.getParam(
-              'pricePay',
-              ParamType.double,
-            ),
-            clientEmail: params.getParam(
-              'clientEmail',
-              ParamType.String,
-            ),
-            clientFirstName: params.getParam(
-              'clientFirstName',
-              ParamType.String,
-            ),
-            clientLastName: params.getParam(
-              'clientLastName',
-              ParamType.String,
-            ),
-          ),
         ),
         FFRoute(
           name: 'requestPageCopy2',
@@ -724,6 +657,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.Document,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'Addpayment',
+          path: '/Addpayment',
+          builder: (context, params) => const AddpaymentWidget(),
+        ),
+        FFRoute(
+          name: 'AddpaymentCopy',
+          path: '/AddpaymentCopy',
+          builder: (context, params) => const AddpaymentCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

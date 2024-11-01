@@ -3,7 +3,10 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'view_s_pprofile_model.dart';
@@ -103,7 +106,7 @@ class _ViewSPprofileWidgetState extends State<ViewSPprofileWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: Container(
                     width: 351.0,
-                    height: 400.0,
+                    height: 462.0,
                     decoration: BoxDecoration(
                       color: const Color(0xAAE5E3E3),
                       borderRadius: BorderRadius.circular(8.0),
@@ -246,32 +249,39 @@ class _ViewSPprofileWidgetState extends State<ViewSPprofileWidget> {
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 10.0, 0.0, 0.0),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              widget.parameterProfile
-                                                  ?.aveageRating
-                                                  .toString(),
-                                              '0.0',
+                                          child: AuthUserStreamWidget(
+                                            builder: (context) => Text(
+                                              formatNumber(
+                                                functions.averagerating(
+                                                    (currentUserDocument?.rating
+                                                                .toList() ??
+                                                            [])
+                                                        .toList()),
+                                                formatType: FormatType.decimal,
+                                                decimalType:
+                                                    DecimalType.automatic,
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    useGoogleFonts: GoogleFonts
+                                                            .asMap()
+                                                        .containsKey(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily),
+                                                  ),
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .tertiary,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
                                           ),
                                         ),
                                       ],
@@ -615,6 +625,158 @@ class _ViewSPprofileWidgetState extends State<ViewSPprofileWidget> {
                             ],
                           ),
                         ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            RichText(
+                              textScaler: MediaQuery.of(context).textScaler,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'This Service Provider accept :',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
+                                  )
+                                ],
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            if (widget.parameterProfile?.cash == false)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 0.0, 0.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.moneyBillWave,
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  size: 24.0,
+                                ),
+                              ),
+                            if (widget.parameterProfile?.cash ?? true)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Cash',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiary,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            if (widget.parameterProfile!.cash &&
+                                widget.parameterProfile!.sTCpay)
+                              Text(
+                                ' and ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
+                            if (widget.parameterProfile?.sTCpay == false)
+                              RichText(
+                                textScaler: MediaQuery.of(context).textScaler,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'STC',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiary,
+                                            fontSize: 20.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
+                                    ),
+                                    TextSpan(
+                                      text: 'pay',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .success,
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
+                                    )
+                                  ],
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -626,6 +788,59 @@ class _ViewSPprofileWidgetState extends State<ViewSPprofileWidget> {
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
+              ),
+              FFButtonWidget(
+                onPressed: () async {
+                  context.pushNamed(
+                    'YoutubeRequestPage',
+                    queryParameters: {
+                      'spRef': serializeParam(
+                        widget.parameterProfile?.reference,
+                        ParamType.DocumentReference,
+                      ),
+                      'sector': serializeParam(
+                        widget.parameterProfile?.sector,
+                        ParamType.String,
+                      ),
+                      'price': serializeParam(
+                        widget.parameterProfile?.price,
+                        ParamType.int,
+                      ),
+                      'service': serializeParam(
+                        widget.parameterProfile?.sector,
+                        ParamType.String,
+                      ),
+                    }.withoutNulls,
+                  );
+                },
+                text: 'Send request',
+                options: FFButtonOptions(
+                  width: 350.0,
+                  height: 40.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).tertiary,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).titleSmallFamily,
+                        color: Colors.white,
+                        letterSpacing: 0.0,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).titleSmallFamily),
+                      ),
+                  elevation: 0.0,
+                  borderSide: const BorderSide(
+                    width: 1.5,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              ListView(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                children: const [],
               ),
             ],
           ),

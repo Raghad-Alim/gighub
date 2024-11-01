@@ -40,10 +40,10 @@
               "client_type": 3
             },
             {
-              "client_id": "316503176889-93qp85bual4s0gliv73ubt8u5p9rc3d2.apps.googleusercontent.com",
+              "client_id": "316503176889-6689j5ob0aj9nqq9ujdeqm6fo6ulqea2.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mycompany.gighub"
+                "bundle_id": "com.android.gighub"
               }
             }
           ]
@@ -76,10 +76,10 @@
               "client_type": 3
             },
             {
-              "client_id": "316503176889-93qp85bual4s0gliv73ubt8u5p9rc3d2.apps.googleusercontent.com",
+              "client_id": "316503176889-6689j5ob0aj9nqq9ujdeqm6fo6ulqea2.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mycompany.gighub"
+                "bundle_id": "com.android.gighub"
               }
             }
           ]

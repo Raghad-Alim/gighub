@@ -49,9 +49,13 @@ class SPprofileModel extends FlutterFlowModel<SPprofileWidget> {
   TextEditingController? bioTextController;
   String? Function(BuildContext, String?)? bioTextControllerValidator;
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
+  FocusNode? textFieldFocusNode1;
   TextEditingController? textController9;
   String? Function(BuildContext, String?)? textController9Validator;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode2;
+  TextEditingController? textController10;
+  String? Function(BuildContext, String?)? textController10Validator;
   // Model for NavBarSP-profile component.
   late NavBarSPProfileModel navBarSPProfileModel;
 
@@ -86,8 +90,11 @@ class SPprofileModel extends FlutterFlowModel<SPprofileWidget> {
     bioFocusNode?.dispose();
     bioTextController?.dispose();
 
-    textFieldFocusNode?.dispose();
+    textFieldFocusNode1?.dispose();
     textController9?.dispose();
+
+    textFieldFocusNode2?.dispose();
+    textController10?.dispose();
 
     navBarSPProfileModel.dispose();
   }
