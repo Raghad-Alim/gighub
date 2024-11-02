@@ -181,7 +181,7 @@ class _CancelBookingClientDialogCopyWidgetState
                         onPressed: () async {
                           await widget.bookingRefrence!
                               .update(createBookingRecordData(
-                            status: 'rate',
+                            status: 'completed',
                           ));
                           Navigator.pop(context);
                         },

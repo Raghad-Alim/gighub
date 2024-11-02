@@ -104,25 +104,27 @@ class _CancelBookingClientDialogWidgetState
                           'Confirm cancellation?',
                           textAlign: TextAlign.center,
                           style: FlutterFlowTheme.of(context)
-                              .headlineMedium
+                              .bodyMedium
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineMediumFamily,
+                                    .bodyMediumFamily,
+                                fontSize: 29.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FontWeight.w600,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
-                                        .headlineMediumFamily),
+                                        .bodyMediumFamily),
                               ),
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 0.0),
                           child: Text(
                             'Are you sure you want to cancel your request?\nThis action cannot be undone.',
-                            textAlign: TextAlign.start,
+                            textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(

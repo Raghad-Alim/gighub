@@ -115,11 +115,6 @@ final parametersBuilderMap =
         },
       ),
   'Clientprofile': ParameterData.none(),
-  'searchClient': (data) async => ParameterData(
-        allParams: {
-          'filters': getParameter<String>(data, 'filters'),
-        },
-      ),
   'createAccountSP': (data) async => ParameterData(
         allParams: {
           'marker': getParameter<LatLng>(data, 'marker'),
@@ -136,19 +131,10 @@ final parametersBuilderMap =
   'BookingSP': ParameterData.none(),
   'resetpassaftersending': ParameterData.none(),
   'verificationMessageClient': ParameterData.none(),
-  'SPlocationfromHP': ParameterData.none(),
   'loginpage': ParameterData.none(),
   'errormsg': ParameterData.none(),
   'clientPinLocation': ParameterData.none(),
   'CreateAvailability': ParameterData.none(),
-  'requestPageCopy': (data) async => ParameterData(
-        allParams: {
-          'price': getParameter<double>(data, 'price'),
-          'serviceProviderReference':
-              getParameter<DocumentReference>(data, 'serviceProviderReference'),
-          'sector': getParameter<String>(data, 'sector'),
-        },
-      ),
   'List03UserSelectCopy2': (data) async => ParameterData(
         allParams: {
           'isSunday': getParameter<bool>(data, 'isSunday'),
@@ -169,6 +155,7 @@ final parametersBuilderMap =
           'bookingComment': getParameter<String>(data, 'bookingComment'),
           'bookingLocation': getParameter<LatLng>(data, 'bookingLocation'),
           'bookingPrice': getParameter<double>(data, 'bookingPrice'),
+          'spRef': getParameter<DocumentReference>(data, 'spRef'),
         },
       ),
   'viewDetailsPending': (data) async => ParameterData(
@@ -179,6 +166,7 @@ final parametersBuilderMap =
           'comment': getParameter<String>(data, 'comment'),
           'location': getParameter<LatLng>(data, 'location'),
           'price': getParameter<double>(data, 'price'),
+          'spRef': getParameter<DocumentReference>(data, 'spRef'),
         },
       ),
   'viewDetailsUpcomingPage': (data) async => ParameterData(
@@ -224,10 +212,6 @@ final parametersBuilderMap =
   'CreateAvailabilitySP2Copy2': (data) async => const ParameterData(
         allParams: {},
       ),
-  'ClientlLoginpageCopyCopy': ParameterData.none(),
-  'danah': ParameterData.none(),
-  'dupplogin': ParameterData.none(),
-  'clientlogindupppppp': ParameterData.none(),
   'SPprofileEditCopy': ParameterData.none(),
   'chatPage': (data) async => ParameterData(
         allParams: {
@@ -242,22 +226,6 @@ final parametersBuilderMap =
         },
       ),
   'clientLocation': ParameterData.none(),
-  'chats': (data) async => ParameterData(
-        allParams: {
-          'bookingID': getParameter<String>(data, 'bookingID'),
-        },
-      ),
-  'chatSP': (data) async => ParameterData(
-        allParams: {
-          'bookingID': getParameter<String>(data, 'bookingID'),
-        },
-      ),
-  'chatsClient': (data) async => ParameterData(
-        allParams: {
-          'bookingID': getParameter<DocumentReference>(data, 'bookingID'),
-        },
-      ),
-  'chataddSP': ParameterData.none(),
   'requestPageCopy2': ParameterData.none(),
   'chatSPCopy': (data) async => ParameterData(
         allParams: {
@@ -277,6 +245,28 @@ final parametersBuilderMap =
       ),
   'Addpayment': ParameterData.none(),
   'AddpaymentCopy': ParameterData.none(),
+  'searchClientNoFilter': (data) async => ParameterData(
+        allParams: {
+          'filters': getParameter<String>(data, 'filters'),
+        },
+      ),
+  'ViewSPprofileCopy': (data) async => ParameterData(
+        allParams: {
+          'parameterProfile':
+              getParameter<DocumentReference>(data, 'parameterProfile'),
+          'nameSP': getParameter<String>(data, 'nameSP'),
+          'phoneNum': getParameter<String>(data, 'phoneNum'),
+          'firstN': getParameter<String>(data, 'firstN'),
+          'lName': getParameter<String>(data, 'lName'),
+          'totalRate': getParameter<int>(data, 'totalRate'),
+          'avgRate': getParameter<double>(data, 'avgRate'),
+          'price': getParameter<int>(data, 'price'),
+          'photo': getParameter<String>(data, 'photo'),
+          'bio': getParameter<String>(data, 'bio'),
+          'sector': getParameter<String>(data, 'sector'),
+        },
+      ),
+  'loginpage1': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

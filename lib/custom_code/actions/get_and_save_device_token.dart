@@ -14,22 +14,32 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-Future<void> saveDeviceTokenToFirestore() async {
-  // Request permission for notifications (necessary for Android 13+ and iOS)
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
-  await messaging.requestPermission();
+Future<void> getAndSaveDeviceToken() async {
+  // Get the current user ID
+  String? userId = FirebaseAuth.instance.currentUser?.uid;
+  if (userId == null) {
+    print("User is not logged in.");
+    return;
+  }
 
-  // Get the device token
+  // Get the device token using Firebase Messaging
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
   String? deviceToken = await messaging.getToken();
 
-  // Save the token to Firestore under the user's document
   if (deviceToken != null) {
-    String userId = FirebaseAuth.instance.currentUser!.uid;
-    await FirebaseFirestore.instance.collection('user').doc(userId).set({
+    // Reference to the user document in Firestore
+    DocumentReference userDoc =
+        FirebaseFirestore.instance.collection('user').doc(userId);
+
+    // Save or update the device token in the Firestore document
+    await userDoc.set({
       'deviceToken': deviceToken,
     }, SetOptions(merge: true));
+
+    print("Device token saved successfully: $deviceToken");
+  } else {
+    print("Failed to retrieve device token.");
   }
 }
-
 // Set your action name, define your arguments and return parameter,
 // and then add the boilerplate code using the green button on the right!

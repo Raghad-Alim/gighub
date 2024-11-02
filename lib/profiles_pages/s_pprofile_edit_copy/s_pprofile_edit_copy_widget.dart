@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 's_pprofile_edit_copy_model.dart';
 export 's_pprofile_edit_copy_model.dart';
@@ -69,6 +70,10 @@ class _SPprofileEditCopyWidgetState extends State<SPprofileEditCopyWidget> {
         text: valueOrDefault(currentUserDocument?.bio, ''));
     _model.bioFocusNode ??= FocusNode();
 
+    _model.switchValue1 =
+        valueOrDefault<bool>(currentUserDocument?.cash, false);
+    _model.switchValue2 =
+        valueOrDefault<bool>(currentUserDocument?.sTCpay, false);
     _model.textController9 ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.price, 0).toString());
     _model.textFieldFocusNode ??= FocusNode();
@@ -1070,6 +1075,222 @@ class _SPprofileEditCopyWidgetState extends State<SPprofileEditCopyWidget> {
                                     ),
                                   ),
                                 ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 20.0, 12.0),
+                                  child: Container(
+                                    width: 100.0,
+                                    height: 64.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context).white,
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 0.0, 0.0, 0.0),
+                                          child: FaIcon(
+                                            FontAwesomeIcons.moneyBillWave,
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiary,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Cash',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  190.0, 0.0, 0.0, 0.0),
+                                          child: AuthUserStreamWidget(
+                                            builder: (context) =>
+                                                Switch.adaptive(
+                                              value: _model.switchValue1!,
+                                              onChanged: (newValue) async {
+                                                safeSetState(() => _model
+                                                    .switchValue1 = newValue);
+                                              },
+                                              activeColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              activeTrackColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiary,
+                                              inactiveTrackColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .roseQuartz,
+                                              inactiveThumbColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 20.0, 12.0),
+                                  child: Container(
+                                    width: 100.0,
+                                    height: 57.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context).white,
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 0.0, 0.0, 0.0),
+                                          child: RichText(
+                                            textScaler: MediaQuery.of(context)
+                                                .textScaler,
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text: 'STC',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                        fontSize: 20.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                                TextSpan(
+                                                  text: 'pay',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .success,
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                )
+                                              ],
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  195.0, 0.0, 0.0, 0.0),
+                                          child: AuthUserStreamWidget(
+                                            builder: (context) =>
+                                                Switch.adaptive(
+                                              value: _model.switchValue2!,
+                                              onChanged: (newValue) async {
+                                                safeSetState(() => _model
+                                                    .switchValue2 = newValue);
+                                              },
+                                              activeColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              activeTrackColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiary,
+                                              inactiveTrackColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .roseQuartz,
+                                              inactiveThumbColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                                 Form(
                                   key: _model.formKey2,
                                   autovalidateMode: AutovalidateMode.always,
@@ -1200,89 +1421,94 @@ class _SPprofileEditCopyWidgetState extends State<SPprofileEditCopyWidget> {
                                     ),
                                   ),
                                 ),
-                                Builder(
-                                  builder: (context) => Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 12.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        if (_model.formKey1.currentState ==
-                                                null ||
-                                            !_model.formKey1.currentState!
-                                                .validate()) {
-                                          return;
-                                        }
-                                        if (_model.formKey2.currentState ==
-                                                null ||
-                                            !_model.formKey2.currentState!
-                                                .validate()) {
-                                          return;
-                                        }
+                                if (_model.switchValue1! ||
+                                    _model.switchValue2!)
+                                  Builder(
+                                    builder: (context) => Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 12.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          if (_model.formKey1.currentState ==
+                                                  null ||
+                                              !_model.formKey1.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
+                                          if (_model.formKey2.currentState ==
+                                                  null ||
+                                              !_model.formKey2.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
 
-                                        await currentUserReference!
-                                            .update(createUserRecordData(
-                                          phoneNumber: _model
-                                              .phoneNumberTextController.text,
-                                          firstName: _model
-                                              .firstNameTextController.text,
-                                          bio: _model.bioTextController.text,
-                                          lastName: _model
-                                              .lastNameTextController.text,
-                                          price: int.tryParse(
-                                              _model.textController9.text),
-                                          city: _model.dropDownValue,
-                                        ));
-                                        await showDialog(
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: const UpdateprofilesWidget(),
-                                            );
-                                          },
-                                        );
-                                      },
-                                      text: 'Save Changes',
-                                      options: FFButtonOptions(
-                                        width: 129.0,
-                                        height: 44.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 16.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmallFamily,
-                                              color: Colors.white,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmallFamily),
-                                            ),
-                                        elevation: 0.0,
-                                        borderRadius:
-                                            BorderRadius.circular(24.0),
+                                          await currentUserReference!
+                                              .update(createUserRecordData(
+                                            phoneNumber: _model
+                                                .phoneNumberTextController.text,
+                                            firstName: _model
+                                                .firstNameTextController.text,
+                                            bio: _model.bioTextController.text,
+                                            lastName: _model
+                                                .lastNameTextController.text,
+                                            price: int.tryParse(
+                                                _model.textController9.text),
+                                            city: _model.dropDownValue,
+                                            cash: _model.switchValue1,
+                                            sTCpay: _model.switchValue2,
+                                          ));
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: const UpdateprofilesWidget(),
+                                              );
+                                            },
+                                          );
+                                        },
+                                        text: 'Save Changes',
+                                        options: FFButtonOptions(
+                                          width: 129.0,
+                                          height: 44.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 16.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily,
+                                                color: Colors.white,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmallFamily),
+                                              ),
+                                          elevation: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
                               ],
                             ),
                           ),

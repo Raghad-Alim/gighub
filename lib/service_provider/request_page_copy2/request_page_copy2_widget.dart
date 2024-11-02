@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/client/nav_bar_s_p_request/nav_bar_s_p_request_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -458,7 +459,8 @@ class _RequestPageCopy2WidgetState extends State<RequestPageCopy2Widget> {
                                                                 .reference
                                                                 .update(
                                                                     createBookingRecordData(
-                                                              status: 'pay',
+                                                              status:
+                                                                  'accepted',
                                                             ));
 
                                                             await ChatsRecord
@@ -490,6 +492,21 @@ class _RequestPageCopy2WidgetState extends State<RequestPageCopy2Widget> {
                                                                 },
                                                               ),
                                                             });
+                                                            triggerPushNotification(
+                                                              notificationTitle:
+                                                                  'Request Accepted',
+                                                              notificationText:
+                                                                  'your request has been accepted',
+                                                              notificationSound:
+                                                                  'default',
+                                                              userRefs: [
+                                                                listViewBookingRecord
+                                                                    .clientID!
+                                                              ],
+                                                              initialPageName:
+                                                                  'BookingsClient',
+                                                              parameterData: {},
+                                                            );
                                                           },
                                                           text: 'Accept',
                                                           icon: const FaIcon(
@@ -779,7 +796,7 @@ class _RequestPageCopy2WidgetState extends State<RequestPageCopy2Widget> {
                   Align(
                     alignment: const AlignmentDirectional(0.0, -1.0),
                     child: Text(
-                      'Requests copy',
+                      'Requests',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyLargeFamily,

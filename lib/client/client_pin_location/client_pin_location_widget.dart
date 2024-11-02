@@ -94,8 +94,8 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Container(
-                    width: 399.0,
-                    height: 680.0,
+                    width: 412.0,
+                    height: 724.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
@@ -126,7 +126,7 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
               Align(
                 alignment: const AlignmentDirectional(0.04, 1.0),
                 child: Container(
-                  width: 400.0,
+                  width: 416.0,
                   height: 130.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primaryBackground,
@@ -201,18 +201,10 @@ class _ClientPinLocationWidgetState extends State<ClientPinLocationWidget> {
               ),
               Align(
                 alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 90.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      'assets/images/pin-removebg-preview.png',
-                      width: 40.0,
-                      height: 40.0,
-                      fit: BoxFit.cover,
-                      alignment: const Alignment(0.0, 0.0),
-                    ),
-                  ),
+                child: Icon(
+                  Icons.location_pin,
+                  color: FlutterFlowTheme.of(context).tertiary,
+                  size: 34.0,
                 ),
               ),
             ],

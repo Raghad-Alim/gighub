@@ -1,32 +1,33 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
+import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'clientlogindupppppp_model.dart';
-export 'clientlogindupppppp_model.dart';
+import 'loginpage1_model.dart';
+export 'loginpage1_model.dart';
 
-class ClientloginduppppppWidget extends StatefulWidget {
-  const ClientloginduppppppWidget({super.key});
+class Loginpage1Widget extends StatefulWidget {
+  const Loginpage1Widget({super.key});
 
   @override
-  State<ClientloginduppppppWidget> createState() =>
-      _ClientloginduppppppWidgetState();
+  State<Loginpage1Widget> createState() => _Loginpage1WidgetState();
 }
 
-class _ClientloginduppppppWidgetState extends State<ClientloginduppppppWidget> {
-  late ClientloginduppppppModel _model;
+class _Loginpage1WidgetState extends State<Loginpage1Widget> {
+  late Loginpage1Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ClientloginduppppppModel());
+    _model = createModel(context, () => Loginpage1Model());
 
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
@@ -117,7 +118,7 @@ class _ClientloginduppppppWidgetState extends State<ClientloginduppppppWidget> {
                         ),
                       ),
                       Form(
-                        key: _model.formKey1,
+                        key: _model.formKey2,
                         autovalidateMode: AutovalidateMode.disabled,
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -233,7 +234,7 @@ class _ClientloginduppppppWidgetState extends State<ClientloginduppppppWidget> {
                         ),
                       ),
                       Form(
-                        key: _model.formKey2,
+                        key: _model.formKey1,
                         autovalidateMode: AutovalidateMode.disabled,
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -373,12 +374,12 @@ class _ClientloginduppppppWidgetState extends State<ClientloginduppppppWidget> {
                             0.0, 10.0, 0.0, 16.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            if (_model.formKey1.currentState == null ||
-                                !_model.formKey1.currentState!.validate()) {
-                              return;
-                            }
                             if (_model.formKey2.currentState == null ||
                                 !_model.formKey2.currentState!.validate()) {
+                              return;
+                            }
+                            if (_model.formKey1.currentState == null ||
+                                !_model.formKey1.currentState!.validate()) {
                               return;
                             }
                             GoRouter.of(context).prepareAuthEvent();
@@ -402,6 +403,15 @@ class _ClientloginduppppppWidgetState extends State<ClientloginduppppppWidget> {
                                 context.pushNamedAuth(
                                     'ServiceProviderHomePage', context.mounted);
                               }
+
+                              await queryBookingRecordOnce(
+                                queryBuilder: (bookingRecord) =>
+                                    bookingRecord.where(
+                                  'email',
+                                  isEqualTo: currentUserEmail,
+                                ),
+                                singleRecord: true,
+                              ).then((s) => s.firstOrNull);
                             } else {
                               unawaited(
                                 () async {
@@ -502,7 +512,7 @@ class _ClientloginduppppppWidgetState extends State<ClientloginduppppppWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('CreateAccountClient');
+                            context.pushNamed('CreateAccountClientCopy');
                           },
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,

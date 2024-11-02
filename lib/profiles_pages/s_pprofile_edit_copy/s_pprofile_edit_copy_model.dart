@@ -66,6 +66,10 @@ class SPprofileEditCopyModel extends FlutterFlowModel<SPprofileEditCopyWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
+  // State field(s) for Switch widget.
+  bool? switchValue1;
+  // State field(s) for Switch widget.
+  bool? switchValue2;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController9;

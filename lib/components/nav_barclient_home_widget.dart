@@ -42,7 +42,7 @@ class _NavBarclientHomeWidgetState extends State<NavBarclientHomeWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 412.0,
+      width: double.infinity,
       height: 70.0,
       decoration: BoxDecoration(
         boxShadow: const [

@@ -1,17 +1,16 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'clientlogindupppppp_widget.dart' show ClientloginduppppppWidget;
+import 'loginpage1_widget.dart' show Loginpage1Widget;
 import 'package:flutter/material.dart';
 
-class ClientloginduppppppModel
-    extends FlutterFlowModel<ClientloginduppppppWidget> {
+class Loginpage1Model extends FlutterFlowModel<Loginpage1Widget> {
   ///  Local state fields for this page.
 
   bool log = true;
 
   ///  State fields for stateful widgets in this page.
 
-  final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
+  final formKey1 = GlobalKey<FormState>();
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;

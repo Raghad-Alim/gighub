@@ -82,7 +82,7 @@ class _ViewDetailsUpcomingPageWidgetState
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                   color: FlutterFlowTheme.of(context).tertiary,
-                  fontSize: 22.0,
+                  fontSize: 19.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w600,
                   useGoogleFonts: GoogleFonts.asMap().containsKey(
@@ -456,114 +456,150 @@ class _ViewDetailsUpcomingPageWidgetState
                   ),
                 ),
               ),
-              Container(
-                width: 452.0,
-                height: 8.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBackground,
-                ),
-              ),
-              Divider(
-                thickness: 1.0,
-                color: FlutterFlowTheme.of(context).roseQuartz,
-              ),
-              Align(
-                alignment: const AlignmentDirectional(-1.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(19.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    'Payment Summary',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    context.pushNamed(
+                      'chatSPCopy',
+                      queryParameters: {
+                        'bookingID': serializeParam(
+                          widget.bookingID,
+                          ParamType.String,
+                        ),
+                      }.withoutNulls,
+                    );
+                  },
+                  text: 'chat with client',
+                  icon: const Icon(
+                    Icons.chat_bubble,
+                    size: 27.0,
+                  ),
+                  options: FFButtonOptions(
+                    width: 332.0,
+                    height: 45.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).tertiary,
+                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          fontSize: 18.0,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           letterSpacing: 0.0,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
+                    elevation: 0.0,
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      width: 1.0,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(10.0),
+                      bottomRight: Radius.circular(10.0),
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0),
+                    ),
                   ),
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(19.0, 9.0, 0.0, 6.0),
-                    child: Text(
-                      'Subtotal',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(197.0, 9.0, 0.0, 6.0),
-                    child: Text(
-                      'SAR ${widget.bookingPay?.toString()}',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                  ),
-                ],
-              ),
-              FFButtonWidget(
-                onPressed: () async {
-                  context.pushNamed(
-                    'chatSPCopy',
-                    queryParameters: {
-                      'bookingID': serializeParam(
-                        widget.bookingID,
-                        ParamType.String,
-                      ),
-                    }.withoutNulls,
-                  );
-                },
-                text: 'chat with client',
-                icon: const Icon(
-                  Icons.chat_bubble,
-                  size: 27.0,
-                ),
-                options: FFButtonOptions(
-                  width: 332.0,
-                  height: 45.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).tertiary,
-                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        letterSpacing: 0.0,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyMediumFamily),
-                      ),
-                  elevation: 0.0,
-                  borderSide: BorderSide(
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                child: Container(
+                  width: 452.0,
+                  height: 188.0,
+                  decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primaryBackground,
-                    width: 1.0,
+                    boxShadow: const [
+                      BoxShadow(
+                        blurRadius: 4.0,
+                        color: Color(0x33000000),
+                        offset: Offset(
+                          0.0,
+                          4.0,
+                        ),
+                        spreadRadius: 6.0,
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(24.0),
                   ),
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(10.0),
-                    bottomRight: Radius.circular(10.0),
-                    topLeft: Radius.circular(10.0),
-                    topRight: Radius.circular(10.0),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, -0.12),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  30.0, 9.0, 0.0, 6.0),
+                              child: Text(
+                                'Subtotal',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      fontSize: 17.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  187.0, 9.0, 0.0, 6.0),
+                              child: Text(
+                                'SAR ${widget.bookingPay?.toString()}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      fontSize: 17.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(-0.99, -0.62),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              19.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Payment Summary',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -86,9 +86,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                 borderRadius: 30.0,
                 borderWidth: 1.0,
                 buttonSize: 60.0,
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_back_rounded,
-                  color: Colors.white,
+                  color: FlutterFlowTheme.of(context).tertiary,
                   size: 30.0,
                 ),
                 onPressed: () async {
@@ -111,8 +111,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily:
                             FlutterFlowTheme.of(context).headlineMediumFamily,
-                        color: Colors.white,
-                        fontSize: 22.0,
+                        color: FlutterFlowTheme.of(context).tertiary,
+                        fontSize: 16.0,
                         letterSpacing: 0.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
                             FlutterFlowTheme.of(context).headlineMediumFamily),
@@ -464,21 +464,6 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                     nameOfSender: valueOrDefault(
                                         currentUserDocument?.firstName, ''),
                                   ));
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('here before update'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
 
                                   await widget.receiveChat!.update({
                                     ...createChatsRecordData(
@@ -492,21 +477,6 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                       },
                                     ),
                                   });
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: const Text('after update'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: const Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
 
                                   await widget.receiveChat!.update({
                                     ...mapToFirestore(

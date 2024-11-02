@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/service_provider/nav_bar_s_p_home/nav_bar_s_p_home_widget.dart';
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -37,9 +36,7 @@ class _ServiceProviderHomePageWidgetState
     _model = createModel(context, () => ServiceProviderHomePageModel());
 
     // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await actions.requestNotificationPermissions();
-    });
+    SchedulerBinding.instance.addPostFrameCallback((_) async {});
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
@@ -169,7 +166,7 @@ class _ServiceProviderHomePageWidgetState
                               child: Icon(
                                 Icons.dashboard_rounded,
                                 color: Color(0xBE5F218E),
-                                size: 30.0,
+                                size: 25.0,
                               ),
                             ),
                             Align(
@@ -180,19 +177,19 @@ class _ServiceProviderHomePageWidgetState
                                 child: Text(
                                   'My dashboard ',
                                   style: FlutterFlowTheme.of(context)
-                                      .labelSmall
+                                      .bodyMedium
                                       .override(
                                         fontFamily: FlutterFlowTheme.of(context)
-                                            .labelSmallFamily,
+                                            .bodyMediumFamily,
                                         color: FlutterFlowTheme.of(context)
                                             .tertiary,
-                                        fontSize: 20.0,
+                                        fontSize: 18.0,
                                         letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.bold,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
                                                 FlutterFlowTheme.of(context)
-                                                    .labelSmallFamily),
+                                                    .bodyMediumFamily),
                                       ),
                                 ),
                               ),
@@ -713,7 +710,7 @@ class _ServiceProviderHomePageWidgetState
                               child: Icon(
                                 Icons.calendar_month,
                                 color: Color(0xBE5F218E),
-                                size: 30.0,
+                                size: 28.0,
                               ),
                             ),
                             Padding(
@@ -722,19 +719,19 @@ class _ServiceProviderHomePageWidgetState
                               child: Text(
                                 'What’s Next on Your Agenda?',
                                 style: FlutterFlowTheme.of(context)
-                                    .labelSmall
+                                    .bodyMedium
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
-                                          .labelSmallFamily,
+                                          .bodyMediumFamily,
                                       color:
                                           FlutterFlowTheme.of(context).tertiary,
-                                      fontSize: 20.0,
+                                      fontSize: 18.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.bold,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .labelSmallFamily),
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                             ),
@@ -998,7 +995,7 @@ class _ServiceProviderHomePageWidgetState
                                             },
                                             child: Container(
                                               width: 100.0,
-                                              height: 181.0,
+                                              height: 147.0,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)

@@ -359,6 +359,10 @@ class _ConfirmBookingWidgetState extends State<ConfirmBookingWidget> {
                                 _model.document?.price.toDouble(),
                                 ParamType.double,
                               ),
+                              'spRef': serializeParam(
+                                widget.spRef,
+                                ParamType.DocumentReference,
+                              ),
                             }.withoutNulls,
                           );
 

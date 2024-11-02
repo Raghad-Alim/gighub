@@ -115,11 +115,6 @@ class UserRecord extends FirestoreRecord {
   List<AvailabilityStruct> get availability => _availability ?? const [];
   bool hasAvailability() => _availability != null;
 
-  // "FCMtoken" field.
-  String? _fCMtoken;
-  String get fCMtoken => _fCMtoken ?? '';
-  bool hasFCMtoken() => _fCMtoken != null;
-
   // "getFCM" field.
   String? _getFCM;
   String get getFCM => _getFCM ?? '';
@@ -179,7 +174,6 @@ class UserRecord extends FirestoreRecord {
       snapshotData['Availability'],
       AvailabilityStruct.fromMap,
     );
-    _fCMtoken = snapshotData['FCMtoken'] as String?;
     _getFCM = snapshotData['getFCM'] as String?;
     _deviceToken = snapshotData['deviceToken'] as String?;
     _city = snapshotData['City'] as String?;
@@ -241,7 +235,6 @@ Map<String, dynamic> createUserRecordData({
   String? bio,
   String? lastName,
   LatLng? location,
-  String? fCMtoken,
   String? getFCM,
   String? deviceToken,
   String? city,
@@ -269,7 +262,6 @@ Map<String, dynamic> createUserRecordData({
       'Bio': bio,
       'LastName': lastName,
       'location': location,
-      'FCMtoken': fCMtoken,
       'getFCM': getFCM,
       'deviceToken': deviceToken,
       'City': city,
@@ -308,7 +300,6 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e1?.location == e2?.location &&
         listEquality.equals(e1?.userHistory, e2?.userHistory) &&
         listEquality.equals(e1?.availability, e2?.availability) &&
-        e1?.fCMtoken == e2?.fCMtoken &&
         e1?.getFCM == e2?.getFCM &&
         e1?.deviceToken == e2?.deviceToken &&
         e1?.city == e2?.city &&
@@ -340,7 +331,6 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.location,
         e?.userHistory,
         e?.availability,
-        e?.fCMtoken,
         e?.getFCM,
         e?.deviceToken,
         e?.city,

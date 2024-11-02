@@ -74,15 +74,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? const ServiceProviderHomePageWidget()
-          : const LoginpageWidget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? const Loginpage1Widget() : const LoginpageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? const ServiceProviderHomePageWidget()
+              ? const Loginpage1Widget()
               : const LoginpageWidget(),
         ),
         FFRoute(
@@ -115,16 +114,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Clientprofile',
           path: '/clientprofile',
           builder: (context, params) => const ClientprofileWidget(),
-        ),
-        FFRoute(
-          name: 'searchClient',
-          path: '/searchClient',
-          builder: (context, params) => SearchClientWidget(
-            filters: params.getParam(
-              'filters',
-              ParamType.String,
-            ),
-          ),
         ),
         FFRoute(
           name: 'createAccountSP',
@@ -193,11 +182,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const VerificationMessageClientWidget(),
         ),
         FFRoute(
-          name: 'SPlocationfromHP',
-          path: '/sPlocationfromHP',
-          builder: (context, params) => const SPlocationfromHPWidget(),
-        ),
-        FFRoute(
           name: 'loginpage',
           path: '/loginpage',
           builder: (context, params) => const LoginpageWidget(),
@@ -216,26 +200,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'CreateAvailability',
           path: '/CreateAvailability',
           builder: (context, params) => const CreateAvailabilityWidget(),
-        ),
-        FFRoute(
-          name: 'requestPageCopy',
-          path: '/requestPageCopy',
-          builder: (context, params) => RequestPageCopyWidget(
-            price: params.getParam(
-              'price',
-              ParamType.double,
-            ),
-            serviceProviderReference: params.getParam(
-              'serviceProviderReference',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['user'],
-            ),
-            sector: params.getParam(
-              'sector',
-              ParamType.String,
-            ),
-          ),
         ),
         FFRoute(
           name: 'List03UserSelectCopy2',
@@ -306,6 +270,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'bookingPrice',
               ParamType.double,
             ),
+            spRef: params.getParam(
+              'spRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['user'],
+            ),
           ),
         ),
         FFRoute(
@@ -335,6 +305,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             price: params.getParam(
               'price',
               ParamType.double,
+            ),
+            spRef: params.getParam(
+              'spRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['user'],
             ),
           ),
         ),
@@ -479,26 +455,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ClientlLoginpageCopyCopy',
-          path: '/clientlLoginpageCopyCopy',
-          builder: (context, params) => const ClientlLoginpageCopyCopyWidget(),
-        ),
-        FFRoute(
-          name: 'danah',
-          path: '/danah',
-          builder: (context, params) => const DanahWidget(),
-        ),
-        FFRoute(
-          name: 'dupplogin',
-          path: '/dupplogin',
-          builder: (context, params) => const DupploginWidget(),
-        ),
-        FFRoute(
-          name: 'clientlogindupppppp',
-          path: '/clientlogindupppppp',
-          builder: (context, params) => const ClientloginduppppppWidget(),
-        ),
-        FFRoute(
           name: 'SPprofileEditCopy',
           path: '/sPprofileEditCopy',
           builder: (context, params) => const SPprofileEditCopyWidget(),
@@ -539,43 +495,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'clientLocation',
           path: '/clientLocation',
           builder: (context, params) => const ClientLocationWidget(),
-        ),
-        FFRoute(
-          name: 'chats',
-          path: '/chats',
-          builder: (context, params) => ChatsWidget(
-            bookingID: params.getParam(
-              'bookingID',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'chatSP',
-          path: '/chatSP',
-          builder: (context, params) => ChatSPWidget(
-            bookingID: params.getParam(
-              'bookingID',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'chatsClient',
-          path: '/chatsClient',
-          builder: (context, params) => ChatsClientWidget(
-            bookingID: params.getParam(
-              'bookingID',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['booking'],
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'chataddSP',
-          path: '/chataddSP',
-          builder: (context, params) => const ChataddSPWidget(),
         ),
         FFRoute(
           name: 'requestPageCopy2',
@@ -626,6 +545,73 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'AddpaymentCopy',
           path: '/AddpaymentCopy',
           builder: (context, params) => const AddpaymentCopyWidget(),
+        ),
+        FFRoute(
+          name: 'searchClientNoFilter',
+          path: '/searchClientNoFilter',
+          builder: (context, params) => SearchClientNoFilterWidget(
+            filters: params.getParam(
+              'filters',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ViewSPprofileCopy',
+          path: '/ViewSPprofileCopy',
+          builder: (context, params) => ViewSPprofileCopyWidget(
+            parameterProfile: params.getParam(
+              'parameterProfile',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['user'],
+            ),
+            nameSP: params.getParam(
+              'nameSP',
+              ParamType.String,
+            ),
+            phoneNum: params.getParam(
+              'phoneNum',
+              ParamType.String,
+            ),
+            firstN: params.getParam(
+              'firstN',
+              ParamType.String,
+            ),
+            lName: params.getParam(
+              'lName',
+              ParamType.String,
+            ),
+            totalRate: params.getParam(
+              'totalRate',
+              ParamType.int,
+            ),
+            avgRate: params.getParam(
+              'avgRate',
+              ParamType.double,
+            ),
+            price: params.getParam(
+              'price',
+              ParamType.int,
+            ),
+            photo: params.getParam(
+              'photo',
+              ParamType.String,
+            ),
+            bio: params.getParam(
+              'bio',
+              ParamType.String,
+            ),
+            sector: params.getParam(
+              'sector',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'loginpage1',
+          path: '/loginpage1',
+          builder: (context, params) => const Loginpage1Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

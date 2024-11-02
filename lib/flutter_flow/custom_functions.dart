@@ -282,3 +282,16 @@ int? averagerating(List<int>? ratings) {
   }
   return (sum / ratings.length).round();
 }
+
+int? ratingsStarNumber(int? number) {
+  return number;
+}
+
+bool? ratings(int? num) {
+  // the function will check if the passed integer is more that zero then it will return false if it is zero then it will return true
+  if (num! > 0) {
+    return false;
+  } else {
+    return true;
+  }
+}

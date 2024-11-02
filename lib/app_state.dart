@@ -288,6 +288,18 @@ class FFAppState extends ChangeNotifier {
   set marker(LatLng? value) {
     _marker = value;
   }
+
+  bool _filter = false;
+  bool get filter => _filter;
+  set filter(bool value) {
+    _filter = value;
+  }
+
+  bool _searchfield = false;
+  bool get searchfield => _searchfield;
+  set searchfield(bool value) {
+    _searchfield = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

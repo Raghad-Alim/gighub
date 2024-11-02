@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
-import '/dialogs_to_copy_and_use/set_location/set_location_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
@@ -14,8 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pointer_interceptor/pointer_interceptor.dart';
-import 'package:provider/provider.dart';
 import 'create_account_client_model.dart';
 export 'create_account_client_model.dart';
 
@@ -80,7 +77,6 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
     if (currentUserLocationValue == null) {
       return Container(
         color: FlutterFlowTheme.of(context).primaryBackground,
@@ -1153,108 +1149,6 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                               showTraffic: false,
                                               centerMapOnMarkerTap: true,
                                             ),
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 1.0),
-                                              child: PointerInterceptor(
-                                                intercepting: isWeb,
-                                                child: Builder(
-                                                  builder: (context) => Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 7.0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        FFAppState().marker =
-                                                            _model
-                                                                .googleMapsCenter;
-                                                        safeSetState(() {});
-                                                        await showDialog(
-                                                          context: context,
-                                                          builder:
-                                                              (dialogContext) {
-                                                            return Dialog(
-                                                              elevation: 0,
-                                                              insetPadding:
-                                                                  EdgeInsets
-                                                                      .zero,
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              alignment: const AlignmentDirectional(
-                                                                      0.0, 0.0)
-                                                                  .resolve(
-                                                                      Directionality.of(
-                                                                          context)),
-                                                              child:
-                                                                  GestureDetector(
-                                                                onTap: () =>
-                                                                    FocusScope.of(
-                                                                            dialogContext)
-                                                                        .unfocus(),
-                                                                child:
-                                                                    const SetLocationWidget(),
-                                                              ),
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                      text: 'Set Location',
-                                                      options: FFButtonOptions(
-                                                        height: 38.0,
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    16.0,
-                                                                    0.0,
-                                                                    16.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tertiary,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily),
-                                                                ),
-                                                        elevation: 0.0,
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .tertiary,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
                                           ],
                                         ),
                                         Align(
@@ -1440,7 +1334,7 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                     gender: _model.choiceChipsValue,
                                     isClient: true,
                                     role: 'Client',
-                                    location: FFAppState().marker,
+                                    location: _model.googleMapsCenter,
                                     city: _model.dropDownCityValue,
                                   ));
 
