@@ -1,7 +1,7 @@
 import '/backend/backend.dart';
-import '/components/nav_barclient_home_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/nav_bar_client/nav_barclient_home/nav_barclient_home_widget.dart';
 import 'client_home_page_widget.dart' show ClientHomePageWidget;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

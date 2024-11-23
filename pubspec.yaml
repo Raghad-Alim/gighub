@@ -27,6 +27,8 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
+  algolia: 1.1.1
+  another_flushbar: ^1.12.30
   auto_size_text: 3.0.0
   cached_network_image: 3.4.1
   cached_network_image_platform_interface: 4.1.1
@@ -39,6 +41,7 @@ dependencies:
   cloud_functions_web: 4.10.2
   collection: 1.18.0
   csslib: 0.17.3
+  dio: ^5.0.0
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
   equatable: 2.0.5
@@ -60,7 +63,7 @@ dependencies:
   firebase_storage_web: 3.10.2
   flutter_animate: 4.5.0
   flutter_cache_manager: 3.4.1
-  flutter_local_notifications: ^17.2.3
+  flutter_local_notifications: ^18.0.0
   flutter_native_splash: 2.4.1
   flutter_plugin_android_lifecycle: 2.0.20
   flutter_rating_bar: 4.0.1
@@ -110,9 +113,13 @@ dependencies:
   path_provider_foundation: 2.4.0
   path_provider_linux: 2.2.1
   path_provider_platform_interface: 2.1.2
-  path_provider_windows: 2.2.1
+  path_provider_windows: 2.3.0
   percent_indicator: 4.2.2
   plugin_platform_interface: 2.1.8
+  pointer_interceptor: 0.10.1+2
+  pointer_interceptor_ios: 0.10.1
+  pointer_interceptor_platform_interface: 0.10.0+1
+  pointer_interceptor_web: 0.10.2+1
   provider: 6.1.2
   rxdart: 0.27.7
   shared_preferences: 2.3.2
@@ -134,7 +141,6 @@ dependencies:
   stripe_platform_interface: 11.1.1
   substring_highlight: 1.0.33
   table_calendar: 3.1.1
-  text_search: 1.0.1
   timeago: 3.6.1
   universal_io: 2.2.2
   url_launcher: 6.3.0

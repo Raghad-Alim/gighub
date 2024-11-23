@@ -7,7 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/service_provider/nav_bar_s_p_profile/nav_bar_s_p_profile_widget.dart';
+import '/nav_bars_s_p/nav_bar_s_p_profile/nav_bar_s_p_profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,6 +31,8 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
     super.initState();
     _model = createModel(context, () => SPprofileModel());
 
+    _model.switchValue =
+        valueOrDefault<bool>(currentUserDocument?.receiverequests, false);
     _model.firstNameTextController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.firstName, ''));
     _model.firstNameFocusNode ??= FocusNode();
@@ -327,6 +329,105 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 10.0, 20.0, 16.0),
+                              child: Container(
+                                height: 63.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  shape: BoxShape.rectangle,
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0.0, -1.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Open to Receive Requests',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
+                                                  fontSize: 16.0,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            30.0, 0.0, 0.0, 0.0),
+                                        child: AuthUserStreamWidget(
+                                          builder: (context) => Switch.adaptive(
+                                            value: _model.switchValue!,
+                                            onChanged: (newValue) async {
+                                              safeSetState(() => _model
+                                                  .switchValue = newValue);
+                                              if (newValue) {
+                                                await currentUserReference!
+                                                    .update(
+                                                        createUserRecordData(
+                                                  receiverequests: true,
+                                                ));
+                                              } else {
+                                                await currentUserReference!
+                                                    .update(
+                                                        createUserRecordData(
+                                                  receiverequests: false,
+                                                ));
+                                              }
+                                            },
+                                            activeColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            activeTrackColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .tertiary,
+                                            inactiveTrackColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .roseQuartz,
+                                            inactiveThumbColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(

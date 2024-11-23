@@ -145,7 +145,7 @@ class _LogOutDialogWidgetState extends State<LogOutDialogWidget> {
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.safePop();
+                            Navigator.pop(context);
                           },
                           text: 'Cancel',
                           options: FFButtonOptions(

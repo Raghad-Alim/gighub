@@ -1,10 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
-import '/client/nav_bar_s_p_request/nav_bar_s_p_request_widget.dart';
+import '/components/request_sp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/nav_bars_s_p/nav_bar_s_p_request/nav_bar_s_p_request_widget.dart';
+import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -83,707 +85,597 @@ class _RequestPageCopy2WidgetState extends State<RequestPageCopy2Widget> {
               top: true,
               child: Stack(
                 children: [
-                  ListView(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 29.0, 5.0, 2.0),
-                        child: StreamBuilder<List<BookingRecord>>(
-                          stream: queryBookingRecord(
-                            queryBuilder: (bookingRecord) => bookingRecord
-                                .where(
-                                  'status',
-                                  isEqualTo: 'pending',
-                                )
-                                .where(
-                                  'serviceProviderID',
-                                  isEqualTo: currentUserReference,
-                                ),
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }
-                            List<BookingRecord> listViewBookingRecordList =
-                                snapshot.data!;
-
-                            return RefreshIndicator(
-                              onRefresh: () async {},
-                              child: ListView.separated(
-                                padding: const EdgeInsets.fromLTRB(
-                                  0,
-                                  20.0,
-                                  0,
-                                  30.0,
-                                ),
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: listViewBookingRecordList.length,
-                                separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 20.0),
-                                itemBuilder: (context, listViewIndex) {
-                                  final listViewBookingRecord =
-                                      listViewBookingRecordList[listViewIndex];
-                                  return StreamBuilder<UserRecord>(
-                                    stream: UserRecord.getDocument(
-                                        listViewBookingRecord.clientID!),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      }
-
-                                      final cardUserRecord = snapshot.data!;
-
-                                      return Card(
-                                        clipBehavior:
-                                            Clip.antiAliasWithSaveLayer,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        elevation: 0.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                  SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Container(
+                          decoration: const BoxDecoration(),
+                          child: ListView(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 29.0, 0.0, 2.0),
+                                      child: StreamBuilder<List<BookingRecord>>(
+                                        stream: queryBookingRecord(
+                                          queryBuilder: (bookingRecord) =>
+                                              bookingRecord
+                                                  .where(
+                                                    'status',
+                                                    isEqualTo: 'pending',
+                                                  )
+                                                  .where(
+                                                    'serviceProviderID',
+                                                    isEqualTo:
+                                                        currentUserReference,
+                                                  ),
                                         ),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            context.pushNamed(
-                                              'viewDetailsRequestPage',
-                                              queryParameters: {
-                                                'bookingID': serializeParam(
-                                                  listViewBookingRecord
-                                                      .bookingID,
-                                                  ParamType.String,
-                                                ),
-                                                'bookingtime': serializeParam(
-                                                  listViewBookingRecord
-                                                      .dateOfService,
-                                                  ParamType.DateTime,
-                                                ),
-                                                'bookingDate': serializeParam(
-                                                  listViewBookingRecord
-                                                      .dateOfService,
-                                                  ParamType.DateTime,
-                                                ),
-                                                'bookingClientLocation':
-                                                    serializeParam(
-                                                  listViewBookingRecord
-                                                      .location,
-                                                  ParamType.LatLng,
-                                                ),
-                                                'clientComment': serializeParam(
-                                                  listViewBookingRecord
-                                                      .clientComment,
-                                                  ParamType.String,
-                                                ),
-                                                'bookingPay': serializeParam(
-                                                  listViewBookingRecord.price
-                                                      .toDouble(),
-                                                  ParamType.double,
-                                                ),
-                                              }.withoutNulls,
-                                            );
-                                          },
-                                          child: Container(
-                                            width: 62.0,
-                                            height: 158.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              boxShadow: const [
-                                                BoxShadow(
-                                                  blurRadius: 10.0,
-                                                  color: Color(0x33000000),
-                                                  offset: Offset(
-                                                    4.0,
-                                                    2.0,
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
                                                   ),
-                                                )
-                                              ],
-                                              borderRadius: const BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(10.0),
-                                                bottomRight:
-                                                    Radius.circular(10.0),
-                                                topLeft: Radius.circular(10.0),
-                                                topRight: Radius.circular(10.0),
+                                                ),
                                               ),
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20.0,
-                                                                  13.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        '#${listViewBookingRecord.reference.id}',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .roseQuartz,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Stack(
-                                                  children: [
-                                                    Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    20.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          '${listViewBookingRecord.clientFirstName} ${listViewBookingRecord.clientLastName}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleMediumFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .russianViolet,
-                                                                fontSize: 18.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleMediumFamily),
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    const Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  320.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Icon(
-                                                        Icons.arrow_forward_ios,
-                                                        color:
-                                                            Color(0xFFC9C1C1),
-                                                        size: 20.0,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      20.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              dateTimeFormat(
-                                                                "MMMMEEEEd",
-                                                                listViewBookingRecord
-                                                                    .dateOfService,
-                                                                locale: FFLocalizations.of(
-                                                                        context)
-                                                                    .languageCode,
-                                                              ),
-                                                              'date',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .roseQuartz,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            dateTimeFormat(
-                                                              "jm",
-                                                              listViewBookingRecord
-                                                                  .dateOfService,
-                                                              locale: FFLocalizations
-                                                                      .of(context)
-                                                                  .languageCode,
-                                                            ),
-                                                            'time',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .roseQuartz,
-                                                                fontSize: 12.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  width: 350.0,
-                                                  child: Divider(
-                                                    thickness: 1.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .roseQuartz,
-                                                  ),
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    20.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: FFButtonWidget(
-                                                          onPressed: () async {
-                                                            await listViewBookingRecord
-                                                                .reference
-                                                                .update(
-                                                                    createBookingRecordData(
-                                                              status:
-                                                                  'accepted',
-                                                            ));
+                                            );
+                                          }
+                                          List<BookingRecord>
+                                              listViewBookingRecordList =
+                                              snapshot.data!;
+                                          if (listViewBookingRecordList
+                                              .isEmpty) {
+                                            return const RequestSpWidget();
+                                          }
 
-                                                            await ChatsRecord
-                                                                .collection
-                                                                .doc()
-                                                                .set({
-                                                              ...createChatsRecordData(
-                                                                lastMessage:
-                                                                    'say hello!',
-                                                                timeStamp:
-                                                                    getCurrentTimestamp,
-                                                                bookingID:
-                                                                    listViewBookingRecord
-                                                                        .reference,
+                                          return RefreshIndicator(
+                                            onRefresh: () async {},
+                                            child: ListView.separated(
+                                              padding: const EdgeInsets.symmetric(
+                                                  vertical: 20.0),
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount:
+                                                  listViewBookingRecordList
+                                                      .length,
+                                              separatorBuilder: (_, __) =>
+                                                  const SizedBox(height: 20.0),
+                                              itemBuilder:
+                                                  (context, listViewIndex) {
+                                                final listViewBookingRecord =
+                                                    listViewBookingRecordList[
+                                                        listViewIndex];
+                                                return Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          5.0, 0.0, 5.0, 0.0),
+                                                  child:
+                                                      StreamBuilder<UserRecord>(
+                                                    stream:
+                                                        UserRecord.getDocument(
+                                                            listViewBookingRecord
+                                                                .clientID!),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
                                                               ),
-                                                              ...mapToFirestore(
-                                                                {
-                                                                  'userIds': functions.generateListOfUsers(
-                                                                      currentUserReference!,
-                                                                      cardUserRecord
-                                                                          .reference),
-                                                                  'userNames': functions.generateListOfNames(
-                                                                      valueOrDefault(
-                                                                          currentUserDocument
-                                                                              ?.firstName,
-                                                                          ''),
-                                                                      cardUserRecord
-                                                                          .firstName),
-                                                                },
-                                                              ),
-                                                            });
-                                                            triggerPushNotification(
-                                                              notificationTitle:
-                                                                  'Request Accepted',
-                                                              notificationText:
-                                                                  'your request has been accepted',
-                                                              notificationSound:
-                                                                  'default',
-                                                              userRefs: [
-                                                                listViewBookingRecord
-                                                                    .clientID!
-                                                              ],
-                                                              initialPageName:
-                                                                  'BookingsClient',
-                                                              parameterData: {},
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+
+                                                      final cardUserRecord =
+                                                          snapshot.data!;
+
+                                                      return Card(
+                                                        clipBehavior: Clip
+                                                            .antiAliasWithSaveLayer,
+                                                        elevation: 3.0,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            context.pushNamed(
+                                                              'viewDetailsRequestPage',
+                                                              queryParameters: {
+                                                                'bookingID':
+                                                                    serializeParam(
+                                                                  listViewBookingRecord
+                                                                      .bookingID,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'bookingtime':
+                                                                    serializeParam(
+                                                                  listViewBookingRecord
+                                                                      .dateOfService,
+                                                                  ParamType
+                                                                      .DateTime,
+                                                                ),
+                                                                'bookingDate':
+                                                                    serializeParam(
+                                                                  listViewBookingRecord
+                                                                      .dateOfService,
+                                                                  ParamType
+                                                                      .DateTime,
+                                                                ),
+                                                                'bookingClientLocation':
+                                                                    serializeParam(
+                                                                  listViewBookingRecord
+                                                                      .location,
+                                                                  ParamType
+                                                                      .LatLng,
+                                                                ),
+                                                                'clientComment':
+                                                                    serializeParam(
+                                                                  listViewBookingRecord
+                                                                      .clientComment,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'bookingPay':
+                                                                    serializeParam(
+                                                                  listViewBookingRecord
+                                                                      .price
+                                                                      .toDouble(),
+                                                                  ParamType
+                                                                      .double,
+                                                                ),
+                                                              }.withoutNulls,
                                                             );
                                                           },
-                                                          text: 'Accept',
-                                                          icon: const FaIcon(
-                                                            FontAwesomeIcons
-                                                                .check,
-                                                            size: 15.0,
-                                                          ),
-                                                          options:
-                                                              FFButtonOptions(
-                                                            width: 170.0,
-                                                            height: 40.0,
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        0.0,
-                                                                        16.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .success,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                    ),
-                                                            elevation: 0.0,
-                                                            borderSide:
-                                                                BorderSide(
+                                                          child: Container(
+                                                            height: 158.0,
+                                                            decoration:
+                                                                BoxDecoration(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .success,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
+                                                                  .primaryBackground,
+                                                              boxShadow: const [
+                                                                BoxShadow(
+                                                                  blurRadius:
+                                                                      10.0,
+                                                                  color: Color(
+                                                                      0x33000000),
+                                                                  offset:
+                                                                      Offset(
+                                                                    2.0,
+                                                                    2.0,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .only(
+                                                                bottomLeft: Radius
                                                                     .circular(
-                                                                        8.0),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: FFButtonWidget(
-                                                          onPressed: () async {
-                                                            await listViewBookingRecord
-                                                                .reference
-                                                                .update(
-                                                                    createBookingRecordData(
-                                                              status:
-                                                                  'rejected',
-                                                            ));
-                                                          },
-                                                          text: 'Reject',
-                                                          icon: const Icon(
-                                                            Icons.close,
-                                                            size: 25.0,
-                                                          ),
-                                                          options:
-                                                              FFButtonOptions(
-                                                            width: 170.0,
-                                                            height: 40.0,
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        0.0,
-                                                                        16.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      letterSpacing:
+                                                                        10.0),
+                                                                bottomRight: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        10.0),
+                                                              ),
+                                                            ),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          20.0,
+                                                                          13.0,
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                          0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        '#${listViewBookingRecord.reference.id}',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .override(
+                                                                              fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                              color: FlutterFlowTheme.of(context).roseQuartz,
+                                                                              fontSize: 12.0,
+                                                                              letterSpacing: 0.0,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                            ),
+                                                                      ),
                                                                     ),
-                                                            elevation: 0.0,
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
+                                                                  ],
+                                                                ),
+                                                                Stack(
+                                                                  children: [
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              -1.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            20.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Text(
+                                                                          '${listViewBookingRecord.clientFirstName} ${listViewBookingRecord.clientLastName}',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .titleMedium
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
+                                                                                color: FlutterFlowTheme.of(context).russianViolet,
+                                                                                fontSize: 18.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.w500,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleMediumFamily),
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    const Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          290.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .arrow_forward_ios,
+                                                                        color: Color(
+                                                                            0xFFC9C1C1),
+                                                                        size:
+                                                                            20.0,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              20.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Text(
+                                                                            valueOrDefault<String>(
+                                                                              dateTimeFormat(
+                                                                                "MMMMEEEEd",
+                                                                                listViewBookingRecord.dateOfService,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ),
+                                                                              'date',
+                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                  color: FlutterFlowTheme.of(context).roseQuartz,
+                                                                                  fontSize: 12.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              20.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Text(
+                                                                            valueOrDefault<String>(
+                                                                              dateTimeFormat(
+                                                                                "jm",
+                                                                                listViewBookingRecord.dateOfService,
+                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                              ),
+                                                                              'time',
+                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                  color: FlutterFlowTheme.of(context).roseQuartz,
+                                                                                  fontSize: 12.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                SizedBox(
+                                                                  width: 300.0,
+                                                                  child:
+                                                                      Divider(
+                                                                    thickness:
+                                                                        1.0,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .roseQuartz,
+                                                                  ),
+                                                                ),
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              -1.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            20.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            FFButtonWidget(
+                                                                          onPressed:
+                                                                              () async {
+                                                                            triggerPushNotification(
+                                                                              notificationTitle: '🎉 Request Accepted!',
+                                                                              notificationText: 'Great news! ${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.firstName, '')}has accepted your request',
+                                                                              notificationSound: 'default',
+                                                                              userRefs: [
+                                                                                listViewBookingRecord.clientID!
+                                                                              ],
+                                                                              initialPageName: 'BookingsClient',
+                                                                              parameterData: {},
+                                                                            );
+                                                                            unawaited(
+                                                                              () async {
+                                                                                await listViewBookingRecord.reference.update(createBookingRecordData(
+                                                                                  status: 'pay',
+                                                                                ));
+                                                                              }(),
+                                                                            );
+                                                                            unawaited(
+                                                                              () async {
+                                                                                await ChatsRecord.collection.doc().set({
+                                                                                  ...createChatsRecordData(
+                                                                                    lastMessage: 'say hello!',
+                                                                                    timeStamp: getCurrentTimestamp,
+                                                                                    bookingID: listViewBookingRecord.reference,
+                                                                                  ),
+                                                                                  ...mapToFirestore(
+                                                                                    {
+                                                                                      'userIds': functions.generateListOfUsers(currentUserReference!, cardUserRecord.reference),
+                                                                                      'userNames': functions.generateListOfNames(valueOrDefault(currentUserDocument?.firstName, ''), cardUserRecord.firstName),
+                                                                                    },
+                                                                                  ),
+                                                                                });
+                                                                              }(),
+                                                                            );
+                                                                            unawaited(
+                                                                              () async {
+                                                                                await ServiceProviderRecord.collection.doc().set(createServiceProviderRecordData(
+                                                                                      titleNotification: '🎉 Request Accepted!',
+                                                                                      bodyNotification: 'Great news!  ${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')} has accepted your request.',
+                                                                                      timeStampNotification: getCurrentTimestamp,
+                                                                                      userIdNotification: listViewBookingRecord.clientID,
+                                                                                    ));
+                                                                              }(),
+                                                                            );
+                                                                          },
+                                                                          text:
+                                                                              'Accept',
+                                                                          icon:
+                                                                              const FaIcon(
+                                                                            FontAwesomeIcons.check,
+                                                                            size:
+                                                                                15.0,
+                                                                          ),
+                                                                          options:
+                                                                              FFButtonOptions(
+                                                                            width:
+                                                                                126.0,
+                                                                            height:
+                                                                                40.0,
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                16.0,
+                                                                                0.0,
+                                                                                16.0,
+                                                                                0.0),
+                                                                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                0.0,
+                                                                                0.0,
+                                                                                0.0),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).success,
+                                                                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                                  color: Colors.white,
+                                                                                  letterSpacing: 0.0,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                                ),
+                                                                            elevation:
+                                                                                0.0,
+                                                                            borderSide:
+                                                                                BorderSide(
+                                                                              color: FlutterFlowTheme.of(context).success,
+                                                                            ),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              -1.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            10.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            FFButtonWidget(
+                                                                          onPressed:
+                                                                              () async {
+                                                                            await listViewBookingRecord.reference.update(createBookingRecordData(
+                                                                              status: 'rejected',
+                                                                            ));
+                                                                            triggerPushNotification(
+                                                                              notificationTitle: '❌ Request Rejected',
+                                                                              notificationText: 'We’re sorry to inform you that ${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')} has declined your request. You may try again or choose another provider.',
+                                                                              notificationSound: 'default',
+                                                                              userRefs: [
+                                                                                listViewBookingRecord.clientID!
+                                                                              ],
+                                                                              initialPageName: 'ClientHomePage',
+                                                                              parameterData: {},
+                                                                            );
+
+                                                                            await ServiceProviderRecord.collection.doc().set(createServiceProviderRecordData(
+                                                                                  userIdNotification: listViewBookingRecord.clientID,
+                                                                                  titleNotification: '❌ Request Rejected',
+                                                                                  bodyNotification: 'We’re sorry to inform you that ${valueOrDefault(currentUserDocument?.firstName, '')} ${valueOrDefault(currentUserDocument?.lastName, '')}has declined your request. You may try again or choose another provider.',
+                                                                                  timeStampNotification: getCurrentTimestamp,
+                                                                                ));
+                                                                          },
+                                                                          text:
+                                                                              'Reject',
+                                                                          icon:
+                                                                              const Icon(
+                                                                            Icons.close,
+                                                                            size:
+                                                                                25.0,
+                                                                          ),
+                                                                          options:
+                                                                              FFButtonOptions(
+                                                                            width:
+                                                                                126.0,
+                                                                            height:
+                                                                                40.0,
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                16.0,
+                                                                                0.0,
+                                                                                16.0,
+                                                                                0.0),
+                                                                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                0.0,
+                                                                                0.0,
+                                                                                0.0),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).error,
+                                                                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                                  color: Colors.white,
+                                                                                  letterSpacing: 0.0,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                                ),
+                                                                            elevation:
+                                                                                0.0,
+                                                                            borderSide:
+                                                                                BorderSide(
+                                                                              color: FlutterFlowTheme.of(context).error,
+                                                                            ),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
                                                             ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                                      );
+                                                    },
+                                                  ),
+                                                );
+                                              },
                                             ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      if (functions.requestSP(requestPageCopy2BookingRecordList
-                              .map((e) => e.status)
-                              .toList()) ??
-                          true)
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                6.0, 10.0, 0.0, 0.0),
-                            child: Container(
-                              width: 363.0,
-                              height: 148.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    offset: const Offset(
-                                      2.0,
-                                      2.0,
-                                    ),
-                                    spreadRadius: 2.0,
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(14.0),
-                              ),
-                              child: Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
-                                child: Stack(
-                                  children: [
-                                    const Align(
-                                      alignment:
-                                          AlignmentDirectional(0.0, -1.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 0.0),
-                                        child: FaIcon(
-                                          FontAwesomeIcons.clipboardList,
-                                          color: Color(0x805F218E),
-                                          size: 70.0,
-                                        ),
-                                      ),
-                                    ),
-                                    const Align(
-                                      alignment:
-                                          AlignmentDirectional(0.0, -1.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            49.0, 39.0, 0.0, 0.0),
-                                        child: Icon(
-                                          Icons.close,
-                                          color: Color(0xBAFF5963),
-                                          size: 60.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 35.0, 0.0, 0.0),
-                                        child: Text(
-                                          'You Have No Requests',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily,
-                                                color: const Color(0xBE5F218E),
-                                                fontSize: 18.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 105.0, 20.0, 0.0),
-                                        child: Text(
-                                          'Stay Ready To Accept Your Next Request!',
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondary,
-                                                fontSize: 12.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
-                                              ),
-                                        ),
+                                          );
+                                        },
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
-                    ],
+                      ],
+                    ),
                   ),
                   Align(
                     alignment: const AlignmentDirectional(0.0, 1.0),

@@ -30,10 +30,6 @@ export '/all_login/loginpage/loginpage_widget.dart' show LoginpageWidget;
 export '/all_login/errormsg/errormsg_widget.dart' show ErrormsgWidget;
 export '/client/client_pin_location/client_pin_location_widget.dart'
     show ClientPinLocationWidget;
-export '/availability_pages/create_availability/create_availability_widget.dart'
-    show CreateAvailabilityWidget;
-export '/list03_user_select_copy2/list03_user_select_copy2_widget.dart'
-    show List03UserSelectCopy2Widget;
 export '/availability_pages/update_availability/update_availability_widget.dart'
     show UpdateAvailabilityWidget;
 export '/client/view_details_accepted/view_details_accepted_widget.dart'
@@ -46,7 +42,6 @@ export '/service_provider/view_details_request_page/view_details_request_page_wi
     show ViewDetailsRequestPageWidget;
 export '/profiles_pages/clientprofile_edit/clientprofile_edit_widget.dart'
     show ClientprofileEditWidget;
-export '/hhh/hhh_widget.dart' show HhhWidget;
 export '/dialogs_to_copy_and_use/test_dialogs/test_dialogs_widget.dart'
     show TestDialogsWidget;
 export '/profiles_pages/s_pprofile_edit/s_pprofile_edit_widget.dart'
@@ -55,10 +50,6 @@ export '/create_availability_s_p2/create_availability_s_p2_widget.dart'
     show CreateAvailabilitySP2Widget;
 export '/client/youtube_request_page/youtube_request_page_widget.dart'
     show YoutubeRequestPageWidget;
-export '/create_availability_s_p2_copy/create_availability_s_p2_copy_widget.dart'
-    show CreateAvailabilitySP2CopyWidget;
-export '/create_availability_s_p2_copy2/create_availability_s_p2_copy2_widget.dart'
-    show CreateAvailabilitySP2Copy2Widget;
 export '/profiles_pages/s_pprofile_edit_copy/s_pprofile_edit_copy_widget.dart'
     show SPprofileEditCopyWidget;
 export '/chat_pages/chat_page/chat_page_widget.dart' show ChatPageWidget;
@@ -77,8 +68,21 @@ export '/all_registration/addpayment/addpayment_widget.dart'
     show AddpaymentWidget;
 export '/profiles_pages/addpayment_copy/addpayment_copy_widget.dart'
     show AddpaymentCopyWidget;
-export '/client/search_client_no_filter/search_client_no_filter_widget.dart'
-    show SearchClientNoFilterWidget;
 export '/client/view_s_pprofile_copy/view_s_pprofile_copy_widget.dart'
     show ViewSPprofileCopyWidget;
 export '/all_login/loginpage1/loginpage1_widget.dart' show Loginpage1Widget;
+export '/client/rate_and_review_page/rate_and_review_page_widget.dart'
+    show RateAndReviewPageWidget;
+export '/client/s_p_reviews_page/s_p_reviews_page_widget.dart'
+    show SPReviewsPageWidget;
+export '/service_provider/s_p_reviews_page_copy/s_p_reviews_page_copy_widget.dart'
+    show SPReviewsPageCopyWidget;
+export '/client/search_client_no_filter_copy/search_client_no_filter_copy_widget.dart'
+    show SearchClientNoFilterCopyWidget;
+export '/client/saved_locations/saved_locations_widget.dart'
+    show SavedLocationsWidget;
+export '/client/notifica/notifica_widget.dart' show NotificaWidget;
+export '/support_doc/support_doc_widget.dart' show SupportDocWidget;
+export '/client/client_home_page_copy/client_home_page_copy_widget.dart'
+    show ClientHomePageCopyWidget;
+export '/client/categories/categories_widget.dart' show CategoriesWidget;

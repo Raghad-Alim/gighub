@@ -1,5 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
-
+import '/backend/algolia/serialization_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
@@ -250,6 +250,69 @@ class BookingStruct extends FFFirebaseStruct {
           data['clientFcmTokenS'],
           ParamType.String,
           false,
+        ),
+      );
+
+  static BookingStruct fromAlgoliaData(Map<String, dynamic> data) =>
+      BookingStruct(
+        documentID: convertAlgoliaParam(
+          data['DocumentID'],
+          ParamType.DocumentReference,
+          false,
+        ),
+        clientComment: convertAlgoliaParam(
+          data['ClientComment'],
+          ParamType.String,
+          false,
+        ),
+        clientFirstName: convertAlgoliaParam(
+          data['ClientFirstName'],
+          ParamType.String,
+          false,
+        ),
+        clientID: convertAlgoliaParam(
+          data['ClientID'],
+          ParamType.DocumentReference,
+          false,
+        ),
+        clientLastName: convertAlgoliaParam(
+          data['ClientLastName'],
+          ParamType.String,
+          false,
+        ),
+        dateOfService: convertAlgoliaParam(
+          data['DateOfService'],
+          ParamType.DateTime,
+          false,
+        ),
+        serviceNmae: convertAlgoliaParam(
+          data['ServiceNmae'],
+          ParamType.String,
+          false,
+        ),
+        serviceProviderID: convertAlgoliaParam(
+          data['ServiceProviderID'],
+          ParamType.String,
+          false,
+        ),
+        timeOfService: convertAlgoliaParam(
+          data['TimeOfService'],
+          ParamType.int,
+          false,
+        ),
+        status: convertAlgoliaParam(
+          data['status'],
+          ParamType.String,
+          false,
+        ),
+        clientFcmTokenS: convertAlgoliaParam(
+          data['clientFcmTokenS'],
+          ParamType.String,
+          false,
+        ),
+        firestoreUtilData: const FirestoreUtilData(
+          clearUnsetFields: false,
+          create: true,
         ),
       );
 

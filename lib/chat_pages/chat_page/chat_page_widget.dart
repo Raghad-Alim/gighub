@@ -79,7 +79,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).primary,
+              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,
               leading: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
@@ -108,14 +108,15 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   functions.getOtherUsrName(
                       chatPageChatsRecord.userNames.toList(),
                       valueOrDefault(currentUserDocument?.firstName, '')),
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  style: FlutterFlowTheme.of(context).bodyLarge.override(
                         fontFamily:
-                            FlutterFlowTheme.of(context).headlineMediumFamily,
+                            FlutterFlowTheme.of(context).bodyLargeFamily,
                         color: FlutterFlowTheme.of(context).tertiary,
-                        fontSize: 16.0,
+                        fontSize: 19.0,
                         letterSpacing: 0.0,
+                        fontWeight: FontWeight.w600,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).headlineMediumFamily),
+                            FlutterFlowTheme.of(context).bodyLargeFamily),
                       ),
                 ),
               ),
@@ -284,6 +285,10 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .black,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -365,6 +370,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Quicksand',
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      fontSize: 16.0,
                                       letterSpacing: 0.0,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey('Quicksand'),
@@ -375,8 +383,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .labelMediumFamily,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      fontSize: 16.0,
                                       letterSpacing: 0.0,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -385,14 +394,16 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                     ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(12.0),
@@ -412,12 +423,15 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 filled: true,
-                                fillColor: FlutterFlowTheme.of(context).primary,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Quicksand',
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey('Quicksand'),
@@ -445,11 +459,10 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                           borderColor: Colors.transparent,
                           borderRadius: 12.0,
                           buttonSize: 43.0,
-                          fillColor: FlutterFlowTheme.of(context).secondary,
                           disabledColor: const Color(0xFF6F6F6F),
                           icon: Icon(
                             Icons.send_rounded,
-                            color: FlutterFlowTheme.of(context).info,
+                            color: FlutterFlowTheme.of(context).tertiary,
                             size: 24.0,
                           ),
                           onPressed: (_model.textController.text == '')

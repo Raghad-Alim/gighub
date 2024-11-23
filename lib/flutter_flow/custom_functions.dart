@@ -295,3 +295,29 @@ bool? ratings(int? num) {
     return true;
   }
 }
+
+double? calculateNewAverage(
+  double? currentAverage,
+  int? totalRatings,
+  double? newRating,
+) {
+  int newTotalRatings = totalRatings! + 1;
+  double newAverage =
+      ((currentAverage! * totalRatings) + newRating!) / newTotalRatings;
+
+// Round to one decimal place
+  return double.parse(newAverage.toStringAsFixed(1));
+}
+
+int? incrementRatings(int? value) {
+  return value! + 1;
+}
+
+bool? noNotifications(int? value) {
+  // i want to a function to check if the value is more than 0 if it is more than 0 then return false else return true
+  if (value! > 0) {
+    return false;
+  } else {
+    return true;
+  }
+}

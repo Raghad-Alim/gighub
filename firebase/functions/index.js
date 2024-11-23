@@ -327,6 +327,7 @@ const configuration = OneSignal.createConfiguration({
 });
 const client = new OneSignal.DefaultApi(configuration);
 const user = new OneSignal.User();
+const axios = require("axios");
 
 exports.addUser = functions.https.onCall(async (data, context) => {
   if (context.auth.uid != data.user_id) {
@@ -367,17 +368,19 @@ exports.deleteUser = functions.https.onCall(async (data, context) => {
   if (context.auth.uid != data.user_id) {
     return "Unauthenticated calls are not allowed.";
   }
+
+  const url = `https://api.onesignal.com/apps/a958e019-c374-4402-bedf-df1f47aca72f/users/by/external_id/${data.user_id}`;
+
   try {
-    await client.deleteUser(
-      "a958e019-c374-4402-bedf-df1f47aca72f",
-      "external_id",
-      data.user_id,
-    );
+    await axios.delete(url, {
+      headers: {
+        Authorization: `Basic ${kAPIKey}`,
+      },
+    });
     return "User deleted";
   } catch (err) {
     console.error(
-      `Unable to delete user ${context.auth.uid}.
-            Error ${err}`,
+      `Unable to delete user ${context.auth.uid}. Error: ${err.message}`,
     );
     throw new functions.https.HttpsError(
       "aborted",

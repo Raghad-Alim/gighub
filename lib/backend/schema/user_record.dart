@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import '/backend/algolia/serialization_util.dart';
+import '/backend/algolia/algolia_manager.dart';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
@@ -150,6 +152,11 @@ class UserRecord extends FirestoreRecord {
   List<int> get rating => _rating ?? const [];
   bool hasRating() => _rating != null;
 
+  // "Receiverequests" field.
+  bool? _receiverequests;
+  bool get receiverequests => _receiverequests ?? false;
+  bool hasReceiverequests() => _receiverequests != null;
+
   void _initializeFields() {
     _photoUrl = snapshotData['photo_url'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
@@ -181,6 +188,7 @@ class UserRecord extends FirestoreRecord {
     _cash = snapshotData['Cash'] as bool?;
     _sTCpay = snapshotData['STCpay'] as bool?;
     _rating = getDataList(snapshotData['rating']);
+    _receiverequests = snapshotData['Receiverequests'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -202,6 +210,95 @@ class UserRecord extends FirestoreRecord {
     DocumentReference reference,
   ) =>
       UserRecord._(reference, mapFromFirestore(data));
+
+  static UserRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
+      UserRecord.getDocumentFromData(
+        {
+          'photo_url': snapshot.data['photo_url'],
+          'phone_number': snapshot.data['phone_number'],
+          'DateOfBirth': snapshot.data['DateOfBirth'],
+          'FirstName': snapshot.data['FirstName'],
+          'email': snapshot.data['email'],
+          'isClient': snapshot.data['isClient'],
+          'price': convertAlgoliaParam(
+            snapshot.data['price'],
+            ParamType.int,
+            false,
+          ),
+          'role': snapshot.data['role'],
+          'sector': snapshot.data['sector'],
+          'gender': snapshot.data['gender'],
+          'tatalRating': convertAlgoliaParam(
+            snapshot.data['tatalRating'],
+            ParamType.int,
+            false,
+          ),
+          'aveageRating': convertAlgoliaParam(
+            snapshot.data['aveageRating'],
+            ParamType.double,
+            false,
+          ),
+          'display_name': snapshot.data['display_name'],
+          'uid': snapshot.data['uid'],
+          'created_time': convertAlgoliaParam(
+            snapshot.data['created_time'],
+            ParamType.DateTime,
+            false,
+          ),
+          'Bio': snapshot.data['Bio'],
+          'LastName': snapshot.data['LastName'],
+          'location': convertAlgoliaParam(
+            snapshot.data,
+            ParamType.LatLng,
+            false,
+          ),
+          'User_history': safeGet(
+            () => convertAlgoliaParam<DocumentReference>(
+              snapshot.data['User_history'],
+              ParamType.DocumentReference,
+              true,
+            ).toList(),
+          ),
+          'Availability': safeGet(
+            () => (snapshot.data['Availability'] as Iterable)
+                .map((d) => AvailabilityStruct.fromAlgoliaData(d).toMap())
+                .toList(),
+          ),
+          'getFCM': snapshot.data['getFCM'],
+          'deviceToken': snapshot.data['deviceToken'],
+          'City': snapshot.data['City'],
+          'STCBarcode': snapshot.data['STCBarcode'],
+          'Cash': snapshot.data['Cash'],
+          'STCpay': snapshot.data['STCpay'],
+          'rating': safeGet(
+            () => convertAlgoliaParam<int>(
+              snapshot.data['rating'],
+              ParamType.int,
+              true,
+            ).toList(),
+          ),
+          'Receiverequests': snapshot.data['Receiverequests'],
+        },
+        UserRecord.collection.doc(snapshot.objectID),
+      );
+
+  static Future<List<UserRecord>> search({
+    String? term,
+    FutureOr<LatLng>? location,
+    int? maxResults,
+    double? searchRadiusMeters,
+    bool useCache = false,
+  }) =>
+      FFAlgoliaManager.instance
+          .algoliaQuery(
+            index: 'user',
+            term: term,
+            maxResults: maxResults,
+            location: location,
+            searchRadiusMeters: searchRadiusMeters,
+            useCache: useCache,
+          )
+          .then((r) => r.map(fromAlgolia).toList());
 
   @override
   String toString() =>
@@ -241,6 +338,7 @@ Map<String, dynamic> createUserRecordData({
   String? sTCBarcode,
   bool? cash,
   bool? sTCpay,
+  bool? receiverequests,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -268,6 +366,7 @@ Map<String, dynamic> createUserRecordData({
       'STCBarcode': sTCBarcode,
       'Cash': cash,
       'STCpay': sTCpay,
+      'Receiverequests': receiverequests,
     }.withoutNulls,
   );
 
@@ -306,7 +405,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e1?.sTCBarcode == e2?.sTCBarcode &&
         e1?.cash == e2?.cash &&
         e1?.sTCpay == e2?.sTCpay &&
-        listEquality.equals(e1?.rating, e2?.rating);
+        listEquality.equals(e1?.rating, e2?.rating) &&
+        e1?.receiverequests == e2?.receiverequests;
   }
 
   @override
@@ -337,7 +437,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.sTCBarcode,
         e?.cash,
         e?.sTCpay,
-        e?.rating
+        e?.rating,
+        e?.receiverequests
       ]);
 
   @override

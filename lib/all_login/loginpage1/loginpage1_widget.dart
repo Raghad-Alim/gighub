@@ -398,7 +398,7 @@ class _Loginpage1WidgetState extends State<Loginpage1Widget> {
                                       currentUserDocument?.isClient, false) ==
                                   true) {
                                 context.pushNamedAuth(
-                                    'ClientHomePage', context.mounted);
+                                    'ClientHomePageCopy', context.mounted);
                               } else {
                                 context.pushNamedAuth(
                                     'ServiceProviderHomePage', context.mounted);
@@ -476,8 +476,8 @@ class _Loginpage1WidgetState extends State<Loginpage1Widget> {
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodySmallFamily,
-                                    color:
-                                        FlutterFlowTheme.of(context).roseQuartz,
+                                    color: FlutterFlowTheme.of(context)
+                                        .africanViolet,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                     decoration: TextDecoration.underline,
@@ -512,7 +512,7 @@ class _Loginpage1WidgetState extends State<Loginpage1Widget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('CreateAccountClientCopy');
+                            context.pushNamed('CreateAccountClient');
                           },
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
@@ -603,6 +603,32 @@ class _Loginpage1WidgetState extends State<Loginpage1Widget> {
                               textAlign: TextAlign.center,
                             ),
                           ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed('supportDoc');
+                        },
+                        child: Text(
+                          'need help?',
+                          style: FlutterFlowTheme.of(context)
+                              .bodySmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodySmallFamily,
+                                color:
+                                    FlutterFlowTheme.of(context).africanViolet,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodySmallFamily),
+                              ),
                         ),
                       ),
                     ],

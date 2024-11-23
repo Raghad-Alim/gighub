@@ -1,5 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/service_provider/nav_bar_s_p_home/nav_bar_s_p_home_widget.dart';
+import '/nav_bars_s_p/nav_bar_s_p_home/nav_bar_s_p_home_widget.dart';
 import 'service_provider_home_page_widget.dart'
     show ServiceProviderHomePageWidget;
 import 'package:flutter/material.dart';

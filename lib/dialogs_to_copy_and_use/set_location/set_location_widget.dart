@@ -100,7 +100,7 @@ class _SetLocationWidgetState extends State<SetLocationWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 0.0, 0.0),
                           child: Text(
-                            'Your location has been setted successfully.',
+                            'Your location has been edited successfully.',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge

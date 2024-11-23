@@ -1,5 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/service_provider/nav_bar_s_p_profile/nav_bar_s_p_profile_widget.dart';
+import '/nav_bars_s_p/nav_bar_s_p_profile/nav_bar_s_p_profile_widget.dart';
 import 's_pprofile_widget.dart' show SPprofileWidget;
 import 'package:flutter/material.dart';
 
@@ -16,6 +16,8 @@ class SPprofileModel extends FlutterFlowModel<SPprofileWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
+  // State field(s) for Switch widget.
+  bool? switchValue;
   // State field(s) for FirstName widget.
   FocusNode? firstNameFocusNode;
   TextEditingController? firstNameTextController;

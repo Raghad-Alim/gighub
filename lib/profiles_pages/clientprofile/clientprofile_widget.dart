@@ -1,10 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/components/nav_barclient_profile_widget.dart';
 import '/dialogs_to_copy_and_use/deleteaccountdialog/deleteaccountdialog_widget.dart';
 import '/dialogs_to_copy_and_use/log_out_dialog/log_out_dialog_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/nav_bar_client/nav_barclient_profile/nav_barclient_profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'clientprofile_model.dart';
@@ -126,7 +126,7 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                         children: [
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 20.0, 16.0),
+                                20.0, 8.0, 20.0, 16.0),
                             child: AuthUserStreamWidget(
                               builder: (context) => TextFormField(
                                 controller: _model.firstNameTextController,
@@ -772,7 +772,7 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                     },
                                   );
 
-                                  context.pushNamedAuth(
+                                  context.goNamedAuth(
                                       'loginpage', context.mounted);
                                 },
                                 text: 'Log Out',
@@ -812,12 +812,6 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                   16.0, 0.0, 16.0, 12.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  await authManager.deleteUser(context);
-                                  await currentUserReference!.delete();
-                                  GoRouter.of(context).prepareAuthEvent();
-                                  await authManager.signOut();
-                                  GoRouter.of(context).clearRedirectLocation();
-
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
@@ -833,9 +827,6 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                       );
                                     },
                                   );
-
-                                  context.goNamedAuth(
-                                      'loginpage', context.mounted);
                                 },
                                 text: 'Delete Account',
                                 options: FFButtonOptions(

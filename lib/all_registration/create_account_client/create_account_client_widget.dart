@@ -1176,210 +1176,6 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                                 .addToEnd(const SizedBox(height: 32.0)),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 12.0, 16.0, 12.0),
-                          child: StreamBuilder<List<UserRecord>>(
-                            stream: queryUserRecord(
-                              singleRecord: true,
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 40.0,
-                                    height: 40.0,
-                                    child: SpinKitHourGlass(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 40.0,
-                                    ),
-                                  ),
-                                );
-                              }
-                              List<UserRecord> buttonUserRecordList =
-                                  snapshot.data!;
-                              // Return an empty Container when the item does not exist.
-                              if (snapshot.data!.isEmpty) {
-                                return Container();
-                              }
-                              final buttonUserRecord =
-                                  buttonUserRecordList.isNotEmpty
-                                      ? buttonUserRecordList.first
-                                      : null;
-
-                              return FFButtonWidget(
-                                onPressed: () async {
-                                  var shouldSetState = false;
-                                  if (_model.formKey.currentState == null ||
-                                      !_model.formKey.currentState!
-                                          .validate()) {
-                                    return;
-                                  }
-                                  if (_model.dropDownCityValue == null) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Please select city*',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                      ),
-                                    );
-                                    return;
-                                  }
-                                  if (_model
-                                          .passwordCreateTextController.text ==
-                                      _model
-                                          .passwordConfirmTextController.text) {
-                                    _model.emailsExist =
-                                        await queryUserRecordOnce(
-                                      queryBuilder: (userRecord) =>
-                                          userRecord.where(
-                                        'email',
-                                        isEqualTo:
-                                            _model.emailTextController.text,
-                                      ),
-                                      singleRecord: true,
-                                    ).then((s) => s.firstOrNull);
-                                    shouldSetState = true;
-                                    if (_model.emailsExist?.email ==
-                                        _model.emailTextController.text) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: const Text(
-                                            'Email in use',
-                                            style: TextStyle(
-                                              color: Color(0xFF830A0A),
-                                            ),
-                                          ),
-                                          duration:
-                                              const Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .white,
-                                        ),
-                                      );
-                                      if (shouldSetState) safeSetState(() {});
-                                      return;
-                                    }
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: const Text(
-                                          'Your password and its conformation do not match.',
-                                          style: TextStyle(
-                                            color: Color(0xFF780000),
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context).white,
-                                      ),
-                                    );
-                                    if (shouldSetState) safeSetState(() {});
-                                    return;
-                                  }
-
-                                  GoRouter.of(context).prepareAuthEvent();
-                                  if (_model
-                                          .passwordCreateTextController.text !=
-                                      _model
-                                          .passwordConfirmTextController.text) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          'Passwords don\'t match!',
-                                        ),
-                                      ),
-                                    );
-                                    return;
-                                  }
-
-                                  final user =
-                                      await authManager.createAccountWithEmail(
-                                    context,
-                                    _model.emailTextController.text,
-                                    _model.passwordCreateTextController.text,
-                                  );
-                                  if (user == null) {
-                                    return;
-                                  }
-
-                                  await UserRecord.collection
-                                      .doc(user.uid)
-                                      .update(createUserRecordData(
-                                        phoneNumber: '',
-                                      ));
-
-                                  await currentUserReference!
-                                      .update(createUserRecordData(
-                                    uid: currentUserUid,
-                                    firstName:
-                                        _model.firstNameTextController.text,
-                                    lastName:
-                                        _model.lastNameTextController.text,
-                                    phoneNumber:
-                                        _model.phoneNumberTextController.text,
-                                    dateOfBirth:
-                                        _model.dateOfBirthTextController.text,
-                                    gender: _model.choiceChipsValue,
-                                    isClient: true,
-                                    role: 'Client',
-                                    location: _model.googleMapsCenter,
-                                    city: _model.dropDownCityValue,
-                                  ));
-
-                                  context.pushNamedAuth(
-                                      'verificationMessageClient',
-                                      context.mounted);
-
-                                  if (shouldSetState) safeSetState(() {});
-                                },
-                                text: 'Create Account',
-                                options: FFButtonOptions(
-                                  width: double.infinity,
-                                  height: 54.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiary,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily),
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).tertiary,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -1389,6 +1185,188 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
                     maxWidth: 770.0,
                   ),
                   decoration: const BoxDecoration(),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
+                    child: StreamBuilder<List<UserRecord>>(
+                      stream: queryUserRecord(
+                        singleRecord: true,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 40.0,
+                              height: 40.0,
+                              child: SpinKitHourGlass(
+                                color: FlutterFlowTheme.of(context).primary,
+                                size: 40.0,
+                              ),
+                            ),
+                          );
+                        }
+                        List<UserRecord> buttonUserRecordList = snapshot.data!;
+                        // Return an empty Container when the item does not exist.
+                        if (snapshot.data!.isEmpty) {
+                          return Container();
+                        }
+                        final buttonUserRecord = buttonUserRecordList.isNotEmpty
+                            ? buttonUserRecordList.first
+                            : null;
+
+                        return FFButtonWidget(
+                          onPressed: () async {
+                            var shouldSetState = false;
+                            if (_model.formKey.currentState == null ||
+                                !_model.formKey.currentState!.validate()) {
+                              return;
+                            }
+                            if (_model.dropDownCityValue == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Please select city*',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context).error,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
+                              return;
+                            }
+                            if (_model.passwordCreateTextController.text ==
+                                _model.passwordConfirmTextController.text) {
+                              _model.emailsExist = await queryUserRecordOnce(
+                                queryBuilder: (userRecord) => userRecord.where(
+                                  'email',
+                                  isEqualTo: _model.emailTextController.text,
+                                ),
+                                singleRecord: true,
+                              ).then((s) => s.firstOrNull);
+                              shouldSetState = true;
+                              if (_model.emailsExist?.email ==
+                                  _model.emailTextController.text) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Text(
+                                      'Email in use',
+                                      style: TextStyle(
+                                        color: Color(0xFF830A0A),
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).white,
+                                  ),
+                                );
+                                if (shouldSetState) safeSetState(() {});
+                                return;
+                              }
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                    'Your password and its conformation do not match.',
+                                    style: TextStyle(
+                                      color: Color(0xFF780000),
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).white,
+                                ),
+                              );
+                              if (shouldSetState) safeSetState(() {});
+                              return;
+                            }
+
+                            GoRouter.of(context).prepareAuthEvent();
+                            if (_model.passwordCreateTextController.text !=
+                                _model.passwordConfirmTextController.text) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    'Passwords don\'t match!',
+                                  ),
+                                ),
+                              );
+                              return;
+                            }
+
+                            final user =
+                                await authManager.createAccountWithEmail(
+                              context,
+                              _model.emailTextController.text,
+                              _model.passwordCreateTextController.text,
+                            );
+                            if (user == null) {
+                              return;
+                            }
+
+                            await UserRecord.collection
+                                .doc(user.uid)
+                                .update(createUserRecordData(
+                                  phoneNumber: '',
+                                ));
+
+                            await currentUserReference!
+                                .update(createUserRecordData(
+                              uid: currentUserUid,
+                              firstName: _model.firstNameTextController.text,
+                              lastName: _model.lastNameTextController.text,
+                              phoneNumber:
+                                  _model.phoneNumberTextController.text,
+                              dateOfBirth:
+                                  _model.dateOfBirthTextController.text,
+                              gender: _model.choiceChipsValue,
+                              isClient: true,
+                              role: 'Client',
+                              location: _model.googleMapsCenter,
+                              city: _model.dropDownCityValue,
+                            ));
+
+                            context.pushNamedAuth(
+                                'verificationMessageClient', context.mounted);
+
+                            if (shouldSetState) safeSetState(() {});
+                          },
+                          text: 'Create Account',
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 54.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleSmallFamily),
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).tertiary,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ],
             ),

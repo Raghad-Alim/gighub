@@ -6,9 +6,9 @@ enum Sector {
   Chef,
   Plumber,
   Electrician,
-  Driver,
-  CarServices,
-  Housekeeper,
+  MakeupArtist,
+  FitnessTrainer,
+  TourGuide,
 }
 
 enum City {

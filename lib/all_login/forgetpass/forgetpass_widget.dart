@@ -54,7 +54,7 @@ class _ForgetpassWidgetState extends State<ForgetpassWidget> {
           buttonSize: 60.0,
           icon: Icon(
             Icons.arrow_back_rounded,
-            color: FlutterFlowTheme.of(context).primaryText,
+            color: FlutterFlowTheme.of(context).tertiary,
             size: 30.0,
           ),
           onPressed: () async {

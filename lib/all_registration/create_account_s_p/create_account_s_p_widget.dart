@@ -1609,7 +1609,7 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                       decoration: const BoxDecoration(),
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 12.0, 16.0, 12.0),
+                            16.0, 0.0, 16.0, 12.0),
                         child: StreamBuilder<List<UserRecord>>(
                           stream: queryUserRecord(
                             singleRecord: true,
@@ -1779,6 +1779,7 @@ class _CreateAccountSPWidgetState extends State<CreateAccountSPWidget> {
                                     price: int.tryParse(
                                         _model.textController7.text),
                                     city: _model.dropDownCityValue,
+                                    receiverequests: true,
                                   ),
                                   ...mapToFirestore(
                                     {

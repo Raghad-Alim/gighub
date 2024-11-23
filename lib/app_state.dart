@@ -35,12 +35,6 @@ class FFAppState extends ChangeNotifier {
     _searchActive = value;
   }
 
-  bool _IsSundayAvailbe = false;
-  bool get IsSundayAvailbe => _IsSundayAvailbe;
-  set IsSundayAvailbe(bool value) {
-    _IsSundayAvailbe = value;
-  }
-
   List<String> _Slots = [
     '8:00 - 9:00',
     '9:00 - 10:00',
@@ -217,18 +211,6 @@ class FFAppState extends ChangeNotifier {
     availability.insert(index, value);
   }
 
-  DateTime? _SundayStart;
-  DateTime? get SundayStart => _SundayStart;
-  set SundayStart(DateTime? value) {
-    _SundayStart = value;
-  }
-
-  DateTime? _SundayEnd;
-  DateTime? get SundayEnd => _SundayEnd;
-  set SundayEnd(DateTime? value) {
-    _SundayEnd = value;
-  }
-
   List<DateTime> _Sunday = [];
   List<DateTime> get Sunday => _Sunday;
   set Sunday(List<DateTime> value) {
@@ -299,6 +281,12 @@ class FFAppState extends ChangeNotifier {
   bool get searchfield => _searchfield;
   set searchfield(bool value) {
     _searchfield = value;
+  }
+
+  bool _SPrecieveRequests = false;
+  bool get SPrecieveRequests => _SPrecieveRequests;
+  set SPrecieveRequests(bool value) {
+    _SPrecieveRequests = value;
   }
 }
 

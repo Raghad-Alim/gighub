@@ -128,7 +128,7 @@ class _VerificationMessageClientWidgetState
                         onPressed: () async {
                           await authManager.refreshUser();
                           if (currentUserEmailVerified) {
-                            context.pushNamed('ClientHomePage');
+                            context.pushNamed('ClientHomePageCopy');
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

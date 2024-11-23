@@ -101,14 +101,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'BookingsClient',
           path: '/bookingsClient',
-          builder: (context, params) => BookingsClientWidget(
-            bookingid: params.getParam(
-              'bookingid',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['booking'],
-            ),
-          ),
+          builder: (context, params) => const BookingsClientWidget(),
         ),
         FFRoute(
           name: 'Clientprofile',
@@ -194,44 +187,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'clientPinLocation',
           path: '/SPlocationfromHPCopy',
-          builder: (context, params) => const ClientPinLocationWidget(),
-        ),
-        FFRoute(
-          name: 'CreateAvailability',
-          path: '/CreateAvailability',
-          builder: (context, params) => const CreateAvailabilityWidget(),
-        ),
-        FFRoute(
-          name: 'List03UserSelectCopy2',
-          path: '/list03UserSelectCopy2',
-          builder: (context, params) => List03UserSelectCopy2Widget(
-            isSunday: params.getParam(
-              'isSunday',
-              ParamType.bool,
+          builder: (context, params) => ClientPinLocationWidget(
+            loc: params.getParam(
+              'loc',
+              ParamType.LatLng,
             ),
-            isMonday: params.getParam(
-              'isMonday',
-              ParamType.bool,
+            doc: params.getParam(
+              'doc',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['locations'],
             ),
-            isTuesday: params.getParam(
-              'isTuesday',
-              ParamType.bool,
-            ),
-            isWednesday: params.getParam(
-              'isWednesday',
-              ParamType.bool,
-            ),
-            isThursday: params.getParam(
-              'isThursday',
-              ParamType.bool,
-            ),
-            isFriday: params.getParam(
-              'isFriday',
-              ParamType.bool,
-            ),
-            isSaturday: params.getParam(
-              'isSaturday',
-              ParamType.bool,
+            name: params.getParam(
+              'name',
+              ParamType.String,
             ),
           ),
         ),
@@ -380,11 +349,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ClientprofileEditWidget(),
         ),
         FFRoute(
-          name: 'hhh',
-          path: '/hhh',
-          builder: (context, params) => const HhhWidget(),
-        ),
-        FFRoute(
           name: 'testDialogs',
           path: '/testDialogs',
           builder: (context, params) => const TestDialogsWidget(),
@@ -427,30 +391,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             service: params.getParam(
               'service',
               ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'CreateAvailabilitySP2Copy',
-          path: '/createAvailabilitySP2Copy',
-          builder: (context, params) => CreateAvailabilitySP2CopyWidget(
-            availability: params.getParam(
-              'availability',
-              ParamType.DataStruct,
-              isList: false,
-              structBuilder: AvailabilityStruct.fromSerializableMap,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'CreateAvailabilitySP2Copy2',
-          path: '/createAvailabilitySP2Copy2',
-          builder: (context, params) => CreateAvailabilitySP2Copy2Widget(
-            availability: params.getParam<AvailabilityStruct>(
-              'availability',
-              ParamType.DataStruct,
-              isList: true,
-              structBuilder: AvailabilityStruct.fromSerializableMap,
             ),
           ),
         ),
@@ -547,16 +487,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const AddpaymentCopyWidget(),
         ),
         FFRoute(
-          name: 'searchClientNoFilter',
-          path: '/searchClientNoFilter',
-          builder: (context, params) => SearchClientNoFilterWidget(
-            filters: params.getParam(
-              'filters',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'ViewSPprofileCopy',
           path: '/ViewSPprofileCopy',
           builder: (context, params) => ViewSPprofileCopyWidget(
@@ -612,6 +542,94 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'loginpage1',
           path: '/loginpage1',
           builder: (context, params) => const Loginpage1Widget(),
+        ),
+        FFRoute(
+          name: 'rateAndReviewPage',
+          path: '/rateAndReviewPage',
+          builder: (context, params) => RateAndReviewPageWidget(
+            bookingID: params.getParam(
+              'bookingID',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['booking'],
+            ),
+            spID: params.getParam(
+              'spID',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['user'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'SPReviewsPage',
+          path: '/sPReviewsPage',
+          builder: (context, params) => SPReviewsPageWidget(
+            serviceProviderFname: params.getParam(
+              'serviceProviderFname',
+              ParamType.String,
+            ),
+            serviceProviderID: params.getParam(
+              'serviceProviderID',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['user'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'SPReviewsPageCopy',
+          path: '/sPReviewsPageCopy',
+          builder: (context, params) => const SPReviewsPageCopyWidget(),
+        ),
+        FFRoute(
+          name: 'searchClientNoFilterCopy',
+          path: '/searchClientNoFilterCopy',
+          builder: (context, params) => SearchClientNoFilterCopyWidget(
+            filters: params.getParam(
+              'filters',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'SavedLocations',
+          path: '/savedLocations',
+          builder: (context, params) => const SavedLocationsWidget(),
+        ),
+        FFRoute(
+          name: 'notifica',
+          path: '/notifica',
+          asyncParams: {
+            'notification':
+                getDoc(['notification'], NotificationRecord.fromSnapshot),
+          },
+          builder: (context, params) => NotificaWidget(
+            notification: params.getParam(
+              'notification',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'supportDoc',
+          path: '/supportDoc',
+          builder: (context, params) => const SupportDocWidget(),
+        ),
+        FFRoute(
+          name: 'ClientHomePageCopy',
+          path: '/clientHomePageCopy',
+          builder: (context, params) => const ClientHomePageCopyWidget(),
+        ),
+        FFRoute(
+          name: 'categories',
+          path: '/categories',
+          builder: (context, params) => CategoriesWidget(
+            sector: params.getParam(
+              'sector',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -127,7 +127,7 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 20.0, 0.0, 0.0),
+                              10.0, 20.0, 10.0, 0.0),
                           child: Container(
                             width: 351.0,
                             height: 121.0,
@@ -589,7 +589,7 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
-                                                          fontSize: 17.0,
+                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -621,7 +621,7 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
-                                                          fontSize: 17.0,
+                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -653,7 +653,7 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .tertiary,
-                                                fontSize: 18.0,
+                                                fontSize: 16.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                                 useGoogleFonts: GoogleFonts
@@ -692,7 +692,7 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondary,
-                                                  fontSize: 17.0,
+                                                  fontSize: 16.0,
                                                   letterSpacing: 0.0,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
@@ -722,7 +722,7 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondary,
-                                                        fontSize: 17.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -753,7 +753,7 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondary,
-                                                        fontSize: 17.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -783,7 +783,7 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondary,
-                                                        fontSize: 17.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()

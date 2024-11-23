@@ -136,77 +136,115 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                                 color: const Color(0x92E3E0E0),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Align(
-                                    alignment: const AlignmentDirectional(-1.0, -1.0),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 20.0, 0.0, 0.0),
-                                      child: Text(
-                                        'Your Booking is Pending',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiary,
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
-                                            ),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 10.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, -1.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 20.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Your Booking is Pending',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 0.0, 20.0, 0.0),
-                                      child: Text(
-                                        'Thank you for your patience! Your booking request has been sent.',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .roseQuartz,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
-                                            ),
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 20.0, 0.0),
+                                        child: Text(
+                                          'Thank you for your patience! Your booking request has been sent.',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .roseQuartz,
+                                                fontSize: 13.0,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
-                                        child: Padding(
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(-1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    20.0, 8.0, 0.0, 0.0),
+                                            child: Text(
+                                              'Booking ID:',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmallFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 8.0, 0.0, 0.0),
                                           child: Text(
-                                            'Booking ID:',
+                                            valueOrDefault<String>(
+                                              widget.bookingID,
+                                              'id',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodySmall
                                                 .override(
@@ -228,38 +266,10 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                                                 ),
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 8.0, 0.0, 0.0),
-                                        child: Text(
-                                          valueOrDefault<String>(
-                                            widget.bookingID,
-                                            'id',
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodySmall
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmallFamily,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiary,
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodySmallFamily),
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -519,37 +529,41 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                             ],
                           ),
                         ),
-                        Container(
-                          width: 351.0,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).primary,
-                              width: 2.0,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10.0, 10.0, 10.0, 10.0),
-                            child: Text(
-                              valueOrDefault<String>(
-                                widget.comment,
-                                'No Comment',
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              5.0, 0.0, 5.0, 0.0),
+                          child: Container(
+                            width: 351.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 2.0,
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    color:
-                                        FlutterFlowTheme.of(context).tertiary,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
-                                  ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 10.0, 10.0, 10.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  widget.comment,
+                                  'No Comment',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
                             ),
                           ),
                         ),
@@ -609,7 +623,7 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondary,
-                                                        fontSize: 17.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -638,7 +652,7 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondary,
-                                                        fontSize: 17.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -672,7 +686,7 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .tertiary,
-                                                  fontSize: 18.0,
+                                                  fontSize: 16.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                   useGoogleFonts: GoogleFonts
@@ -713,7 +727,7 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondary,
-                                                        fontSize: 17.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -742,7 +756,7 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
-                                                          fontSize: 17.0,
+                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -771,7 +785,7 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
-                                                          fontSize: 17.0,
+                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -799,7 +813,7 @@ class _ViewDetailsPendingWidgetState extends State<ViewDetailsPendingWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
-                                                          fontSize: 17.0,
+                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()

@@ -1,5 +1,5 @@
-import '/components/nav_barclient_profile_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/nav_bar_client/nav_barclient_profile/nav_barclient_profile_widget.dart';
 import 'clientprofile_widget.dart' show ClientprofileWidget;
 import 'package:flutter/material.dart';
 

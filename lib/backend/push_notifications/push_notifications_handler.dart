@@ -109,11 +109,7 @@ final parametersBuilderMap =
           'marker': getParameter<LatLng>(data, 'marker'),
         },
       ),
-  'BookingsClient': (data) async => ParameterData(
-        allParams: {
-          'bookingid': getParameter<DocumentReference>(data, 'bookingid'),
-        },
-      ),
+  'BookingsClient': ParameterData.none(),
   'Clientprofile': ParameterData.none(),
   'createAccountSP': (data) async => ParameterData(
         allParams: {
@@ -133,17 +129,11 @@ final parametersBuilderMap =
   'verificationMessageClient': ParameterData.none(),
   'loginpage': ParameterData.none(),
   'errormsg': ParameterData.none(),
-  'clientPinLocation': ParameterData.none(),
-  'CreateAvailability': ParameterData.none(),
-  'List03UserSelectCopy2': (data) async => ParameterData(
+  'clientPinLocation': (data) async => ParameterData(
         allParams: {
-          'isSunday': getParameter<bool>(data, 'isSunday'),
-          'isMonday': getParameter<bool>(data, 'isMonday'),
-          'isTuesday': getParameter<bool>(data, 'isTuesday'),
-          'isWednesday': getParameter<bool>(data, 'isWednesday'),
-          'isThursday': getParameter<bool>(data, 'isThursday'),
-          'isFriday': getParameter<bool>(data, 'isFriday'),
-          'isSaturday': getParameter<bool>(data, 'isSaturday'),
+          'loc': getParameter<LatLng>(data, 'loc'),
+          'doc': getParameter<DocumentReference>(data, 'doc'),
+          'name': getParameter<String>(data, 'name'),
         },
       ),
   'UpdateAvailability': ParameterData.none(),
@@ -192,7 +182,6 @@ final parametersBuilderMap =
         },
       ),
   'ClientprofileEdit': ParameterData.none(),
-  'hhh': ParameterData.none(),
   'testDialogs': ParameterData.none(),
   'SPprofileEdit': ParameterData.none(),
   'CreateAvailabilitySP2': (data) async => const ParameterData(
@@ -205,12 +194,6 @@ final parametersBuilderMap =
           'price': getParameter<int>(data, 'price'),
           'service': getParameter<String>(data, 'service'),
         },
-      ),
-  'CreateAvailabilitySP2Copy': (data) async => const ParameterData(
-        allParams: {},
-      ),
-  'CreateAvailabilitySP2Copy2': (data) async => const ParameterData(
-        allParams: {},
       ),
   'SPprofileEditCopy': ParameterData.none(),
   'chatPage': (data) async => ParameterData(
@@ -245,11 +228,6 @@ final parametersBuilderMap =
       ),
   'Addpayment': ParameterData.none(),
   'AddpaymentCopy': ParameterData.none(),
-  'searchClientNoFilter': (data) async => ParameterData(
-        allParams: {
-          'filters': getParameter<String>(data, 'filters'),
-        },
-      ),
   'ViewSPprofileCopy': (data) async => ParameterData(
         allParams: {
           'parameterProfile':
@@ -267,6 +245,40 @@ final parametersBuilderMap =
         },
       ),
   'loginpage1': ParameterData.none(),
+  'rateAndReviewPage': (data) async => ParameterData(
+        allParams: {
+          'bookingID': getParameter<DocumentReference>(data, 'bookingID'),
+          'spID': getParameter<DocumentReference>(data, 'spID'),
+        },
+      ),
+  'SPReviewsPage': (data) async => ParameterData(
+        allParams: {
+          'serviceProviderFname':
+              getParameter<String>(data, 'serviceProviderFname'),
+          'serviceProviderID':
+              getParameter<DocumentReference>(data, 'serviceProviderID'),
+        },
+      ),
+  'SPReviewsPageCopy': ParameterData.none(),
+  'searchClientNoFilterCopy': (data) async => ParameterData(
+        allParams: {
+          'filters': getParameter<String>(data, 'filters'),
+        },
+      ),
+  'SavedLocations': ParameterData.none(),
+  'notifica': (data) async => ParameterData(
+        allParams: {
+          'notification': await getDocumentParameter<NotificationRecord>(
+              data, 'notification', NotificationRecord.fromSnapshot),
+        },
+      ),
+  'supportDoc': ParameterData.none(),
+  'ClientHomePageCopy': ParameterData.none(),
+  'categories': (data) async => ParameterData(
+        allParams: {
+          'sector': getParameter<String>(data, 'sector'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

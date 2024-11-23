@@ -1,7 +1,9 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'cancel_booking_client_dialog_model.dart';
@@ -185,7 +187,21 @@ class _CancelBookingClientDialogWidgetState
                               .update(createBookingRecordData(
                             status: 'cancelled',
                           ));
+                          await actions.localNotification(
+                            '✅ Booking Cancelled',
+                            'Feel free to explore and book other services anytime!',
+                          );
                           Navigator.pop(context);
+
+                          await ServiceProviderRecord.collection
+                              .doc()
+                              .set(createServiceProviderRecordData(
+                                userIdNotification: currentUserReference,
+                                titleNotification: '✅ Booking Cancelled',
+                                bodyNotification:
+                                    'Feel free to explore and book other services anytime!',
+                                timeStampNotification: getCurrentTimestamp,
+                              ));
                         },
                         text: 'Yes, Cancel Booking',
                         options: FFButtonOptions(
