@@ -432,7 +432,7 @@ class _SavedLocationsWidgetState extends State<SavedLocationsWidget> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        18.0),
+                                                                        8.0),
                                                           ),
                                                         ),
                                                       ),
@@ -532,7 +532,7 @@ class _SavedLocationsWidgetState extends State<SavedLocationsWidget> {
                                                         elevation: 0.0,
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(18.0),
+                                                                .circular(8.0),
                                                       ),
                                                     ),
                                                   ),
@@ -584,7 +584,7 @@ class _SavedLocationsWidgetState extends State<SavedLocationsWidget> {
                     options: FFButtonOptions(
                       width: 180.0,
                       height: 40.0,
-                      padding: const EdgeInsets.all(0.0),
+                      padding: const EdgeInsets.all(8.0),
                       iconPadding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).tertiary,
@@ -599,7 +599,7 @@ class _SavedLocationsWidgetState extends State<SavedLocationsWidget> {
                                 FlutterFlowTheme.of(context).titleSmallFamily),
                           ),
                       elevation: 0.0,
-                      borderRadius: BorderRadius.circular(24.0),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                 ),

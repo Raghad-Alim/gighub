@@ -167,7 +167,7 @@ class _LogOutDialogWidgetState extends State<LogOutDialogWidget> {
                                           .bodyLargeFamily),
                                 ),
                             elevation: 0.0,
-                            borderRadius: BorderRadius.circular(40.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),
@@ -201,7 +201,7 @@ class _LogOutDialogWidgetState extends State<LogOutDialogWidget> {
                           borderSide: const BorderSide(
                             color: Colors.transparent,
                           ),
-                          borderRadius: BorderRadius.circular(40.0),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ],

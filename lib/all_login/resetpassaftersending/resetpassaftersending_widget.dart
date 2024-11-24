@@ -163,7 +163,7 @@ class _ResetpassaftersendingWidgetState
                             FlutterFlowTheme.of(context).titleSmallFamily),
                       ),
                   elevation: 0.0,
-                  borderRadius: BorderRadius.circular(25.0),
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
             ].divide(const SizedBox(height: 24.0)),

@@ -166,7 +166,7 @@ class _UpdateprofileclientWidgetState extends State<UpdateprofileclientWidget> {
                           borderSide: const BorderSide(
                             color: Colors.transparent,
                           ),
-                          borderRadius: BorderRadius.circular(40.0),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ],

@@ -774,7 +774,7 @@ class _ClientprofileEditWidgetState extends State<ClientprofileEditWidget> {
                                                     .titleSmallFamily),
                                       ),
                                   elevation: 0.0,
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
                             ),

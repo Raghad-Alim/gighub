@@ -170,7 +170,7 @@ class _DeleteLocationWidgetState extends State<DeleteLocationWidget> {
                                           .bodyLargeFamily),
                                 ),
                             elevation: 0.0,
-                            borderRadius: BorderRadius.circular(40.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),
@@ -202,7 +202,7 @@ class _DeleteLocationWidgetState extends State<DeleteLocationWidget> {
                           borderSide: const BorderSide(
                             color: Colors.transparent,
                           ),
-                          borderRadius: BorderRadius.circular(40.0),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ],

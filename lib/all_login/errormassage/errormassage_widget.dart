@@ -108,7 +108,7 @@ class _ErrormassageWidgetState extends State<ErrormassageWidget> {
                   color: Colors.transparent,
                   width: 1.0,
                 ),
-                borderRadius: BorderRadius.circular(20.0),
+                borderRadius: BorderRadius.circular(8.0),
               ),
             ),
           ].divide(const SizedBox(height: 16.0)),

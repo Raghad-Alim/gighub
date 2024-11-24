@@ -177,7 +177,7 @@ class _CancelBookingClientDialogWidgetState
                                           .bodyLargeFamily),
                                 ),
                             elevation: 0.0,
-                            borderRadius: BorderRadius.circular(40.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),
@@ -225,7 +225,7 @@ class _CancelBookingClientDialogWidgetState
                           borderSide: const BorderSide(
                             color: Colors.transparent,
                           ),
-                          borderRadius: BorderRadius.circular(40.0),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ],

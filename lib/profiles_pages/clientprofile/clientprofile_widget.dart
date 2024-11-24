@@ -801,7 +801,7 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(38.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
                             ),
@@ -852,7 +852,7 @@ class _ClientprofileWidgetState extends State<ClientprofileWidget> {
                                   borderSide: const BorderSide(
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(38.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
                             ),

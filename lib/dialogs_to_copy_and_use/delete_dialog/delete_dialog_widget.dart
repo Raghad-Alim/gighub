@@ -166,7 +166,7 @@ class _DeleteDialogWidgetState extends State<DeleteDialogWidget> {
                                           .bodyLargeFamily),
                                 ),
                             elevation: 0.0,
-                            borderRadius: BorderRadius.circular(40.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),
@@ -196,7 +196,7 @@ class _DeleteDialogWidgetState extends State<DeleteDialogWidget> {
                           borderSide: const BorderSide(
                             color: Colors.transparent,
                           ),
-                          borderRadius: BorderRadius.circular(40.0),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ],

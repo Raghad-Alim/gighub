@@ -1550,7 +1550,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                                   color: FlutterFlowTheme.of(context).alternate,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(38.0),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
                           ),
@@ -1599,7 +1599,7 @@ class _SPprofileWidgetState extends State<SPprofileWidget> {
                                 borderSide: const BorderSide(
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(38.0),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
                           ),

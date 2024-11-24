@@ -1476,6 +1476,7 @@ class _ClientHomePageCopyWidgetState extends State<ClientHomePageCopyWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Container(
+                                    width: 391.0,
                                     height: 392.0,
                                     decoration: const BoxDecoration(),
                                     child: Builder(
@@ -1500,7 +1501,7 @@ class _ClientHomePageCopyWidgetState extends State<ClientHomePageCopyWidget> {
                                             return Padding(
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      20.0, 0.0, 20.0, 0.0),
+                                                      25.0, 0.0, 25.0, 0.0),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
                                                 focusColor: Colors.transparent,

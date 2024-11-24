@@ -1504,7 +1504,7 @@ class _SPprofileEditCopyWidgetState extends State<SPprofileEditCopyWidget> {
                                               ),
                                           elevation: 0.0,
                                           borderRadius:
-                                              BorderRadius.circular(24.0),
+                                              BorderRadius.circular(8.0),
                                         ),
                                       ),
                                     ),

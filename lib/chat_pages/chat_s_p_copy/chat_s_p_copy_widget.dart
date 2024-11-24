@@ -53,7 +53,7 @@ class _ChatSPCopyWidgetState extends State<ChatSPCopyWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
-            'chats',
+            'Chats',
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                   color: FlutterFlowTheme.of(context).tertiary,

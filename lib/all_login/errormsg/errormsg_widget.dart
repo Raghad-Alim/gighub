@@ -127,7 +127,7 @@ class _ErrormsgWidgetState extends State<ErrormsgWidget> {
                           color: Colors.transparent,
                           width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(20.0),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                   ].divide(const SizedBox(height: 16.0)),
