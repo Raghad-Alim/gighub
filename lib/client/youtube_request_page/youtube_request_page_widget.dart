@@ -1041,7 +1041,7 @@ class _YoutubeRequestPageWidgetState extends State<YoutubeRequestPageWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.02, 0.86),
+                                  alignment: const AlignmentDirectional(0.02, 0.87),
                                   child: Builder(
                                     builder: (context) => Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(

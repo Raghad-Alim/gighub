@@ -186,7 +186,7 @@ class _NavBarclientChatCopyWidgetState
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-0.36, 0.95),
+                  alignment: const AlignmentDirectional(-0.37, 0.95),
                   child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 5.0),

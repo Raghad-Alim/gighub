@@ -165,7 +165,7 @@ class _NavBarclientChatWidgetState extends State<NavBarclientChatWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.36, 1.05),
+                alignment: const AlignmentDirectional(-0.37, 1.05),
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 0.0, 5.0),
                   child: Text(

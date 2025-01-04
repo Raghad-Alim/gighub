@@ -67,25 +67,6 @@ class _SupportDocWidgetState extends State<SupportDocWidget>
           ),
         ],
       ),
-      'containerOnPageLoadAnimation3': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, 110.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
     });
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -107,7 +88,10 @@ class _SupportDocWidgetState extends State<SupportDocWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
@@ -115,7 +99,7 @@ class _SupportDocWidgetState extends State<SupportDocWidget>
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
           title: Text(
-            'Get support',
+            'Get help',
             style: FlutterFlowTheme.of(context).titleLarge.override(
                   fontFamily: 'Outfit',
                   color: FlutterFlowTheme.of(context).tertiary,
@@ -161,130 +145,6 @@ class _SupportDocWidgetState extends State<SupportDocWidget>
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Welcome to support',
-                          style: FlutterFlowTheme.of(context)
-                              .labelLarge
-                              .override(
-                                fontFamily: 'Outfit',
-                                color: const Color(0xFF606A85),
-                                fontSize: 16.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
-                                useGoogleFonts:
-                                    GoogleFonts.asMap().containsKey('Outfit'),
-                              ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 4.0, 0.0, 0.0),
-                          child: Text(
-                            'How can we help you?',
-                            style: FlutterFlowTheme.of(context)
-                                .headlineMedium
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color: const Color(0xFF15161E),
-                                  fontSize: 24.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  useGoogleFonts:
-                                      GoogleFonts.asMap().containsKey('Outfit'),
-                                ),
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 16.0, 0.0, 0.0),
-                                child: Container(
-                                  width: 120.0,
-                                  constraints: const BoxConstraints(
-                                    maxWidth: 500.0,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    border: Border.all(
-                                      color: const Color(0xFFE5E7EB),
-                                      width: 2.0,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            await launchURL(
-                                                'https://wa.me/966506440963?text=Hello%20GigHub%20Support!%20I%20need%20help%20with...');
-                                          },
-                                          child: Icon(
-                                            Icons.sms,
-                                            color: FlutterFlowTheme.of(context)
-                                                .tertiary,
-                                            size: 50.0,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 0.0),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              await launchURL(
-                                                  'https://wa.me/966506440963?text=Hello%20GigHub%20Support!%20I%20need%20help%20with...');
-                                            },
-                                            child: Text(
-                                              'WhatsApp us...',
-                                              textAlign: TextAlign.center,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily:
-                                                        'Plus Jakarta Sans',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondary,
-                                                    fontSize: 18.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    decoration: TextDecoration
-                                                        .underline,
-                                                    useGoogleFonts: GoogleFonts
-                                                            .asMap()
-                                                        .containsKey(
-                                                            'Plus Jakarta Sans'),
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation1']!),
-                              ),
-                            ),
-                          ].divide(const SizedBox(width: 12.0)),
-                        ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 4.0),
@@ -361,7 +221,7 @@ class _SupportDocWidgetState extends State<SupportDocWidget>
                               ),
                             ),
                           ).animateOnPageLoad(
-                              animationsMap['containerOnPageLoadAnimation2']!),
+                              animationsMap['containerOnPageLoadAnimation1']!),
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -421,7 +281,7 @@ class _SupportDocWidgetState extends State<SupportDocWidget>
                               ),
                             ),
                           ).animateOnPageLoad(
-                              animationsMap['containerOnPageLoadAnimation3']!),
+                              animationsMap['containerOnPageLoadAnimation2']!),
                         ),
                       ],
                     ),

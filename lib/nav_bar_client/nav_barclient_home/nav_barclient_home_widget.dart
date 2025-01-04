@@ -186,7 +186,7 @@ class _NavBarclientHomeWidgetState extends State<NavBarclientHomeWidget> {
                     ),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(-0.35, 0.98),
+                    alignment: const AlignmentDirectional(-0.35, 0.99),
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 0.0, 5.0),

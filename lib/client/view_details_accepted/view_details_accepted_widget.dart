@@ -59,7 +59,10 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -669,7 +672,7 @@ class _ViewDetailsAcceptedWidgetState extends State<ViewDetailsAcceptedWidget> {
                                   ],
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.42),
+                                  alignment: const AlignmentDirectional(0.0, 0.43),
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 50.0),

@@ -77,7 +77,10 @@ class _RequestPageCopy2WidgetState extends State<RequestPageCopy2Widget> {
         List<BookingRecord> requestPageCopy2BookingRecordList = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,

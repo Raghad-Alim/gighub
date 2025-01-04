@@ -64,7 +64,10 @@ class _ClientLocationWidgetState extends State<ClientLocationWidget> {
     }
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         resizeToAvoidBottomInset: false,
@@ -378,8 +381,11 @@ class _ClientLocationWidgetState extends State<ClientLocationWidget> {
                                   alignment: const AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
                                   child: GestureDetector(
-                                    onTap: () =>
-                                        FocusScope.of(dialogContext).unfocus(),
+                                    onTap: () {
+                                      FocusScope.of(dialogContext).unfocus();
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                    },
                                     child: LocationSavedWidget(
                                       loc: _model.loc!,
                                       locName:

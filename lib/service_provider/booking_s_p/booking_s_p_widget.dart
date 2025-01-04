@@ -109,7 +109,10 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
         List<BookingRecord> bookingSPBookingRecordList = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -382,7 +385,7 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                             },
                                                             child: Container(
                                                               width: 100.0,
-                                                              height: 189.0,
+                                                              height: 148.0,
                                                               decoration:
                                                                   BoxDecoration(
                                                                 color: FlutterFlowTheme.of(
@@ -530,95 +533,13 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                       ),
                                                                     ],
                                                                   ),
-                                                                  Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        FFButtonWidget(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        context
-                                                                            .pushNamed(
-                                                                          'chatSPCopy',
-                                                                          queryParameters:
-                                                                              {
-                                                                            'bookingID':
-                                                                                serializeParam(
-                                                                              '',
-                                                                              ParamType.String,
-                                                                            ),
-                                                                          }.withoutNulls,
-                                                                        );
-                                                                      },
-                                                                      text:
-                                                                          'chat with client',
-                                                                      icon:
-                                                                          const Icon(
-                                                                        Icons
-                                                                            .chat_bubble_rounded,
-                                                                        size:
-                                                                            27.0,
-                                                                      ),
-                                                                      options:
-                                                                          FFButtonOptions(
-                                                                        width:
-                                                                            304.0,
-                                                                        height:
-                                                                            45.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            16.0,
-                                                                            0.0,
-                                                                            16.0,
-                                                                            0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .tertiary,
-                                                                        textStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              letterSpacing: 0.0,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                            ),
-                                                                        elevation:
-                                                                            0.0,
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
-                                                                          width:
-                                                                              1.0,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            const BorderRadius.only(
-                                                                          bottomLeft:
-                                                                              Radius.circular(10.0),
-                                                                          bottomRight:
-                                                                              Radius.circular(10.0),
-                                                                          topLeft:
-                                                                              Radius.circular(10.0),
-                                                                          topRight:
-                                                                              Radius.circular(10.0),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
                                                                   Builder(
                                                                     builder:
                                                                         (context) =>
                                                                             Padding(
                                                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
-                                                                          6.0,
+                                                                          16.0,
                                                                           0.0,
                                                                           0.0),
                                                                       child:
@@ -636,7 +557,10 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                                 backgroundColor: Colors.transparent,
                                                                                 alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                 child: GestureDetector(
-                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  onTap: () {
+                                                                                    FocusScope.of(dialogContext).unfocus();
+                                                                                    FocusManager.instance.primaryFocus?.unfocus();
+                                                                                  },
                                                                                   child: CancelBookingClientDialogCopyWidget(
                                                                                     bookingRefrence: listViewBookingRecord.reference,
                                                                                   ),
@@ -860,7 +784,7 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                             },
                                                             child: Container(
                                                               width: 100.0,
-                                                              height: 199.0,
+                                                              height: 164.0,
                                                               decoration:
                                                                   BoxDecoration(
                                                                 color: FlutterFlowTheme.of(
@@ -933,16 +857,16 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                         child:
                                                                             Padding(
                                                                           padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                              80.0,
+                                                                              70.0,
                                                                               10.0,
                                                                               0.0,
                                                                               0.0),
                                                                           child:
                                                                               Container(
                                                                             width:
-                                                                                126.0,
+                                                                                138.0,
                                                                             height:
-                                                                                30.0,
+                                                                                34.0,
                                                                             decoration:
                                                                                 BoxDecoration(
                                                                               color: FlutterFlowTheme.of(context).warning,
@@ -964,6 +888,7 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                                 style: FlutterFlowTheme.of(context).bodySmall.override(
                                                                                       fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
                                                                                       color: const Color(0xFF103C37),
+                                                                                      fontSize: 12.5,
                                                                                       letterSpacing: 0.0,
                                                                                       useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
                                                                                     ),
@@ -1054,95 +979,13 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                       ),
                                                                     ],
                                                                   ),
-                                                                  Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        FFButtonWidget(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        context
-                                                                            .pushNamed(
-                                                                          'chatSPCopy',
-                                                                          queryParameters:
-                                                                              {
-                                                                            'bookingID':
-                                                                                serializeParam(
-                                                                              '',
-                                                                              ParamType.String,
-                                                                            ),
-                                                                          }.withoutNulls,
-                                                                        );
-                                                                      },
-                                                                      text:
-                                                                          'chat with client',
-                                                                      icon:
-                                                                          const Icon(
-                                                                        Icons
-                                                                            .chat_bubble_rounded,
-                                                                        size:
-                                                                            27.0,
-                                                                      ),
-                                                                      options:
-                                                                          FFButtonOptions(
-                                                                        width:
-                                                                            304.0,
-                                                                        height:
-                                                                            45.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            16.0,
-                                                                            0.0,
-                                                                            16.0,
-                                                                            0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .tertiary,
-                                                                        textStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              letterSpacing: 0.0,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                            ),
-                                                                        elevation:
-                                                                            0.0,
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
-                                                                          width:
-                                                                              1.0,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            const BorderRadius.only(
-                                                                          bottomLeft:
-                                                                              Radius.circular(10.0),
-                                                                          bottomRight:
-                                                                              Radius.circular(10.0),
-                                                                          topLeft:
-                                                                              Radius.circular(10.0),
-                                                                          topRight:
-                                                                              Radius.circular(10.0),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
                                                                   Builder(
                                                                     builder:
                                                                         (context) =>
                                                                             Padding(
                                                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
-                                                                          6.0,
+                                                                          16.0,
                                                                           0.0,
                                                                           0.0),
                                                                       child:
@@ -1160,7 +1003,10 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                                 backgroundColor: Colors.transparent,
                                                                                 alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                 child: GestureDetector(
-                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  onTap: () {
+                                                                                    FocusScope.of(dialogContext).unfocus();
+                                                                                    FocusManager.instance.primaryFocus?.unfocus();
+                                                                                  },
                                                                                   child: CancelBookingClientDialogCopyCopyWidget(
                                                                                     bookingRefrence: listViewBookingRecord.reference,
                                                                                   ),
@@ -1831,7 +1677,7 @@ class _BookingSPWidgetState extends State<BookingSPWidget>
                                                                           width:
                                                                               133.0,
                                                                           height:
-                                                                              30.0,
+                                                                              36.0,
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:

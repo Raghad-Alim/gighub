@@ -72,7 +72,10 @@ class _CreateAvailabilitySP2WidgetState
         final createAvailabilitySP2UserRecord = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -195,17 +198,23 @@ class _CreateAvailabilitySP2WidgetState
                                 safeSetState(() {});
                               },
                               text: valueOrDefault<String>(
-                                FFAppState().availability[0].startTime == null
+                                FFAppState()
+                                            .availability
+                                            .elementAtOrNull(0)
+                                            ?.startTime ==
+                                        null
                                     ? 'Start Time'
                                     : valueOrDefault<String>(
                                         FFAppState()
-                                                .availability[0]
+                                                .availability
+                                                .elementAtOrNull(0)!
                                                 .hasStartTime()
                                             ? dateTimeFormat(
                                                 "jm",
                                                 FFAppState()
-                                                    .availability[0]
-                                                    .startTime,
+                                                    .availability
+                                                    .elementAtOrNull(0)
+                                                    ?.startTime,
                                                 locale:
                                                     FFLocalizations.of(context)
                                                         .languageCode,
@@ -309,17 +318,23 @@ class _CreateAvailabilitySP2WidgetState
                                 safeSetState(() {});
                               },
                               text: valueOrDefault<String>(
-                                FFAppState().availability[0].endTime == null
+                                FFAppState()
+                                            .availability
+                                            .elementAtOrNull(0)
+                                            ?.endTime ==
+                                        null
                                     ? 'End Time'
                                     : valueOrDefault<String>(
                                         FFAppState()
-                                                .availability[0]
+                                                .availability
+                                                .elementAtOrNull(0)!
                                                 .hasEndTime()
                                             ? dateTimeFormat(
                                                 "jm",
                                                 FFAppState()
-                                                    .availability[0]
-                                                    .endTime,
+                                                    .availability
+                                                    .elementAtOrNull(0)
+                                                    ?.endTime,
                                                 locale:
                                                     FFLocalizations.of(context)
                                                         .languageCode,
@@ -442,14 +457,21 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[1].startTime ==
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(1)
+                                          ?.startTime ==
                                       null
                                   ? 'Start Time'
-                                  : (FFAppState().availability[1].hasStartTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(1)!
+                                          .hasStartTime()
                                       ? dateTimeFormat(
                                           "jm",
                                           FFAppState()
-                                              .availability[1]
+                                              .availability
+                                              .elementAtOrNull(1)!
                                               .startTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
@@ -547,17 +569,23 @@ class _CreateAvailabilitySP2WidgetState
                                 safeSetState(() {});
                               },
                               text: valueOrDefault<String>(
-                                FFAppState().availability[1].endTime == null
+                                FFAppState()
+                                            .availability
+                                            .elementAtOrNull(1)
+                                            ?.endTime ==
+                                        null
                                     ? 'End Time'
                                     : valueOrDefault<String>(
                                         FFAppState()
-                                                .availability[1]
+                                                .availability
+                                                .elementAtOrNull(1)!
                                                 .hasEndTime()
                                             ? dateTimeFormat(
                                                 "jm",
                                                 FFAppState()
-                                                    .availability[0]
-                                                    .endTime,
+                                                    .availability
+                                                    .elementAtOrNull(0)
+                                                    ?.endTime,
                                                 locale:
                                                     FFLocalizations.of(context)
                                                         .languageCode,
@@ -680,14 +708,21 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[2].startTime ==
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(2)
+                                          ?.startTime ==
                                       null
                                   ? 'Start Time'
-                                  : (FFAppState().availability[2].hasStartTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(2)!
+                                          .hasStartTime()
                                       ? dateTimeFormat(
                                           "jm",
                                           FFAppState()
-                                              .availability[2]
+                                              .availability
+                                              .elementAtOrNull(2)!
                                               .startTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
@@ -784,12 +819,22 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[1].endTime == null
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(1)
+                                          ?.endTime ==
+                                      null
                                   ? 'End Time'
-                                  : (FFAppState().availability[1].hasEndTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(1)!
+                                          .hasEndTime()
                                       ? dateTimeFormat(
                                           "jm",
-                                          FFAppState().availability[2].endTime!,
+                                          FFAppState()
+                                              .availability
+                                              .elementAtOrNull(2)!
+                                              .endTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         )
@@ -906,14 +951,21 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[3].startTime ==
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(3)
+                                          ?.startTime ==
                                       null
                                   ? 'Start Time'
-                                  : (FFAppState().availability[3].hasStartTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(3)!
+                                          .hasStartTime()
                                       ? dateTimeFormat(
                                           "jm",
                                           FFAppState()
-                                              .availability[3]
+                                              .availability
+                                              .elementAtOrNull(3)!
                                               .startTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
@@ -1010,12 +1062,22 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[3].endTime == null
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(3)
+                                          ?.endTime ==
+                                      null
                                   ? 'End Time'
-                                  : (FFAppState().availability[3].hasEndTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(3)!
+                                          .hasEndTime()
                                       ? dateTimeFormat(
                                           "jm",
-                                          FFAppState().availability[3].endTime!,
+                                          FFAppState()
+                                              .availability
+                                              .elementAtOrNull(3)!
+                                              .endTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         )
@@ -1132,14 +1194,21 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[4].startTime ==
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(4)
+                                          ?.startTime ==
                                       null
                                   ? 'Start Time'
-                                  : (FFAppState().availability[4].hasStartTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(4)!
+                                          .hasStartTime()
                                       ? dateTimeFormat(
                                           "jm",
                                           FFAppState()
-                                              .availability[4]
+                                              .availability
+                                              .elementAtOrNull(4)!
                                               .startTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
@@ -1236,12 +1305,22 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[3].endTime == null
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(3)
+                                          ?.endTime ==
+                                      null
                                   ? 'End Time'
-                                  : (FFAppState().availability[3].hasEndTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(3)!
+                                          .hasEndTime()
                                       ? dateTimeFormat(
                                           "jm",
-                                          FFAppState().availability[3].endTime!,
+                                          FFAppState()
+                                              .availability
+                                              .elementAtOrNull(3)!
+                                              .endTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         )
@@ -1358,14 +1437,21 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[5].startTime ==
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(5)
+                                          ?.startTime ==
                                       null
                                   ? 'Start Time'
-                                  : (FFAppState().availability[5].hasStartTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(5)!
+                                          .hasStartTime()
                                       ? dateTimeFormat(
                                           "jm",
                                           FFAppState()
-                                              .availability[5]
+                                              .availability
+                                              .elementAtOrNull(5)!
                                               .startTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
@@ -1462,12 +1548,22 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[5].endTime == null
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(5)
+                                          ?.endTime ==
+                                      null
                                   ? 'End Time'
-                                  : (FFAppState().availability[5].hasEndTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(5)!
+                                          .hasEndTime()
                                       ? dateTimeFormat(
                                           "jm",
-                                          FFAppState().availability[5].endTime!,
+                                          FFAppState()
+                                              .availability
+                                              .elementAtOrNull(5)!
+                                              .endTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         )
@@ -1584,14 +1680,21 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[6].startTime ==
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(6)
+                                          ?.startTime ==
                                       null
                                   ? 'Start Time'
-                                  : (FFAppState().availability[6].hasStartTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(6)!
+                                          .hasStartTime()
                                       ? dateTimeFormat(
                                           "jm",
                                           FFAppState()
-                                              .availability[6]
+                                              .availability
+                                              .elementAtOrNull(6)!
                                               .startTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
@@ -1688,12 +1791,22 @@ class _CreateAvailabilitySP2WidgetState
                                 );
                                 safeSetState(() {});
                               },
-                              text: FFAppState().availability[6].endTime == null
+                              text: FFAppState()
+                                          .availability
+                                          .elementAtOrNull(6)
+                                          ?.endTime ==
+                                      null
                                   ? 'End Time'
-                                  : (FFAppState().availability[6].hasEndTime()
+                                  : (FFAppState()
+                                          .availability
+                                          .elementAtOrNull(6)!
+                                          .hasEndTime()
                                       ? dateTimeFormat(
                                           "jm",
-                                          FFAppState().availability[6].endTime!,
+                                          FFAppState()
+                                              .availability
+                                              .elementAtOrNull(6)!
+                                              .endTime!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         )

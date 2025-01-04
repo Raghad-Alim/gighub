@@ -77,7 +77,10 @@ class _ClientHomePageCopyWidgetState extends State<ClientHomePageCopyWidget> {
         List<UserRecord> clientHomePageCopyUserRecordList = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: Colors.white,
@@ -240,7 +243,7 @@ class _ClientHomePageCopyWidgetState extends State<ClientHomePageCopyWidget> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        320.0, 29.0, 0.0, 0.0),
+                                        350.0, 29.0, 0.0, 0.0),
                                     child: Icon(
                                       Icons.search_sharp,
                                       color: FlutterFlowTheme.of(context)
@@ -1575,7 +1578,7 @@ class _ClientHomePageCopyWidgetState extends State<ClientHomePageCopyWidget> {
                                                   );
                                                 },
                                                 child: Container(
-                                                  width: 30.0,
+                                                  width: 21.0,
                                                   height: 144.0,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
@@ -1617,7 +1620,7 @@ class _ClientHomePageCopyWidgetState extends State<ClientHomePageCopyWidget> {
                                                                 const AlignmentDirectional(
                                                                     -1.0, -1.0),
                                                             child: Container(
-                                                              width: 314.0,
+                                                              width: 332.0,
                                                               height: 132.0,
                                                               decoration:
                                                                   BoxDecoration(
@@ -1840,7 +1843,7 @@ class _ClientHomePageCopyWidgetState extends State<ClientHomePageCopyWidget> {
                                                                           ),
                                                                           const Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                270.0,
+                                                                                289.0,
                                                                                 40.0,
                                                                                 0.0,
                                                                                 0.0),

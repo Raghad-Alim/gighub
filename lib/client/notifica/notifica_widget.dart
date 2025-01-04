@@ -71,7 +71,10 @@ class _NotificaWidgetState extends State<NotificaWidget> {
         int notificaCount = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -264,7 +267,7 @@ class _NotificaWidgetState extends State<NotificaWidget> {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 25.0, 11.0, 0.0),
+                                                  0.0, 15.0, 11.0, 0.0),
                                           child: Text(
                                             dateTimeFormat(
                                               "relative",

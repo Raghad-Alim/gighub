@@ -95,7 +95,10 @@ class _CreateAccountClientWidgetState extends State<CreateAccountClientWidget> {
     }
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         resizeToAvoidBottomInset: false,

@@ -108,7 +108,10 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
         List<BookingRecord> bookingsClientBookingRecordList = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -349,7 +352,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                           },
                                                           child: Container(
                                                             width: 100.0,
-                                                            height: 246.0,
+                                                            height: 201.0,
                                                             decoration:
                                                                 BoxDecoration(
                                                               color: FlutterFlowTheme
@@ -567,7 +570,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                         ),
                                                                         const Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              290.0,
+                                                                              330.0,
                                                                               0.0,
                                                                               0.0,
                                                                               9.0),
@@ -624,84 +627,6 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                     ),
                                                                   ),
                                                                 ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          9.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      FFButtonWidget(
-                                                                    onPressed:
-                                                                        () async {
-                                                                      context.pushNamed(
-                                                                          'chatsClientCopy');
-                                                                    },
-                                                                    text:
-                                                                        'chat with service provider',
-                                                                    icon: const Icon(
-                                                                      Icons
-                                                                          .chat_bubble_rounded,
-                                                                      size:
-                                                                          27.0,
-                                                                    ),
-                                                                    options:
-                                                                        FFButtonOptions(
-                                                                      width:
-                                                                          304.0,
-                                                                      height:
-                                                                          45.0,
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          0.0),
-                                                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary,
-                                                                      textStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            useGoogleFonts:
-                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                          ),
-                                                                      elevation:
-                                                                          0.0,
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
-                                                                        width:
-                                                                            1.0,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .only(
-                                                                        bottomLeft:
-                                                                            Radius.circular(10.0),
-                                                                        bottomRight:
-                                                                            Radius.circular(10.0),
-                                                                        topLeft:
-                                                                            Radius.circular(10.0),
-                                                                        topRight:
-                                                                            Radius.circular(10.0),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
                                                                 Builder(
                                                                   builder:
                                                                       (context) =>
@@ -709,7 +634,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
-                                                                            9.0,
+                                                                            15.0,
                                                                             0.0,
                                                                             0.0),
                                                                     child:
@@ -727,7 +652,10 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                               backgroundColor: Colors.transparent,
                                                                               alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: GestureDetector(
-                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                onTap: () {
+                                                                                  FocusScope.of(dialogContext).unfocus();
+                                                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                                                },
                                                                                 child: CancelBookingClientDialogWidget(
                                                                                   bookingRefrence: listViewBookingRecord.reference,
                                                                                 ),
@@ -946,7 +874,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                         },
                                                         child: Container(
                                                           width: 100.0,
-                                                          height: 246.0,
+                                                          height: 203.0,
                                                           decoration:
                                                               BoxDecoration(
                                                             color: FlutterFlowTheme
@@ -1179,7 +1107,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                       ),
                                                                       const Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            290.0,
+                                                                            330.0,
                                                                             0.0,
                                                                             0.0,
                                                                             9.0),
@@ -1241,91 +1169,6 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                   ),
                                                                 ),
                                                               ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            9.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    context.pushNamed(
-                                                                        'chatsClientCopy');
-                                                                  },
-                                                                  text:
-                                                                      'chat with service provider',
-                                                                  icon: const Icon(
-                                                                    Icons
-                                                                        .chat_bubble_rounded,
-                                                                    size: 27.0,
-                                                                  ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width:
-                                                                        304.0,
-                                                                    height:
-                                                                        45.0,
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16.0,
-                                                                            0.0,
-                                                                            16.0,
-                                                                            0.0),
-                                                                    iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiary,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                        ),
-                                                                    elevation:
-                                                                        0.0,
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBackground,
-                                                                      width:
-                                                                          1.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        const BorderRadius
-                                                                            .only(
-                                                                      bottomLeft:
-                                                                          Radius.circular(
-                                                                              10.0),
-                                                                      bottomRight:
-                                                                          Radius.circular(
-                                                                              10.0),
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              10.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              10.0),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
                                                               Builder(
                                                                 builder:
                                                                     (context) =>
@@ -1333,7 +1176,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                   padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
-                                                                          9.0,
+                                                                          16.0,
                                                                           0.0,
                                                                           0.0),
                                                                   child:
@@ -1356,7 +1199,10 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                                 const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
                                                                                 GestureDetector(
-                                                                              onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                              onTap: () {
+                                                                                FocusScope.of(dialogContext).unfocus();
+                                                                                FocusManager.instance.primaryFocus?.unfocus();
+                                                                              },
                                                                               child: CancelBookingClientDialogWidget(
                                                                                 bookingRefrence: listViewBookingRecord.reference,
                                                                               ),
@@ -1803,7 +1649,7 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                         ),
                                                                         const Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              290.0,
+                                                                              330.0,
                                                                               0.0,
                                                                               0.0,
                                                                               9.0),
@@ -1885,7 +1731,10 @@ class _BookingsClientWidgetState extends State<BookingsClientWidget>
                                                                               backgroundColor: Colors.transparent,
                                                                               alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: GestureDetector(
-                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                onTap: () {
+                                                                                  FocusScope.of(dialogContext).unfocus();
+                                                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                                                },
                                                                                 child: CancelBookingClientDialogWidget(
                                                                                   bookingRefrence: listViewBookingRecord.reference,
                                                                                 ),

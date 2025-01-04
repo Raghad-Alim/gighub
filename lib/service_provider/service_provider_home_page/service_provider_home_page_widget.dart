@@ -108,7 +108,10 @@ class _ServiceProviderHomePageWidgetState
         int serviceProviderHomePageCount = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -379,7 +382,7 @@ class _ServiceProviderHomePageWidgetState
                                                                               context)
                                                                           .tertiary,
                                                                       fontSize:
-                                                                          25.0,
+                                                                          22.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       fontWeight:
@@ -704,7 +707,7 @@ class _ServiceProviderHomePageWidgetState
                                                             const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
-                                                                    9.0,
+                                                                    0.0,
                                                                     0.0,
                                                                     0.0),
                                                         child: Text(
@@ -720,7 +723,7 @@ class _ServiceProviderHomePageWidgetState
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .tertiary,
-                                                                fontSize: 25.0,
+                                                                fontSize: 22.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
